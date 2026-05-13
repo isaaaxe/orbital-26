@@ -1,3 +1,3 @@
 # Orbital Project 2026
-### NUS@Routes
+### Routes@NUS
 App to more accurately pathfind from place to place in NUS campus!
