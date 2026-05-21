@@ -1,5 +1,8 @@
+import { RouteProvider } from "@/context/RouteContext";
 import { Stack } from "expo-router";
 
 export default function RootLayout() {
-  return <Stack screenOptions={{headerShown: false}}/>;
+  return <RouteProvider>
+  <Stack screenOptions={{headerShown: false}}/>;
+  </RouteProvider>
 }

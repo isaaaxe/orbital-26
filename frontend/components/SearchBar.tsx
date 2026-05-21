@@ -8,6 +8,8 @@ type SearchBarProps = {
 }
 export default function SearchBar(props: SearchBarProps) {
 
+    // can try implementing fuzzy search here next time
+
     const [query, setQuery] = useState(props.searchContent)
     const icons = {
         search: require("../assets/icons/search.png")

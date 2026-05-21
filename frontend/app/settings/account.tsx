@@ -1,8 +1,7 @@
-import Header from "@/components/Header";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function MapPage(){
+export default function AccountSettings() {
 
     const styles = StyleSheet.create({
         screen: {
@@ -10,13 +9,11 @@ export default function MapPage(){
             backgroundColor: "#FFFFFF",
         },
     })
-
     return <View style={styles.screen}>
-    <SafeAreaView>
-        <View>
-            <Text>Map page</Text>
+            <SafeAreaView>
+                <View>
+                    <Text>Account Settings Page</Text>
+                </View>
+            </SafeAreaView>
         </View>
-    </SafeAreaView>
-    </View>
-
 }

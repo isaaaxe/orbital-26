@@ -1,4 +1,4 @@
-import { View,StyleSheet, Text, TouchableHighlight } from "react-native"
+import { View,StyleSheet, Text, TouchableHighlight, TouchableOpacity } from "react-native"
 
 type ChipProps = {
     text: string;
@@ -9,9 +9,9 @@ const styles = StyleSheet.create(
         chip:{
             backgroundColor: "#EAF3FF",
             paddingHorizontal: 14,
-            paddingVertical: 9,
             borderRadius: 18,
-            marginRight: 12
+            marginRight: 12,
+            justifyContent: "center"
         },
 
         chipText:{
@@ -25,7 +25,7 @@ const styles = StyleSheet.create(
 
 export default function ChipItem(props: ChipProps) {
 
-    return <TouchableHighlight style={styles.chip}>
+    return <TouchableOpacity style={styles.chip}>
         <Text style={styles.chipText}>{props.text}</Text>
-    </TouchableHighlight>
+    </TouchableOpacity>
 }

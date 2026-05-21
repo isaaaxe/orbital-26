@@ -5,9 +5,11 @@ import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import CardItem from "@/components/CardItem";
 import ChipList from "@/components/ChipList";
+import { useRouteContext } from "@/context/RouteContext";
 
 export default function Index() {
 
+  const { setSearchDestination } = useRouteContext();
   const icons = {
     location: require("../../assets/icons/location.png"),
     star: require("../../assets/icons/star.png"),
@@ -16,6 +18,16 @@ export default function Index() {
 
   const toSearchPage = () => {
     router.push("/searchRoute")
+  }
+
+  function handleSearch(input: string) {
+    setSearchDestination(input)
+    router.push("/searchRoute")
+    console.log(input);
+  }
+
+  function handleSetCurrLocation() {
+    console.log("to be implemented...")
   }
 
   function onSearch(input: string) {
@@ -29,11 +41,14 @@ export default function Index() {
             backgroundColor: "#FFFFFF",
       },
       bodyView: {
-        margin: 20,
+        flex: 1,
+        marginHorizontal: 20,
+        marginBottom:12
       },
       h3: {
         fontSize: 16,
-        fontWeight: "600"
+        fontWeight: "600",
+        marginBottom: 6
       }
     }
   )
@@ -43,7 +58,7 @@ export default function Index() {
       <SafeAreaView style={{flex: 1}}>  
       <Header text={"Routes@NUS"} description={"Campus routing with ETA, buses and indoor levels"} />
       {/* Search bar */}
-      <SearchBar searchContent="" onSearch={onSearch} />
+      <SearchBar searchContent={""} onSearch={handleSearch} />
   
 
       {/* Automatic starting point but it should be selectable as well */}
@@ -54,6 +69,7 @@ export default function Index() {
           icon={icons.location}
           cardTitle="UTown Bus Stop"
           cardSubtitle="Current location"
+          onPress={handleSetCurrLocation}
         />
         <Text style={styles.h3}>Recently Visited</Text>
         {/* will prob have to set the chiplist props here? */}
@@ -68,21 +84,14 @@ export default function Index() {
           icon={icons.star}
           cardTitle="COM1-02-12"
           cardSubtitle="Description"
+          onPress={() => handleSearch("COM1-02-12")}
         />
         <CardItem 
           icon={icons.star}
           cardTitle="Central Libary"
-          cardSubtitle="Description"/>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text>Testing home pageDDD</Text>
-        <TouchableHighlight onPress={toSearchPage}><Text>To search</Text></TouchableHighlight>
+          cardSubtitle="Description"
+          onPress={() => handleSearch("Central Library")}
+          />
       </View>
     </SafeAreaView>
     </View>

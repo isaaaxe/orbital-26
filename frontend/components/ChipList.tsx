@@ -19,22 +19,17 @@ export default function ChipList() {
         
     const styles = StyleSheet.create({
             chipList: {
-                flex: 1,
                 marginTop: 5,
             },
-            listView: {
-                flex: 1
-            }
         }   
     )
 
 
-    return <ScrollView style={styles.listView}>
-        <FlatList 
+    return <FlatList 
             style={styles.chipList}
             horizontal
             data={DATA}
             renderItem={({item})=> <ChipItem text={item.text} />}
         />
-    </ScrollView>
+
 }

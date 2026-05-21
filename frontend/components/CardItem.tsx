@@ -1,12 +1,13 @@
-import { Text,View, StyleSheet, Image, ImageSourcePropType } from "react-native";
+import { Text,View, StyleSheet, Image, ImageSourcePropType, TouchableOpacity } from "react-native";
 
 type CardItemProp ={
     icon: ImageSourcePropType,
     cardTitle: string,
-    cardSubtitle: string
+    cardSubtitle: string,
+    onPress: () => void
 }
 
-export default function CardItem({icon, cardTitle, cardSubtitle}: CardItemProp) {
+export default function CardItem({icon, cardTitle, cardSubtitle, onPress}: CardItemProp) {
 
     const styles = StyleSheet.create({
         cardContainer: {
@@ -31,14 +32,13 @@ export default function CardItem({icon, cardTitle, cardSubtitle}: CardItemProp) 
         },
     })
 
-    return <View style={styles.cardContainer}>
+    return <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
         <View>
             <Image source={icon} style={{width: 24, height: 24}}/>
         </View>
         <View style={{marginLeft: 20}}>
             <Text style={styles.cardTitle}>{cardTitle}</Text>
-            {/* to be toggled between current location and current starting location */}
-            <Text style={styles.cardSubtitle}>{cardSubtitle}</Text>
+            {cardSubtitle.length > 0 ? <Text style={styles.cardSubtitle}>{cardSubtitle}</Text> : <></>}
         </View>
-    </View>
+    </TouchableOpacity>
 }

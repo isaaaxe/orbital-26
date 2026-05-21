@@ -1,14 +1,54 @@
+import CardItem from "@/components/CardItem";
 import Header from "@/components/Header";
-import { Text, View } from "react-native";
+import { router } from "expo-router";
+import { Text, View, StyleSheet, TouchableHighlight, Image, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SettingsPage() {
-    return <SafeAreaView>
+
+    const icons = {
+        user: require("../../assets/icons/user.png"),
+        notif: require("../../assets/icons/notification-bell.png"),
+        report: require("../../assets/icons/danger.png")
+    }
+
+    const styles = StyleSheet.create({
+        screen: {
+            flex: 1,
+            backgroundColor: "#FFFFFF",
+        },
+
+        settingItem: {
+            flexDirection: "row",
+            justifyContent: "center",
+            alignContent: "center"
+        }
+    })
+
+    const SETTINGS_DATA = [
+        {icon: icons.user, cardTitle: "Account", onPress: toAccount},
+        {icon: icons.notif, cardTitle: "Notifications", onPress: toNotifications},
+        {icon: icons.report, cardTitle: "Report", onPress: toReport}
+    ]
+
+    function toAccount() {
+        router.push("/settings/account")
+    }
+    function toNotifications() {
+        router.push("/settings/notifications")
+    }
+    function toReport() {
+        router.push("/settings/report")
+    }
+
+    return <View style={styles.screen}>
+    <SafeAreaView>
             <Header text={"Settings"} description="" />
-            <View>
-                <Text>
-                    Settings Page
-                </Text>
-            </View>
+            <FlatList 
+                data={SETTINGS_DATA}
+                renderItem={({item})=> <CardItem icon={item.icon} cardTitle={item.cardTitle} cardSubtitle="" onPress={item.onPress}/>}
+                style={{marginHorizontal: 20}}
+            />
         </SafeAreaView>
+        </View> 
 }
