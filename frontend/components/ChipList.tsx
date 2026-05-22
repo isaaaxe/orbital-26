@@ -20,6 +20,7 @@ export default function ChipList() {
     const styles = StyleSheet.create({
             chipList: {
                 marginTop: 5,
+                maxHeight: 52,
             },
         }   
     )
@@ -29,7 +30,9 @@ export default function ChipList() {
             style={styles.chipList}
             horizontal
             data={DATA}
-            renderItem={({item})=> <ChipItem text={item.text} />}
+            renderItem={({item})=> <ChipItem text={item.text} 
+            />}
+            showsHorizontalScrollIndicator={false}
         />
 
 }

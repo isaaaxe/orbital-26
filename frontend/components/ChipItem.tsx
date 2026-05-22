@@ -9,6 +9,7 @@ const styles = StyleSheet.create(
         chip:{
             backgroundColor: "#EAF3FF",
             paddingHorizontal: 14,
+            paddingVertical: 10,
             borderRadius: 18,
             marginRight: 12,
             justifyContent: "center"

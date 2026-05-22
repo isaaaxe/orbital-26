@@ -7,49 +7,50 @@ type RouteOptionProps = {
     routeDescription: string
 }
 
+const styles = StyleSheet.create({
+    routeCard: {
+        backgroundColor: "#F7F7F8",
+        borderRadius: 24,
+        paddingHorizontal: 28,
+        paddingVertical: 24,
+        marginBottom: 20,
+        minHeight: 130,
+    },
+
+    routeCardHeader: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        marginBottom: 8,
+    },
+
+    routeTag: {
+        fontSize: 15,
+        fontWeight: "700",
+        color: "#0B3A7E",
+    },
+
+    routeTime: {
+        fontSize: 22,
+        fontWeight: "700",
+        color: "#0B3A7E",
+    },
+
+    routeTitle: {
+        fontSize: 20,
+        fontWeight: "800",
+        color: "#171717",
+        marginBottom: 10,
+    },
+
+    routeDescription: {
+        fontSize: 15,
+        color: "#6E6E6E",
+        lineHeight: 21,
+    },
+})
+
 export default function RouteOptionCard({optionType, eta, routeTitle, routeDescription}: RouteOptionProps) {
-    const styles = StyleSheet.create({
-        routeCard: {
-            backgroundColor: "#F7F7F8",
-            borderRadius: 24,
-            paddingHorizontal: 28,
-            paddingVertical: 24,
-            marginBottom: 20,
-            minHeight: 130,
-        },
-
-        routeCardHeader: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: 8,
-        },
-
-        routeTag: {
-            fontSize: 15,
-            fontWeight: "700",
-            color: "#0B3A7E",
-        },
-
-        routeTime: {
-            fontSize: 22,
-            fontWeight: "700",
-            color: "#0B3A7E",
-        },
-
-        routeTitle: {
-            fontSize: 20,
-            fontWeight: "800",
-            color: "#171717",
-            marginBottom: 10,
-        },
-
-        routeDescription: {
-            fontSize: 15,
-            color: "#6E6E6E",
-            lineHeight: 21,
-        },
-    })
 
     const colorMap = new Map([
         ["Fastest", "#FF4A1C"],

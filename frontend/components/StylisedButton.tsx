@@ -5,8 +5,6 @@ type ButtonProps = {
     onPress: () => void
 }
 
-export default function StylisedButton({buttonText, onPress}: ButtonProps) {
-
 const styles = StyleSheet.create({
 
     findRouteButton: {
@@ -25,6 +23,8 @@ const styles = StyleSheet.create({
         fontWeight: "700",
     },
 })
+
+export default function StylisedButton({buttonText, onPress}: ButtonProps) {
 
     return <TouchableOpacity style={styles.findRouteButton} onPress={onPress}>
         <Text style={styles.findRouteButtonText}>{buttonText}</Text>

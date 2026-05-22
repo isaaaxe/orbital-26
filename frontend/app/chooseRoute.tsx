@@ -5,6 +5,14 @@ import { router } from "expo-router";
 import { Text, View, TouchableHighlight, FlatList, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+
+const styles = StyleSheet.create({
+    routeCard: {
+        marginHorizontal: 20,
+        marginBottom: 8
+    }
+})
+
 export default function ChooseRoute() {
 
     const toConfirmRoute = () => {
@@ -46,13 +54,6 @@ export default function ChooseRoute() {
         routeDescription: "Drive to the closest carpark, then walk to AS6",
     },
     ];
-
-    const styles = StyleSheet.create({
-        routeCard: {
-            marginHorizontal: 20,
-            marginBottom: 8
-        }
-    })
 
     return <SafeAreaView style={{flex: 1}}>
                 <Header text={`Route to ${destination}`} description={`From ${currLocation}`}/>

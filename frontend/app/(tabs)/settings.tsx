@@ -1,29 +1,29 @@
 import CardItem from "@/components/CardItem";
 import Header from "@/components/Header";
 import { router } from "expo-router";
-import { Text, View, StyleSheet, TouchableHighlight, Image, FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SettingsPage() {
+const icons = {
+    user: require("../../assets/icons/user.png"),
+    notif: require("../../assets/icons/notification-bell.png"),
+    report: require("../../assets/icons/danger.png")
+}
 
-    const icons = {
-        user: require("../../assets/icons/user.png"),
-        notif: require("../../assets/icons/notification-bell.png"),
-        report: require("../../assets/icons/danger.png")
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+    },
+
+    settingItem: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignContent: "center"
     }
+})
 
-    const styles = StyleSheet.create({
-        screen: {
-            flex: 1,
-            backgroundColor: "#FFFFFF",
-        },
-
-        settingItem: {
-            flexDirection: "row",
-            justifyContent: "center",
-            alignContent: "center"
-        }
-    })
+export default function SettingsPage() {
 
     const SETTINGS_DATA = [
         {icon: icons.user, cardTitle: "Account", onPress: toAccount},

@@ -3,6 +3,22 @@ import Header from "@/components/Header";
 import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+// curr default image should be selected by tag later on?
+const icons = {
+    no_image : require("../../assets/icons/no_image.png")
+}
+
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+    },
+    savedListView: {
+        marginHorizontal: 20,
+        marginBottom: 20
+    }
+})
+
 export default function SavedPage() {
 
 
@@ -10,21 +26,7 @@ export default function SavedPage() {
         console.log("To be implemented...")
     }
 
-    // curr default image should be selected by tag later on?
-    const icons = {
-        no_image : require("../../assets/icons/no_image.png")
-    }
 
-    const styles = StyleSheet.create({
-        screen: {
-            flex: 1,
-            backgroundColor: "#FFFFFF",
-        },
-        savedListView: {
-            marginHorizontal: 20,
-            marginBottom: 20
-        }
-    })
 
 
     // sample data

@@ -7,6 +7,26 @@ import CardItem from "@/components/CardItem";
 import ChipList from "@/components/ChipList";
 import { useRouteContext } from "@/context/RouteContext";
 
+
+
+  const styles = StyleSheet.create(
+    {
+      screen: {
+            flex: 1,
+            backgroundColor: "#FFFFFF",
+      },
+      bodyView: {
+        marginHorizontal: 20,
+        marginBottom:12
+      },
+      h3: {
+        fontSize: 16,
+        fontWeight: "600",
+        marginBottom: 6,
+      }
+    }
+  )
+
 export default function Index() {
 
   const { setSearchDestination } = useRouteContext();
@@ -34,29 +54,12 @@ export default function Index() {
     console.log(input);
   }
 
-  const styles = StyleSheet.create(
-    {
-      screen: {
-            flex: 1,
-            backgroundColor: "#FFFFFF",
-      },
-      bodyView: {
-        flex: 1,
-        marginHorizontal: 20,
-        marginBottom:12
-      },
-      h3: {
-        fontSize: 16,
-        fontWeight: "600",
-        marginBottom: 6
-      }
-    }
-  )
-
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{flex: 1}}>  
       <Header text={"Routes@NUS"} description={"Campus routing with ETA, buses and indoor levels"} />
+      {/* somewhere here add a small text welcome back xxx unless its guest, then ask for them to sign in */}
+      
       {/* Search bar */}
       <SearchBar searchContent={""} onSearch={handleSearch} />
   

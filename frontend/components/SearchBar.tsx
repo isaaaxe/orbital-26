@@ -6,6 +6,30 @@ type SearchBarProps = {
     searchContent: string;
     onSearch: (text: string) => void
 }
+const styles = StyleSheet.create({
+    searchInput: {
+        flex:12,
+        fontSize: 14,
+        color: "#111827",
+    },
+    searchView: {
+        marginHorizontal: 20,
+        height: 48,
+        borderWidth: 2,
+        borderColor: "#D5D7DB",
+        borderRadius: 14,
+        paddingHorizontal: 16,
+        fontSize: 14,
+        color: "#111827",
+        marginBottom: 22,
+        justifyContent: "space-between",
+        flexDirection: "row"
+    },
+    icon: {
+        flex: 1,
+        justifyContent: "center"
+    }
+})
 export default function SearchBar(props: SearchBarProps) {
 
     // can try implementing fuzzy search here next time
@@ -14,30 +38,6 @@ export default function SearchBar(props: SearchBarProps) {
     const icons = {
         search: require("../assets/icons/search.png")
     }
-    const styles = StyleSheet.create({
-        searchInput: {
-            flex:12,
-            fontSize: 14,
-            color: "#111827",
-        },
-        searchView: {
-            marginHorizontal: 20,
-            height: 48,
-            borderWidth: 2,
-            borderColor: "#D5D7DB",
-            borderRadius: 14,
-            paddingHorizontal: 16,
-            fontSize: 14,
-            color: "#111827",
-            marginBottom: 22,
-            justifyContent: "space-between",
-            flexDirection: "row"
-        },
-        icon: {
-            flex: 1,
-            justifyContent: "center"
-        }
-    })
 
     return <View style={styles.searchView}>
         <TextInput 

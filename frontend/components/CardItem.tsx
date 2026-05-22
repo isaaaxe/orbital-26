@@ -7,30 +7,30 @@ type CardItemProp ={
     onPress: () => void
 }
 
+const styles = StyleSheet.create({
+    cardContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#F7F7F8",
+        borderRadius: 14,
+        paddingVertical: 18,
+        paddingHorizontal: 14,
+        marginBottom: 10,
+    },
+    cardTitle: {
+        fontSize: 15,
+        fontWeight: "700",
+        color: "#111827",
+        marginBottom: 3,
+    },
+
+    cardSubtitle: {
+        fontSize: 12,
+        color: "#6B7280",
+    },
+})
+
 export default function CardItem({icon, cardTitle, cardSubtitle, onPress}: CardItemProp) {
-
-    const styles = StyleSheet.create({
-        cardContainer: {
-            flexDirection: "row",
-            alignItems: "center",
-            backgroundColor: "#F7F7F8",
-            borderRadius: 14,
-            paddingVertical: 14,
-            paddingHorizontal: 14,
-            marginBottom: 10,
-        },
-        cardTitle: {
-            fontSize: 15,
-            fontWeight: "700",
-            color: "#111827",
-            marginBottom: 3,
-        },
-
-        cardSubtitle: {
-            fontSize: 12,
-            color: "#6B7280",
-        },
-    })
 
     return <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
         <View>
