@@ -4,7 +4,8 @@ type CardItemProp ={
     icon: ImageSourcePropType,
     cardTitle: string,
     cardSubtitle: string,
-    onPress: () => void
+    onPress: () => void,
+    selected?: boolean
 }
 
 const styles = StyleSheet.create({
@@ -28,11 +29,16 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: "#6B7280",
     },
+
+    cardContainerSelected: {
+        opacity: 0.35,
+        backgroundColor: "#E5E7EB",
+    },
 })
 
-export default function CardItem({icon, cardTitle, cardSubtitle, onPress}: CardItemProp) {
+export default function CardItem({icon, cardTitle, cardSubtitle, onPress, selected}: CardItemProp) {
 
-    return <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
+    return <TouchableOpacity style={[styles.cardContainer, selected && styles.cardContainerSelected]} onPress={onPress}>
         <View>
             <Image source={icon} style={{width: 24, height: 24}}/>
         </View>

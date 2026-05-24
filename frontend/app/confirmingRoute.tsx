@@ -1,9 +1,20 @@
 import Header from "@/components/Header";
+import { useRouteContext } from "@/context/RouteContext";
 import { router } from "expo-router";
-import { Text, TouchableHighlight, View } from "react-native";
+import { Text, TouchableHighlight, View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+    },
+})
+
 export default function ConfirmingRoute() {
+
+    const {searchDestination} = useRouteContext()
 
     const toNavigate = () => {
         router.push("/navigate")
@@ -12,10 +23,11 @@ export default function ConfirmingRoute() {
     //Temp values, need to pass in context
     const routeName = "Fastest Route"
     const currLocation = "UTown"
-    const destination = "LT14"
+    const destination = searchDestination
 
-    return <SafeAreaView style={{flex : 1}}>
-                <Header text={routeName} description={`${currLocation}  ${destination}`} />
+    return <View style={styles.screen}>
+            <SafeAreaView style={{flex : 1}}>
+                <Header text={routeName} description={`${currLocation} -> ${destination}`} />
                 {/* map + summary of route chosen */}
                 {/* bottom has button to choose to start navigating */}
                 <View
@@ -33,4 +45,5 @@ export default function ConfirmingRoute() {
                     </TouchableHighlight>
                 </View>
             </SafeAreaView>
+            </View>
 }

@@ -1,5 +1,12 @@
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+    },
+})
 
 export default function Navigate() {
 
@@ -10,7 +17,8 @@ export default function Navigate() {
     //    from api calls to sql retrievals
     
 
-    return <SafeAreaView style={{flex:1}}>
+    return <View style={styles.screen}>
+            <SafeAreaView style={{flex:1}}>
                 <View
                     style={{
                         flex: 1,
@@ -22,4 +30,5 @@ export default function Navigate() {
                     <Text>Can include modal here to bring up the entire journey</Text>
                 </View>
             </SafeAreaView>
+        </View>
 }

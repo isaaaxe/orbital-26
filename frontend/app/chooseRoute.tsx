@@ -1,26 +1,45 @@
 import Header from "@/components/Header";
 import RouteOptionCard from "@/components/RouteOptionCard";
 import StylisedButton from "@/components/StylisedButton";
+import { useRouteContext } from "@/context/RouteContext";
 import { router } from "expo-router";
 import { Text, View, TouchableHighlight, FlatList, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useFocusEffect } from "expo-router";
+import { useCallback } from "react";
 
 
 const styles = StyleSheet.create({
     routeCard: {
         marginHorizontal: 20,
         marginBottom: 8
-    }
+    },
+    screen: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+    },
 })
+
+type RouteOption = {
+  optionType: string;
+  eta: number;
+  routeTitle: string;
+  routeDescription: string;
+};
 
 export default function ChooseRoute() {
 
+    const { searchDestination, selectedRoute, setSelectedRoute} = useRouteContext()
     const toConfirmRoute = () => {
         router.push("/confirmingRoute")
     }
+    
+    function handleSelect(item: RouteOption) {
+        setSelectedRoute(item)
+    }
 
     //Temporary Values for testing
-    const destination = "LT14"
+    const destination = searchDestination
     const currLocation = "UTown"
 
     // sample data
@@ -55,7 +74,21 @@ export default function ChooseRoute() {
     },
     ];
 
-    return <SafeAreaView style={{flex: 1}}>
+
+    useFocusEffect(
+
+        useCallback(()=> {
+
+            return () => {
+                setSelectedRoute(null)
+            }
+        }, [])
+    )
+
+
+
+    return <View style={styles.screen}>
+        <SafeAreaView style={{flex: 1}}>
                 <Header text={`Route to ${destination}`} description={`From ${currLocation}`}/>
 
                 {/* choosing the route type */}
@@ -67,11 +100,20 @@ export default function ChooseRoute() {
                                                 optionType={item.optionType} 
                                                 eta={item.eta} 
                                                 routeTitle={item.routeTitle} 
-                                                routeDescription={item.routeDescription}/>
+                                                routeDescription={item.routeDescription}
+                                                onPress={() => handleSelect({
+                                                    optionType: item.optionType,
+                                                    eta: item.eta,
+                                                    routeTitle: item.routeTitle,
+                                                    routeDescription: item.routeDescription
+                                                })}
+                                                selected={item.optionType == selectedRoute?.optionType}
+                                                />
                                 }
                     style={styles.routeCard}
                 />
 
                 <StylisedButton buttonText="Confirm Route" onPress={toConfirmRoute}/>
             </SafeAreaView>
+            </View>
 }

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, View, Image, TouchableHighlight } from "react-native";
+import { StyleSheet, TextInput, View, Image, TouchableHighlight, TouchableOpacity } from "react-native";
 
 
 type SearchBarProps = {
     searchContent: string;
+    onChangeText: (text: string) => void
     onSearch: (text: string) => void
 }
 const styles = StyleSheet.create({
@@ -33,8 +34,6 @@ const styles = StyleSheet.create({
 export default function SearchBar(props: SearchBarProps) {
 
     // can try implementing fuzzy search here next time
-
-    const [query, setQuery] = useState(props.searchContent)
     const icons = {
         search: require("../assets/icons/search.png")
     }
@@ -45,13 +44,13 @@ export default function SearchBar(props: SearchBarProps) {
             placeholder="Search destination"
             placeholderTextColor="#6B7280" 
             returnKeyType="search"
-            onChangeText={setQuery} value={query}
-            onSubmitEditing={() => props.onSearch(query)}
+            onChangeText={props.onChangeText} value={props.searchContent}
+            onSubmitEditing={() => props.onSearch(props.searchContent)}
         />
         <View style={styles.icon}>
-            <TouchableHighlight onPress={() => props.onSearch(query)}>
+            <TouchableOpacity onPress={() => props.onSearch(props.searchContent)}>
             <Image source={icons.search} style= {{width:24, height:24}}/>
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
     </View>
 }

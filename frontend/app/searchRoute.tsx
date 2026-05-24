@@ -4,66 +4,76 @@ import SearchBar from "@/components/SearchBar";
 import StylisedButton from "@/components/StylisedButton";
 import { useRouteContext } from "@/context/RouteContext";
 import { router } from "expo-router";
-import { FlatList, Text, TouchableHighlight, View } from "react-native";
+import { useState } from "react";
+import { Alert, FlatList, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function SearchRoute() {
-    const { setSearchDestination, searchDestination } = useRouteContext();
 
-    function handleSearch(input: string) {
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+    },
+})
+
+export default function SearchRoute() {
+    const {userSearch, setUserSearch, searchDestination , setSearchDestination} = useRouteContext();
+
+    function handleSearch() {
+        //check if the thing matchy, 
+        if (userSearch == searchDestination) {
+            //do smth the searchDestination
+            router.push("/chooseRoute")
+        } else {
+            Alert.alert("Please choose one of the listed destinations")
+        }
+    }
+
+    function handleSelect(input: string) {
+        setUserSearch(input)
         setSearchDestination(input)
     }
 
+    //on hold until i find out how to force a selection
+    // function handleChangeText(input : string) {
+    //     setSearchDestination(input)
+    // }
+    
     const icons = {
         no_image : require("../assets/icons/no_image.png")
-    }
-    const toChooseRoute = () => {
-        router.push("/chooseRoute")
     }
     
     // sample potential reslts
     const SEARCH_RESULTS = [
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
-        {icon: icons.no_image, cardTitle: "Placeholder Title", cardSubtitle: "Placeholder Subtitle", onPress: toChooseRoute},
+        {icon: icons.no_image, cardTitle: "COM1-02-20", cardSubtitle: "Placeholder Subtitle", id: 1},
+        {icon: icons.no_image, cardTitle: "COM1-02-21", cardSubtitle: "Placeholder Subtitle", id: 2},
+        {icon: icons.no_image, cardTitle: "COM1-02-22", cardSubtitle: "Placeholder Subtitle", id: 3},
+        {icon: icons.no_image, cardTitle: "COM1-02-23", cardSubtitle: "Placeholder Subtitle", id: 4},
+        {icon: icons.no_image, cardTitle: "COM1-02-24", cardSubtitle: "Placeholder Subtitle", id: 5},
+        {icon: icons.no_image, cardTitle: "COM1-02-25", cardSubtitle: "Placeholder Subtitle", id: 6},
+        {icon: icons.no_image, cardTitle: "COM1-02-26", cardSubtitle: "Placeholder Subtitle", id: 7},
+        {icon: icons.no_image, cardTitle: "COM1-02-22", cardSubtitle: "Placeholder Subtitle", id: 8},
+        {icon: icons.no_image, cardTitle: "COM1-02-28", cardSubtitle: "Placeholder Subtitle", id: 9},
+        {icon: icons.no_image, cardTitle: "COM1-02-29", cardSubtitle: "Placeholder Subtitle", id: 10},
     ]
 
-    return <SafeAreaView style={{flex: 1}}>
+    return <View style={styles.screen}>
+        <SafeAreaView style={{flex: 1}}>
             <Header text={"Search destination"} description={"Find classrooms, bus stops, and buildings"}/>
             {/* another search bar they can alter incase they typed wrongly or smth */}
-            <SearchBar searchContent={searchDestination} onSearch={handleSearch}/>
-            {/* Results list: Scrollable element */}
+            {/* actually this onSearch for search should be fuzzy searching things on the catalogue, not supposed to search */}
+            <SearchBar searchContent={userSearch} onSearch={handleSearch} onChangeText={setUserSearch}/>
             <FlatList 
                 data={SEARCH_RESULTS}
-                renderItem={({item})=> <CardItem icon={item.icon} cardTitle={item.cardTitle} cardSubtitle={item.cardSubtitle} onPress={item.onPress}/>}
+                renderItem={({item})=> <CardItem icon={item.icon}
+                                                cardTitle={item.cardTitle}
+                                                cardSubtitle={item.cardSubtitle} 
+                                                onPress={() => handleSelect(item.cardTitle)} 
+                                                selected={item.cardTitle === userSearch}/>}
                 style={{marginHorizontal: 20}}
             />
-            <StylisedButton buttonText="Choose route" onPress={toChooseRoute} />
+            <StylisedButton buttonText="Choose route" onPress={handleSearch} />
             {/* Dont know if i shld include building level */}
-        
-
-            {/* <View
-                style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Text>Search Route page</Text>
-                <TouchableHighlight onPress={toChooseRoute}>
-                    <Text>
-                        To choose page
-                    </Text>
-                </TouchableHighlight>
-            </View> */}
         </SafeAreaView>
+    </View>
 }

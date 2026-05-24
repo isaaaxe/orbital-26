@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native"
 
 type RouteOptionProps = {
@@ -5,6 +6,8 @@ type RouteOptionProps = {
     eta: number,
     routeTitle: string,
     routeDescription: string
+    onPress: () => void
+    selected? : boolean
 }
 
 const styles = StyleSheet.create({
@@ -48,10 +51,14 @@ const styles = StyleSheet.create({
         color: "#6E6E6E",
         lineHeight: 21,
     },
+
+    cardContainerSelected: {
+        opacity: 0.35,
+        backgroundColor: "#E5E7EB",
+    },
 })
 
-export default function RouteOptionCard({optionType, eta, routeTitle, routeDescription}: RouteOptionProps) {
-
+export default function RouteOptionCard({optionType, eta, routeTitle, routeDescription, onPress, selected}: RouteOptionProps) {
     const colorMap = new Map([
         ["Fastest", "#FF4A1C"],
         ["Walking only", "#0B3A7E"],
@@ -61,7 +68,7 @@ export default function RouteOptionCard({optionType, eta, routeTitle, routeDescr
 
     const colorRoute = colorMap.get(optionType)
 
-    return <TouchableOpacity style={styles.routeCard}>
+    return <TouchableOpacity style={[styles.routeCard, selected && styles.cardContainerSelected]} onPress={onPress}>
                 <View style={styles.routeCardHeader}>
                     <Text style={[styles.routeTag, { color: colorRoute }]}>{optionType}</Text>
                     <Text style={[styles.routeTime, { color: colorRoute }]}>{`${eta} min${eta > 1 ? "s" : ""}`}</Text>

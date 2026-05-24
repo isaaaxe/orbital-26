@@ -29,7 +29,7 @@ import { useRouteContext } from "@/context/RouteContext";
 
 export default function Index() {
 
-  const { setSearchDestination } = useRouteContext();
+  const { userSearch,setUserSearch } = useRouteContext();
   const icons = {
     location: require("../../assets/icons/location.png"),
     star: require("../../assets/icons/star.png"),
@@ -41,7 +41,7 @@ export default function Index() {
   }
 
   function handleSearch(input: string) {
-    setSearchDestination(input)
+    setUserSearch(input)
     router.push("/searchRoute")
     console.log(input);
   }
@@ -59,9 +59,9 @@ export default function Index() {
       <SafeAreaView style={{flex: 1}}>  
       <Header text={"Routes@NUS"} description={"Campus routing with ETA, buses and indoor levels"} />
       {/* somewhere here add a small text welcome back xxx unless its guest, then ask for them to sign in */}
-      
+
       {/* Search bar */}
-      <SearchBar searchContent={""} onSearch={handleSearch} />
+      <SearchBar searchContent={userSearch} onSearch={handleSearch} onChangeText={setUserSearch} />
   
 
       {/* Automatic starting point but it should be selectable as well */}

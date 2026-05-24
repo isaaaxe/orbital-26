@@ -1,5 +1,7 @@
 import CardItem from "@/components/CardItem";
 import Header from "@/components/Header";
+import { useRouteContext } from "@/context/RouteContext";
+import { router } from "expo-router";
 import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -20,10 +22,12 @@ const styles = StyleSheet.create({
 })
 
 export default function SavedPage() {
+    const {setUserSearch,setSearchDestination} = useRouteContext()
 
-
-    function handleSelect() {
-        console.log("To be implemented...")
+    function handleSelect(input : string) {
+        setUserSearch(input)
+        setSearchDestination(input)
+        router.push("/chooseRoute")
     }
 
 
@@ -31,20 +35,16 @@ export default function SavedPage() {
 
     // sample data
     const DATA = [
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
-        {icon: icons.no_image, cardTitle: "Placeholder title", cardSubtitle: "Placeholder description"},
+        {icon: icons.no_image, cardTitle: "COM1-02-20", cardSubtitle: "Placeholder description", id: 1},
+        {icon: icons.no_image, cardTitle: "COM1-02-21", cardSubtitle: "Placeholder description", id: 2},
+        {icon: icons.no_image, cardTitle: "COM1-02-22", cardSubtitle: "Placeholder description", id: 3},
+        {icon: icons.no_image, cardTitle: "COM1-02-23", cardSubtitle: "Placeholder description", id: 4},
+        {icon: icons.no_image, cardTitle: "COM1-02-24", cardSubtitle: "Placeholder description", id: 5},
+        {icon: icons.no_image, cardTitle: "COM1-02-25", cardSubtitle: "Placeholder description", id: 6},
+        {icon: icons.no_image, cardTitle: "COM1-02-26", cardSubtitle: "Placeholder description", id: 7},
+        {icon: icons.no_image, cardTitle: "COM1-02-27", cardSubtitle: "Placeholder description", id: 8},
+        {icon: icons.no_image, cardTitle: "COM1-02-28", cardSubtitle: "Placeholder description", id: 9},
+        {icon: icons.no_image, cardTitle: "COM1-02-29", cardSubtitle: "Placeholder description", id: 10},
     ]
 
     const DATA_EMPTY = [
@@ -62,7 +62,7 @@ export default function SavedPage() {
             <FlatList
                 style={styles.savedListView}
                 data={DATA}
-                renderItem={({item})=><CardItem icon={item.icon} cardTitle={item.cardTitle} cardSubtitle={item.cardSubtitle} onPress={handleSelect}/>}
+                renderItem={({item})=><CardItem icon={item.icon} cardTitle={item.cardTitle} cardSubtitle={item.cardSubtitle} onPress={() => handleSelect(item.cardTitle)}/>}
             />}
     </SafeAreaView>
     </View>

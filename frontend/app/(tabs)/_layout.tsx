@@ -1,3 +1,4 @@
+import { useRouteContext } from "@/context/RouteContext";
 import { Tabs } from "expo-router";
 import { Image } from "react-native";
 
@@ -12,6 +13,8 @@ export default function TabsLayout() {
         settings: require("../../assets/icons/settings.png"),
         settings_orange: require("../../assets/icons/settings_orange.png"),
     }
+
+    const {setUserSearch} = useRouteContext()
 
   return (
     <Tabs
@@ -31,8 +34,14 @@ export default function TabsLayout() {
                         style= {{width:24, height: 24}}
                     />
                 ),
+                
             }
         }
+        listeners={{
+            tabPress:() => {
+                setUserSearch("")
+            }
+        }}
       />
 
       <Tabs.Screen

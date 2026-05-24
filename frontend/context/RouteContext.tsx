@@ -11,6 +11,9 @@ type RouteContextType = {
   searchDestination: string;
   setSearchDestination: (destination: string) => void;
 
+  userSearch: string;
+  setUserSearch: (search: string) => void;
+
   selectedRoute: RouteOption | null;
   setSelectedRoute: (route: RouteOption | null) => void;
 };
@@ -19,11 +22,14 @@ const RouteContext = createContext<RouteContextType | undefined>(undefined);
 
 export function RouteProvider({ children }: { children: React.ReactNode }) {
   const [searchDestination, setSearchDestination] = useState("");
+  const [userSearch, setUserSearch] = useState("")
   const [selectedRoute, setSelectedRoute] = useState<RouteOption | null>(null);
 
   return (
     <RouteContext.Provider
       value={{
+        userSearch,
+        setUserSearch,
         searchDestination,
         setSearchDestination,
         selectedRoute,
