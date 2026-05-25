@@ -34,6 +34,16 @@ const styles = StyleSheet.create({
         opacity: 0.35,
         backgroundColor: "#E5E7EB",
     },
+
+    textContainer: {
+        marginLeft: 20,
+        height: 36, 
+        justifyContent: "center",
+    },
+
+    textContainerCentered: {
+        justifyContent: "center",
+    },
 })
 
 export default function CardItem({icon, cardTitle, cardSubtitle, onPress, selected}: CardItemProp) {
@@ -42,7 +52,7 @@ export default function CardItem({icon, cardTitle, cardSubtitle, onPress, select
         <View>
             <Image source={icon} style={{width: 24, height: 24}}/>
         </View>
-        <View style={{marginLeft: 20}}>
+        <View style={[styles.textContainer, cardSubtitle.length == 0 && styles.textContainerCentered]}>
             <Text style={styles.cardTitle}>{cardTitle}</Text>
             {cardSubtitle.length > 0 ? <Text style={styles.cardSubtitle}>{cardSubtitle}</Text> : <></>}
         </View>

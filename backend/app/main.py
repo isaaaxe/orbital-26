@@ -5,8 +5,8 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import Base, engine, get_db
-from app.models import Building
-from app.schemas import BuildingCreate, BuildingRead
+from app.models import Building, User
+from app.schemas import BuildingCreate, BuildingRead, UserRead
 
 from contextlib import asynccontextmanager
 
@@ -74,3 +74,10 @@ async def get_buildings(db: AsyncSession = Depends(get_db)):
     buildings = result.scalars().all()
 
     return buildings
+
+@app.get("/users", response_model=list[UserRead])
+async def get_users(db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User))
+    users = result.scalars().all()
+
+    return users

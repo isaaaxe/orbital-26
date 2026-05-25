@@ -1,5 +1,6 @@
 import StylisedButton from "@/components/StylisedButton";
 import { useAuthContext } from "@/context/AuthContext";
+import { router } from "expo-router";
 import { useState } from "react";
 import { Text, View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -147,7 +148,7 @@ export default function Login() {
             }))
             return true
         } else {
-            setIsValidInputs((prev)=> ({
+            setIsValidInputs((prev)=> ({    
                 ...prev,
                 password: false
             }))
@@ -179,6 +180,7 @@ export default function Login() {
         } else {
             login(email, password)
             // set to isLoading, set the user and go back to accouints page
+            router.back()
         }
     }
 
@@ -241,6 +243,7 @@ export default function Login() {
                     onChangeText={setPassword} value={password}
                     onSubmitEditing={() => handleLogin(email, password)}
                     autoCapitalize="none"
+                    secureTextEntry
                 />
                 </View>
                 {!isValidInputs.password ? <View style={styles.errorBox}>

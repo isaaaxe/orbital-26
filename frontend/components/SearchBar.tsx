@@ -41,7 +41,7 @@ export default function SearchBar(props: SearchBarProps) {
     return <View style={styles.searchView}>
         <TextInput 
             style={styles.searchInput}   
-            placeholder="Search destination"
+            placeholder="Search"
             placeholderTextColor="#6B7280" 
             returnKeyType="search"
             onChangeText={props.onChangeText} value={props.searchContent}

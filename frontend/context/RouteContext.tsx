@@ -1,10 +1,22 @@
 import React, { createContext, useContext, useState } from "react";
+import * as Location from "expo-location";
 
 type RouteOption = {
   optionType: string;
   eta: number;
   routeTitle: string;
   routeDescription: string;
+};
+
+export type Coordinate = {
+  latitude: number;
+  longitude: number;
+};
+
+export type RoutePlace = Coordinate & {
+  label: string;
+  placeType:  "building" | "bus_stop" | "room" | "buildingEntrance";
+  // source?: "gps" | "manual" | "search" | "saved" | "recent";
 };
 
 type RouteContextType = {
@@ -16,6 +28,11 @@ type RouteContextType = {
 
   selectedRoute: RouteOption | null;
   setSelectedRoute: (route: RouteOption | null) => void;
+
+  origin: RoutePlace | null
+  setOrigin: (origin: RoutePlace | null) => void;
+  destination: RoutePlace | null
+  setDestination: (destination: RoutePlace | null) => void;
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
@@ -24,6 +41,9 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
   const [searchDestination, setSearchDestination] = useState("");
   const [userSearch, setUserSearch] = useState("")
   const [selectedRoute, setSelectedRoute] = useState<RouteOption | null>(null);
+
+  const [origin, setOrigin] = useState<RoutePlace | null>(null);
+  const [destination, setDestination] = useState<RoutePlace | null>(null);
 
   return (
     <RouteContext.Provider
@@ -34,6 +54,10 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         setSearchDestination,
         selectedRoute,
         setSelectedRoute,
+        origin, 
+        setOrigin, 
+        destination, 
+        setDestination
       }}
     >
       {children}

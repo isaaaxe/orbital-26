@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 
 export default function AccountSettings() {
 
-    const {user, login, signup, setIsLogin} = useAuthContext()
+    const {user, setIsLogin, logout} = useAuthContext()
 
     function toCredentials(isLogin: boolean) {
         if (isLogin) {
@@ -53,7 +53,7 @@ export default function AccountSettings() {
     return <View style={styles.screen}>
             <SafeAreaView>
                 <Header text={"Account"} description={user? `Hello, ${user.username}!`: "Please signup/login to access all Routes@NUS features"}/>
-                <View style={styles.buttonContainer}>
+                <View style={styles.buttonContainer}>   
                     {user != null ? 
                     <>
                         <TouchableOpacity style={styles.button}>
@@ -61,8 +61,8 @@ export default function AccountSettings() {
                                 Change Password
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.signOutButton}>
-                            <Text style={styles.signOutButton}>
+                        <TouchableOpacity style={[styles.button, styles.signOutButton]} onPress={logout}>
+                            <Text style={styles.buttonText}>
                                 Sign out
                             </Text>                       
                         </TouchableOpacity>

@@ -1,11 +1,11 @@
 services:
   db:
-    image: postgres:16
+    image: postgis/postgis:16-3.4
     container_name: nus-nav-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: routes@nus123
+      POSTGRES_PASSWORD: routesnus123
       POSTGRES_DB: nus_nav
     ports:
       - "5432:5432"

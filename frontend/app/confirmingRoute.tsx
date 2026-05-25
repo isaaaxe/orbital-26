@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
+import StylisedButton from "@/components/StylisedButton";
 import { useRouteContext } from "@/context/RouteContext";
 import { router } from "expo-router";
 import { Text, TouchableHighlight, View, StyleSheet } from "react-native";
+import MapView from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
@@ -10,6 +12,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#FFFFFF",
     },
+    map: {
+        flex:1
+    },
+    container: {
+        flex: 1,
+    }
 })
 
 export default function ConfirmingRoute() {
@@ -31,18 +39,23 @@ export default function ConfirmingRoute() {
                 {/* map + summary of route chosen */}
                 {/* bottom has button to choose to start navigating */}
                 <View
-                    style={{
-                        flex: 1,
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
+                    style={styles.container}
                 >
-                    <Text>Confirming route page, preview of the navigation</Text>
-                    <TouchableHighlight onPress={toNavigate}>
-                        <Text>
-                            To navigate
-                        </Text>
-                    </TouchableHighlight>
+                    <MapView 
+                        style={styles.map}
+                        region={
+                            {
+                                latitude: 1.300291282646443,
+                                longitude: 103.77733947340228,
+                                latitudeDelta: 0.016,
+                                longitudeDelta: 0.016
+                            }
+                        }
+                    />
+                    <StylisedButton 
+                        buttonText="Confirm Route"
+                        onPress={toNavigate}
+                    />
                 </View>
             </SafeAreaView>
             </View>

@@ -7,6 +7,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { Alert, FlatList, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { sampleLocations } from "./data/sampleLocations";
 
 
 const styles = StyleSheet.create({
@@ -43,19 +44,20 @@ export default function SearchRoute() {
         no_image : require("../assets/icons/no_image.png")
     }
     
-    // sample potential reslts
-    const SEARCH_RESULTS = [
-        {icon: icons.no_image, cardTitle: "COM1-02-20", cardSubtitle: "Placeholder Subtitle", id: 1},
-        {icon: icons.no_image, cardTitle: "COM1-02-21", cardSubtitle: "Placeholder Subtitle", id: 2},
-        {icon: icons.no_image, cardTitle: "COM1-02-22", cardSubtitle: "Placeholder Subtitle", id: 3},
-        {icon: icons.no_image, cardTitle: "COM1-02-23", cardSubtitle: "Placeholder Subtitle", id: 4},
-        {icon: icons.no_image, cardTitle: "COM1-02-24", cardSubtitle: "Placeholder Subtitle", id: 5},
-        {icon: icons.no_image, cardTitle: "COM1-02-25", cardSubtitle: "Placeholder Subtitle", id: 6},
-        {icon: icons.no_image, cardTitle: "COM1-02-26", cardSubtitle: "Placeholder Subtitle", id: 7},
-        {icon: icons.no_image, cardTitle: "COM1-02-22", cardSubtitle: "Placeholder Subtitle", id: 8},
-        {icon: icons.no_image, cardTitle: "COM1-02-28", cardSubtitle: "Placeholder Subtitle", id: 9},
-        {icon: icons.no_image, cardTitle: "COM1-02-29", cardSubtitle: "Placeholder Subtitle", id: 10},
-    ]
+    // // sample potential reslts
+    // const SEARCH_RESULTS = [
+    //     {icon: icons.no_image, cardTitle: "COM1-02-20", cardSubtitle: "Placeholder Subtitle", id: 1},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-21", cardSubtitle: "Placeholder Subtitle", id: 2},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-22", cardSubtitle: "Placeholder Subtitle", id: 3},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-23", cardSubtitle: "Placeholder Subtitle", id: 4},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-24", cardSubtitle: "Placeholder Subtitle", id: 5},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-25", cardSubtitle: "Placeholder Subtitle", id: 6},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-26", cardSubtitle: "Placeholder Subtitle", id: 7},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-22", cardSubtitle: "Placeholder Subtitle", id: 8},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-28", cardSubtitle: "Placeholder Subtitle", id: 9},
+    //     {icon: icons.no_image, cardTitle: "COM1-02-29", cardSubtitle: "Placeholder Subtitle", id: 10},
+    // ]
+    
 
     return <View style={styles.screen}>
         <SafeAreaView style={{flex: 1}}>
@@ -64,15 +66,15 @@ export default function SearchRoute() {
             {/* actually this onSearch for search should be fuzzy searching things on the catalogue, not supposed to search */}
             <SearchBar searchContent={userSearch} onSearch={handleSearch} onChangeText={setUserSearch}/>
             <FlatList 
-                data={SEARCH_RESULTS}
-                renderItem={({item})=> <CardItem icon={item.icon}
-                                                cardTitle={item.cardTitle}
-                                                cardSubtitle={item.cardSubtitle} 
-                                                onPress={() => handleSelect(item.cardTitle)} 
-                                                selected={item.cardTitle === userSearch}/>}
+                data={sampleLocations}
+                renderItem={({item})=> <CardItem icon={icons.no_image}
+                                                cardTitle={item.name}
+                                                cardSubtitle={item.description? item.description: ""} 
+                                                onPress={() => handleSelect(item.name)} //to be changed to location id in the future 
+                                                selected={item.name === userSearch}/>}
                 style={{marginHorizontal: 20}}
             />
-            <StylisedButton buttonText="Choose route" onPress={handleSearch} />
+            <StylisedButton buttonText="Choose destination" onPress={handleSearch} />
             {/* Dont know if i shld include building level */}
         </SafeAreaView>
     </View>

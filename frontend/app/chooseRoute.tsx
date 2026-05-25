@@ -29,7 +29,7 @@ type RouteOption = {
 
 export default function ChooseRoute() {
 
-    const { searchDestination, selectedRoute, setSelectedRoute} = useRouteContext()
+    const { searchDestination, selectedRoute, setSelectedRoute, origin} = useRouteContext()
     const toConfirmRoute = () => {
         router.push("/confirmingRoute")
     }
@@ -40,7 +40,7 @@ export default function ChooseRoute() {
 
     //Temporary Values for testing
     const destination = searchDestination
-    const currLocation = "UTown"
+    const currLocation = origin?.name
 
     // sample data
     const ROUTE_OPTIONS = [
@@ -113,7 +113,7 @@ export default function ChooseRoute() {
                     style={styles.routeCard}
                 />
 
-                <StylisedButton buttonText="Confirm Route" onPress={toConfirmRoute}/>
+                <StylisedButton buttonText="Choose Route" onPress={toConfirmRoute}/>
             </SafeAreaView>
             </View>
 }
