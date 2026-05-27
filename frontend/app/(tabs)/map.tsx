@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { Marker, Polyline, Polygon } from 'react-native-maps'
+import MapView, { Marker, Polyline, Polygon, Callout } from 'react-native-maps'
+import { RoutePlace, useRouteContext } from "@/context/RouteContext";
 
 const styles = StyleSheet.create({
     screen: {
@@ -22,10 +23,55 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 8,
     },
+    calloutContainer: {
+        alignItems: "center",
+    },
+
+    calloutBubble: {
+        backgroundColor: "white",
+        borderRadius: 12,
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        minWidth: 160,
+        maxWidth: 220,
+
+        shadowColor: "#000",
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 2 },
+
+        elevation: 5,
+    },
+
+    calloutTitle: {
+        fontSize: 14,
+        fontWeight: "700",
+        color: "#111827",
+        textAlign: "center",
+    },
+
+    calloutSubtitle: {
+        fontSize: 12,
+        color: "#6B7280",
+        marginTop: 2,
+        textAlign: "center",
+    },
+
+    calloutArrow: {
+        width: 0,
+        height: 0,
+        borderLeftWidth: 8,
+        borderRightWidth: 8,
+        borderTopWidth: 10,
+        borderLeftColor: "transparent",
+        borderRightColor: "transparent",
+        borderTopColor: "white",
+    },
 })
 
 
 export default function MapPage(){
+    const { origin } = useRouteContext()
 
     const boundaryCoordinates = [
         {latitude: 1.309274704980008, longitude:103.77196245668526},
@@ -43,6 +89,10 @@ export default function MapPage(){
         { latitude: -85, longitude: 179 },
         { latitude: -85, longitude: -85 },
     ];
+
+    function getCurrentLocation() {
+        Alert.alert(`Current Location\n${origin?.name}`)
+    }
 
     return <View style={styles.screen}>
     <SafeAreaView style={{flex: 1}}>
@@ -72,6 +122,13 @@ export default function MapPage(){
             fillColor="rgba(0, 0, 0, 0.45)"
             strokeColor="rgba(0, 0, 0, 0)"
         />
+        {origin ?  
+        <Marker 
+            coordinate={{latitude: origin.latitude, longitude:origin.longitude}} 
+            onPress={getCurrentLocation}
+            />
+        :<></>}
+
 
         </MapView>
         </View>

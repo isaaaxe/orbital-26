@@ -1,12 +1,17 @@
 import { Text,View, StyleSheet, Image, ImageSourcePropType, TouchableOpacity } from "react-native";
 
 type CardItemProp ={
-    icon: ImageSourcePropType,
+    mainIcon: ImageSourcePropType,
     cardTitle: string,
     cardSubtitle: string,
     onPress: () => void,
-    selected?: boolean
+    selected?: boolean,
+    saveable?: boolean,
+    isSaved?: boolean
+    onSavePress?: () => void
 }
+
+
 
 const styles = StyleSheet.create({
     cardContainer: {
@@ -17,6 +22,11 @@ const styles = StyleSheet.create({
         paddingVertical: 18,
         paddingHorizontal: 14,
         marginBottom: 10,
+    },
+      mainPressArea: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
     },
     cardTitle: {
         fontSize: 15,
@@ -44,17 +54,47 @@ const styles = StyleSheet.create({
     textContainerCentered: {
         justifyContent: "center",
     },
+
+    bookmarkButton : {
+        width: 40,
+        height: 40,
+        alignItems: "center",
+        justifyContent: "center",
+        marginLeft: 8,
+    },
+
+    bookmarkIcon: {
+        width: 24,
+        height: 24,
+    },
 })
 
-export default function CardItem({icon, cardTitle, cardSubtitle, onPress, selected}: CardItemProp) {
+export default function CardItem({mainIcon, cardTitle, cardSubtitle, onPress, selected, saveable, isSaved, onSavePress}: CardItemProp) {
 
-    return <TouchableOpacity style={[styles.cardContainer, selected && styles.cardContainerSelected]} onPress={onPress}>
-        <View>
-            <Image source={icon} style={{width: 24, height: 24}}/>
+    let bookmarkUnsaved
+    let bookmarkSaved
+
+
+    if (saveable) {
+        bookmarkUnsaved = require("../assets/icons/bookmark_unsaved.png")
+        bookmarkSaved = require("../assets/icons/bookmark_saved.png")
+    }
+
+    return <View style={[styles.cardContainer, selected && styles.cardContainerSelected]}>
+        <TouchableOpacity style={styles.mainPressArea} onPress={onPress}>
+            <Image source={mainIcon} style={{width: 24, height: 24}}/>
+            <View style={[styles.textContainer, cardSubtitle.length == 0 && styles.textContainerCentered]}>
+                <Text style={styles.cardTitle}>{cardTitle}</Text>
+                {cardSubtitle.length > 0 ? <Text style={styles.cardSubtitle}>{cardSubtitle}</Text> : <></>}
+            </View>
+        </TouchableOpacity>
+              {saveable && (
+                <TouchableOpacity style={styles.bookmarkButton} onPress={onSavePress}>
+                <Image
+                    source={isSaved ? bookmarkSaved : bookmarkUnsaved}
+                    style={styles.bookmarkIcon}
+                />
+                </TouchableOpacity>
+            )}
         </View>
-        <View style={[styles.textContainer, cardSubtitle.length == 0 && styles.textContainerCentered]}>
-            <Text style={styles.cardTitle}>{cardTitle}</Text>
-            {cardSubtitle.length > 0 ? <Text style={styles.cardSubtitle}>{cardSubtitle}</Text> : <></>}
-        </View>
-    </TouchableOpacity>
 }

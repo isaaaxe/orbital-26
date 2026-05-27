@@ -2,11 +2,12 @@ import Header from "@/components/Header";
 import RouteOptionCard from "@/components/RouteOptionCard";
 import StylisedButton from "@/components/StylisedButton";
 import { useRouteContext } from "@/context/RouteContext";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import { Text, View, TouchableHighlight, FlatList, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect } from "expo-router";
-import { useCallback } from "react";
+import { useEffect } from "react";
+import { useRouteOptions } from "@/hook/useRoute";
 
 
 const styles = StyleSheet.create({
@@ -29,7 +30,8 @@ type RouteOption = {
 
 export default function ChooseRoute() {
 
-    const { searchDestination, selectedRoute, setSelectedRoute, origin} = useRouteContext()
+    const { destination, selectedRoute, setSelectedRoute, origin} = useRouteContext()
+    const navigation = useNavigation()
     const toConfirmRoute = () => {
         router.push("/confirmingRoute")
     }
@@ -38,74 +40,36 @@ export default function ChooseRoute() {
         setSelectedRoute(item)
     }
 
-    //Temporary Values for testing
-    const destination = searchDestination
-    const currLocation = origin?.name
+    const {data: optionsData, isLoading: isOptionsLoading, error } = useRouteOptions(origin?.id, destination?.id)
 
-    // sample data
-    const ROUTE_OPTIONS = [
-    {
-        id: "1",
-        optionType: "Fastest",
-        eta: 17,
-        routeTitle: "Walk + Internal Shuttle Bus",
-        routeDescription: "Start at UTOWN bus stop → Take D1 → Alight at Central Library",
-    },
-    {
-        id: "2",
-        optionType: "Walking only",
-        eta: 25,
-        routeTitle: "Walking route",
-        routeDescription: "Walk along pedestrian pathway from UTown to Central Library, along FOE to AS6",
-    },
-    {
-        id: "3",
-        optionType: "Accessible",
-        eta: 30,
-        routeTitle: "Lift-friendly route",
-        routeDescription: "Avoid stairs and use accessible entrance plus lift",
-    },
-    {
-        id: "4",
-        optionType: "Carpark",
-        eta: 9,
-        routeTitle: "Nearest carpark + walk",
-        routeDescription: "Drive to the closest carpark, then walk to AS6",
-    },
-    ];
+    useEffect(() => {
+        const unsubscribe = navigation.addListener("beforeRemove", () => {
+            setSelectedRoute(null)
+        });
 
-
-    useFocusEffect(
-
-        useCallback(()=> {
-
-            return () => {
-                setSelectedRoute(null)
-            }
-        }, [])
-    )
-
+        return unsubscribe;
+    }, [navigation]);
 
 
     return <View style={styles.screen}>
         <SafeAreaView style={{flex: 1}}>
-                <Header text={`Route to ${destination}`} description={`From ${currLocation}`}/>
+                <Header text={`Route to ${destination?.name}`} description={`From ${origin?.name}`}/>
 
                 {/* choosing the route type */}
                 {/* list of a set 4 items, may be less depending on availability */}
                 {/* TODO: Create a ListItem component for this */}
                 <FlatList 
-                    data={ROUTE_OPTIONS}
+                    data={optionsData?.options}
                     renderItem={({item})=> <RouteOptionCard 
                                                 optionType={item.optionType} 
-                                                eta={item.eta} 
-                                                routeTitle={item.routeTitle} 
-                                                routeDescription={item.routeDescription}
+                                                eta={item.estimatedMinutes} 
+                                                routeTitle={item.title} 
+                                                routeDescription={item.description}
                                                 onPress={() => handleSelect({
                                                     optionType: item.optionType,
-                                                    eta: item.eta,
-                                                    routeTitle: item.routeTitle,
-                                                    routeDescription: item.routeDescription
+                                                    eta: item.estimatedMinutes,
+                                                    routeTitle: item.title,
+                                                    routeDescription: item.description
                                                 })}
                                                 selected={item.optionType == selectedRoute?.optionType}
                                                 />

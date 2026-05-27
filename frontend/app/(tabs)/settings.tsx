@@ -46,7 +46,7 @@ export default function SettingsPage() {
             <Header text={"Settings"} description="" />
             <FlatList 
                 data={SETTINGS_DATA}
-                renderItem={({item})=> <CardItem icon={item.icon} cardTitle={item.cardTitle} cardSubtitle="" onPress={item.onPress}/>}
+                renderItem={({item})=> <CardItem mainIcon={item.icon} cardTitle={item.cardTitle} cardSubtitle="" onPress={item.onPress}/>}
                 style={{marginHorizontal: 20}}
             />
         </SafeAreaView>

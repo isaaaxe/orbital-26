@@ -31,15 +31,6 @@ export default function MapOrigin(){
     const { origin, setOrigin, userSearch, setUserSearch } = useRouteContext()
     console.log(origin)
 
-    // const boundaryCoordinates = [
-    //     {latitude: 1.309274704980008, longitude:103.77196245668526},
-    //     {latitude: 1.307506885450094,  longitude:103.77726729866667},
-    //     {latitude: 1.3019869511579418,  longitude:103.77622076521456},
-    //     {latitude: 1.2950634383403345,  longitude: 103.78665786634224},
-    //     {latitude: 1.288220180328691, longitude:  103.78144365183114},
-    //     {latitude: 1.293711950030539,  longitude:103.76895528652895},
-    //     {latitude: 1.309274704980008, longitude:103.77196245668526},
-    // ]
 
     function handleSetOrigin(input: string) {
 
