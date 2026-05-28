@@ -35,7 +35,7 @@ export const sampleLocations: RoutePlace[] = [
   {
     id: "com1-0203",
     name: "COM1-0203",
-    latitude: 1.2954320448868748, 
+    latitude: 1.2954320448868748,
     longitude: 103.77367776407878,
     description: "Seminar Room 6",
   },
@@ -43,20 +43,20 @@ export const sampleLocations: RoutePlace[] = [
     id: "com1-0204",
     name: "COM1-0204",
     latitude: 1.295071700000007,
-    longitude:   103.77361947116356,
+    longitude: 103.77361947116356,
     description: "Seminar Room 2",
   },
   {
     id: "com1-0206",
     name: "COM1-0206",
-    latitude: 1.295017273904547, 
+    latitude: 1.295017273904547,
     longitude: 103.77394252883644,
-    description: "Seminar Room 1"
+    description: "Seminar Room 1",
   },
   {
     id: "utown",
     name: "University Town",
-    latitude: 1.3040,
+    latitude: 1.304,
     longitude: 103.7737,
   },
   {
@@ -96,7 +96,7 @@ export const sampleSavedLocations: RoutePlace[] = [
   {
     id: "com1-0203",
     name: "COM1-0203",
-    latitude: 1.2954320448868748, 
+    latitude: 1.2954320448868748,
     longitude: 103.77367776407878,
     description: "Seminar Room 6",
   },
@@ -104,7 +104,7 @@ export const sampleSavedLocations: RoutePlace[] = [
     id: "com1-0204",
     name: "COM1-0204",
     latitude: 1.295071700000007,
-    longitude:   103.77361947116356,
+    longitude: 103.77361947116356,
     description: "Seminar Room 2",
   },
   {
@@ -113,7 +113,7 @@ export const sampleSavedLocations: RoutePlace[] = [
     latitude: 1.2966,
     longitude: 103.7732,
   },
-]
+];
 
 export const recentlyVisitedLocations: RoutePlace[] = [
   {
@@ -126,14 +126,14 @@ export const recentlyVisitedLocations: RoutePlace[] = [
   {
     id: "com1-0203",
     name: "COM1-0203",
-    latitude: 1.2954320448868748, 
+    latitude: 1.2954320448868748,
     longitude: 103.77367776407878,
     description: "Seminar Room 6",
   },
   {
     id: "utown",
     name: "University Town",
-    latitude: 1.3040,
+    latitude: 1.304,
     longitude: 103.7737,
   },
   {
@@ -148,14 +148,14 @@ export const recentlyVisitedLocations: RoutePlace[] = [
     latitude: 1.2942,
     longitude: 103.7719,
   },
-]
+];
 
-export const closestNode: RoutePlace =   {
-    id: "utown",
-    name: "University Town",
-    latitude: 1.3040,
-    longitude: 103.7737,
-}
+export const closestNode: RoutePlace = {
+  id: "utown",
+  name: "University Town",
+  latitude: 1.304,
+  longitude: 103.7737,
+};
 
 import { RouteResponse } from "@/api/routes";
 

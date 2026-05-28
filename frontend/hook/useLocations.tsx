@@ -41,7 +41,7 @@ export function useSaveLocationMutation(token?: string) {
         }
 
         const alreadySaved = oldData.savedLocations.some(
-          (location: any) => location.id === data.savedLocation.id
+          (location: any) => location.id === data.savedLocation.id,
         );
 
         if (alreadySaved) {
@@ -61,8 +61,7 @@ export function useDeleteSavedLocationMutation(token?: string) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (locationId: string) =>
-      deleteSavedLocation(token!, locationId),
+    mutationFn: (locationId: string) => deleteSavedLocation(token!, locationId),
 
     onSuccess: (_, locationId) => {
       queryClient.setQueryData(["savedLocations", token], (oldData: any) => {
@@ -71,7 +70,7 @@ export function useDeleteSavedLocationMutation(token?: string) {
         return {
           ...oldData,
           savedLocations: oldData.savedLocations.filter(
-            (location: any) => location.id !== locationId
+            (location: any) => location.id !== locationId,
           ),
         };
       });

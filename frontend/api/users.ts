@@ -1,43 +1,47 @@
 import { RoutePlace } from "@/context/RouteContext";
 
 const API_BASE_URL = "http://localhost:8000";
-const useMockAPI = true
+const useMockAPI = true;
 
 export type SaveLocationRequest = {
-    locationId: string;
-}
+  locationId: string;
+};
 
 export type SaveLocationResponse = {
-    savedLocation: RoutePlace
-}
+  savedLocation: RoutePlace;
+};
 
 export type SavedLocationResponse = {
-    savedLocations: RoutePlace[];
-}
+  savedLocations: RoutePlace[];
+};
 
 export type DeleteSavedLocationResponse = {
-    deleted: boolean;
-}
+  deleted: boolean;
+};
 
 export type RecentlyVisitedResponse = {
-    recentLocations: RoutePlace[];
-}
+  recentLocations: RoutePlace[];
+};
 
 function getAuthHeaders(token: string) {
-    return {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-    }
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
 }
-import { recentlyVisitedLocations, sampleLocations, sampleSavedLocations } from "@/app/data/sampleLocations";
-let mockSavedLocations = [...sampleSavedLocations]
+import {
+  recentlyVisitedLocations,
+  sampleLocations,
+  sampleSavedLocations,
+} from "@/app/data/sampleLocations";
+let mockSavedLocations = [...sampleSavedLocations];
 
-export async function getSavedLocations(token: string): Promise<SavedLocationResponse> {
-
+export async function getSavedLocations(
+  token: string,
+): Promise<SavedLocationResponse> {
   if (useMockAPI) {
-    return {savedLocations: [...mockSavedLocations]}
+    return { savedLocations: [...mockSavedLocations] };
   }
-
 
   const res = await fetch(`${API_BASE_URL}/users/me/saved-locations`, {
     method: "GET",
@@ -52,66 +56,62 @@ export async function getSavedLocations(token: string): Promise<SavedLocationRes
 }
 
 export async function saveLocation(
-    token: string,
-    request: SaveLocationRequest
+  token: string,
+  request: SaveLocationRequest,
 ): Promise<SaveLocationResponse> {
-
-    if (useMockAPI) {
-        //add to sampleSavedLocations?
-        const locationToSave = sampleLocations.find(
-            (location) => location.id === request.locationId
-        )
-        if (!locationToSave) {
-            throw new Error("Location not found")
-        }
-
-        const alreadySaved = mockSavedLocations.some(
-            (location) => location.id === request.locationId
-        )
-        if (!alreadySaved) {
-            mockSavedLocations = [...mockSavedLocations, locationToSave]
-        }
-        return {savedLocation: locationToSave}
-    }
-    
-    const res = await fetch(`${API_BASE_URL}/users/me/save-location`, {
-        method: "POST",
-        headers: getAuthHeaders(token),
-        body: JSON.stringify(request),
-    })
-
-
-    if (!res.ok) {
-        throw new Error("Failed to save location")
+  if (useMockAPI) {
+    //add to sampleSavedLocations?
+    const locationToSave = sampleLocations.find(
+      (location) => location.id === request.locationId,
+    );
+    if (!locationToSave) {
+      throw new Error("Location not found");
     }
 
-    return res.json();
+    const alreadySaved = mockSavedLocations.some(
+      (location) => location.id === request.locationId,
+    );
+    if (!alreadySaved) {
+      mockSavedLocations = [...mockSavedLocations, locationToSave];
+    }
+    return { savedLocation: locationToSave };
+  }
+
+  const res = await fetch(`${API_BASE_URL}/users/me/save-location`, {
+    method: "POST",
+    headers: getAuthHeaders(token),
+    body: JSON.stringify(request),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to save location");
+  }
+
+  return res.json();
 }
 
 export async function deleteSavedLocation(
   token: string,
-  locationId: string
+  locationId: string,
 ): Promise<DeleteSavedLocationResponse> {
-
   if (useMockAPI) {
     const existed = mockSavedLocations.some(
-      (location) => location.id === locationId
+      (location) => location.id === locationId,
     );
 
     mockSavedLocations = mockSavedLocations.filter(
-      (location) => location.id !== locationId
+      (location) => location.id !== locationId,
     );
 
     return { deleted: existed };
   }
-
 
   const res = await fetch(
     `${API_BASE_URL}/users/me/saved-locations/${locationId}`,
     {
       method: "DELETE",
       headers: getAuthHeaders(token),
-    }
+    },
   );
 
   if (!res.ok) {
@@ -122,13 +122,11 @@ export async function deleteSavedLocation(
 }
 
 export async function getRecentlyVisited(
-  token: string
+  token: string,
 ): Promise<RecentlyVisitedResponse> {
-
-    if (useMockAPI) {
-        return {recentLocations: recentlyVisitedLocations}
-    }
-
+  if (useMockAPI) {
+    return { recentLocations: recentlyVisitedLocations };
+  }
 
   const res = await fetch(`${API_BASE_URL}/users/me/recently-visited`, {
     method: "GET",

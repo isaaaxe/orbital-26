@@ -45,19 +45,22 @@ export type RouteOptionsResponse = {
   options: RouteOption[];
 };
 
-const API_BASE_URL = "http://localhost:8000"
-const useMockAPI = true
-import { closestNode, mockRoute, sampleRouteOptions } from "@/app/data/sampleLocations";
+const API_BASE_URL = "http://localhost:8000";
+const useMockAPI = true;
+import {
+  closestNode,
+  mockRoute,
+  sampleRouteOptions,
+} from "@/app/data/sampleLocations";
 
-
-
-export async function fetchRoute(request: RouteRequest): Promise<RouteResponse> {
+export async function fetchRoute(
+  request: RouteRequest,
+): Promise<RouteResponse> {
   //hard coded backend link for now
 
   if (useMockAPI) {
-    return mockRoute
+    return mockRoute;
   }
-
 
   const res = await fetch(`${API_BASE_URL}/routes/search`, {
     method: "POST",
@@ -75,11 +78,10 @@ export async function fetchRoute(request: RouteRequest): Promise<RouteResponse> 
 }
 
 export async function getClosestNode(
-  request: ClosestNodeRequest
+  request: ClosestNodeRequest,
 ): Promise<Node> {
-
   if (useMockAPI) {
-    return closestNode
+    return closestNode;
   }
 
   const res = await fetch(`${API_BASE_URL}/nodes/closest`, {
@@ -98,12 +100,12 @@ export async function getClosestNode(
 }
 
 export async function getRouteOptions(
-  request: RouteOptionsRequest
+  request: RouteOptionsRequest,
 ): Promise<RouteOptionsResponse> {
   if (useMockAPI) {
     return {
-      options: sampleRouteOptions
-    }
+      options: sampleRouteOptions,
+    };
   }
   const res = await fetch(`${API_BASE_URL}/routes/options`, {
     method: "POST",

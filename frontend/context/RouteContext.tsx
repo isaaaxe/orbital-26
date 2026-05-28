@@ -16,7 +16,7 @@ export type Coordinate = {
 export type RoutePlace = Coordinate & {
   name: string;
   id: string;
-  description? :string;
+  description?: string;
   buildingId?: string;
 };
 
@@ -30,9 +30,9 @@ type RouteContextType = {
   selectedRoute: RouteOption | null;
   setSelectedRoute: (route: RouteOption | null) => void;
 
-  origin: RoutePlace | null
+  origin: RoutePlace | null;
   setOrigin: (origin: RoutePlace | null) => void;
-  destination: RoutePlace | null
+  destination: RoutePlace | null;
   setDestination: (destination: RoutePlace | null) => void;
 };
 
@@ -40,7 +40,7 @@ const RouteContext = createContext<RouteContextType | undefined>(undefined);
 
 export function RouteProvider({ children }: { children: React.ReactNode }) {
   // const [searchDestination, setSearchDestination] = useState("");
-  const [userSearch, setUserSearch] = useState("")
+  const [userSearch, setUserSearch] = useState("");
   const [selectedRoute, setSelectedRoute] = useState<RouteOption | null>(null);
 
   const [origin, setOrigin] = useState<RoutePlace | null>(null);
@@ -55,10 +55,10 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         // setSearchDestination,
         selectedRoute,
         setSelectedRoute,
-        origin, 
-        setOrigin, 
-        destination, 
-        setDestination
+        origin,
+        setOrigin,
+        destination,
+        setDestination,
       }}
     >
       {children}

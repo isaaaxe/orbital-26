@@ -1,5 +1,10 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { ClosestNodeRequest, fetchRoute, getClosestNode, getRouteOptions } from "@/api/routes";
+import {
+  ClosestNodeRequest,
+  fetchRoute,
+  getClosestNode,
+  getRouteOptions,
+} from "@/api/routes";
 
 export function useRouteQuery(startNodeId?: string, endNodeId?: string) {
   return useQuery({
@@ -19,15 +24,15 @@ export function useClosestNodeMutation() {
   });
 }
 
-
 export function useRouteOptions(startNodeId?: string, endNodeId?: string) {
   return useQuery({
     queryKey: ["routeOptions", startNodeId, endNodeId],
-    queryFn: () => getRouteOptions({
-      startLocationId: startNodeId!,
-      endLocationId: endNodeId!
-    }),
+    queryFn: () =>
+      getRouteOptions({
+        startLocationId: startNodeId!,
+        endLocationId: endNodeId!,
+      }),
 
-    enabled: !!startNodeId && !!endNodeId
-  })
+    enabled: !!startNodeId && !!endNodeId,
+  });
 }
