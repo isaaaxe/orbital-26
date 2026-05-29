@@ -2,3 +2,7 @@ backend/.venv
 backend/.env
 backend/alembic/__pycache__/
 backend/*.pyc
+# Python
+__pycache__/
+*.py[cod]
+.venv/

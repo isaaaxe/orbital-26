@@ -22,14 +22,12 @@ class Map_Node(database.Base):
         "Map_Edge",
         foreign_keys="Map_Edge.from_node_id",
         back_populates="from_node",
-        nullable=False,
     )
 
     in_edges = relationship(
         "Map_Edge",
         foreign_keys="Map_Edge.to_node_id",
         back_populates="to_node",
-        nullable=False,
     )
 
 

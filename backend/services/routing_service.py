@@ -16,9 +16,10 @@ async def generate_route(session, startNode_id, endNode_id, mode):
     for edge_nodes in path:
         from_node_id, to_node_id = edge_nodes
         edge = edge_by_pair[edge_nodes]
+        instruction = edge.instruction or f"Travel from {node_by_id[from_node_id]} to {node_by_id[to_node_id]}."
         route_step = RouteStep(
             step_number=step_count,
-            step_instruction=edge.instruction,
+            step_instruction=instruction,
             mode=edge.mode,
             distance_for_step=edge.distance_m,
             estimated_seconds=edge.estimated_seconds,
