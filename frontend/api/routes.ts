@@ -50,6 +50,7 @@ const useMockAPI = true;
 import {
   closestNode,
   mockRoute,
+  mockRoutev2,
   sampleRouteOptions,
 } from "@/app/data/sampleLocations";
 
@@ -59,7 +60,7 @@ export async function fetchRoute(
   //hard coded backend link for now
 
   if (useMockAPI) {
-    return mockRoute;
+    return mockRoutev2;
   }
 
   const res = await fetch(`${API_BASE_URL}/routes/search`, {

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { Marker, Polyline, Polygon, Callout } from "react-native-maps";
+import MapView, { Marker, Polyline, Polygon, PROVIDER_GOOGLE } from "react-native-maps";
 import { RoutePlace, useRouteContext } from "@/context/RouteContext";
 
 const styles = StyleSheet.create({
@@ -106,6 +106,7 @@ export default function MapPage() {
         <View style={styles.container}>
           <MapView
             style={styles.map}
+            provider={PROVIDER_GOOGLE} 
             region={{
               latitude: 1.300291282646443,
               longitude: 103.77733947340228,

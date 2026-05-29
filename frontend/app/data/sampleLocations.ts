@@ -261,3 +261,125 @@ export const sampleRouteOptions: RouteOption[] = [
     estimatedMinutes: 11,
   },
 ];
+
+export const mockRoutev2: RouteResponse = {
+  startNodeId: "test",
+  endNodeId: "test",
+  distanceMeters: 500,
+  nodes: [
+    {
+      id: "test",
+      latitude: 1.303662152778908,
+      longitude: 103.77474325618729,
+      name: "UTown bus stop",
+    },
+    {
+      id: "test",
+      latitude: 1.3036898595397952,
+      longitude: 103.77503436441853,
+      name: "UTown bus stop turn 1",
+    },
+    {
+      id: "test",
+      latitude: 1.3037139930571071,
+      longitude: 103.77552252761735,
+      name: "College circus entrance",
+    },
+    {
+      id: "test",
+      latitude: 1.303848068963592,
+      longitude: 103.7755761721078,
+      name: "College circus turn 1",
+    },
+    {
+      id: "test",
+      latitude: 1.3038346613625778,
+      longitude: 103.77568614316255,
+      name: "College circus turn 2",
+    },
+    {
+      id: "test",
+      latitude: 1.3036925408481457,
+      longitude: 103.77568346083004,
+      name: "College circus turn 3",
+    },
+    {
+      id: "test",
+      latitude: 1.3033982880444026,
+      longitude: 103.77438865090716,
+      name: "Utown bus exit",
+    },
+    {
+      id: "test",
+      latitude: 1.3028960536789422,
+      longitude: 103.77397057589184,
+      name: "College Link Road turn 1",
+    },
+    {
+      id: "test",
+      latitude: 1.3026230268821215,
+      longitude: 103.77396383277252,
+      name: "College Link Road turn 2",
+    },
+    {
+      id: "test",
+      latitude: 1.3013845763498575,
+      longitude: 103.77446762012752,
+      name: "College Link Road turn 3",
+    },
+    {
+      id: "test",
+      latitude: 1.3009097750447332,
+      longitude: 103.7743715005148,
+      name: "Kent Ridge Kres roundabout opening 1",
+    },
+    {
+      id: "test",
+      latitude: 1.3005879928037967,
+      longitude: 103.77434467844384,
+      name: "Kent Ridge Kres roundabout opening 2",
+    },
+    {
+      id: "test",
+      latitude: 1.300159870737548,
+      longitude: 103.77459395813739,
+      name: "Kent Ridge Kres curve corner 1",
+    },
+    {
+      id: "test",
+      latitude: 1.299659816384449,
+      longitude: 103.77465538415147,
+      name: "Kent Ridge Kres circus opening 1",
+    },
+    {
+      id: "test",
+      latitude: 1.2993396062334828,
+      longitude: 103.7747475230997,
+      name: "Kent Ridge Kres circus turn 1",
+    },
+    {
+      id: "test",
+      latitude: 1.2992518774012725,
+      longitude: 103.77448865654488,
+      name: "Kent Ridge Kres circus opening 2",
+    },
+    {
+      id: "test",
+      latitude: 1.2984359993051184,
+      longitude: 103.7739007222745,
+      name: "Kent Ridge Kres curve corner 2",
+    },
+    {
+      id: "test",
+      latitude: 1.2978701480748156,
+      longitude: 103.77311095987058,
+      name: "Kent Ridge Kres curve corner 3",
+    },
+    {
+      id: "test",
+      latitude: 1.296576146570338,
+      longitude: 103.7725537384373,
+      name: "Central Library bus stop",
+    },
+  ],
+};

@@ -3,7 +3,7 @@ import StylisedButton from "@/components/StylisedButton";
 import { useRouteContext } from "@/context/RouteContext";
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
-import MapView, { Overlay, Polyline } from "react-native-maps";
+import MapView, { Overlay, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { sampleLocations } from "./data/sampleLocations";
 import { useRouteQuery } from "@/hook/useRoute";
@@ -124,6 +124,7 @@ export default function ConfirmingRoute() {
             {isOutdoor ? (
               <MapView
                 style={styles.map}
+                provider={PROVIDER_GOOGLE} 
                 region={{
                   latitude: 1.300291282646443,
                   longitude: 103.77733947340228,
@@ -131,12 +132,6 @@ export default function ConfirmingRoute() {
                   longitudeDelta: 0.016,
                 }}
               >
-                {/* <Overlay 
-                            image={require("../assets/computing/COM_1/COM1-white-bg.png")}
-                            bounds={[
-
-                                ]}
-                        /> */}
                 <Polyline
                   coordinates={route!.nodes.map((node) => ({
                     latitude: node.latitude,
