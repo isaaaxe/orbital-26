@@ -9,6 +9,7 @@ async def search_locations_by_name(session, q: str):
         search_result = LocationSearchResult(
             id=location.id,
             name=location.name,
+            description=location.description,
             display_name=location.display_name,
             location_type=location.location_type,
             building_code=location.building_code,
@@ -26,6 +27,7 @@ async def get_location_detail(session, location_id):
     return LocationDetail(
         id=location.id,
         name=location.name,
+        description=location.description,
         display_name=location.display_name,
         aliases=location.aliases,
         location_type=location.location_type,
