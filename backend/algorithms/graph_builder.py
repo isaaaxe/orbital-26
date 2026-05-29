@@ -14,23 +14,24 @@ async def buildGraph(session):
     edgeList: list[Map_Edge] = await graph_repository.get_all_edges(session)
 
     for node in nodeList:
-        node_by_id.update({node.id: node})
+        node_by_id.update({node.node_id: node})
 
     for edge in edgeList:
         edge_by_pair.update({(edge.from_node_id, edge.to_node_id): edge})
 
     graph_table = dict()
     for node in nodeList:
-        graph_table[node.id] = []
+        graph_table[node.node_id] = []
 
         
     for edge in edgeList:
         graph_table[edge.from_node_id].append({
             "to": edge.to_node_id,
             "cost": edge.estimated_seconds,
-            "edge_id": edge.id,
+            "edge_id": edge.edge_id,
         })
-    
+        
+    print("GRAPH TABLE:", graph_table)
     return node_by_id, edge_by_pair, graph_table
 
 

@@ -21,10 +21,12 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table):
         val, node_id, time, parent = heapq.heappop(heap)
         if node_id in visited:
             continue
-        if node_id == endNode_id:
-            break
+        
         visited.add(node_id)
         parentDict[node_id] = parent
+
+        if node_id == endNode_id:
+            break
 
         for neighbour in graph_table.get(node_id, []):
             next_node_id = neighbour["to"]

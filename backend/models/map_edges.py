@@ -9,20 +9,25 @@ class Map_Edge(database.Base):
 
     edge_id: Mapped[str] = mapped_column(String, primary_key=True)
 
-    from_node_id = ForeignKey("map_nodes.id")
+    from_node_id: Mapped[str] = mapped_column(
+        ForeignKey("map_nodes.node_id"),
+        nullable=False,
+    )
     from_node = relationship(
         "Map_Node",
         foreign_keys=[from_node_id],
         back_populates="out_edges",
+    )
+
+    to_node_id: Mapped[str] = mapped_column(
+        ForeignKey("map_nodes.node_id"),
         nullable=False,
     )
 
-    to_node_id = ForeignKey("map_nodes.id")
     to_node = relationship(
         "Map_Node",
         foreign_keys=[to_node_id],
-        back_populates="out_edges",
-        nullable=False,
+        back_populates="in_edges",
     )
 
     mode: Mapped[str] = mapped_column(String, nullable=False)

@@ -28,7 +28,7 @@ def get_edge_between_nodes(start: int, end: int):
 def search_buildings(building_name: str):
     return []
 
-@router.get("/buildings/{building_id}", response_mode=campus_map.BuildingDetail)
+@router.get("/buildings/{building_id}", response_model=campus_map.BuildingDetail)
 def get_building(building_id: str):
     return {}
 
