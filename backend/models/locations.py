@@ -9,6 +9,7 @@ class Location(database.Base):
 
     id: Mapped[str] = mapped_column(String, primary_key=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
+    description: Mapped[str] = mapped_column(String, default="", nullable=False)
     display_name: Mapped[str] = mapped_column(String, nullable=False)
     aliases: Mapped[list[str]] = mapped_column(
         ARRAY(String),

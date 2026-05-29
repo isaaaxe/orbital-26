@@ -3,6 +3,7 @@ from pydantic import BaseModel
 class LocationSearchResult(BaseModel):
     id: str
     name: str
+    description: str = ""
     display_name: str
     location_type: str #whether its a lt, seminar room, class room etc
     building_code: str | None = None
@@ -11,6 +12,7 @@ class LocationSearchResult(BaseModel):
 class LocationDetail(BaseModel):
     id: str 
     name: str
+    description: str =""
     display_name: str
     aliases: list[str] = [] #may not be necessary
     location_type: str
@@ -28,7 +30,7 @@ class LocationDetail(BaseModel):
     nearest_bus_stop_id: str | None = None
 
     landmark_hint: str | None = None
-    arrival_instruction: str | None
+    arrival_instruction: str | None = None
     
 
     
