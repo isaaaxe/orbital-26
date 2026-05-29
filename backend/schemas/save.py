@@ -5,7 +5,7 @@ class AddSaveRequest(BaseModel):
     purpose: str | None = None
 
 class SaveResponse(BaseModel):
-    save_id: str
+    save_id: int
     location_id: str
     name: str
     display_name: str

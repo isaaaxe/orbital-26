@@ -12,7 +12,7 @@ class UserCreate(BaseModel):
     profile_settings: list[str] = []
 
 class UserUpdate(BaseModel):
-    username: str
-    language: str = "en"
+    username: str | None = None
+    language: str | None = None
     profile_settings: list[str] | None = None
 
