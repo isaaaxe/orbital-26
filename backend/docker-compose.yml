@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: routes_nus_db
+    restart: always
+    environment:
+      POSTGRES_USER: user0
+      POSTGRES_PASSWORD: yaozhu
+      POSTGRES_DB: routes_nus
+    ports:
+      - "5432:5432"
+    volumes:
+      - routes_nus_pgdata:/var/lib/postgresql/data
+
+volumes:
+  routes_nus_pgdata:
