@@ -1,9 +1,5 @@
 from pydantic import BaseModel
 
-class NearestNode(BaseModel):
-    nearest_node_id: str
-    distance_to_nearest_node: float
-
 
 class NodeDetail(BaseModel):
     node_id: str #can be passed into locations
@@ -14,6 +10,10 @@ class NodeDetail(BaseModel):
     floor: int
     latitude: float
     longitude: float
+
+class NearestNode(BaseModel):
+    nearest_node: NodeDetail
+    distance_to_nearest_node: float
 
 class EdgeDetail(BaseModel):
     edge_id: str
