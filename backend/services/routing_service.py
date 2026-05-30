@@ -20,7 +20,7 @@ async def generate_route(session, startNode_id, endNode_id, mode):
         route_step = RouteStep(
             step_number=step_count,
             step_instruction=instruction,
-            mode=edge.mode,
+            transport_mode=edge.mode,
             distance_for_step=edge.distance_m,
             estimated_seconds=edge.estimated_seconds,
             from_name=node_by_id[from_node_id].name,
@@ -35,6 +35,7 @@ async def generate_route(session, startNode_id, endNode_id, mode):
     return RouteResponse(
         total_distance=total_distance,
         total_estimated_seconds=total_time,
+        mode=mode,
         steps=route_step_list,
         path_coordinates=path_coordinates
     )
