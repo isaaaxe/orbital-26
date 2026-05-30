@@ -36,12 +36,6 @@ async def update_user(user_id: str, request: user.UserUpdate, session: AsyncSess
 @router.delete("/{user_id}")
 async def delete_user(user_id: str, session: AsyncSession = Depends(database.get_db_session)):
     boolean = await user_service.delete_user(session, user_id)
-
-    if boolean:
-        return {
-            "deleted": True,        
-        }
-    else:
-        return {
-            "deleted": False,
-        }
+    return {
+        "delted": boolean
+    }
