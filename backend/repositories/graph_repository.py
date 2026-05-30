@@ -3,20 +3,31 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.map_edges import Map_Edge
 from models.map_nodes import Map_Node
+from algorithms.geo_conversion import haversine_m
 
-async def get_node_by_coord(session, latitude, longitude):
+async def get_node_by_coord(session, latitude, longitude, floor):
     statement = select(Map_Node)
 
     result = await session.execute(statement)
     nodes = result.scalars().all()
 
     diff = float("inf")
-    nearest_node = None
+    nearest_node: Map_Node = None
+    nearest_node_floor: Map_Node = None
+    diff_same_floor = float("inf")
     for node in nodes:
-        distance = (node.longitude - longitude)**2 + (node.latitude - latitude)**2
-        if distance < diff:
+        node: Map_Node
+        dist = haversine_m(node.latitude, node.longitude, latitude, longitude)
+        if dist < diff:
             nearest_node = node
-            diff = distance
+            diff = dist
+
+        if floor == node.floor and dist < diff_same_floor :
+            nearest_node_floor = node
+            diff_same_floor = dist
+    
+    if nearest_node_floor is not None:
+        return nearest_node_floor
 
     return nearest_node
 

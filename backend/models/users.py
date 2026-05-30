@@ -7,7 +7,9 @@ from core import database
 class User(database.Base):
     __tablename__ = "users"
 
-    __table_args__ = UniqueConstraint("user_id", "username", name="unique_username")
+    __table_args__ = (
+        UniqueConstraint("username", name="unique_username"),
+    )
 
     user_id: Mapped[str] = mapped_column(String, primary_key=True)
     username: Mapped[str] = mapped_column(String, nullable=False)
