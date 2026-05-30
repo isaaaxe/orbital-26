@@ -3,7 +3,7 @@ from pydantic import BaseModel
 class RouteRequest(BaseModel):
     start_id: str
     destination_id: str
-    mode: str = "walk_bus"
+    mode: list[str] = ["fastest"]
 
 class RouteStep(BaseModel):
     step_number: int
@@ -19,4 +19,3 @@ class RouteResponse(BaseModel):
     total_estimated_seconds: float
     steps: list[RouteStep]
     path_coordinates: list[tuple[float, float]]
-
