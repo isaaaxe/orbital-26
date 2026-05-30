@@ -18,6 +18,8 @@ class Saved_Location(database.Base):
         nullable=False,
     )
 
+    purpose: Mapped[str] = mapped_column(String, default="", nullable=False)
+
     user = relationship(
         "User",
         back_populates="saved_locations"
