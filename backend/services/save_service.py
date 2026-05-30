@@ -51,7 +51,7 @@ async def add_user_save(session, user_id, location_id, purpose):
 
 #add the patch function here later when we implement purpose in frontend 
 
-async def delete_user_save(session, user_id, save_id):
-    boolean = await save_repository.delete_user_save(session, user_id, save_id)
+async def delete_user_save(session, user_id, location_id):
+    boolean = await save_repository.delete_user_save(session, user_id, location_id)
 
     return boolean

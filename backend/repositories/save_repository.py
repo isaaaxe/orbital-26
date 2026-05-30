@@ -31,9 +31,9 @@ async def add_user_save(session, user_id, location_id, purpose):
 
     return new_save
 
-async def delete_user_save(session, user_id, save_id):
+async def delete_user_save(session, user_id, location_id):
     statement = select(Saved_Location).where(
-            Saved_Location.id == save_id,
+            Saved_Location.location_id == location_id,
             Saved_Location.user_id == user_id,
         )
 

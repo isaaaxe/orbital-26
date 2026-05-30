@@ -1,11 +1,15 @@
 from algorithms import graph_builder
 
-from math import sqrt
+from math import radians, sin, cos, sqrt, atan2
 import heapq
 
-fastest_speed_m_per_second = 12
+fastest_speed_m_per_second = 8
 
-def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table):
+#adjust heuristic based on mode later
+def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode):
+    if startNode_id not in node_by_id or endNode_id not in node_by_id:
+        return None
+
     #node_by_id, edge_by_pair, graph_table = await graph_builder.buildGraph()
     dist_to_end = triangulate_dist(startNode_id, endNode_id, node_by_id)
     #heuristic using fastest speed
@@ -58,10 +62,23 @@ def construct_path(parentDict: dict, startNode_id, endNode_id):
 def triangulate_dist(startNode_id, endNode_id, node_by_id):
     startNode = node_by_id[startNode_id]
     endNode = node_by_id[endNode_id]
-    dist = sqrt((startNode.longitude - endNode.longitude) **2 
-                        + (startNode.latitude - endNode.latitude) ** 2)
 
+    dist = haversine_m(startNode.latitude, startNode.longitude, endNode.latitude, endNode.longitude)
     return dist
 
 
+def haversine_m(lat1, lon1, lat2, lon2):
+    radius_m = 6371000
 
+    dlat = radians(lat2 - lat1)
+    dlon = radians(lon2 - lon1)
+
+    a = (
+        sin(dlat / 2) ** 2
+        + cos(radians(lat1))
+        * cos(radians(lat2))
+        * sin(dlon / 2) ** 2
+    )
+
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    return radius_m * c

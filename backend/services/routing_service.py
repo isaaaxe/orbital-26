@@ -4,7 +4,7 @@ from schemas.route import RouteStep, RouteResponse
 
 async def generate_route(session, startNode_id, endNode_id, mode):
     node_by_id, edge_by_pair, graph_table = await graph_builder.buildGraph(session)
-    path = astar.aStarAlgo(startNode_id, endNode_id, node_by_id, graph_table)
+    path = astar.aStarAlgo(startNode_id, endNode_id, node_by_id, graph_table, mode)
 
     if path is None:
         return None
@@ -16,7 +16,7 @@ async def generate_route(session, startNode_id, endNode_id, mode):
     for edge_nodes in path:
         from_node_id, to_node_id = edge_nodes
         edge = edge_by_pair[edge_nodes]
-        instruction = edge.instruction or f"Travel from {node_by_id[from_node_id]} to {node_by_id[to_node_id]}."
+        instruction = edge.instruction or f"Travel from {node_by_id[from_node_id].name} to {node_by_id[to_node_id].name}."
         route_step = RouteStep(
             step_number=step_count,
             step_instruction=instruction,
