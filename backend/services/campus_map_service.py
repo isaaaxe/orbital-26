@@ -11,7 +11,7 @@ async def search_nearest_node(session, latitude, longitude, floor):
         return None
 
     distance = haversine_m(nearest_node.latitude, nearest_node.longitude, latitude, longitude)
-    formatted_node = await get_node(session, nearest_node.id)
+    formatted_node = await get_node(session, nearest_node.node_id)
 
     return campus_map.NearestNode(
         nearest_node=formatted_node,

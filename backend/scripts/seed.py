@@ -68,11 +68,6 @@ def format_instruction(instruction: str | None, distance_m: int) -> str | None:
 
 
 async def clear_existing_data(session):
-    """
-    Clear old seed data so this script can be rerun safely.
-
-    Edges must be deleted before nodes because map_edges references map_nodes.
-    """
     await session.execute(Map_Edge.__table__.delete())
     await session.execute(Location.__table__.delete())
     await session.execute(Map_Node.__table__.delete())
@@ -381,6 +376,22 @@ async def seed_data(clear_first: bool = True):
                     "floor": 1,
                     "building_code": "com3",
                 },
+                {
+                    "name": "LT15",
+                    "lat": 1.2955214878116914,
+                    "lon": 103.77344062919603,
+                    "node_type": "lecture theatre",
+                    "floor": 1,
+                    "building_code": "as6",
+                },
+                {
+                    "name": "LT14",
+                    "lat": 1.2957011498687994,
+                    "lon": 103.77337290341598,
+                    "node_type": "lecture theatre",
+                    "floor": 1,
+                    "building_code": "as6",
+                },
             ]
 
             node_by_name = {node["name"]: node for node in node_specs}
@@ -427,7 +438,7 @@ async def seed_data(clear_first: bool = True):
                     "area_name": None,
                     "lat": 1.2955214878116914,
                     "lon": 103.77344062919603,
-                    "nearest_node_name": "Outside LT15",
+                    "nearest_node_name": "LT15",
                     "nearest_bus_stop_name": "Central Library bus stop",
                 },
                 {
@@ -442,7 +453,7 @@ async def seed_data(clear_first: bool = True):
                     "area_name": None,
                     "lat": 1.2957011498687994,
                     "lon": 103.77337290341598,
-                    "nearest_node_name": "Outside LT14",
+                    "nearest_node_name": "LT14",
                     "nearest_bus_stop_name": "Central Library bus stop",
                 },
                 {
@@ -531,244 +542,47 @@ async def seed_data(clear_first: bool = True):
             ]
 
             edge_specs = [
-                (
-                    "COM3 Elevator",
-                    "Com3 MPH1",
-                    "walk",
-                    "walk straight down corridor for calculated distance",
-                    None,
-                ),
-                (
-                    "Com3 MPH1",
-                    "The Terrace",
-                    "walk",
-                    "walk straight down corridor for calculated distance",
-                    None,
-                ),
-                (
-                    "The Terrace",
-                    "Com2 entrance",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "The Terrace",
-                    "Com1 level 1 entrance",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "UTown bus stop",
-                    "UTown bus stop turn 1",
-                    "campus bus",
-                    "Start at UTown bus stop and head towards College entrance",
-                    "arriving at UTown Bus Stop",
-                ),
-                (
-                    "UTown bus stop turn 1",
-                    "College circus entrance",
-                    "campus bus",
-                    "continue around College Circus towards UTown bus exit",
-                    "heading towards UTown Bus stop",
-                ),
-                (
-                    "College circus entrance",
-                    "College circus turn 1",
-                    "campus bus",
-                    "",
-                    None,
-                ),
-                (
-                    "College circus turn 1",
-                    "College circus turn 2",
-                    "campus bus",
-                    "",
-                    None,
-                ),
-                (
-                    "College circus turn 2",
-                    "College circus turn 3",
-                    "campus bus",
-                    "",
-                    None,
-                ),
-                (
-                    "College circus turn 3",
-                    "College circus entrance",
-                    "campus bus",
-                    "",
-                    None,
-                ),
-                (
-                    "College circus entrance",
-                    "Utown bus exit",
-                    "campus bus",
-                    "exiting Utown",
-                    "entering UTown",
-                ),
-                (
-                    "Utown bus exit",
-                    "College Link Road turn 1",
-                    "campus bus",
-                    "follow College Link road",
-                    None,
-                ),
-                (
-                    "College Link Road turn 1",
-                    "College Link Road turn 2",
-                    "campus bus",
-                    "follow College Link road",
-                    None,
-                ),
-                (
-                    "College Link Road turn 2",
-                    "College Link Road turn 3",
-                    "campus bus",
-                    "follow College Link road",
-                    None,
-                ),
-                (
-                    "College Link Road turn 3",
-                    "Kent Ridge Kres roundabout opening 1",
-                    "campus bus",
-                    "entering kent ridge kres roundabout",
-                    "exiting kent ridge kres roundabout",
-                ),
-                (
-                    "Kent Ridge Kres roundabout opening 1",
-                    "Kent Ridge Kres roundabout opening 2",
-                    "campus bus",
-                    "",
-                    None,
-                ),
-                (
-                    "Kent Ridge Kres roundabout opening 2",
-                    "Kent Ridge Kres curve corner 1",
-                    "campus bus",
-                    "follow Kent Ridge Kres",
-                    None,
-                ),
-                (
-                    "Kent Ridge Kres curve corner 1",
-                    "Kent Ridge Kres circus opening 1",
-                    "campus bus",
-                    "enter Kent Ridge Kres circus",
-                    "exit kent ridge Kres circus",
-                ),
-                (
-                    "Kent Ridge Kres circus opening 1",
-                    "Kent Ridge Kres circus turn 1",
-                    "campus bus",
-                    "",
-                    None,
-                ),
-                (
-                    "Kent Ridge Kres circus turn 1",
-                    "Kent Ridge Kres circus opening 2",
-                    "campus bus",
-                    "exit Kent Ridge Kres circus",
-                    "enter kent ridge kres circus",
-                ),
-                (
-                    "Kent Ridge Kres circus opening 2",
-                    "Kent Ridge Kres curve corner 2",
-                    "campus bus",
-                    "follow Kent Ridge Kres",
-                    None,
-                ),
-                (
-                    "Kent Ridge Kres curve corner 2",
-                    "Kent Ridge Kres curve corner 3",
-                    "campus bus",
-                    "follow Kent Ridge Kres",
-                    None,
-                ),
-                (
-                    "Kent Ridge Kres curve corner 3",
-                    "Central Library bus stop",
-                    "campus bus",
-                    "arriving at central library bus stop",
-                    "exiting central library bus stop",
-                ),
-                (
-                    "Central Library bus stop",
-                    "Central library stairs",
-                    "walk",
-                    "walk down the stairs",
-                    "walk up the stairs",
-                ),
-                (
-                    "Central library stairs",
-                    "Central library entrance",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "Central library entrance",
-                    "Central library lift",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "Central library lift",
-                    "Outside nus coop store room",
-                    "walk",
-                    "walk up stairs",
-                    "walk down stairs",
-                ),
-                (
-                    "Outside nus coop store room",
-                    "Outside LT14",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "Outside LT14",
-                    "Outside LT15",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "Outside LT15",
-                    "As6 lift1",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "As6 lift1",
-                    "Com1 second story outside ahu room",
-                    "walk",
-                    "turn left, walk straight for calculated distance and turn right",
-                    "turn left, walk straight for calculated distance and turn right",
-                ),
-                (
-                    "Com1 second story outside ahu room",
-                    "Com1 level 2 entrance",
-                    "walk",
-                    "walk straight for calculated distance",
-                    None,
-                ),
-                (
-                    "Com1 level 2 entrance",
-                    "Middle of stairs from terrace to com1",
-                    "walk",
-                    "walk straight through com1 for calculated distance",
-                    None,
-                ),
-                (
-                    "Middle of stairs from terrace to com1",
-                    "The Terrace",
-                    "walk",
-                    "walk down stairs and straight for calculated distance",
-                    None,
-                ),
+                ("COM3 Elevator", "Com3 MPH1", "walk", "walk straight down corridor for calculated distance", None),
+                ("Com3 MPH1", "The Terrace", "walk", "walk straight down corridor for calculated distance", None),
+                ("The Terrace", "Com2 entrance", "walk", "walk straight for calculated distance", None),
+                ("The Terrace", "Com1 level 1 entrance", "walk", "walk straight for calculated distance", None),
+
+                ("UTown bus stop", "UTown bus stop turn 1", "campus bus", "Start at UTown bus stop and head towards College entrance", "arriving at UTown Bus Stop"),
+                ("UTown bus stop turn 1", "College circus entrance", "campus bus", "continue around College Circus towards UTown bus exit", "heading towards UTown Bus stop"),
+                ("College circus entrance", "College circus turn 1", "campus bus", "", None),
+                ("College circus turn 1", "College circus turn 2", "campus bus", "", None),
+                ("College circus turn 2", "College circus turn 3", "campus bus", "", None),
+                ("College circus turn 3", "College circus entrance", "campus bus", "", None),
+                ("College circus entrance", "Utown bus exit", "campus bus", "exiting Utown", "entering UTown"),
+                ("Utown bus exit", "College Link Road turn 1", "campus bus", "follow College Link road", None),
+                ("College Link Road turn 1", "College Link Road turn 2", "campus bus", "follow College Link road", None),
+                ("College Link Road turn 2", "College Link Road turn 3", "campus bus", "follow College Link road", None),
+                ("College Link Road turn 3", "Kent Ridge Kres roundabout opening 1", "campus bus", "entering kent ridge kres roundabout", "exiting kent ridge kres roundabout"),
+                ("Kent Ridge Kres roundabout opening 1", "Kent Ridge Kres roundabout opening 2", "campus bus", "", None),
+                ("Kent Ridge Kres roundabout opening 2", "Kent Ridge Kres curve corner 1", "campus bus", "follow Kent Ridge Kres", None),
+                ("Kent Ridge Kres curve corner 1", "Kent Ridge Kres circus opening 1", "campus bus", "enter Kent Ridge Kres circus", "exit kent ridge Kres circus"),
+                ("Kent Ridge Kres circus opening 1", "Kent Ridge Kres circus turn 1", "campus bus", "", None),
+                ("Kent Ridge Kres circus turn 1", "Kent Ridge Kres circus opening 2", "campus bus", "exit Kent Ridge Kres circus", "enter kent ridge kres circus"),
+                ("Kent Ridge Kres circus opening 2", "Kent Ridge Kres curve corner 2", "campus bus", "follow Kent Ridge Kres", None),
+                ("Kent Ridge Kres curve corner 2", "Kent Ridge Kres curve corner 3", "campus bus", "follow Kent Ridge Kres", None),
+                ("Kent Ridge Kres curve corner 3", "Central Library bus stop", "campus bus", "arriving at central library bus stop", "exiting central library bus stop"),
+
+                ("Central Library bus stop", "Central library stairs", "walk", "walk down the stairs", "walk up the stairs"),
+                ("Central library stairs", "Central library entrance", "walk", "walk straight for calculated distance", None),
+                ("Central library entrance", "Central library lift", "walk", "walk straight for calculated distance", None),
+                ("Central library lift", "Outside nus coop store room", "walk", "walk up stairs", "walk down stairs"),
+                ("Outside nus coop store room", "Outside LT14", "walk", "walk straight for calculated distance", None),
+                ("Outside LT14", "Outside LT15", "walk", "walk straight for calculated distance", None),
+                ("Outside LT15", "As6 lift1", "walk", "walk straight for calculated distance", None),
+                ("As6 lift1", "Com1 second story outside ahu room", "walk", "turn left, walk straight for calculated distance and turn right", "turn left, walk straight for calculated distance and turn right"),
+                ("Com1 second story outside ahu room", "Com1 level 2 entrance", "walk", "walk straight for calculated distance", None),
+                ("Com1 level 2 entrance", "Middle of stairs from terrace to com1", "walk", "walk straight through com1 for calculated distance", None),
+                ("Middle of stairs from terrace to com1", "The Terrace", "walk", "walk down stairs and straight for calculated distance", None),
+
+                ("Outside LT14", "LT14", "walk", "walk down stairs and straight for calculated distance", None),
+                ("Outside LT15", "LT15", "walk", "walk down stairs and straight for calculated distance", None),
+                ("Com1 level 2 entrance", "Com1", "walk", "walk straight for calculated distance", None),
+                ("Com2 entrance", "Com2", "walk", "walk through the entrance and turn left", None),
             ]
 
             edges = []
@@ -805,11 +619,7 @@ async def seed_data(clear_first: bool = True):
                     )
                 )
 
-                reverse_text = (
-                    reverse_instruction
-                    if reverse_instruction is not None
-                    else instruction
-                )
+                reverse_text = reverse_instruction if reverse_instruction is not None else instruction
 
                 edges.append(
                     Map_Edge(
