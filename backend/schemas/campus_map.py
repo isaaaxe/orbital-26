@@ -13,7 +13,7 @@ class NodeDetail(BaseModel):
     building_code: str | None = None
     floor: int
     latitude: float
-    longtidue: float
+    longitude: float
 
 class EdgeDetail(BaseModel):
     edge_id: str
