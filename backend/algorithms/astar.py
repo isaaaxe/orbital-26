@@ -6,7 +6,7 @@ import heapq
 
 fastest_speed_m_per_second = 8
 
-#adjust heuristic based on mode later
+#adjust heuristic based on mode later mode here is general mode ie fastest, accessible, sheltered etc
 def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode):
     if startNode_id not in node_by_id or endNode_id not in node_by_id:
         return None
@@ -53,7 +53,11 @@ def construct_path(parentDict: dict, startNode_id, endNode_id):
     path = []
     #might have to include self referencing edges
     while curr != startNode_id:
-        parent = parentDict[curr]
+        parent = parentDict.get(curr)
+
+        if parent is None:
+            return None
+        
         path.append((parent, curr))
         curr = parent
 

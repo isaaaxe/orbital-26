@@ -8,7 +8,7 @@ class RouteRequest(BaseModel):
 class RouteStep(BaseModel):
     step_number: int
     step_instruction: str
-    mode: str
+    transport_mode: str
     distance_for_step: float
     estimated_seconds: float
     from_name: str | None = None #for corners
@@ -17,5 +17,6 @@ class RouteStep(BaseModel):
 class RouteResponse(BaseModel):
     total_distance: float
     total_estimated_seconds: float
+    mode: str
     steps: list[RouteStep]
     path_coordinates: list[tuple[float, float]]
