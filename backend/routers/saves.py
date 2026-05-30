@@ -33,12 +33,7 @@ async def update_user_save(user_id: str, save_id: int, session: AsyncSession = D
 async def delete_user_save(user_id: str, save_id: int, session: AsyncSession = Depends(database.get_db_session)):
     #same as add search and delete
     boolean = await save_service.delete_user_save(session, user_id, save_id)
-    if boolean:
-        return {
-            "save deleted": True
-        }
-    else:
-        return {
-            "saved deleted": False
-        }
+    return {
+        "deleted": boolean
+    }
 
