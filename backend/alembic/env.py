@@ -15,12 +15,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-database_url = os.getenv("DATABASE_URL")
+database_url = os.getenv("DIRECT_URL") or os.getenv("DATABASE_URL")
 
 if database_url is None:
-    raise RuntimeError("WHere is the DATABASE_URL? Did u delete it?")
+    raise RuntimeError("DATABASE_URL or DIRECT_URL is missing. Set it in your .env file or Render environment variables.")
 
-database_url = database_url.replace("postgresql+asyncpg://", "postgresql+psycopg://")
+if database_url.startswith("postgresql+asyncpg://"):
+    database_url = database_url.replace("postgresql+asyncpg://", "postgresql+psycopg://", 1)
+elif database_url.startswith("postgresql://"):
+    database_url = database_url.replace("postgresql://", "postgresql+psycopg://", 1)
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
