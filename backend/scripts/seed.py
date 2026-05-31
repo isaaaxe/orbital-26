@@ -73,6 +73,8 @@ async def clear_existing_data(session):
     await session.execute(Map_Edge.__table__.delete())
     await session.execute(Location.__table__.delete())
     await session.execute(Map_Node.__table__.delete())
+    await session.execute(User.__table__.delete())
+    await session.execute(Saved_Location.__table__.delete())
 
 
 async def seed_data(clear_first: bool = True):
