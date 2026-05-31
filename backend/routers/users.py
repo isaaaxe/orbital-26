@@ -24,7 +24,7 @@ async def add_user(request: user.UserCreate, session: AsyncSession = Depends(dat
     created_user = await user_service.create_user(session, request.username, request.password, request.language, request.profile_settings)
     
     if created_user is None:
-        return HTTPException(status_code=409, detail="username taken")
+        raise HTTPException(status_code=409, detail="username taken")
 
     return created_user
 
