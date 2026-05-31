@@ -13,6 +13,7 @@ class User(database.Base):
 
     user_id: Mapped[str] = mapped_column(String, primary_key=True)
     username: Mapped[str] = mapped_column(String, nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String, nullable=False)
     language: Mapped[str] = mapped_column(String, nullable=False)
     profile_settings: Mapped[list[str]] = mapped_column(
         JSONB,
