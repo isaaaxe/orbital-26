@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
 type RouteOptionProps = {
   optionType: string;
-  eta: number;
+  eta_formatted: string;
   routeTitle: string;
   routeDescription: string;
   onPress: () => void;
@@ -60,17 +60,17 @@ const styles = StyleSheet.create({
 
 export default function RouteOptionCard({
   optionType,
-  eta,
+  eta_formatted,
   routeTitle,
   routeDescription,
   onPress,
   selected,
 }: RouteOptionProps) {
   const colorMap = new Map([
-    ["Fastest", "#FF4A1C"],
-    ["Walking only", "#0B3A7E"],
-    ["Accessible", "#168A45"],
-    ["Carpark", "#0B3A7E"],
+    ["fastest", "#FF4A1C"],
+    ["walking only", "#0B3A7E"],
+    ["accessible", "#168A45"],
+    ["carpark", "#0B3A7E"],
   ]);
 
   const colorRoute = colorMap.get(optionType);
@@ -84,9 +84,9 @@ export default function RouteOptionCard({
         <Text style={[styles.routeTag, { color: colorRoute }]}>
           {optionType}
         </Text>
-        <Text
-          style={[styles.routeTime, { color: colorRoute }]}
-        >{`${eta} min${eta > 1 ? "s" : ""}`}</Text>
+        <Text style={[styles.routeTime, { color: colorRoute }]}>
+          {eta_formatted}
+        </Text>
       </View>
       <Text style={styles.routeTitle}>{routeTitle}</Text>
       <Text style={styles.routeDescription}>{routeDescription}</Text>

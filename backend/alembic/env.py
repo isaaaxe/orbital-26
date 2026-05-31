@@ -9,6 +9,9 @@ from core.database import Base
 from models.locations import Location
 from models.map_nodes import Map_Node
 from models.map_edges import Map_Edge
+from models.users import User
+from models.saved_locations import Saved_Location
+
 
 import os
 from dotenv import load_dotenv

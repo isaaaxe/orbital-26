@@ -1,50 +1,48 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
-
-type User = {
-  id: number;
-  email: string;
-  username: string;
-};
+import { UserDetail } from "@/api/users";
+import { useCreateUserMutation, useGetUserMutation } from "@/hook/useUser";
 
 type AuthContextType = {
-  user: User | null;
+  user: UserDetail | null;
   isLoading: boolean;
   isLogin: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  signup: (email: string, password: string, username: string) => Promise<void>;
+  signup: (username: string, password: string) => Promise<void>;
   setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserDetail | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(true);
+  const createMutator = useCreateUserMutation();
+  const getUserMutator = useGetUserMutation();
+  // useEffect(() => {
+  //   async function loadAuthState() {
+  //     const token = await SecureStore.getItemAsync("accessToken");
 
-  useEffect(() => {
-    async function loadAuthState() {
-      const token = await SecureStore.getItemAsync("accessToken");
+  //     if (token) {
+  //       // Later: call backend GET /auth/xxxx to get real user
+  //       setUser({
+  //         user_id: "test",
+  //         username: "Test123",
+  //         profile_settings: [],
+  //         language: "en",
+  //       });
+  //     } else {
+  //       setUser(null);
+  //     }
 
-      if (token) {
-        // Later: call backend GET /auth/xxxx to get real user
-        setUser({
-          id: 1,
-          email: "test@example.com",
-          username: "Test123",
-        });
-      } else {
-        setUser(null);
-      }
+  //     setIsLoading(false);
+  //   }
 
-      setIsLoading(false);
-    }
+  //   loadAuthState();
+  // }, []);
 
-    loadAuthState();
-  }, []);
-
-  async function login(email: string, password: string) {
+  async function login(username: string, password: string) {
     // const response = await loginApi(email, password);
 
     //add error handling for wrong password / wrong email
@@ -55,22 +53,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const token = "testToken";
     await SecureStore.setItemAsync("accessToken", token);
     //example user
-    const user: User = {
-      id: 1,
-      email: email,
-      username: "Test",
-    };
-    setUser(user);
+    // const user: UserDetail = {
+    //   user_id: "test",
+    //   username: "Test",
+    //   profile_settings: [],
+    //   language: "en",
+    // };
+    const userDetail = await getUserMutator.mutateAsync(username);
+    if (!userDetail) {
+      return;
+    }
+    setUser(userDetail);
   }
 
-  async function signup(email: string, password: string, username: string) {
-    if (username == null || username.length == 0) {
-      username = email;
-    }
-
+  async function signup(username: string, password: string) {
     // here suppose to do a POST request to back in to store the relevant data
     // make sure to remember to encrypt the password with SHA256
-    await login(email, password);
+
+    const userDetail = await createMutator.mutateAsync({
+      username,
+      language: "en",
+      profile_settings: [],
+    });
+    login(userDetail.user_id, password);
   }
 
   async function logout() {

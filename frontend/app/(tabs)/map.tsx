@@ -1,7 +1,13 @@
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { Marker, Polyline, Polygon, PROVIDER_GOOGLE } from "react-native-maps";
-import { RoutePlace, useRouteContext } from "@/context/RouteContext";
+import MapView, {
+  Marker,
+  Polyline,
+  Polygon,
+  PROVIDER_GOOGLE,
+} from "react-native-maps";
+import { useRouteContext } from "@/context/RouteContext";
+// import { useGetLocationDetails } from "@/hook/useLocations";
 
 const styles = StyleSheet.create({
   screen: {
@@ -71,7 +77,11 @@ const styles = StyleSheet.create({
 
 export default function MapPage() {
   const { origin } = useRouteContext();
-
+  // const {
+  //   data: originDetails,
+  //   isLoading,
+  //   error,
+  // } = useGetLocationDetails(origin?.nearest_node.);
   const boundaryCoordinates = [
     { latitude: 1.309274704980008, longitude: 103.77196245668526 },
     { latitude: 1.307506885450094, longitude: 103.77726729866667 },
@@ -90,7 +100,7 @@ export default function MapPage() {
   ];
 
   function getCurrentLocation() {
-    Alert.alert(`Current Location\n${origin?.name}`);
+    Alert.alert(`Current Location\n${origin?.nearest_node.name}`);
   }
 
   return (
@@ -106,7 +116,7 @@ export default function MapPage() {
         <View style={styles.container}>
           <MapView
             style={styles.map}
-            provider={PROVIDER_GOOGLE} 
+            provider={PROVIDER_GOOGLE}
             region={{
               latitude: 1.300291282646443,
               longitude: 103.77733947340228,
@@ -137,8 +147,8 @@ export default function MapPage() {
             {origin ? (
               <Marker
                 coordinate={{
-                  latitude: origin.latitude,
-                  longitude: origin.longitude,
+                  latitude: origin.nearest_node.latitude!,
+                  longitude: origin.nearest_node.longitude!,
                 }}
                 onPress={getCurrentLocation}
               />

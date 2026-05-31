@@ -4,18 +4,56 @@ import {
   sampleLocations,
   sampleSavedLocations,
 } from "@/app/data/sampleLocations";
-import { Location } from "./locations";
+import { Location } from "../api/locations";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://orbital-26.onrender.com";
 const useMockAPI = false;
 
+async function debugFetch(url: string, options?: RequestInit) {
+  const method = options?.method ?? "GET";
+
+  console.log(`[API REQUEST] ${method} ${url}`);
+
+  if (options?.body) {
+    console.log("[API REQUEST BODY]", options.body);
+  }
+
+  try {
+    const res = await fetch(url, options);
+
+    console.log(
+      `[API RESPONSE] ${res.status} ${res.statusText} ${method} ${url}`,
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      console.log("[API ERROR BODY]", text);
+      throw new Error(`${method} ${url} failed with ${res.status}: ${text}`);
+    }
+
+    return res;
+  } catch (err) {
+    console.log(`[API NETWORK ERROR] ${method} ${url}`);
+    console.log(err);
+    throw err;
+  }
+}
+
 export type SaveLocationRequest = {
-  location_id: string;
+  locationId: string;
   purpose: string | null;
 };
 
-export type SaveLocationResponse = Location & {
+export type SaveLocationResponse = {
   save_id: number;
+  location_id: string;
+  name: string;
+  display_name: string;
+  location_type: string;
+  building_code: string | null;
+  area_name: string | null;
+
+  purpose: string | null;
 };
 
 export type DeleteSavedLocationResponse = {
@@ -144,7 +182,7 @@ let mockSavedLocations = [...sampleSavedLocations];
 export async function getSavedLocations(
   userId: string,
 ): Promise<SaveLocationResponse[]> {
-  const res = await fetch(`${API_BASE_URL}/users/${userId}/saves`);
+  const res = await debugFetch(`${API_BASE_URL}/users/${userId}/saves`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch saved locations");
@@ -160,7 +198,7 @@ export async function saveLocation(
     purpose: string;
   },
 ): Promise<SaveLocationResponse> {
-  const res = await fetch(`${API_BASE_URL}/users/${userId}/saves`, {
+  const res = await debugFetch(`${API_BASE_URL}/users/${userId}/saves`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -179,7 +217,7 @@ export async function deleteSavedLocation(
   userId: string,
   locationId: string,
 ): Promise<DeleteSavedLocationResponse> {
-  const res = await fetch(
+  const res = await debugFetch(
     `${API_BASE_URL}/users/${userId}/saves/${locationId}`,
     {
       method: "DELETE",
@@ -200,7 +238,7 @@ export async function getRecentlyVisited(
     return { recentLocations: recentlyVisitedLocations };
   }
 
-  const res = await fetch(`${API_BASE_URL}/users/me/recently-visited`, {
+  const res = await debugFetch(`${API_BASE_URL}/users/me/recently-visited`, {
     method: "GET",
     headers: getAuthHeaders(token),
   });
@@ -214,7 +252,7 @@ export async function getRecentlyVisited(
 
 //users CRUD API functions
 export async function getUser(userId: string): Promise<UserDetail> {
-  const res = await fetch(`${API_BASE_URL}/users/${userId}`);
+  const res = await debugFetch(`${API_BASE_URL}/users/${userId}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch user");
@@ -224,7 +262,7 @@ export async function getUser(userId: string): Promise<UserDetail> {
 }
 
 export async function createUser(request: UserCreate): Promise<UserDetail> {
-  const res = await fetch(`${API_BASE_URL}/users`, {
+  const res = await debugFetch(`${API_BASE_URL}/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -243,7 +281,7 @@ export async function updateUser(
   userId: string,
   request: UserUpdate,
 ): Promise<UserDetail> {
-  const res = await fetch(`${API_BASE_URL}/users/${userId}`, {
+  const res = await debugFetch(`${API_BASE_URL}/users/${userId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -261,7 +299,7 @@ export async function updateUser(
 export async function deleteUser(
   userId: string,
 ): Promise<{ deleted: boolean }> {
-  const res = await fetch(`${API_BASE_URL}/users/${userId}`, {
+  const res = await debugFetch(`${API_BASE_URL}/users/${userId}`, {
     method: "DELETE",
   });
 

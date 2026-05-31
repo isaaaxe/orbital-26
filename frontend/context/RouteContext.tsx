@@ -1,24 +1,20 @@
 import React, { createContext, useContext, useState } from "react";
-import * as Location from "expo-location";
-
-type RouteOption = {
-  optionType: string;
-  eta: number;
-  routeTitle: string;
-  routeDescription: string;
-};
+// import * as Location from "expo-location";
+import { Location } from "@/api/locations";
+import { RouteResponse } from "@/api/routes";
+import { NearestNode } from "@/api_debug/routes.logged";
 
 export type Coordinate = {
   latitude: number;
   longitude: number;
 };
 
-export type RoutePlace = Coordinate & {
-  name: string;
-  id: string;
-  description?: string;
-  buildingId?: string;
-};
+// export type RoutePlace = Coordinate & {
+//   name: string;
+//   id: string;
+//   description?: string;
+//   buildingId?: string;
+// };
 
 type RouteContextType = {
   // searchDestination: string;
@@ -27,13 +23,15 @@ type RouteContextType = {
   userSearch: string;
   setUserSearch: (search: string) => void;
 
-  selectedRoute: RouteOption | null;
-  setSelectedRoute: (route: RouteOption | null) => void;
+  selectedRoute: RouteResponse | null;
+  setSelectedRoute: (route: RouteResponse | null) => void;
 
-  origin: RoutePlace | null;
-  setOrigin: (origin: RoutePlace | null) => void;
-  destination: RoutePlace | null;
-  setDestination: (destination: RoutePlace | null) => void;
+  origin: NearestNode | null;
+  setOrigin: (origin: NearestNode | null) => void;
+  destination: Location | null;
+  setDestination: (destination: Location | null) => void;
+  // routes: RouteResponse[] | null;
+  // setRoutes: (routes: RouteResponse[] | null) => void;
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
@@ -41,24 +39,27 @@ const RouteContext = createContext<RouteContextType | undefined>(undefined);
 export function RouteProvider({ children }: { children: React.ReactNode }) {
   // const [searchDestination, setSearchDestination] = useState("");
   const [userSearch, setUserSearch] = useState("");
-  const [selectedRoute, setSelectedRoute] = useState<RouteOption | null>(null);
+  const [selectedRoute, setSelectedRoute] = useState<RouteResponse | null>(
+    null,
+  );
 
-  const [origin, setOrigin] = useState<RoutePlace | null>(null);
-  const [destination, setDestination] = useState<RoutePlace | null>(null);
+  const [origin, setOrigin] = useState<NearestNode | null>(null);
+  const [destination, setDestination] = useState<Location | null>(null);
+  // const [routes, setRoutes] = useState<RouteResponse[] | null>(null);
 
   return (
     <RouteContext.Provider
       value={{
         userSearch,
         setUserSearch,
-        // searchDestination,
-        // setSearchDestination,
         selectedRoute,
         setSelectedRoute,
         origin,
         setOrigin,
         destination,
         setDestination,
+        // routes,
+        // setRoutes,
       }}
     >
       {children}

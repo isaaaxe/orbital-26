@@ -50,7 +50,7 @@ export default function MapOrigin() {
               longitudeDelta: 0.016,
             }}
           >
-            {origin ? (
+            {/* {origin ? (
               <Marker
                 coordinate={{
                   latitude: origin?.latitude,
@@ -59,7 +59,7 @@ export default function MapOrigin() {
               />
             ) : (
               <></>
-            )}
+            )} */}
           </MapView>
         </View>
       </SafeAreaView>

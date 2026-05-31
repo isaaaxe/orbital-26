@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [isValidInputs, setIsValidInputs] = useState({
@@ -131,22 +131,22 @@ export default function Login() {
   });
   const { login, isLogin, setIsLogin, signup } = useAuthContext();
 
-  function checkValidEmail(email: string) {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (emailRegex.test(email.trim())) {
-      setIsValidInputs((prev) => ({
-        ...prev,
-        email: true,
-      }));
-      return true;
-    } else {
-      setIsValidInputs((prev) => ({
-        ...prev,
-        email: false,
-      }));
-      return false;
-    }
-  }
+  // function checkValidEmail(email: string) {
+  //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  //   if (emailRegex.test(email.trim())) {
+  //     setIsValidInputs((prev) => ({
+  //       ...prev,
+  //       email: true,
+  //     }));
+  //     return true;
+  //   } else {
+  //     setIsValidInputs((prev) => ({
+  //       ...prev,
+  //       email: false,
+  //     }));
+  //     return false;
+  //   }
+  // }
 
   function checkValidPassword(password: string) {
     const strongPasswordRegex =
@@ -167,7 +167,8 @@ export default function Login() {
   }
 
   function checkUsername(username: string) {
-    if (username.length > 3) {
+    const validUserNameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    if (validUserNameRegex.test(username.trim())) {
       setIsValidInputs((prev) => ({
         ...prev,
         username: true,
@@ -182,26 +183,28 @@ export default function Login() {
     }
   }
 
-  function handleLogin(email: string, password: string) {
-    const validEmail = checkValidEmail(email);
+  function handleLogin(username: string, password: string) {
+    // const validEmail = checkValidEmail(email);
+    const validUsername = checkUsername(username);
     const validPW = checkValidPassword(password);
-    if (!validEmail || !validPW) {
+    if (!validUsername || !validPW) {
       // nothing happens
     } else {
-      login(email, password);
+      login(username, password);
       // set to isLoading, set the user and go back to accouints page
       router.back();
     }
   }
 
-  function handleSignup(email: string, password: string, username: string) {
-    const validEmail = checkValidEmail(email);
+  function handleSignup(username: string, password: string) {
+    // const validEmail = checkValidEmail(email);
     const validPW = checkValidPassword(password);
     const validUsername = checkUsername(username);
-    if (!validEmail || !validPW || !validUsername) {
+    if (!validPW || !validUsername) {
       // nothing happens
     } else {
-      signup(email, password, username);
+      signup(username, password);
+      router.back();
     }
     // set to isLoading, set the user and go back to accounts page
   }
@@ -226,6 +229,7 @@ export default function Login() {
               Login
             </Text>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={[
               styles.authToggleItem,
@@ -247,70 +251,47 @@ export default function Login() {
         <View style={styles.searchView}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Email"
+            placeholder="Username"
             placeholderTextColor="#6B7280"
-            returnKeyType="search"
-            onChangeText={setEmail}
-            value={email}
+            returnKeyType="next"
+            onChangeText={setUsername}
+            value={username}
             onSubmitEditing={() => {
-              checkValidEmail(email);
+              checkUsername(username);
             }}
             autoCapitalize="none"
           />
         </View>
-        {!isValidInputs.email ? (
+
+        {!isValidInputs.username && (
           <View style={styles.errorBox}>
+            <Text style={styles.errorText}>Please enter a valid username:</Text>
+            <Text style={styles.errorText}>3-20 Characters</Text>
             <Text style={styles.errorText}>
-              Please enter a valid email address.
+              Letters, numbers, underscores only
             </Text>
           </View>
-        ) : (
-          <></>
         )}
 
-        {!isLogin ? (
-          <>
-            <View style={styles.searchView}>
-              <TextInput
-                style={styles.searchInput}
-                placeholder="Username"
-                placeholderTextColor="#6B7280"
-                returnKeyType="search"
-                onChangeText={setUsername}
-                value={username}
-                onSubmitEditing={() => {
-                  checkUsername;
-                }}
-                autoCapitalize="none"
-              />
-            </View>
-            {!isValidInputs.username ? (
-              <View style={styles.errorBox}>
-                <Text style={styles.errorText}>
-                  Please enter a username longer than 3 characters.
-                </Text>
-              </View>
-            ) : (
-              <></>
-            )}
-          </>
-        ) : (
-          <></>
-        )}
         <View style={styles.searchView}>
           <TextInput
             style={styles.searchInput}
             placeholder="Password"
             placeholderTextColor="#6B7280"
-            returnKeyType="search"
+            returnKeyType="done"
             onChangeText={setPassword}
             value={password}
-            onSubmitEditing={() => handleLogin(email, password)}
+            onSubmitEditing={() =>
+              isLogin
+                ? handleLogin(username, password)
+                : handleSignup(username, password)
+            }
             autoCapitalize="none"
             secureTextEntry
           />
         </View>
-        {!isValidInputs.password ? (
+
+        {!isValidInputs.password && (
           <View style={styles.errorBox}>
             <Text style={styles.errorText}>Please enter at least: </Text>
             <Text style={styles.errorText}>8 Characters</Text>
@@ -319,16 +300,14 @@ export default function Login() {
             <Text style={styles.errorText}>1 Number</Text>
             <Text style={styles.errorText}>1 Special Character</Text>
           </View>
-        ) : (
-          <></>
         )}
         <View style={{ flex: 1, flexDirection: "column-reverse" }}>
           <StylisedButton
             buttonText={isLogin ? "Login" : "Sign Up"}
             onPress={
               isLogin
-                ? () => handleLogin(email, password)
-                : () => handleSignup(email, password, username)
+                ? () => handleLogin(username, password)
+                : () => handleSignup(username, password)
             }
           />
         </View>

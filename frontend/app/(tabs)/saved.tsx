@@ -5,11 +5,13 @@ import { Route, router } from "expo-router";
 import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // import { sampleSavedLocations } from "../data/sampleLocations";
-import type { RoutePlace } from "@/context/RouteContext";
+// import type { RoutePlace } from "@/context/RouteContext";
 import {
   useDeleteSavedLocationMutation,
   useSavedLocationsQuery,
 } from "@/hook/useLocations";
+import { Location } from "@/api/locations";
+import { useAuthContext } from "@/context/AuthContext";
 
 // curr default image should be selected by tag later on?
 const icons = {
@@ -39,22 +41,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const MOCK_TOKEN = "mock-token";
-
+// const MOCK_TOKEN = "mock-token"
 export default function SavedPage() {
+  const { user } = useAuthContext();
   const { setUserSearch, setDestination } = useRouteContext();
-  const { data: savedData, isLoading: isLoadingSaved } =
-    useSavedLocationsQuery(MOCK_TOKEN);
+  const { data: savedData, isLoading: isLoadingSaved } = useSavedLocationsQuery(
+    user?.user_id,
+  );
 
-  function handleSelect(input: RoutePlace) {
+  function handleSelect(input: Location) {
     setUserSearch(input.name);
     setDestination(input);
     router.push("/chooseRoute");
   }
 
-  const deleteSavedLocationMutation =
-    useDeleteSavedLocationMutation(MOCK_TOKEN);
-  const savedLocations = savedData?.savedLocations ?? [];
+  const deleteSavedLocationMutation = useDeleteSavedLocationMutation(
+    user?.user_id,
+  );
+  const savedLocations = savedData ?? [];
 
   return (
     <View style={styles.screen}>
@@ -63,32 +67,59 @@ export default function SavedPage() {
           text={"Saved Destinations"}
           description="Destinations that you frequently visit"
         />
-
-        {savedData?.savedLocations.length === 0 ? (
+        {!user && (
           <View style={styles.emptyStateContainer}>
             <Text style={styles.emptyStateText}>
-              Start saving some routes to be displayed here!
+              Sign up/log in to save your frequently visited destinations!
             </Text>
           </View>
-        ) : (
-          <FlatList
-            style={styles.savedListView}
-            data={savedLocations}
-            extraData={savedLocations.map((location) => location.id).join(",")}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <CardItem
-                mainIcon={icons.no_image}
-                cardTitle={item.name}
-                cardSubtitle={item.description ? item.description : ""}
-                onPress={() => handleSelect(item)}
-                saveable
-                isSaved
-                onSavePress={() => deleteSavedLocationMutation.mutate(item.id)}
-              />
-            )}
-          />
         )}
+        {user &&
+          (isLoadingSaved ? (
+            <View style={styles.emptyStateContainer}>
+              <Text style={styles.emptyStateText}>
+                Loading saved locations...
+              </Text>
+            </View>
+          ) : savedData?.length === 0 ? (
+            <View style={styles.emptyStateContainer}>
+              <Text style={styles.emptyStateText}>
+                Start saving some routes to be displayed here!
+              </Text>
+            </View>
+          ) : (
+            <FlatList
+              style={styles.savedListView}
+              data={savedLocations}
+              extraData={savedLocations
+                .map((location) => location.location_id)
+                .join(",")}
+              keyExtractor={(item) => item.location_id}
+              renderItem={({ item }) => (
+                <CardItem
+                  mainIcon={icons.no_image}
+                  cardTitle={item.name}
+                  cardSubtitle={item.purpose ? item.purpose : ""}
+                  onPress={() =>
+                    handleSelect({
+                      id: item.location_id,
+                      name: item.name,
+                      description: "", //to be implemented...
+                      area_name: item.area_name,
+                      building_code: item.building_code,
+                      display_name: item.display_name,
+                      location_type: item.location_type,
+                    })
+                  }
+                  saveable
+                  isSaved
+                  onSavePress={() =>
+                    deleteSavedLocationMutation.mutate(item.location_id)
+                  }
+                />
+              )}
+            />
+          ))}
       </SafeAreaView>
     </View>
   );

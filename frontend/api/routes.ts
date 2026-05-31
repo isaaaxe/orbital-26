@@ -1,69 +1,48 @@
-export type Node = {
-  id: string;
-  latitude: number;
-  longitude: number;
-  name: string;
-};
+import { Location } from "./locations";
 
 export type RouteRequest = {
-  startNodeId: string;
-  endNodeId: string;
+  start_id: string;
+  destination_id: string;
+  mode: string[];
+};
+
+export type RouteStep = {
+  step_number: number;
+  transport_mode: string;
+  step_instruction: string;
+  distance_for_step: number;
+  estimated_seconds: number;
+  from_name: string | null;
+  to_name: string | null;
 };
 
 export type RouteResponse = {
-  startNodeId: string;
-  endNodeId: string;
-  distanceMeters: number;
-  nodes: Node[];
+  mode: string;
+  total_distance: number;
+  total_estimated_seconds: number;
+  steps: RouteStep[];
+  path_coordinates: [number, number][];
 };
 
 export type ClosestNodeRequest = {
   latitude: number;
   longitude: number;
 };
-export type RouteOptionType =
-  | "Fastest"
-  | "Walking only"
-  | "Accessible"
-  | "Carpark";
-
-export type RouteOption = {
-  id: string;
-  optionType: RouteOptionType;
-  title: string;
-  description: string;
-  distanceMeters: number;
-  estimatedMinutes: number;
-};
-
-export type RouteOptionsRequest = {
-  startLocationId: string;
-  endLocationId: string;
-};
-
-export type RouteOptionsResponse = {
-  options: RouteOption[];
-};
 
 const API_BASE_URL = "http://localhost:8000";
-const useMockAPI = true;
-import {
-  closestNode,
-  mockRoute,
-  mockRoutev2,
-  sampleRouteOptions,
-} from "@/app/data/sampleLocations";
+const useMockAPI = false;
+import { closestNode, mockRoutev2 } from "@/app/data/sampleLocations";
 
-export async function fetchRoute(
+export async function fetchRoutes(
   request: RouteRequest,
-): Promise<RouteResponse> {
+): Promise<RouteResponse[]> {
   //hard coded backend link for now
 
   if (useMockAPI) {
-    return mockRoutev2;
+    return [mockRoutev2];
   }
 
-  const res = await fetch(`${API_BASE_URL}/routes/search`, {
+  const res = await fetch(`${API_BASE_URL}/routes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -80,7 +59,7 @@ export async function fetchRoute(
 
 export async function getClosestNode(
   request: ClosestNodeRequest,
-): Promise<Node> {
+): Promise<Location> {
   if (useMockAPI) {
     return closestNode;
   }
@@ -95,29 +74,6 @@ export async function getClosestNode(
 
   if (!res.ok) {
     throw new Error("Failed to get closest node");
-  }
-
-  return res.json();
-}
-
-export async function getRouteOptions(
-  request: RouteOptionsRequest,
-): Promise<RouteOptionsResponse> {
-  if (useMockAPI) {
-    return {
-      options: sampleRouteOptions,
-    };
-  }
-  const res = await fetch(`${API_BASE_URL}/routes/options`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(request),
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to get route options");
   }
 
   return res.json();

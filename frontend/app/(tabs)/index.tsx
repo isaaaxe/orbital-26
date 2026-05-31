@@ -5,6 +5,9 @@ import {
   Text,
   View,
   ActivityIndicator,
+  Modal,
+  TextInput,
+  TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, useFocusEffect } from "expo-router";
@@ -13,19 +16,21 @@ import SearchBar from "@/components/SearchBar";
 import CardItem from "@/components/CardItem";
 import { useRouteContext } from "@/context/RouteContext";
 import { useAuthContext } from "@/context/AuthContext";
-import * as Location from "expo-location";
-import { useEffect, useCallback } from "react";
+import * as ExpoLocation from "expo-location";
+import { useEffect, useCallback, useState } from "react";
 import { Alert } from "react-native";
 
 // import { sampleLocations, recentlyVisitedLocations, sampleSavedLocations } from "../data/sampleLocations";
-import type { RoutePlace } from "@/context/RouteContext";
+// import type { RoutePlace } from "@/context/RouteContext";
 import {
   useDeleteSavedLocationMutation,
   useRecentlyVisitedQuery,
+  useSavedLocations,
   useSavedLocationsQuery,
   useSaveLocationMutation,
 } from "@/hook/useLocations";
 import { useClosestNodeMutation } from "@/hook/useRoute";
+import { Location } from "@/api/locations";
 
 const styles = StyleSheet.create({
   screen: {
@@ -56,29 +61,100 @@ const styles = StyleSheet.create({
     color: "#666",
     paddingVertical: 8,
   },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+  },
+
+  modalBox: {
+    width: "100%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 18,
+    padding: 20,
+  },
+
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#111827",
+    marginBottom: 8,
+  },
+
+  modalMessage: {
+    fontSize: 14,
+    color: "#6B7280",
+    marginBottom: 16,
+    lineHeight: 20,
+  },
+
+  modalInput: {
+    borderWidth: 1,
+    borderColor: "#D1D5DB",
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    fontSize: 15,
+    color: "#111827",
+    marginBottom: 18,
+  },
+
+  modalButtonRow: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    gap: 12,
+  },
+
+  modalCancelButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+  },
+
+  modalCancelText: {
+    fontSize: 15,
+    color: "#6B7280",
+    fontWeight: "600",
+  },
+
+  modalSaveButton: {
+    backgroundColor: "#2563EB",
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 10,
+  },
+
+  modalSaveText: {
+    fontSize: 15,
+    color: "#FFFFFF",
+    fontWeight: "700",
+  },
 });
-const MOCK_TOKEN = "mock-token";
+// const MOCK_TOKEN = "mock-token";
 
 export default function Index() {
-  // const {user} = useAuthContext()
+  const { user } = useAuthContext();
   const { userSearch, setUserSearch, origin, setOrigin, setDestination } =
     useRouteContext();
   const {
     data: recentlyVisited,
     isLoading: isLoadingRecentlyVisited,
     error: errorRecentlyVisited,
-  } = useRecentlyVisitedQuery(MOCK_TOKEN);
+  } = useRecentlyVisitedQuery(user?.user_id);
   const {
     data: savedData,
     isLoading: isLoadingSaved,
     refetch: refetchSavedLocations,
-  } = useSavedLocationsQuery(MOCK_TOKEN);
+  } = useSavedLocationsQuery(user?.user_id);
   const closestNodeMutation = useClosestNodeMutation();
 
   const recentlyVisitedLocations = recentlyVisited?.recentLocations ?? [];
-  const savedLocations = savedData?.savedLocations ?? [];
+  const savedLocations = savedData ?? [];
 
-  const savedLocationIds = new Set(savedLocations.map((loc) => loc.id));
+  const savedLocationIds = new Set(
+    savedLocations.map((loc) => loc.location_id),
+  );
 
   const icons = {
     location: require("../../assets/icons/location.png"),
@@ -97,12 +173,12 @@ export default function Index() {
     getCurrentLocation();
   }
 
-  function handleSetDestination(location: RoutePlace) {
+  function handleSetDestination(location: Location) {
     if (origin == null) {
       Alert.alert("Please enable your current location");
       return;
     }
-    if (location.id == origin.id) {
+    if (location.id == origin.nearest_node.node_id) {
       Alert.alert(
         "Please choose a destination that is different from your starting point",
       );
@@ -114,7 +190,7 @@ export default function Index() {
 
   //asking for location data
   async function getCurrentLocation() {
-    const permission = await Location.requestForegroundPermissionsAsync();
+    const permission = await ExpoLocation.requestForegroundPermissionsAsync();
 
     if (permission.status !== "granted") {
       console.log("Permission denied");
@@ -127,20 +203,19 @@ export default function Index() {
       return;
     }
 
-    const currentLocation = await Location.getCurrentPositionAsync({
-      accuracy: Location.Accuracy.High,
+    const currentLocation = await ExpoLocation.getCurrentPositionAsync({
+      accuracy: ExpoLocation.Accuracy.High,
     });
     // send a request to find the nearest location to current coords
     // const sampleOrigin = sampleLocations[4]
     const closestNode = await closestNodeMutation.mutateAsync({
       latitude: currentLocation.coords.latitude,
       longitude: currentLocation.coords.longitude,
+      floor: 1,
     });
+    console.log(closestNode);
     setOrigin({
-      name: closestNode.name,
-      latitude: closestNode.latitude,
-      longitude: closestNode.longitude,
-      id: closestNode.id,
+      ...closestNode,
     });
   }
   useEffect(() => {
@@ -153,23 +228,37 @@ export default function Index() {
   );
 
   //handling saving and deleting location
-  const saveLocationMutation = useSaveLocationMutation(MOCK_TOKEN);
-  const deleteSavedLocationMutation =
-    useDeleteSavedLocationMutation(MOCK_TOKEN);
+  const [saveModalVisible, setSaveModalVisible] = useState(false);
+  const [selectedLocationId, setSelectedLocationId] = useState("");
+  const [savePurpose, setSavePurpose] = useState("");
+  const saveLocationMutation = useSaveLocationMutation(user?.user_id);
+  const deleteSavedLocationMutation = useDeleteSavedLocationMutation(
+    user?.user_id,
+  );
 
   function handleToggleSaveLocation(locationId: string, isSaved: boolean) {
     if (isSaved) {
       deleteSavedLocationMutation.mutate(locationId);
     } else {
-      saveLocationMutation.mutate(locationId);
+      setSelectedLocationId(locationId);
+      handleOpenSaveBubble();
+      // saveLocationMutation.mutate(locationId);
     }
   }
+  //handling modal for saving locations
 
-  // useFocusEffect(
-  //   useCallback(()=> {
-  //     refetchSavedLocations()
-  //   }, [refetchSavedLocations])
-  // )
+  function handleOpenSaveBubble() {
+    setSaveModalVisible(true);
+  }
+
+  function handleSave() {
+    saveLocationMutation.mutate({
+      locationId: selectedLocationId,
+      purpose: savePurpose,
+    });
+    setSelectedLocationId("");
+    setSavePurpose("");
+  }
 
   return (
     <View style={styles.screen}>
@@ -198,55 +287,115 @@ export default function Index() {
                 ? "Finding your current location..."
                 : origin == null
                   ? "Please select a location to navigate from"
-                  : origin.name
+                  : origin.nearest_node.name
             }
             cardSubtitle=""
             onPress={handleSetCurrLocation}
           />
         </View>
         {/* Recently Visited */}
-        <View style={styles.bodyView}>
-          <Text style={styles.h3}>Recently Visited</Text>
-          {/* sample data, convert to scrollview later */}
-          {isLoadingRecentlyVisited ? (
-            <View style={styles.loadingBox}>
-              <ActivityIndicator />
-              <Text style={styles.loadingText}>
-                Loading recently visited locations...
-              </Text>
+        {!user && (
+          <View
+            style={{
+              marginHorizontal: 20,
+            }}
+          >
+            <Text>
+              Sign up/log in to save your frequently visited destinations!
+            </Text>
+          </View>
+        )}
+        {user && (
+          <>
+            <View style={styles.bodyView}>
+              <Text style={styles.h3}>Recently Visited</Text>
+              {/* sample data, convert to scrollview later */}
+              {isLoadingRecentlyVisited ? (
+                <View style={styles.loadingBox}>
+                  <ActivityIndicator />
+                  <Text style={styles.loadingText}>
+                    Loading recently visited locations...
+                  </Text>
+                </View>
+              ) : errorRecentlyVisited ? (
+                <Text style={styles.mutedText}>
+                  Failed to load recently visited locations.
+                </Text>
+              ) : recentlyVisitedLocations.length === 0 ? (
+                <Text style={styles.mutedText}>
+                  No recently visited locations yet.
+                </Text>
+              ) : (
+                <FlatList
+                  data={recentlyVisitedLocations}
+                  extraData={savedLocationIds}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => {
+                    const isSaved = savedLocationIds.has(item.id);
+                    return (
+                      <CardItem
+                        mainIcon={icons.no_img}
+                        cardTitle={item.name}
+                        cardSubtitle={item.description ? item.description : ""}
+                        onPress={() => handleSetDestination(item)}
+                        saveable
+                        isSaved={isSaved}
+                        onSavePress={() =>
+                          handleToggleSaveLocation(item.id, isSaved)
+                        }
+                      />
+                    );
+                  }}
+                />
+              )}
             </View>
-          ) : errorRecentlyVisited ? (
-            <Text style={styles.mutedText}>
-              Failed to load recently visited locations.
-            </Text>
-          ) : recentlyVisitedLocations.length === 0 ? (
-            <Text style={styles.mutedText}>
-              No recently visited locations yet.
-            </Text>
-          ) : (
-            <FlatList
-              data={recentlyVisitedLocations}
-              extraData={savedLocationIds}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => {
-                const isSaved = savedLocationIds.has(item.id);
-                return (
-                  <CardItem
-                    mainIcon={icons.no_img}
-                    cardTitle={item.name}
-                    cardSubtitle={item.description ? item.description : ""}
-                    onPress={() => handleSetDestination(item)}
-                    saveable
-                    isSaved={isSaved}
-                    onSavePress={() =>
-                      handleToggleSaveLocation(item.id, isSaved)
-                    }
+            <Modal
+              visible={saveModalVisible}
+              transparent
+              animationType="fade"
+              onRequestClose={() => setSaveModalVisible(false)}
+            >
+              <View style={styles.modalOverlay}>
+                <View style={styles.modalBox}>
+                  <Text style={styles.modalTitle}>Save location</Text>
+
+                  <Text style={styles.modalMessage}>Purpose of location</Text>
+
+                  <TextInput
+                    style={styles.modalInput}
+                    value={savePurpose}
+                    onChangeText={setSavePurpose}
+                    placeholder="Reason"
+                    autoFocus
                   />
-                );
-              }}
-            />
-          )}
-        </View>
+
+                  <View style={styles.modalButtonRow}>
+                    <TouchableOpacity
+                      style={styles.modalCancelButton}
+                      onPress={() => {
+                        setSaveModalVisible(false);
+                        setSelectedLocationId("");
+                        setSavePurpose("");
+                      }}
+                    >
+                      <Text style={styles.modalCancelText}>Cancel</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={styles.modalSaveButton}
+                      onPress={() => {
+                        setSaveModalVisible(false);
+                        handleSave();
+                      }}
+                    >
+                      <Text style={styles.modalSaveText}>Save</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+            </Modal>
+          </>
+        )}
       </SafeAreaView>
     </View>
   );

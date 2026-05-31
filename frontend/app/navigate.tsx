@@ -1,5 +1,8 @@
+import Header from "@/components/Header";
 import IndoorView from "@/components/IndoorView";
+import NavigationInstructionsSheet from "@/components/NavigationInstructionsSheet";
 import { useRouteContext } from "@/context/RouteContext";
+import { useGetLocationDetails } from "@/hook/useLocations";
 import { useRouteQuery } from "@/hook/useRoute";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -58,20 +61,38 @@ export default function Navigate() {
   //    from api calls to sql retrievals
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { origin, destination } = useRouteContext();
+  const { origin, destination, selectedRoute } = useRouteContext();
+
+  if (!selectedRoute) {
+    return (
+      <View>
+        <SafeAreaView>
+          <Header
+            text="Route not ready"
+            description="Please select a route first"
+          />
+        </SafeAreaView>
+      </View>
+    );
+  }
 
   const toNavigate = () => {
     router.push("/navigate");
   };
 
-  //Temp values, need to pass in context
-  const routeName = "Fastest Route";
-
+  const {
+    data: destinationDetails,
+    isLoading: isGetDetailsLoading,
+    error: detailsError,
+  } = useGetLocationDetails(destination?.id);
   const {
     data: route,
     isLoading,
     error,
-  } = useRouteQuery(origin?.id, destination?.id);
+  } = useRouteQuery(
+    origin?.nearest_node.node_id,
+    destinationDetails?.nearest_node_id!,
+  );
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -115,29 +136,38 @@ export default function Navigate() {
           </View>
         )}
         {!isLoading && (
-          <View style={styles.container}>
-            {isOutdoor ? (
-              <MapView
-                style={styles.map}
-                region={{
-                  latitude: 1.300291282646443,
-                  longitude: 103.77733947340228,
-                  latitudeDelta: 0.016,
-                  longitudeDelta: 0.016,
-                }}
-              >
-                <Polyline
-                  coordinates={route!.nodes.map((node) => ({
-                    latitude: node.latitude,
-                    longitude: node.longitude,
-                  }))}
-                  strokeColor="#0B2D73"
-                />
-              </MapView>
-            ) : (
-              <IndoorView />
+          <>
+            <View style={styles.container}>
+              {isOutdoor ? (
+                <MapView
+                  style={styles.map}
+                  region={{
+                    latitude: 1.300291282646443,
+                    longitude: 103.77733947340228,
+                    latitudeDelta: 0.016,
+                    longitudeDelta: 0.016,
+                  }}
+                  showsUserLocation
+                  followsUserLocation
+                >
+                  <Polyline
+                    coordinates={selectedRoute.path_coordinates.map(
+                      (pathNode) => ({
+                        latitude: pathNode[1],
+                        longitude: pathNode[0],
+                      }),
+                    )}
+                    strokeColor="#0B2D73"
+                  />
+                </MapView>
+              ) : (
+                <IndoorView />
+              )}
+            </View>
+            {selectedRoute && (
+              <NavigationInstructionsSheet steps={selectedRoute.steps} />
             )}
-          </View>
+          </>
         )}
       </SafeAreaView>
     </View>

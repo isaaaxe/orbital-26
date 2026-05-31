@@ -1,8 +1,8 @@
-"""add map edges table
+"""update to match versions
 
-Revision ID: ed623db74e1e
-Revises: 1667365fdb4b
-Create Date: 2026-05-30 22:18:11.226879
+Revision ID: d427e9acfb6c
+Revises: 06afdf806945
+Create Date: 2026-05-31 00:04:15.466849
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = 'ed623db74e1e'
+revision: str = 'd427e9acfb6c'
 down_revision: Union[str, Sequence[str], None] = '1667365fdb4b'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
