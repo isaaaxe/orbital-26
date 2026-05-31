@@ -200,6 +200,8 @@ export default function ConfirmingRoute() {
                   longitude: path[0],
                 }))}
                 strokeColor="#0B2D73"
+                strokeWidth={5}
+                lineDashPattern={[4, 4]}
               />
             </MapView>
           ) : (

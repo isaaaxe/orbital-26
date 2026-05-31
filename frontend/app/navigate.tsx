@@ -158,6 +158,8 @@ export default function Navigate() {
                       }),
                     )}
                     strokeColor="#0B2D73"
+                    strokeWidth={5}
+                    lineDashPattern={[4, 4]}
                   />
                 </MapView>
               ) : (

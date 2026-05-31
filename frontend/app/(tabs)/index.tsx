@@ -137,11 +137,12 @@ export default function Index() {
   const { user } = useAuthContext();
   const { userSearch, setUserSearch, origin, setOrigin, setDestination } =
     useRouteContext();
-  const {
-    data: recentlyVisited,
-    isLoading: isLoadingRecentlyVisited,
-    error: errorRecentlyVisited,
-  } = useRecentlyVisitedQuery(user?.user_id);
+  //to be implemented
+  // const {
+  //   data: recentlyVisited,
+  //   isLoading: isLoadingRecentlyVisited,
+  //   error: errorRecentlyVisited,
+  // } = useRecentlyVisitedQuery(user?.user_id);
   const {
     data: savedData,
     isLoading: isLoadingSaved,
@@ -149,7 +150,8 @@ export default function Index() {
   } = useSavedLocationsQuery(user?.user_id);
   const closestNodeMutation = useClosestNodeMutation();
 
-  const recentlyVisitedLocations = recentlyVisited?.recentLocations ?? [];
+  //to be implemented
+  // const recentlyVisitedLocations = recentlyVisited?.recentLocations ?? [];
   const savedLocations = savedData ?? [];
 
   const savedLocationIds = new Set(
@@ -306,10 +308,16 @@ export default function Index() {
           </View>
         )}
         {user && (
+          <View
+            style={{ flex: 1, justifyContent: "center", marginHorizontal: 20 }}
+          >
+            <Text>Recently visited list to be implemented...</Text>
+          </View>
+        )}
+        {/* {user && (
           <>
             <View style={styles.bodyView}>
               <Text style={styles.h3}>Recently Visited</Text>
-              {/* sample data, convert to scrollview later */}
               {isLoadingRecentlyVisited ? (
                 <View style={styles.loadingBox}>
                   <ActivityIndicator />
@@ -395,7 +403,7 @@ export default function Index() {
               </View>
             </Modal>
           </>
-        )}
+        )} */}
       </SafeAreaView>
     </View>
   );
