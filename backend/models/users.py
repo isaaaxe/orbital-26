@@ -26,4 +26,9 @@ class User(database.Base):
         back_populates="user",
         cascade="all, delete-orphan",
     )
-    
+
+    recent_locations = relationship(
+        "Recent_Location",
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )

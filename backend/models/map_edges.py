@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Float, ForeignKey
+from sqlalchemy import Integer, String, Float, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship, foreign
 
@@ -31,7 +31,9 @@ class Map_Edge(database.Base):
     )
 
     mode: Mapped[str] = mapped_column(String, nullable=False)
-    distance_m: Mapped[int] = mapped_column(Integer, nullable=False)
+    is_sheltered: Mapped[bool] = mapped_column(Boolean, default=False ,nullable=False)
+    is_accessible: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    distance_m: Mapped[float] = mapped_column(Float, nullable=False)
     estimated_seconds: Mapped[float] = mapped_column(Float, nullable=False)
 
     instruction: Mapped[str | None] = mapped_column(String, nullable=True)

@@ -1,9 +1,5 @@
 from pydantic import BaseModel
 
-class LoginRequest(BaseModel):
-    username: str
-    password: str
-
 class UserDetail(BaseModel):
     user_id: str
     username: str 
@@ -18,8 +14,6 @@ class UserCreate(BaseModel):
 
 #changing password in future
 class UserUpdate(BaseModel):
-    username: str 
-    password: str
     new_username: str | None = None
     new_password: str | None = None
     language: str | None = None

@@ -8,17 +8,11 @@ async def get_user_by_username(session, username):
     result = await session.execute(statement)
     return result.scalar_one_or_none()
 
-
-async def get_user_detail(session, username, hashed_password):
-    statement = select(User).where(
-            User.username == username,
-            User.hashed_password == hashed_password,
-        )
-
+async def get_user_by_id(session, user_id):
+    statement = select(User).where(User.user_id == user_id)
     result = await session.execute(statement)
-    user = result.scalar_one_or_none()
+    return result.scalar_one_or_none()
 
-    return user
 
 async def create_user(session, user_id, username, hashed_password, language, profile_settings):
     user = User(
@@ -36,37 +30,32 @@ async def create_user(session, user_id, username, hashed_password, language, pro
     return user
 
 #add change password feature in the future
-async def update_user(session, username, hashed_password, new_username, new_hashed_password, language, profile_settings):
-    user: User = await get_user_detail(session, username, hashed_password)
-
-    if user is None:
-        return None
-    
+async def update_user(session, current_user, new_username, new_hashed_password, language, profile_settings):
     if new_username is not None:
-        exisiting_user = await get_user_by_username(session, new_username)
+        existing_user = await get_user_by_username(session, new_username)
         
         #TODO: make a exception class for this
-        if exisiting_user is not None:
+        if existing_user is not None and existing_user.user_id != current_user.user_id:
             return "username_taken"
         
-        user.username = new_username
+        current_user.username = new_username
 
     if new_hashed_password is not None:
-        user.hashed_password = new_hashed_password
+        current_user.hashed_password = new_hashed_password
     
     if language is not None:
-        user.language = language
+        current_user.language = language
     
     if profile_settings is not None:
-        user.profile_settings = profile_settings
+        current_user.profile_settings = profile_settings
 
     await session.commit()
-    await session.refresh(user)
+    await session.refresh(current_user)
 
-    return user
+    return current_user
 
-async def delete_user(session, username, hashed_password):
-    user = await get_user_detail(session, username, hashed_password)
+async def delete_user(session, current_user):
+    user = await get_user_by_id(session, current_user.user_id)
 
     if user is None:
         return False
