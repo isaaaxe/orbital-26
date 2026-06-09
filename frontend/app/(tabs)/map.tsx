@@ -1,13 +1,17 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, Modal, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, {
   Marker,
   Polyline,
   Polygon,
   PROVIDER_GOOGLE,
+  Callout,
+  Region,
 } from "react-native-maps";
 import { useRouteContext } from "@/context/RouteContext";
-// import { useGetLocationDetails } from "@/hook/useLocations";
+import { POI_DATA, POI_DATA_TYPE } from "../data/POI";
+import { useState } from "react";
+import { router } from "expo-router";
 
 const styles = StyleSheet.create({
   screen: {
@@ -29,54 +33,73 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 8,
   },
-  calloutContainer: {
+mapLabel: {
+  backgroundColor: "rgba(255, 255, 255, 0.95)",
+  paddingHorizontal: 4,
+  paddingVertical: 4,
+  borderRadius: 6,
+  borderWidth: 1,
+  borderColor: "#4169e1",
+
+  minWidth: 12,
+  alignItems: "center",
+  justifyContent: "center",
+},
+
+mapLabelText: {
+  color: "#4169e1",
+  fontSize: 12,
+  fontWeight: "700",
+  textAlign: "center",
+  includeFontPadding: false, // Android helpful
+},
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
+
+  modalCard: {
+    width: "100%",
+    backgroundColor: "white",
+    borderRadius: 16,
+    padding: 20,
+  },
+
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#111",
+  },
+
+  modalText: {
+    marginTop: 8,
+    fontSize: 14,
+    color: "#555",
+  },
+
+  modalButton: {
+    marginTop: 20,
+    backgroundColor: "#4169e1",
+    paddingVertical: 10,
+    borderRadius: 999,
     alignItems: "center",
   },
 
-  calloutBubble: {
-    backgroundColor: "white",
-    borderRadius: 12,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    minWidth: 160,
-    maxWidth: 220,
-
-    shadowColor: "#000",
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-
-    elevation: 5,
-  },
-
-  calloutTitle: {
-    fontSize: 14,
+  modalButtonText: {
+    color: "white",
     fontWeight: "700",
-    color: "#111827",
-    textAlign: "center",
-  },
-
-  calloutSubtitle: {
-    fontSize: 12,
-    color: "#6B7280",
-    marginTop: 2,
-    textAlign: "center",
-  },
-
-  calloutArrow: {
-    width: 0,
-    height: 0,
-    borderLeftWidth: 8,
-    borderRightWidth: 8,
-    borderTopWidth: 10,
-    borderLeftColor: "transparent",
-    borderRightColor: "transparent",
-    borderTopColor: "white",
   },
 });
 
 export default function MapPage() {
-  const { origin } = useRouteContext();
+  const { origin, poi, setPOI } = useRouteContext();
+  const [visible, setVisible] = useState(false)
+  const [region, setRegion] = useState<Region | null>(null)
+  const showPOI =
+  region !== null && region.latitudeDelta < 0.015;
   // const {
   //   data: originDetails,
   //   isLoading,
@@ -94,13 +117,17 @@ export default function MapPage() {
 
   const outerBoundary = [
     { latitude: 85, longitude: -85 },
-    { latitude: 85, longitude: 179 },
-    { latitude: -85, longitude: 179 },
+    { latitude: 85, longitude: 175 },
+    { latitude: -85, longitude: 175 },
     { latitude: -85, longitude: -85 },
   ];
 
   function getCurrentLocation() {
     Alert.alert(`Current Location\n${origin?.nearest_node.name}`);
+  }
+
+  function handleIndoor() {
+    router.push("/")
   }
 
   return (
@@ -123,6 +150,7 @@ export default function MapPage() {
               latitudeDelta: 0.016,
               longitudeDelta: 0.016,
             }}
+            onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
             customMapStyle={[
               {
                 featureType: "poi",
@@ -155,9 +183,57 @@ export default function MapPage() {
             ) : (
               <></>
             )}
-            {/* COM1 */}
-            {/* <Polyline /> */}
+            {/* Point of interests: buildings */}
+            {showPOI && POI_DATA.map((currPoi, index) => (
+              <Polygon
+                key={`poly_${index}`} 
+                coordinates={currPoi.boundary}
+                fillColor={currPoi.color}
+                strokeColor={currPoi.color}
+              />
+            ))}
+            {showPOI && POI_DATA.map((currPoi, index) => (
+              <Marker coordinate={currPoi.center}
+                      onPress={() => {
+                        setVisible(true)
+                        setPOI(currPoi)
+                      }}>
+                <View style={styles.mapLabel}>
+                  <Text style={styles.mapLabelText}>{currPoi.display_name}</Text>
+                </View>
+              </Marker>
+            ))}
+            
           </MapView>
+          <Modal
+            visible={visible}
+            transparent
+            animationType="fade"
+            onRequestClose={() => setVisible(false)}
+          >
+            <View style={styles.modalBackdrop}>
+              <View style={styles.modalCard}>
+                <Text style={styles.modalTitle}>{poi?.name}</Text>
+                <View>
+                  <TouchableOpacity
+                    style={styles.modalButton}
+                    onPress={() => {
+                      setVisible(false)
+                      setPOI(null)
+                    }}
+                  >
+                    <Text style={styles.modalButtonText}>Close</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.modalButton}
+                    onPress={handleIndoor}
+                  >
+                    <Text style={styles.modalButtonText}>View floorplan</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
         </View>
       </SafeAreaView>
     </View>

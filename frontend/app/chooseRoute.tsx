@@ -26,6 +26,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
+  loadingContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1
+  },
+  loadingText: {
+    fontWeight: "500",
+    color: "#6B7280"
+  }
 });
 
 type RouteOption = {
@@ -99,10 +108,10 @@ export default function ChooseRoute() {
         {/* list of a set 4 items, may be less depending on availability */}
         {/* TODO: Create a ListItem component for this */}
         {isRoutesLoading && (
-          <View>
+          <View style={styles.loadingContainer}>
             <ActivityIndicator />
             <View>
-              <Text>Calculating routes... please hold on...</Text>
+              <Text style={styles.loadingText}>Calculating routes... please hold on...</Text>
             </View>
           </View>
         )}

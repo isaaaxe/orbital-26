@@ -137,7 +137,12 @@ export default function SearchRoute() {
 
   function handleSearch() {
     //check if origin and destination are the same
-    if (origin == null || destination == null) {
+    if (origin == null) {
+      Alert.alert("Please enable your location")
+      return;
+    }
+    if (destination == null) {
+      Alert.alert("Please select a destination")
       return;
     }
     if (origin.nearest_node.node_id == destination.id) {

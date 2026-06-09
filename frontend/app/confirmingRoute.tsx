@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import StylisedButton from "@/components/StylisedButton";
-import { useRouteContext } from "@/context/RouteContext";
+import { RenderPath, ROUTE_COLOURS, useRouteContext } from "@/context/RouteContext";
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import MapView, {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 export default function ConfirmingRoute() {
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { origin, destination, selectedRoute } = useRouteContext();
+  const { origin, destination, selectedRoute, routeSegments } = useRouteContext();
 
   if (!selectedRoute) {
     return (
@@ -194,7 +194,7 @@ export default function ConfirmingRoute() {
                 longitudeDelta: 0.016,
               }}
             >
-              <Polyline
+              {/* <Polyline
                 coordinates={selectedRoute.path_coordinates.map((path) => ({
                   latitude: path[1],
                   longitude: path[0],
@@ -202,7 +202,24 @@ export default function ConfirmingRoute() {
                 strokeColor="#0B2D73"
                 strokeWidth={5}
                 lineDashPattern={[4, 4]}
-              />
+              /> */}
+              {routeSegments.map((renderPath, index)=> (
+                <Polyline
+                  key={index}
+                  coordinates={renderPath.coords}
+                  strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#000000"}
+                  strokeWidth={4}
+                  lineDashPattern={[24, 12]}
+                  lineCap="butt"
+                />
+              ))}
+              {/* {groupOfSteps[1] && (
+                <Polyline 
+                  coordinates={groupOfSteps[1].coords}
+                  strokeColor="red"
+                  strokeWidth={10}
+                />
+              )} */}
             </MapView>
           ) : (
             <IndoorView />

@@ -28,7 +28,7 @@ async function debugFetch(url: string, options?: RequestInit) {
     if (!res.ok) {
       const text = await res.text();
       console.log("[API ERROR BODY]", text);
-      throw new Error(`${method} ${url} failed with ${res.status}: ${text}`);
+      // throw new Error(`${method} ${url} failed with ${res.status}: ${text}`);
     }
 
     return res;

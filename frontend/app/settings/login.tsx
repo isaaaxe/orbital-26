@@ -218,7 +218,6 @@ export default function Login() {
       await login(username, password);
       router.back();
     } catch (error) {
-      console.log("Login failed: ", error);
       setIsError((curr) => ({
         ...curr,
         login: true,
@@ -240,7 +239,6 @@ export default function Login() {
       await signup(username, password);
       router.back();
     } catch (error) {
-      console.log("Signup failed: ", error);
       setIsError((curr) => ({
         ...curr,
         signup: true,
