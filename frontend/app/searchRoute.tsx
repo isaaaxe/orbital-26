@@ -25,6 +25,7 @@ import {
 } from "@/hook/useLocations";
 import { Location } from "@/api/locations";
 import { useAuthContext } from "@/context/AuthContext";
+import { useDebounce } from "@/hook/useDebounce";
 
 const styles = StyleSheet.create({
   screen: {
@@ -113,11 +114,12 @@ export default function SearchRoute() {
   const { user } = useAuthContext();
   const { userSearch, setUserSearch, destination, setDestination, origin } =
     useRouteContext();
+  const query = useDebounce(userSearch, 1000);
   const {
     data: searchData,
     isLoading: isSearching,
     error: searchError,
-  } = useLocationSearchQuery(userSearch);
+  } = useLocationSearchQuery(query);
   console.log(searchData);
   const { data: savedData, isLoading: isLoadingSaved } = useSavedLocationsQuery(
     user?.user_id,

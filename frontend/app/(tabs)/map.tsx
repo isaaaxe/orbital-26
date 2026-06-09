@@ -155,6 +155,8 @@ export default function MapPage() {
             ) : (
               <></>
             )}
+            {/* COM1 */}
+            {/* <Polyline /> */}
           </MapView>
         </View>
       </SafeAreaView>
