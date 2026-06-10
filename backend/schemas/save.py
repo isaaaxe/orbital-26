@@ -13,4 +13,4 @@ class SaveResponse(BaseModel):
     building_code: str | None = None
     area_name: str | None = None
 
-    purpose: str | None = None
+    purpose: str = ""

@@ -37,11 +37,26 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode)
             next_node_id = neighbour["to"]
             edgeCost = neighbour["cost"]
             edge_id = neighbour["edge_id"]
+            edge_mode = neighbour["mode"]
+            edge_is_accessible = neighbour["is_accessible"]
+            edge_is_sheltered = neighbour["is_sheltered"]
+            sheltered_penalty = 0
             if next_node_id in visited:
                 continue
+            
+            if mode == "accessible" and edge_is_accessible == False:
+                continue
+
+            if mode == "walking" and edge_mode != "walking":
+                continue
+
+            if mode == "sheltered" and edge_is_sheltered == False:
+                # increase in heuristic 
+                sheltered_penalty += edgeCost * 0.7
+            
             dist_to_end = triangulate_dist(next_node_id, endNode_id, node_by_id)
             estimated_remaining_seconds : float = dist_to_end / fastest_speed_m_per_second
-            heapq.heappush(heap, (time+edgeCost+estimated_remaining_seconds, next_node_id, time+edgeCost, node_id))
+            heapq.heappush(heap, (time+edgeCost+estimated_remaining_seconds+sheltered_penalty, next_node_id, time+edgeCost, node_id))
     
     if endNode_id not in parentDict:
         return None

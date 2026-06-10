@@ -18,6 +18,13 @@ async def add_user_save(session, user_id, location_id, purpose):
 
     if location is None:
         return None
+    
+    existing_statement = select(Saved_Location).where(Saved_Location.location_id == location_id, Saved_Location.user_id == user_id)
+    existing_result = await session.execute(existing_statement)
+    existing_save = existing_result.scalar_one_or_none()
+
+    if existing_save is not None:
+        return existing_save
 
     new_save = Saved_Location(
         user_id=user_id,

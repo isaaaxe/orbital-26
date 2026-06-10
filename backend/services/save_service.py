@@ -3,8 +3,8 @@ from schemas.save import SaveResponse
 from models.saved_locations import Saved_Location
 from models.locations import Location
 
-async def get_user_saves(session, user_id):
-    rows = await save_repository.get_user_saves(session, user_id)
+async def get_user_saves(session, current_user):
+    rows = await save_repository.get_user_saves(session, current_user.user_id)
 
     saved_locations = []
     for saved_location, location in rows:
@@ -25,8 +25,8 @@ async def get_user_saves(session, user_id):
     
     return saved_locations
 
-async def add_user_save(session, user_id, location_id, purpose):
-    saved_location: Saved_Location = await save_repository.add_user_save(session, user_id, location_id, purpose)
+async def add_user_save(session, current_user, location_id, purpose):
+    saved_location: Saved_Location = await save_repository.add_user_save(session, current_user.user_id, location_id, purpose)
 
     if saved_location is None:
         return None
@@ -51,7 +51,7 @@ async def add_user_save(session, user_id, location_id, purpose):
 
 #add the patch function here later when we implement purpose in frontend 
 
-async def delete_user_save(session, user_id, location_id):
-    boolean = await save_repository.delete_user_save(session, user_id, location_id)
+async def delete_user_save(session, current_user, location_id):
+    boolean = await save_repository.delete_user_save(session, current_user.user_id, location_id)
 
     return boolean

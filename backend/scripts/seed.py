@@ -8,6 +8,7 @@ from models.map_edges import Map_Edge
 from models.map_nodes import Map_Node
 from models.users import User
 from models.saved_locations import Saved_Location
+from models.recent_locations import Recent_Location
 
 
 WALK_SPEED_MPS = 1.4
@@ -70,6 +71,8 @@ def format_instruction(instruction: str | None, distance_m: int) -> str | None:
 
 
 async def clear_existing_data(session):
+    await session.execute(Saved_Location.__table__.delete())
+    await session.execute(Recent_Location.__table__.delete())
     await session.execute(Map_Edge.__table__.delete())
     await session.execute(Saved_Location.__table__.delete())
     await session.execute(Location.__table__.delete())

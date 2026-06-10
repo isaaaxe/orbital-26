@@ -2,15 +2,11 @@ from uuid import uuid4
 from repositories import user_repository
 from schemas.user import UserCreate, UserDetail, UserUpdate
 from models.users import User
-import hashlib
+from services import auth_service
 
 
-def sha256_hash(text: str) -> str:
-    return hashlib.sha256(text.encode("utf-8")).hexdigest()
-
-async def get_user_detail(session, username, password):
-    hashed_password = sha256_hash(password)
-    user: User = await user_repository.get_user_detail(session, username, hashed_password)
+async def get_user_detail(session, current_user: User):
+    user: User = await user_repository.get_user_by_id(session, current_user.user_id)
 
     if user is None:
         return None
@@ -30,7 +26,7 @@ async def create_user(session, username, password, language, profile_settings):
         return None
     
     user_id = str(uuid4())
-    hashed_password = sha256_hash(password)
+    hashed_password = auth_service.hash_password(password)
     created_user: User = await user_repository.create_user(session, user_id, username, hashed_password, language, profile_settings)
 
     return UserDetail(
@@ -40,14 +36,12 @@ async def create_user(session, username, password, language, profile_settings):
         profile_settings=created_user.profile_settings,
     )
 
-async def update_user(session, username, password, new_username=None, new_password=None, language=None, profile_settings=None):
-    hashed_password = sha256_hash(password)
-
+async def update_user(session, current_user, new_username=None, new_password=None, language=None, profile_settings=None):
     if new_password is not None:
-        hashed_new_password = sha256_hash(new_password)
+        hashed_new_password = auth_service.hash_password(new_password)
     else:
         hashed_new_password = None
-    user: User = await user_repository.update_user(session, username, hashed_password, new_username, hashed_new_password, language, profile_settings)
+    user: User = await user_repository.update_user(session, current_user, new_username, hashed_new_password, language, profile_settings)
 
     if user is None:
         return None
@@ -63,8 +57,7 @@ async def update_user(session, username, password, new_username=None, new_passwo
         profile_settings=user.profile_settings,
     )
 
-async def delete_user(session, username, password):
-    hashed_password = sha256_hash(password)
-    boolean = await user_repository.delete_user(session, username, hashed_password)
+async def delete_user(session, current_user):
+    boolean = await user_repository.delete_user(session, current_user)
 
     return boolean

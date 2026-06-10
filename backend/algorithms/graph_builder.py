@@ -29,9 +29,12 @@ async def buildGraph(session):
             "to": edge.to_node_id,
             "cost": edge.estimated_seconds,
             "edge_id": edge.edge_id,
+            "mode": edge.mode,
+            "is_accessible": edge.is_accessible, 
+            "is_sheltered": edge.is_sheltered,
         })
         
-    print("GRAPH TABLE:", graph_table)
+    #("GRAPH TABLE:", graph_table)
     return node_by_id, edge_by_pair, graph_table
 
 
