@@ -31,6 +31,10 @@ export function useCreateUserMutation() {
     onSuccess: (user) => {
       queryClient.setQueryData(["user", user.user_id], user);
     },
+
+    onError: (error) => {
+      console.log("Signup failed")
+    }
   });
 }
 

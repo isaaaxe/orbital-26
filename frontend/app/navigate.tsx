@@ -7,8 +7,10 @@ import { useRouteQuery } from "@/hook/useRoute";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import MapView, { Polyline } from "react-native-maps";
+import MapView, { Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ROUTE_COLOURS_TYPE } from "@/context/RouteContext";
+import { ROUTE_COLOURS } from "@/context/RouteContext";
 
 const styles = StyleSheet.create({
   screen: {
@@ -51,6 +53,10 @@ const styles = StyleSheet.create({
   mapViewToggleTextSelected: {
     color: "#f86a04",
   },
+  instructionSheetSpacer: {
+    height: 150,
+    opacity: 0,
+  },
 });
 
 export default function Navigate() {
@@ -61,7 +67,8 @@ export default function Navigate() {
   //    from api calls to sql retrievals
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { origin, destination, selectedRoute } = useRouteContext();
+  const { origin, destination, selectedRoute, routeSegments } =
+    useRouteContext();
 
   if (!selectedRoute) {
     return (
@@ -85,6 +92,7 @@ export default function Navigate() {
     isLoading: isGetDetailsLoading,
     error: detailsError,
   } = useGetLocationDetails(destination?.id);
+  //note: might be able to remove this, as route should be already loaded before coming to this page
   const {
     data: route,
     isLoading,
@@ -141,6 +149,7 @@ export default function Navigate() {
               {isOutdoor ? (
                 <MapView
                   style={styles.map}
+                  provider={PROVIDER_GOOGLE}
                   region={{
                     latitude: 1.300291282646443,
                     longitude: 103.77733947340228,
@@ -150,20 +159,22 @@ export default function Navigate() {
                   showsUserLocation
                   followsUserLocation
                 >
-                  <Polyline
-                    coordinates={selectedRoute.path_coordinates.map(
-                      (pathNode) => ({
-                        latitude: pathNode[1],
-                        longitude: pathNode[0],
-                      }),
-                    )}
-                    strokeColor="#0B2D73"
-                    strokeWidth={5}
-                    lineDashPattern={[4, 4]}
-                  />
+                  {routeSegments.map((renderPath, index) => (
+                    <Polyline
+                      key={index}
+                      coordinates={renderPath.coords}
+                      strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#808080"}
+                      strokeWidth={4}
+                      lineDashPattern={[24, 12]}
+                      lineCap="butt"
+                    />
+                  ))}
                 </MapView>
               ) : (
-                <IndoorView />
+                <>
+                  <IndoorView />
+                  <View style={styles.instructionSheetSpacer} />
+                </>
               )}
             </View>
             {selectedRoute && (

@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { useRouteQuery } from "@/hook/useRoute";
 import { RouteResponse } from "@/api/routes";
 import { useGetLocationDetails } from "@/hook/useLocations";
+import BackButton from "@/components/BackButton";
 
 const styles = StyleSheet.create({
   routeCard: {
@@ -25,6 +26,15 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+  },
+  loadingContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+  },
+  loadingText: {
+    fontWeight: "500",
+    color: "#6B7280",
   },
 });
 
@@ -90,19 +100,31 @@ export default function ChooseRoute() {
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
-        <Header
-          text={`Route to ${destination?.name}`}
-          description={`From ${origin?.nearest_node.name}`}
-        />
-
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Header
+            text={`Route to ${destination?.name}`}
+            description={`From ${origin?.nearest_node.name}`}
+          />
+          <View style={{ marginRight: 20, alignItems: "center" }}>
+            <BackButton additionalBackCleanUp={() => {}} />
+          </View>
+        </View>
         {/* choosing the route type */}
         {/* list of a set 4 items, may be less depending on availability */}
         {/* TODO: Create a ListItem component for this */}
         {isRoutesLoading && (
-          <View>
+          <View style={styles.loadingContainer}>
             <ActivityIndicator />
             <View>
-              <Text>Calculating routes... please hold on...</Text>
+              <Text style={styles.loadingText}>
+                Calculating routes... please hold on...
+              </Text>
             </View>
           </View>
         )}

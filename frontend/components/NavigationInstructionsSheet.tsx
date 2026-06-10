@@ -7,6 +7,8 @@ import {
   ScrollView,
 } from "react-native";
 import { RouteStep } from "@/api/routes";
+import { router } from "expo-router";
+import { useRouteContext } from "@/context/RouteContext";
 
 type NavigationInstructionsSheetProps = {
   steps: RouteStep[];
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 24,
     paddingHorizontal: 20,
     paddingTop: 10,
+    paddingBottom: 28,
     shadowColor: "#000",
     shadowOpacity: 0.12,
     shadowRadius: 12,
@@ -30,10 +33,10 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   sheetCollapsed: {
-    height: 96,
+    height: 150,
   },
   sheetExpanded: {
-    height: "45%",
+    height: "60%",
   },
   handleArea: {
     alignItems: "center",
@@ -52,7 +55,8 @@ const styles = StyleSheet.create({
     color: "#111827",
   },
   stepsContainer: {
-    marginTop: 4,
+    flex: 1,
+    marginVertical: 4,
   },
   stepRow: {
     flexDirection: "row",
@@ -88,13 +92,55 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#6B7280",
   },
+  actionRow: {
+    flexDirection: "row",
+    marginHorizontal: 10,
+    justifyContent: "space-between",
+    backgroundColor: "#FFFFFF",
+    paddingTop: 12,
+  },
+  actionButtonWrapper: {
+    width: "48%",
+  },
+
+  backButton: {
+    height: 40,
+    borderRadius: 15,
+    backgroundColor: "#E5E7EB",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  backButtonText: {
+    color: "#0B2D73",
+    fontSize: 15,
+    fontWeight: "700",
+  },
+
+  completeButton: {
+    height: 40,
+    borderRadius: 15,
+    backgroundColor: "#0B2D73",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  completeButtonText: {
+    color: "#FFFFFF",
+    fontSize: 15,
+    fontWeight: "700",
+  },
 });
 
 export default function NavigationInstructionsSheet({
   steps,
 }: NavigationInstructionsSheetProps) {
   const [expanded, setExpanded] = useState(false);
-
+  const { setUserSearch } = useRouteContext();
+  function reset() {
+    router.replace("/");
+    setUserSearch("");
+  }
   return (
     <View
       style={[
@@ -133,6 +179,21 @@ export default function NavigationInstructionsSheet({
           ))}
         </ScrollView>
       )}
+      <View style={styles.actionRow}>
+        <View style={styles.actionButtonWrapper}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => router.back()}
+          >
+            <Text style={styles.backButtonText}>Back</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.actionButtonWrapper}>
+          <TouchableOpacity style={styles.completeButton} onPress={reset}>
+            <Text style={styles.completeButtonText}>Complete</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }

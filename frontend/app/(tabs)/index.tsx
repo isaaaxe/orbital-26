@@ -135,8 +135,14 @@ const styles = StyleSheet.create({
 
 export default function Index() {
   const { user } = useAuthContext();
-  const { userSearch, setUserSearch, origin, setOrigin, setDestination } =
-    useRouteContext();
+  const {
+    userSearch,
+    setUserSearch,
+    origin,
+    setOrigin,
+    setDestination,
+    setSelectedRoute,
+  } = useRouteContext();
   //to be implemented
   // const {
   //   data: recentlyVisited,
@@ -225,6 +231,7 @@ export default function Index() {
   }, []);
   useFocusEffect(
     useCallback(() => {
+      setSelectedRoute(null);
       setDestination(null);
     }, []),
   );

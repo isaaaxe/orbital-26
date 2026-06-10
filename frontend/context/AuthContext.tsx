@@ -52,13 +52,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // for now just use testToken
     const token = "testToken";
     await SecureStore.setItemAsync("accessToken", token);
-    //example user
-    // const user: UserDetail = {
-    //   user_id: "test",
-    //   username: "Test",
-    //   profile_settings: [],
-    //   language: "en",
-    // };
     const userDetail = await getUserMutator.mutateAsync({ username, password });
     if (!userDetail) {
       return;
@@ -76,7 +69,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       language: "en",
       profile_settings: [],
     });
-    login(username, password);
+    if (!userDetail) {
+      return;
+    }
+    setUser(userDetail);
   }
 
   async function logout() {

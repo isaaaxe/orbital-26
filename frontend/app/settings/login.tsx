@@ -8,6 +8,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginHorizontal: 24,
     marginTop: 24,
-    marginBottom: 28,
+    marginBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#E5E7EB",
   },
@@ -118,12 +119,34 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
   },
+  description: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: "#6B7280",
+    marginHorizontal: 20,
+    marginBottom: 4,
+  },
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 999,
+  },
+  loadingItem: {
+    alignItems: "center",
+  },
 });
-
+const initErrorState = {
+  login: false,
+  signup: false,
+};
 export default function Login() {
   // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(initErrorState);
   const [isValidInputs, setIsValidInputs] = useState({
     email: true,
     password: true,
@@ -183,30 +206,46 @@ export default function Login() {
     }
   }
 
-  function handleLogin(username: string, password: string) {
-    // const validEmail = checkValidEmail(email);
+  async function handleLogin(username: string, password: string) {
+    setIsError(initErrorState);
     const validUsername = checkUsername(username);
     const validPW = checkValidPassword(password);
     if (!validUsername || !validPW) {
-      // nothing happens
-    } else {
-      login(username, password);
-      // set to isLoading, set the user and go back to accouints page
+      return;
+    }
+    try {
+      setIsLoading(true);
+      await login(username, password);
       router.back();
+    } catch (error) {
+      setIsError((curr) => ({
+        ...curr,
+        login: true,
+      }));
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  function handleSignup(username: string, password: string) {
-    // const validEmail = checkValidEmail(email);
+  async function handleSignup(username: string, password: string) {
+    setIsError(initErrorState);
     const validPW = checkValidPassword(password);
     const validUsername = checkUsername(username);
     if (!validPW || !validUsername) {
-      // nothing happens
-    } else {
-      signup(username, password);
-      router.back();
+      return;
     }
-    // set to isLoading, set the user and go back to accounts page
+    try {
+      setIsLoading(true);
+      await signup(username, password);
+      router.back();
+    } catch (error) {
+      setIsError((curr) => ({
+        ...curr,
+        signup: true,
+      }));
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -246,6 +285,15 @@ export default function Login() {
               Sign Up
             </Text>
           </TouchableOpacity>
+        </View>
+        <View>
+          {isLogin ? (
+            <Text style={styles.description}>
+              Logging into an existing account.
+            </Text>
+          ) : (
+            <Text style={styles.description}>Creating a new account!</Text>
+          )}
         </View>
 
         <View style={styles.searchView}>
@@ -301,6 +349,20 @@ export default function Login() {
             <Text style={styles.errorText}>1 Special Character</Text>
           </View>
         )}
+        {isError.login && (
+          <View style={styles.errorBox}>
+            <Text style={styles.errorText}>
+              User does not exist. Please try again
+            </Text>
+          </View>
+        )}
+        {isError.signup && (
+          <View style={styles.errorBox}>
+            <Text style={styles.errorText}>
+              User already exists. Please try again.
+            </Text>
+          </View>
+        )}
         <View style={{ flex: 1, flexDirection: "column-reverse" }}>
           <StylisedButton
             buttonText={isLogin ? "Login" : "Sign Up"}
@@ -312,6 +374,13 @@ export default function Login() {
           />
         </View>
       </SafeAreaView>
+      {isLoading && (
+        <View style={styles.loadingOverlay}>
+          <View style={styles.loadingItem}>
+            <ActivityIndicator size="large" />
+          </View>
+        </View>
+      )}
     </View>
   );
 }

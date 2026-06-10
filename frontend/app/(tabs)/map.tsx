@@ -1,13 +1,25 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  Modal,
+  TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, {
   Marker,
   Polyline,
   Polygon,
   PROVIDER_GOOGLE,
+  Callout,
+  Region,
 } from "react-native-maps";
 import { useRouteContext } from "@/context/RouteContext";
-// import { useGetLocationDetails } from "@/hook/useLocations";
+import { POI_DATA, POI_DATA_TYPE, POI_GROUPS } from "../data/POI";
+import { useState } from "react";
+import { router } from "expo-router";
+import BackButton from "@/components/BackButton";
 
 const styles = StyleSheet.create({
   screen: {
@@ -15,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   container: {
-    flex: 14,
+    flex: 1,
   },
   map: {
     flex: 1,
@@ -29,54 +41,84 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 8,
   },
-  calloutContainer: {
+  mapLabel: {
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    paddingHorizontal: 4,
+    paddingVertical: 4,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "#4169e1",
+
+    minWidth: 12,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  mapLabelText: {
+    color: "#4169e1",
+    fontSize: 10,
+    fontWeight: "700",
+    textAlign: "center",
+    includeFontPadding: false, // Android helpful
+  },
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
+
+  modalCard: {
+    width: "100%",
+    backgroundColor: "white",
+    borderRadius: 16,
+    padding: 20,
+  },
+
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#111",
+  },
+
+  modalText: {
+    marginTop: 8,
+    fontSize: 14,
+    color: "#555",
+  },
+
+  modalButton: {
+    marginTop: 20,
+    backgroundColor: "#0B2D73",
+    paddingVertical: 10,
+    borderRadius: 999,
     alignItems: "center",
   },
 
-  calloutBubble: {
-    backgroundColor: "white",
-    borderRadius: 12,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    minWidth: 160,
-    maxWidth: 220,
-
-    shadowColor: "#000",
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-
-    elevation: 5,
-  },
-
-  calloutTitle: {
-    fontSize: 14,
+  modalButtonText: {
+    color: "white",
     fontWeight: "700",
-    color: "#111827",
-    textAlign: "center",
+  },
+  modalButtonClose: {
+    marginTop: 20,
+    backgroundColor: "#E5E7EB",
+    paddingVertical: 10,
+    borderRadius: 999,
+    alignItems: "center",
   },
 
-  calloutSubtitle: {
-    fontSize: 12,
-    color: "#6B7280",
-    marginTop: 2,
-    textAlign: "center",
-  },
-
-  calloutArrow: {
-    width: 0,
-    height: 0,
-    borderLeftWidth: 8,
-    borderRightWidth: 8,
-    borderTopWidth: 10,
-    borderLeftColor: "transparent",
-    borderRightColor: "transparent",
-    borderTopColor: "white",
+  modalButtonTextClose: {
+    color: "#0B2D73",
+    fontWeight: "700",
   },
 });
 
 export default function MapPage() {
-  const { origin } = useRouteContext();
+  const { origin, poi, setPOI } = useRouteContext();
+  const [visible, setVisible] = useState(false);
+  const [region, setRegion] = useState<Region | null>(null);
+  const showPOI = region !== null && region.latitudeDelta < 0.015;
   // const {
   //   data: originDetails,
   //   isLoading,
@@ -94,8 +136,8 @@ export default function MapPage() {
 
   const outerBoundary = [
     { latitude: 85, longitude: -85 },
-    { latitude: 85, longitude: 179 },
-    { latitude: -85, longitude: 179 },
+    { latitude: 85, longitude: 175 },
+    { latitude: -85, longitude: 175 },
     { latitude: -85, longitude: -85 },
   ];
 
@@ -103,15 +145,30 @@ export default function MapPage() {
     Alert.alert(`Current Location\n${origin?.nearest_node.name}`);
   }
 
+  function handleIndoor() {
+    setVisible(false);
+    router.push("/floorPlanView");
+  }
+
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
         <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          style={{
+            alignItems: "center",
+            justifyContent: "space-between",
+            margin: 20,
+            flexDirection: "row",
+          }}
         >
-          <Text style={{ fontSize: 20, fontWeight: "600", color: "#0B2D73" }}>
-            Area covered by Routes@NUS
-          </Text>
+          <View>
+            <Text style={{ fontSize: 20, fontWeight: "600", color: "#0B2D73" }}>
+              Area covered by Routes@NUS
+            </Text>
+          </View>
+          <View>
+            <BackButton additionalBackCleanUp={() => {}} />
+          </View>
         </View>
         <View style={styles.container}>
           <MapView
@@ -123,6 +180,7 @@ export default function MapPage() {
               latitudeDelta: 0.016,
               longitudeDelta: 0.016,
             }}
+            onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
             customMapStyle={[
               {
                 featureType: "poi",
@@ -155,7 +213,90 @@ export default function MapPage() {
             ) : (
               <></>
             )}
+            {/* Point of interests: buildings */}
+            {showPOI &&
+              POI_DATA.map((currPoi, index) => (
+                <Polygon
+                  key={`poly_${index}`}
+                  coordinates={currPoi.boundary}
+                  fillColor={currPoi.color}
+                  strokeColor={currPoi.color}
+                  tappable={true}
+                  onPress={() => {
+                    setVisible(true);
+                    setPOI(currPoi);
+                  }}
+                />
+              ))}
+            {showPOI &&
+              POI_DATA.map((currPoi, index) => (
+                <Marker
+                  key={`marker_${index}`}
+                  coordinate={currPoi.center}
+                  anchor={{ x: 0.5, y: 0.5 }}
+                  onPress={() => {
+                    setVisible(true);
+                    setPOI(currPoi);
+                  }}
+                >
+                  <View style={styles.mapLabel}>
+                    <Text style={styles.mapLabelText}>
+                      {currPoi.display_name}
+                    </Text>
+                  </View>
+                </Marker>
+              ))}
+            {!showPOI &&
+              POI_GROUPS.map((group, index) => (
+                <Polygon
+                  key={`group_${index}`}
+                  coordinates={group.boundary}
+                  fillColor={group.color}
+                  strokeColor={group.color}
+                />
+              ))}
+            {!showPOI &&
+              POI_GROUPS.map((group, index) => (
+                <Marker
+                  key={`group_marker_${index}`}
+                  coordinate={group.center}
+                  anchor={{ x: 0.5, y: 0.5 }}
+                >
+                  <View style={styles.mapLabel}>
+                    <Text style={styles.mapLabelText}>{group.name}</Text>
+                  </View>
+                </Marker>
+              ))}
           </MapView>
+          <Modal
+            visible={visible}
+            transparent
+            animationType="fade"
+            onRequestClose={() => setVisible(false)}
+          >
+            <View style={styles.modalBackdrop}>
+              <View style={styles.modalCard}>
+                <Text style={styles.modalTitle}>{poi?.name}</Text>
+                <View>
+                  <TouchableOpacity
+                    style={styles.modalButton}
+                    onPress={handleIndoor}
+                  >
+                    <Text style={styles.modalButtonText}>View floorplan</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.modalButtonClose}
+                    onPress={() => {
+                      setVisible(false);
+                      setPOI(null);
+                    }}
+                  >
+                    <Text style={styles.modalButtonTextClose}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
         </View>
       </SafeAreaView>
     </View>

@@ -1,20 +1,31 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useMemo, useState } from "react";
 // import * as Location from "expo-location";
 import { Location } from "@/api/locations";
 import { RouteResponse } from "@/api/routes";
 import { NearestNode } from "@/api_debug/routes.logged";
+import { POI_DATA_TYPE } from "@/app/data/POI";
 
 export type Coordinate = {
   latitude: number;
   longitude: number;
 };
 
-// export type RoutePlace = Coordinate & {
-//   name: string;
-//   id: string;
-//   description?: string;
-//   buildingId?: string;
-// };
+export type ROUTE_COLOURS_TYPE = {
+  [mode: string]: string
+}
+
+export const ROUTE_COLOURS: ROUTE_COLOURS_TYPE = {
+  "walk" : "#0B2D73",
+  "campus bus" : "#f86a04"
+}
+
+export type RenderPath = {
+  mode: string,
+  coords: {
+    latitude: number,
+    longitude: number,
+  }[]
+}
 
 type RouteContextType = {
   // searchDestination: string;
@@ -32,6 +43,9 @@ type RouteContextType = {
   setDestination: (destination: Location | null) => void;
   // routes: RouteResponse[] | null;
   // setRoutes: (routes: RouteResponse[] | null) => void;
+  routeSegments: RenderPath[]
+  poi: POI_DATA_TYPE | null
+  setPOI: (poi: POI_DATA_TYPE | null) => void
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
@@ -45,7 +59,60 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
 
   const [origin, setOrigin] = useState<NearestNode | null>(null);
   const [destination, setDestination] = useState<Location | null>(null);
+  const [poi, setPOI] = useState<POI_DATA_TYPE | null>(null)
   // const [routes, setRoutes] = useState<RouteResponse[] | null>(null);
+    //selectedRoute available, need to 
+    //1. group by colour
+    //2. create array of array of LatLng objects
+    //struct = [{mode: "walk", coords: LatLng[]}, {mode: "campus bus", coords: LatLng[]}]
+
+  function buildRenderPath(selectedRoute: RouteResponse): RenderPath[] {
+    const groupOfSteps: RenderPath[] = []
+    let prev = null
+    for (let i = 0; i < selectedRoute.steps.length; i++) {
+      if (prev == null) {
+        groupOfSteps.push(
+          {
+            mode: selectedRoute.steps[i].transport_mode,
+            coords: [{
+              latitude: selectedRoute.path_coordinates[i * 2][1],
+              longitude: selectedRoute.path_coordinates[i * 2][0],
+            }, {
+              latitude: selectedRoute.path_coordinates[i * 2 + 1][1],
+              longitude: selectedRoute.path_coordinates[i * 2 + 1][0],
+            }]
+          }
+        )
+        prev = selectedRoute.steps[i].transport_mode
+      }
+      else if (selectedRoute.steps[i].transport_mode == prev) {
+        groupOfSteps[groupOfSteps.length - 1].coords.push({
+          latitude: selectedRoute.path_coordinates[i * 2 + 1][1],
+          longitude: selectedRoute.path_coordinates[i * 2 + 1][0],
+        })
+      } else {
+        groupOfSteps.push(
+          {
+            mode: selectedRoute.steps[i].transport_mode,
+            coords: [{
+              latitude: selectedRoute.path_coordinates[i * 2][1],
+              longitude: selectedRoute.path_coordinates[i * 2][0],
+            },{
+              latitude: selectedRoute.path_coordinates[i * 2 + 1][1],
+              longitude: selectedRoute.path_coordinates[i * 2+ 1][0],
+            }]
+          }
+        )
+        prev = selectedRoute.steps[i].transport_mode      
+      }
+    }
+    return groupOfSteps
+  }
+  const routeSegments = useMemo(() => {
+    if (!selectedRoute) {return []}
+    return buildRenderPath(selectedRoute)
+  }, [selectedRoute])
+
 
   return (
     <RouteContext.Provider
@@ -58,8 +125,9 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         setOrigin,
         destination,
         setDestination,
-        // routes,
-        // setRoutes,
+        routeSegments,
+        poi,
+        setPOI,
       }}
     >
       {children}
