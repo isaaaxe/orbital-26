@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   },
 
   titleView: {
-    margin: 20,
+    marginVertical: 20,
+    marginLeft: 20,
   },
 
   description: {

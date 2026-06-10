@@ -1,6 +1,10 @@
 import Header from "@/components/Header";
 import StylisedButton from "@/components/StylisedButton";
-import { RenderPath, ROUTE_COLOURS, useRouteContext } from "@/context/RouteContext";
+import {
+  RenderPath,
+  ROUTE_COLOURS,
+  useRouteContext,
+} from "@/context/RouteContext";
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import MapView, {
@@ -12,6 +16,7 @@ import MapView, {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import IndoorView from "@/components/IndoorView";
+import BackButton from "@/components/BackButton";
 
 const styles = StyleSheet.create({
   screen: {
@@ -103,16 +108,28 @@ const styles = StyleSheet.create({
 export default function ConfirmingRoute() {
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { origin, destination, selectedRoute, routeSegments } = useRouteContext();
+  const { origin, destination, selectedRoute, routeSegments } =
+    useRouteContext();
 
   if (!selectedRoute) {
     return (
       <View>
         <SafeAreaView>
-          <Header
-            text="Route not ready"
-            description="Please select a route first"
-          />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Header
+              text="Route not ready"
+              description="Please select a route first"
+            />
+            <View>
+              <BackButton additionalBackCleanUp={() => {}} />
+            </View>
+          </View>
         </SafeAreaView>
       </View>
     );
@@ -142,10 +159,21 @@ export default function ConfirmingRoute() {
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
-        <Header
-          text={selectedRoute.mode}
-          description={`${origin?.nearest_node.name} -> ${destination?.name}`}
-        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Header
+            text={selectedRoute.mode}
+            description={`${origin?.nearest_node.name} -> ${destination?.name}`}
+          />
+          <View style={{ marginRight: 20, alignItems: "center" }}>
+            <BackButton additionalBackCleanUp={() => {}} />
+          </View>
+        </View>
         {/* map + summary of route chosen */}
         {/* bottom has button to choose to start navigating */}
         <View style={styles.mapViewToggle}>
@@ -203,7 +231,7 @@ export default function ConfirmingRoute() {
                 strokeWidth={5}
                 lineDashPattern={[4, 4]}
               /> */}
-              {routeSegments.map((renderPath, index)=> (
+              {routeSegments.map((renderPath, index) => (
                 <Polyline
                   key={index}
                   coordinates={renderPath.coords}

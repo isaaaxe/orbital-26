@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Alert, Modal, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  Modal,
+  TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, {
   Marker,
@@ -9,9 +16,10 @@ import MapView, {
   Region,
 } from "react-native-maps";
 import { useRouteContext } from "@/context/RouteContext";
-import { POI_DATA, POI_DATA_TYPE } from "../data/POI";
+import { POI_DATA, POI_DATA_TYPE, POI_GROUPS } from "../data/POI";
 import { useState } from "react";
 import { router } from "expo-router";
+import BackButton from "@/components/BackButton";
 
 const styles = StyleSheet.create({
   screen: {
@@ -19,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   container: {
-    flex: 14,
+    flex: 1,
   },
   map: {
     flex: 1,
@@ -33,26 +41,26 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 8,
   },
-mapLabel: {
-  backgroundColor: "rgba(255, 255, 255, 0.95)",
-  paddingHorizontal: 4,
-  paddingVertical: 4,
-  borderRadius: 6,
-  borderWidth: 1,
-  borderColor: "#4169e1",
+  mapLabel: {
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    paddingHorizontal: 4,
+    paddingVertical: 4,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: "#4169e1",
 
-  minWidth: 12,
-  alignItems: "center",
-  justifyContent: "center",
-},
+    minWidth: 12,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 
-mapLabelText: {
-  color: "#4169e1",
-  fontSize: 12,
-  fontWeight: "700",
-  textAlign: "center",
-  includeFontPadding: false, // Android helpful
-},
+  mapLabelText: {
+    color: "#4169e1",
+    fontSize: 10,
+    fontWeight: "700",
+    textAlign: "center",
+    includeFontPadding: false, // Android helpful
+  },
   modalBackdrop: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.35)",
@@ -82,7 +90,7 @@ mapLabelText: {
 
   modalButton: {
     marginTop: 20,
-    backgroundColor: "#4169e1",
+    backgroundColor: "#0B2D73",
     paddingVertical: 10,
     borderRadius: 999,
     alignItems: "center",
@@ -92,14 +100,25 @@ mapLabelText: {
     color: "white",
     fontWeight: "700",
   },
+  modalButtonClose: {
+    marginTop: 20,
+    backgroundColor: "#E5E7EB",
+    paddingVertical: 10,
+    borderRadius: 999,
+    alignItems: "center",
+  },
+
+  modalButtonTextClose: {
+    color: "#0B2D73",
+    fontWeight: "700",
+  },
 });
 
 export default function MapPage() {
   const { origin, poi, setPOI } = useRouteContext();
-  const [visible, setVisible] = useState(false)
-  const [region, setRegion] = useState<Region | null>(null)
-  const showPOI =
-  region !== null && region.latitudeDelta < 0.015;
+  const [visible, setVisible] = useState(false);
+  const [region, setRegion] = useState<Region | null>(null);
+  const showPOI = region !== null && region.latitudeDelta < 0.015;
   // const {
   //   data: originDetails,
   //   isLoading,
@@ -127,18 +146,29 @@ export default function MapPage() {
   }
 
   function handleIndoor() {
-    router.push("/")
+    setVisible(false);
+    router.push("/floorPlanView");
   }
 
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
         <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          style={{
+            alignItems: "center",
+            justifyContent: "space-between",
+            margin: 20,
+            flexDirection: "row",
+          }}
         >
-          <Text style={{ fontSize: 20, fontWeight: "600", color: "#0B2D73" }}>
-            Area covered by Routes@NUS
-          </Text>
+          <View>
+            <Text style={{ fontSize: 20, fontWeight: "600", color: "#0B2D73" }}>
+              Area covered by Routes@NUS
+            </Text>
+          </View>
+          <View>
+            <BackButton additionalBackCleanUp={() => {}} />
+          </View>
         </View>
         <View style={styles.container}>
           <MapView
@@ -184,26 +214,59 @@ export default function MapPage() {
               <></>
             )}
             {/* Point of interests: buildings */}
-            {showPOI && POI_DATA.map((currPoi, index) => (
-              <Polygon
-                key={`poly_${index}`} 
-                coordinates={currPoi.boundary}
-                fillColor={currPoi.color}
-                strokeColor={currPoi.color}
-              />
-            ))}
-            {showPOI && POI_DATA.map((currPoi, index) => (
-              <Marker coordinate={currPoi.center}
-                      onPress={() => {
-                        setVisible(true)
-                        setPOI(currPoi)
-                      }}>
-                <View style={styles.mapLabel}>
-                  <Text style={styles.mapLabelText}>{currPoi.display_name}</Text>
-                </View>
-              </Marker>
-            ))}
-            
+            {showPOI &&
+              POI_DATA.map((currPoi, index) => (
+                <Polygon
+                  key={`poly_${index}`}
+                  coordinates={currPoi.boundary}
+                  fillColor={currPoi.color}
+                  strokeColor={currPoi.color}
+                  tappable={true}
+                  onPress={() => {
+                    setVisible(true);
+                    setPOI(currPoi);
+                  }}
+                />
+              ))}
+            {showPOI &&
+              POI_DATA.map((currPoi, index) => (
+                <Marker
+                  key={`marker_${index}`}
+                  coordinate={currPoi.center}
+                  anchor={{ x: 0.5, y: 0.5 }}
+                  onPress={() => {
+                    setVisible(true);
+                    setPOI(currPoi);
+                  }}
+                >
+                  <View style={styles.mapLabel}>
+                    <Text style={styles.mapLabelText}>
+                      {currPoi.display_name}
+                    </Text>
+                  </View>
+                </Marker>
+              ))}
+            {!showPOI &&
+              POI_GROUPS.map((group, index) => (
+                <Polygon
+                  key={`group_${index}`}
+                  coordinates={group.boundary}
+                  fillColor={group.color}
+                  strokeColor={group.color}
+                />
+              ))}
+            {!showPOI &&
+              POI_GROUPS.map((group, index) => (
+                <Marker
+                  key={`group_marker_${index}`}
+                  coordinate={group.center}
+                  anchor={{ x: 0.5, y: 0.5 }}
+                >
+                  <View style={styles.mapLabel}>
+                    <Text style={styles.mapLabelText}>{group.name}</Text>
+                  </View>
+                </Marker>
+              ))}
           </MapView>
           <Modal
             visible={visible}
@@ -217,18 +280,18 @@ export default function MapPage() {
                 <View>
                   <TouchableOpacity
                     style={styles.modalButton}
-                    onPress={() => {
-                      setVisible(false)
-                      setPOI(null)
-                    }}
-                  >
-                    <Text style={styles.modalButtonText}>Close</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.modalButton}
                     onPress={handleIndoor}
                   >
                     <Text style={styles.modalButtonText}>View floorplan</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.modalButtonClose}
+                    onPress={() => {
+                      setVisible(false);
+                      setPOI(null);
+                    }}
+                  >
+                    <Text style={styles.modalButtonTextClose}>Close</Text>
                   </TouchableOpacity>
                 </View>
               </View>

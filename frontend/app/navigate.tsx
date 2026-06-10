@@ -12,7 +12,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ROUTE_COLOURS_TYPE } from "@/context/RouteContext";
 import { ROUTE_COLOURS } from "@/context/RouteContext";
 
-
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -54,6 +53,10 @@ const styles = StyleSheet.create({
   mapViewToggleTextSelected: {
     color: "#f86a04",
   },
+  instructionSheetSpacer: {
+    height: 150,
+    opacity: 0,
+  },
 });
 
 export default function Navigate() {
@@ -64,7 +67,8 @@ export default function Navigate() {
   //    from api calls to sql retrievals
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { origin, destination, selectedRoute, routeSegments } = useRouteContext();
+  const { origin, destination, selectedRoute, routeSegments } =
+    useRouteContext();
 
   if (!selectedRoute) {
     return (
@@ -155,19 +159,22 @@ export default function Navigate() {
                   showsUserLocation
                   followsUserLocation
                 >
-                {routeSegments.map((renderPath, index)=> (
-                  <Polyline
-                    key={index}
-                    coordinates={renderPath.coords}
-                    strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#808080"}
-                    strokeWidth={4}
-                    lineDashPattern={[24, 12]}
-                    lineCap="butt"
-                  />
-                ))}
+                  {routeSegments.map((renderPath, index) => (
+                    <Polyline
+                      key={index}
+                      coordinates={renderPath.coords}
+                      strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#808080"}
+                      strokeWidth={4}
+                      lineDashPattern={[24, 12]}
+                      lineCap="butt"
+                    />
+                  ))}
                 </MapView>
               ) : (
-                <IndoorView />
+                <>
+                  <IndoorView />
+                  <View style={styles.instructionSheetSpacer} />
+                </>
               )}
             </View>
             {selectedRoute && (

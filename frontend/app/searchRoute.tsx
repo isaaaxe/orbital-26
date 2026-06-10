@@ -26,6 +26,7 @@ import {
 import { Location } from "@/api/locations";
 import { useAuthContext } from "@/context/AuthContext";
 import { useDebounce } from "@/hook/useDebounce";
+import BackButton from "@/components/BackButton";
 
 const styles = StyleSheet.create({
   screen: {
@@ -138,11 +139,11 @@ export default function SearchRoute() {
   function handleSearch() {
     //check if origin and destination are the same
     if (origin == null) {
-      Alert.alert("Please enable your location")
+      Alert.alert("Please enable your location");
       return;
     }
     if (destination == null) {
-      Alert.alert("Please select a destination")
+      Alert.alert("Please select a destination");
       return;
     }
     if (origin.nearest_node.node_id == destination.id) {
@@ -205,10 +206,21 @@ export default function SearchRoute() {
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
-        <Header
-          text={"Search destination"}
-          description={"Find classrooms, bus stops, and buildings"}
-        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Header
+            text={"Search destination"}
+            description={"Find classrooms, bus stops, and buildings"}
+          />
+          <View style={{ alignItems: "center", marginRight: 20 }}>
+            <BackButton additionalBackCleanUp={() => setUserSearch("")} />
+          </View>
+        </View>
         {/* another search bar they can alter incase they typed wrongly or smth */}
         {/* actually this onSearch for search should be fuzzy searching things on the catalogue, not supposed to search */}
         <SearchBar
