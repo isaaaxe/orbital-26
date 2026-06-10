@@ -64,6 +64,11 @@ export type RecentlyVisitedResponse = {
   recentLocations: Location[];
 };
 
+export type LoginRequest = {
+  username: string;
+  password: string;
+};
+
 export type UserDetail = {
   user_id: string;
   username: string;
@@ -72,11 +77,15 @@ export type UserDetail = {
 };
 export type UserCreate = {
   username: string;
+  password: string;
   language: string;
   profile_settings: string[];
 };
 export type UserUpdate = {
-  username: string | null;
+  username: string;
+  password: string;
+  new_username: string | null;
+  new_password: string | null;
   language: string | null;
   profile_settings: string[] | null;
 };
@@ -251,11 +260,17 @@ export async function getRecentlyVisited(
 }
 
 //users CRUD API functions
-export async function getUser(userId: string): Promise<UserDetail> {
-  const res = await debugFetch(`${API_BASE_URL}/users/${userId}`);
+export async function getUser(request: LoginRequest): Promise<UserDetail> {
+  const res = await debugFetch(`${API_BASE_URL}/users/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch user");
+    throw new Error("Failed to login");
   }
 
   return res.json();
@@ -277,11 +292,8 @@ export async function createUser(request: UserCreate): Promise<UserDetail> {
   return res.json();
 }
 
-export async function updateUser(
-  userId: string,
-  request: UserUpdate,
-): Promise<UserDetail> {
-  const res = await debugFetch(`${API_BASE_URL}/users/${userId}`, {
+export async function updateUser(request: UserUpdate): Promise<UserDetail> {
+  const res = await debugFetch(`${API_BASE_URL}/users/update`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -297,10 +309,14 @@ export async function updateUser(
 }
 
 export async function deleteUser(
-  userId: string,
+  request: LoginRequest,
 ): Promise<{ deleted: boolean }> {
-  const res = await debugFetch(`${API_BASE_URL}/users/${userId}`, {
+  const res = await debugFetch(`${API_BASE_URL}/users`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
   });
 
   if (!res.ok) {

@@ -59,7 +59,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     //   profile_settings: [],
     //   language: "en",
     // };
-    const userDetail = await getUserMutator.mutateAsync(username);
+    const userDetail = await getUserMutator.mutateAsync({ username, password });
     if (!userDetail) {
       return;
     }
@@ -72,10 +72,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const userDetail = await createMutator.mutateAsync({
       username,
+      password,
       language: "en",
       profile_settings: [],
     });
-    login(userDetail.user_id, password);
+    login(username, password);
   }
 
   async function logout() {

@@ -3,6 +3,7 @@ import {
   createUser,
   deleteUser,
   getUser,
+  LoginRequest,
   updateUser,
   UserCreate,
   UserDeleted,
@@ -14,7 +15,7 @@ export function useGetUserMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (userId: string) => getUser(userId),
+    mutationFn: (request: LoginRequest) => getUser(request),
 
     onSuccess: (user) => {
       queryClient.setQueryData(["user", user.user_id], user);
@@ -33,11 +34,11 @@ export function useCreateUserMutation() {
   });
 }
 
-export function useUpdateUserMutation(userId?: string | null) {
+export function useUpdateUserMutation() {
   const queryClient = useQueryClient();
 
   return useMutation<UserDetail, Error, UserUpdate>({
-    mutationFn: (request: UserUpdate) => updateUser(userId!, request),
+    mutationFn: (request: UserUpdate) => updateUser(request),
 
     onSuccess: (user) => {
       queryClient.setQueryData(["user", user.user_id], user);
@@ -45,19 +46,19 @@ export function useUpdateUserMutation(userId?: string | null) {
   });
 }
 
-export function useDeleteUserMutation(userId?: string | null) {
+export function useDeleteUserMutation(request: LoginRequest) {
   const queryClient = useQueryClient();
 
   return useMutation<UserDeleted, Error, void>({
-    mutationFn: () => deleteUser(userId!),
+    mutationFn: () => deleteUser(request),
 
     onSuccess: () => {
       queryClient.removeQueries({
-        queryKey: ["user", userId],
+        queryKey: ["user", request.username],
       });
 
       queryClient.removeQueries({
-        queryKey: ["savedLocations", userId],
+        queryKey: ["savedLocations", request.username],
       });
     },
   });
