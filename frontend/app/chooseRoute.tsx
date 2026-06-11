@@ -10,6 +10,7 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect } from "react";
@@ -67,7 +68,11 @@ export default function ChooseRoute() {
     useRouteContext();
   const navigation = useNavigation();
   const toConfirmRoute = () => {
-    router.push("/confirmingRoute");
+    if (!selectedRoute) {
+      Alert.alert("Please choose a route.");
+    } else {
+      router.push("/confirmingRoute");
+    }
   };
 
   function handleSelect(item: RouteResponse) {

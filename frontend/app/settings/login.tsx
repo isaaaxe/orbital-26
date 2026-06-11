@@ -98,7 +98,22 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
   },
+  successBox: {
+    backgroundColor: "#F0FDF4",
+    borderWidth: 1,
+    borderColor: "#BBF7D0",
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginHorizontal: 20,
+    marginBottom: 8,
+  },
 
+  successText: {
+    color: "#16A34A",
+    fontSize: 13,
+    lineHeight: 18,
+  },
   passwordHintText: {
     color: "#DC2626",
     fontSize: 13,
@@ -145,6 +160,9 @@ export default function Login() {
   // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const [accountCreationSuccess, setAccountCreationSuccess] = useState<
+    boolean | null
+  >(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(initErrorState);
   const [isValidInputs, setIsValidInputs] = useState({
@@ -208,6 +226,7 @@ export default function Login() {
 
   async function handleLogin(username: string, password: string) {
     setIsError(initErrorState);
+    setAccountCreationSuccess(null);
     const validUsername = checkUsername(username);
     const validPW = checkValidPassword(password);
     if (!validUsername || !validPW) {
@@ -236,8 +255,11 @@ export default function Login() {
     }
     try {
       setIsLoading(true);
-      await signup(username, password);
-      router.back();
+      const success = await signup(username, password);
+      if (success) {
+        setIsLogin(true);
+      }
+      setAccountCreationSuccess(success);
     } catch (error) {
       setIsError((curr) => ({
         ...curr,
@@ -356,10 +378,17 @@ export default function Login() {
             </Text>
           </View>
         )}
-        {isError.signup && (
+        {(accountCreationSuccess == false || isError.signup) && (
           <View style={styles.errorBox}>
             <Text style={styles.errorText}>
               User already exists. Please try again.
+            </Text>
+          </View>
+        )}
+        {accountCreationSuccess && (
+          <View style={styles.successBox}>
+            <Text style={styles.successText}>
+              Success! Login in now to your new account!
             </Text>
           </View>
         )}

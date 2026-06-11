@@ -1,16 +1,14 @@
 import Header from "@/components/Header";
-import IndoorView from "@/components/IndoorView";
 import NavigationInstructionsSheet from "@/components/NavigationInstructionsSheet";
 import { useRouteContext } from "@/context/RouteContext";
 import { useGetLocationDetails } from "@/hook/useLocations";
-import { useRouteQuery } from "@/hook/useRoute";
-import { router } from "expo-router";
 import { useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import MapView, { Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ROUTE_COLOURS_TYPE } from "@/context/RouteContext";
 import { ROUTE_COLOURS } from "@/context/RouteContext";
+import IndoorCheck from "@/components/IndoorCheck";
 
 const styles = StyleSheet.create({
   screen: {
@@ -69,7 +67,12 @@ export default function Navigate() {
 
   const { origin, destination, selectedRoute, routeSegments } =
     useRouteContext();
-
+  const {
+    data: destinationDetails,
+    isLoading: isGetDetailsLoading,
+    error: detailsError,
+  } = useGetLocationDetails(destination?.id);
+  //note: might be able to remove this, as route should be already loaded before coming to this page
   if (!selectedRoute) {
     return (
       <View>
@@ -82,25 +85,6 @@ export default function Navigate() {
       </View>
     );
   }
-
-  const toNavigate = () => {
-    router.push("/navigate");
-  };
-
-  const {
-    data: destinationDetails,
-    isLoading: isGetDetailsLoading,
-    error: detailsError,
-  } = useGetLocationDetails(destination?.id);
-  //note: might be able to remove this, as route should be already loaded before coming to this page
-  const {
-    data: route,
-    isLoading,
-    error,
-  } = useRouteQuery(
-    origin?.nearest_node.node_id,
-    destinationDetails?.nearest_node_id!,
-  );
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -138,49 +122,40 @@ export default function Navigate() {
             </Text>
           </TouchableOpacity>
         </View>
-        {isLoading && (
-          <View>
-            <Text>Loading... </Text>
-          </View>
-        )}
-        {!isLoading && (
-          <>
-            <View style={styles.container}>
-              {isOutdoor ? (
-                <MapView
-                  style={styles.map}
-                  provider={PROVIDER_GOOGLE}
-                  region={{
-                    latitude: 1.300291282646443,
-                    longitude: 103.77733947340228,
-                    latitudeDelta: 0.016,
-                    longitudeDelta: 0.016,
-                  }}
-                  showsUserLocation
-                  followsUserLocation
-                >
-                  {routeSegments.map((renderPath, index) => (
-                    <Polyline
-                      key={index}
-                      coordinates={renderPath.coords}
-                      strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#808080"}
-                      strokeWidth={4}
-                      lineDashPattern={[24, 12]}
-                      lineCap="butt"
-                    />
-                  ))}
-                </MapView>
-              ) : (
-                <>
-                  <IndoorView />
-                  <View style={styles.instructionSheetSpacer} />
-                </>
-              )}
-            </View>
-            {selectedRoute && (
-              <NavigationInstructionsSheet steps={selectedRoute.steps} />
-            )}
-          </>
+        <View style={styles.container}>
+          {isOutdoor ? (
+            <MapView
+              style={styles.map}
+              provider={PROVIDER_GOOGLE}
+              region={{
+                latitude: 1.300291282646443,
+                longitude: 103.77733947340228,
+                latitudeDelta: 0.016,
+                longitudeDelta: 0.016,
+              }}
+              showsUserLocation
+              followsUserLocation
+            >
+              {routeSegments.map((renderPath, index) => (
+                <Polyline
+                  key={index}
+                  coordinates={renderPath.coords}
+                  strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#808080"}
+                  strokeWidth={4}
+                  lineDashPattern={[24, 12]}
+                  lineCap="butt"
+                />
+              ))}
+            </MapView>
+          ) : (
+            <>
+              <IndoorCheck />
+              <View style={styles.instructionSheetSpacer} />
+            </>
+          )}
+        </View>
+        {selectedRoute && (
+          <NavigationInstructionsSheet steps={selectedRoute.steps} />
         )}
       </SafeAreaView>
     </View>

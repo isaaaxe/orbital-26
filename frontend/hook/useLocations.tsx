@@ -7,7 +7,6 @@ import {
 } from "@/api_debug/locations.logged"; //rmb to change back
 import {
   deleteSavedLocation,
-  getRecentlyVisited,
   getSavedLocations,
   saveLocation,
 } from "@/api_debug/users.logged";
@@ -17,83 +16,11 @@ import type {
   DeleteSavedLocationResponse,
 } from "@/api_debug/users.logged";
 
-//when we can accept token headers
-// export function useSavedLocationsQuery(token?: string) {
-//   return useQuery({
-//     queryKey: ["savedLocations", token],
-//     queryFn: () => getSavedLocations(token!),
-//     enabled: !!token,
-//   });
-// }
-
-// export function useSaveLocationMutation(token?: string) {
-//   const queryClient = useQueryClient();
-
-//   return useMutation({
-//     mutationFn: (locationId: string, purpose: string) =>
-//       saveLocation(token!, {
-//         locationId,
-//       }),
-
-//     onSuccess: (data) => {
-//       queryClient.setQueryData(["savedLocations", token], (oldData: any) => {
-//         if (!oldData) {
-//           return {
-//             savedLocations: [data.savedLocation],
-//           };
-//         }
-
-//         const alreadySaved = oldData.savedLocations.some(
-//           (location: any) => location.id === data.savedLocation.id,
-//         );
-
-//         if (alreadySaved) {
-//           return oldData;
-//         }
-
-//         return {
-//           ...oldData,
-//           savedLocations: [...oldData.savedLocations, data.savedLocation],
-//         };
-//       });
-//     },
-//   });
-// }
-
-// export function useDeleteSavedLocationMutation(token?: string) {
-//   const queryClient = useQueryClient();
-
-//   return useMutation({
-//     mutationFn: (locationId: string) => deleteSavedLocation(token!, locationId),
-
-//     onSuccess: (_, locationId) => {
-//       queryClient.setQueryData(["savedLocations", token], (oldData: any) => {
-//         if (!oldData) return oldData;
-
-//         return {
-//           ...oldData,
-//           savedLocations: oldData.savedLocations.filter(
-//             (location: any) => location.id !== locationId,
-//           ),
-//         };
-//       });
-//     },
-//   });
-// }
-
-// export function useRecentlyVisitedQuery(token?: string) {
-//   return useQuery({
-//     queryKey: ["recentlyVisited", token],
-//     queryFn: () => getRecentlyVisited(token!),
-//     enabled: !!token,
-//   });
-// }
-
 export function useLocationSearchQuery(query: string) {
   return useQuery<Location[], Error>({
     queryKey: ["locations", "search", query],
     queryFn: () => searchLocations(query),
-    enabled: query.trim().length >= 2,
+    enabled: query.trim().length >= 1,
   });
 }
 
@@ -105,49 +32,61 @@ export function useGetLocationDetails(locationId?: string | null) {
   });
 }
 
-export function useSavedLocationsQuery(userId?: string) {
+export function useSavedLocationsQuery(token?: string | null) {
   return useQuery({
-    queryKey: ["savedLocations", userId],
-    queryFn: () => getSavedLocations(userId!),
-    enabled: !!userId,
+    queryKey: ["savedLocations", token],
+    queryFn: () => {
+      if (!token) {
+        throw new Error("Missing auth token");
+      }
+      return getSavedLocations(token);
+    },
+    enabled: !!token,
   });
 }
 
-export function useSaveLocationMutation(userId?: string) {
+export function useSaveLocationMutation(token?: string | null) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ locationId, purpose }: SaveLocationRequest) =>
-      saveLocation(userId!, {
+    mutationFn: ({ locationId, purpose }: SaveLocationRequest) => {
+      if (!token) {
+        throw new Error("Missing auth token");
+      }
+      return saveLocation(token!, {
         location_id: locationId,
         purpose: purpose ?? "",
-      }),
-
+      });
+    },
     onSuccess: (newSave) => {
       queryClient.invalidateQueries({
-        queryKey: ["savedLocations", userId],
+        queryKey: ["savedLocations", token],
       });
     },
   });
 }
 
-export function useDeleteSavedLocationMutation(userId?: string) {
+export function useDeleteSavedLocationMutation(token?: string | null) {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (locationId: string) =>
-      deleteSavedLocation(userId!, locationId),
+    mutationFn: (locationId: string) => {
+      if (!token) {
+        throw new Error("Missing auth token");
+      }
+      return deleteSavedLocation(token, locationId);
+    },
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["savedLocations", userId],
+        queryKey: ["savedLocations", token],
       });
     },
   });
 }
 
-export function useSavedLocations(userId?: string) {
-  const savedLocationsQuery = useSavedLocationsQuery(userId);
+export function useSavedLocations(token?: string | null) {
+  const savedLocationsQuery = useSavedLocationsQuery(token);
   const savedLocations = savedLocationsQuery.data ?? [];
 
   function isLocationSaved(locationId: string) {
@@ -165,12 +104,4 @@ export function useSavedLocations(userId?: string) {
     isLocationSaved,
     getSaveIdByLocationId,
   };
-}
-
-export function useRecentlyVisitedQuery(userId?: string) {
-  return useQuery({
-    queryKey: ["recentlyVisited", userId],
-    queryFn: () => getRecentlyVisited(userId!),
-    enabled: !!userId,
-  });
 }

@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 });
 
 export default function MapPage() {
-  const { origin, poi, setPOI } = useRouteContext();
+  const { origin, routePOIs, setRoutePOIs } = useRouteContext();
   const [visible, setVisible] = useState(false);
   const [region, setRegion] = useState<Region | null>(null);
   const showPOI = region !== null && region.latitudeDelta < 0.015;
@@ -224,7 +224,7 @@ export default function MapPage() {
                   tappable={true}
                   onPress={() => {
                     setVisible(true);
-                    setPOI(currPoi);
+                    setRoutePOIs([currPoi]);
                   }}
                 />
               ))}
@@ -236,7 +236,7 @@ export default function MapPage() {
                   anchor={{ x: 0.5, y: 0.5 }}
                   onPress={() => {
                     setVisible(true);
-                    setPOI(currPoi);
+                    setRoutePOIs([currPoi]);
                   }}
                 >
                   <View style={styles.mapLabel}>
@@ -276,7 +276,9 @@ export default function MapPage() {
           >
             <View style={styles.modalBackdrop}>
               <View style={styles.modalCard}>
-                <Text style={styles.modalTitle}>{poi?.name}</Text>
+                <Text style={styles.modalTitle}>
+                  {routePOIs.length > 0 ? routePOIs[0].name : ""}
+                </Text>
                 <View>
                   <TouchableOpacity
                     style={styles.modalButton}
@@ -288,7 +290,7 @@ export default function MapPage() {
                     style={styles.modalButtonClose}
                     onPress={() => {
                       setVisible(false);
-                      setPOI(null);
+                      setRoutePOIs([]);
                     }}
                   >
                     <Text style={styles.modalButtonTextClose}>Close</Text>

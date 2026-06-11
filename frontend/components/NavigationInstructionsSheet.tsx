@@ -138,8 +138,8 @@ export default function NavigationInstructionsSheet({
   const [expanded, setExpanded] = useState(false);
   const { setUserSearch } = useRouteContext();
   function reset() {
-    router.replace("/");
     setUserSearch("");
+    router.dismissTo("/");
   }
   return (
     <View

@@ -9,17 +9,16 @@ const queryClient = new QueryClient();
 
 export default function RootLayout() {
   return (
-    //uncomment startupgate when /health gets added to backend
-    // <StartupGate>
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <RouteProvider>
-            <Stack screenOptions={{ headerShown: false }} />
-          </RouteProvider>
-        </AuthProvider>
-      </QueryClientProvider>
-    </GestureHandlerRootView>
-    //</StartupGate> 
+    <StartupGate>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <RouteProvider>
+              <Stack screenOptions={{ headerShown: false }} />
+            </RouteProvider>
+          </AuthProvider>
+        </QueryClientProvider>
+      </GestureHandlerRootView>
+    </StartupGate>
   );
 }

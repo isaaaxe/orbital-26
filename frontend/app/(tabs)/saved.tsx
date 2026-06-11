@@ -2,7 +2,15 @@ import CardItem from "@/components/CardItem";
 import Header from "@/components/Header";
 import { useRouteContext } from "@/context/RouteContext";
 import { Route, router } from "expo-router";
-import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  Modal,
+  ActivityIndicator,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // import { sampleSavedLocations } from "../data/sampleLocations";
 // import type { RoutePlace } from "@/context/RouteContext";
@@ -39,15 +47,37 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 20,
   },
+  loadingModalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  loadingModalBox: {
+    width: 220,
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+  },
+
+  loadingModalText: {
+    marginTop: 12,
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#374151",
+    textAlign: "center",
+  },
 });
 
 // const MOCK_TOKEN = "mock-token"
 export default function SavedPage() {
-  const { user } = useAuthContext();
+  const { token } = useAuthContext();
   const { setUserSearch, setDestination } = useRouteContext();
-  const { data: savedData, isLoading: isLoadingSaved } = useSavedLocationsQuery(
-    user?.user_id,
-  );
+  const { data: savedData, isLoading: isLoadingSaved } =
+    useSavedLocationsQuery(token);
 
   function handleSelect(input: Location) {
     setUserSearch(input.name);
@@ -55,10 +85,14 @@ export default function SavedPage() {
     router.push("/chooseRoute");
   }
 
-  const deleteSavedLocationMutation = useDeleteSavedLocationMutation(
-    user?.user_id,
-  );
+  const deleteSavedLocationMutation = useDeleteSavedLocationMutation(token);
   const savedLocations = savedData ?? [];
+
+  const isMutationLoading = deleteSavedLocationMutation.isPending;
+
+  const loadingMessage = deleteSavedLocationMutation.isPending
+    ? "Removing saved location..."
+    : "Loading...";
 
   return (
     <View style={styles.screen}>
@@ -67,14 +101,14 @@ export default function SavedPage() {
           text={"Saved Destinations"}
           description="Destinations that you frequently visit"
         />
-        {!user && (
+        {!token && (
           <View style={styles.emptyStateContainer}>
             <Text style={styles.emptyStateText}>
               Sign up/log in to save your frequently visited destinations!
             </Text>
           </View>
         )}
-        {user &&
+        {token &&
           (isLoadingSaved ? (
             <View style={styles.emptyStateContainer}>
               <Text style={styles.emptyStateText}>
@@ -104,7 +138,7 @@ export default function SavedPage() {
                     handleSelect({
                       id: item.location_id,
                       name: item.name,
-                      description: "", //to be implemented...
+                      description: "",
                       area_name: item.area_name,
                       building_code: item.building_code,
                       display_name: item.display_name,
@@ -121,6 +155,14 @@ export default function SavedPage() {
             />
           ))}
       </SafeAreaView>
+      <Modal visible={isMutationLoading} transparent animationType="fade">
+        <View style={styles.loadingModalOverlay}>
+          <View style={styles.loadingModalBox}>
+            <ActivityIndicator size="large" />
+            <Text style={styles.loadingModalText}>{loadingMessage}</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }

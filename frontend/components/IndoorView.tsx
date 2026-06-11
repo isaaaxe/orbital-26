@@ -10,8 +10,10 @@ import Svg, { Polyline, Circle } from "react-native-svg";
 import IndoorViewButtons from "./IndoorViewButtons";
 
 //For testing
+import { POI_DATA_TYPE } from "@/app/data/POI";
 import { floorPlans } from "@/app/data/floorPlans";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { useRouteContext } from "@/context/RouteContext";
 
 type RoutePoints = {
   x: number;
@@ -19,8 +21,7 @@ type RoutePoints = {
 };
 
 type IndoorViewProps = {
-  routePoints: RoutePoints;
-  layerNames: string[];
+  routePOIs: POI_DATA_TYPE[];
 };
 
 const styles = StyleSheet.create({
@@ -41,23 +42,56 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function IndoorView() {
-  //testing
-  //   const [buildingId, setBuildingId] = useState(null)
-  const [level, setLevel] = useState("B");
-  // useEffect(()=>{
-
-  // }, [])
-
-  const testFloorPlan = floorPlans["COM1"][level].image;
-
-  const { width: ORIGINAL_WIDTH, height: ORIGINAL_HEIGHT } =
-    Image.resolveAssetSource(testFloorPlan);
-
+export default function IndoorView({ routePOIs }: IndoorViewProps) {
+  // const floorsPerPOI = routePOIs.map((poi) => {
+  //   return Object.keys(floorPlans[poi.code]);
+  // });
+  //default take first item?
+  const [currPOI, setCurrPOI] = useState<POI_DATA_TYPE | null>(
+    routePOIs[0] ?? null,
+  );
   const [containerSize, setContainerSize] = useState({
     width: 0,
     height: 0,
   });
+  const [level, setLevel] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    if (!currPOI && routePOIs.length > 0) {
+      setCurrPOI(routePOIs[0]);
+    }
+  }, [routePOIs, currPOI]);
+
+  const floors = useMemo(() => {
+    if (!currPOI || !floorPlans[currPOI.code]) return [];
+    return Object.keys(floorPlans[currPOI.code]).sort((a, b) => {
+      const floorValue = (floor: string) => {
+        if (floor.startsWith("B")) {
+          return -Number(floor.slice(1));
+        }
+        return Number(floor);
+      };
+      return floorValue(b) - floorValue(a);
+    });
+  }, [currPOI]);
+  useEffect(() => {
+    if (floors.length > 0) {
+      setLevel(floors[floors.length - 1]);
+    }
+  }, [floors]);
+
+  if (!currPOI || floors.length === 0 || !level) {
+    return (
+      <View style={styles.mapWindow}>
+        <Text>Indoor map unavailable</Text>
+      </View>
+    );
+  }
+  //testing assuming 1
+  const testFloorPlan = floorPlans[currPOI.code][level].image;
+
+  const { width: ORIGINAL_WIDTH, height: ORIGINAL_HEIGHT } =
+    Image.resolveAssetSource(testFloorPlan);
+
   const imageAspectRatio = ORIGINAL_WIDTH / ORIGINAL_HEIGHT;
 
   const fittedSize =
@@ -94,7 +128,8 @@ export default function IndoorView() {
       )}
       <View style={styles.layerButtonsOverlay}>
         <IndoorViewButtons
-          layers={["B", "1", "2", "3"]}
+          layers={floors}
+          selectedLayer={level}
           onPress={(layer) => setLevel(layer)}
         />
       </View>

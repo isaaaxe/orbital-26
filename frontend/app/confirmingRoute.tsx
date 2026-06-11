@@ -6,7 +6,7 @@ import {
   useRouteContext,
 } from "@/context/RouteContext";
 import { router } from "expo-router";
-import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, View, StyleSheet, Alert } from "react-native";
 import MapView, {
   Marker,
   Overlay,
@@ -15,8 +15,12 @@ import MapView, {
 } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
-import IndoorView from "@/components/IndoorView";
 import BackButton from "@/components/BackButton";
+import { useAuthContext } from "@/context/AuthContext";
+import { addRecentlyVisitedMutation } from "@/hook/useUser";
+import IndoorCheck from "@/components/IndoorCheck";
+import { addRecentlyVisited } from "@/api_debug/recently_visited.logged";
+import { useQueryClient } from "@tanstack/react-query";
 
 const styles = StyleSheet.create({
   screen: {
@@ -107,35 +111,30 @@ const styles = StyleSheet.create({
 
 export default function ConfirmingRoute() {
   const [isOutdoor, setIsOutdoor] = useState(true);
+  const { token } = useAuthContext();
+  // const addRecentMutation = addRecentlyVisitedMutation(token);
 
   const { origin, destination, selectedRoute, routeSegments } =
     useRouteContext();
-
-  if (!selectedRoute) {
-    return (
-      <View>
-        <SafeAreaView>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Header
-              text="Route not ready"
-              description="Please select a route first"
-            />
-            <View>
-              <BackButton additionalBackCleanUp={() => {}} />
-            </View>
-          </View>
-        </SafeAreaView>
-      </View>
-    );
-  }
+  const queryClient = useQueryClient();
 
   const toNavigate = () => {
+    console.log("CONFIRM ROUTE PRESSED");
+    if (!destination) {
+      Alert.alert("Error has occurred. Please choose a destination.");
+      return;
+    }
+    if (token) {
+      addRecentlyVisited(token, { location_id: destination.id })
+        .then(() => {
+          queryClient.invalidateQueries({
+            queryKey: ["recentlyVisited", token],
+          });
+        })
+        .catch((error) => {
+          console.log("Failed to add recently visited");
+        });
+    }
     router.push("/navigate");
   };
 
@@ -156,73 +155,94 @@ export default function ConfirmingRoute() {
       ? `${(distanceMeters / 1000).toFixed(1)} km`
       : `${Math.round(distanceMeters)} m`;
   }
+
+  const routeReady = !!selectedRoute;
+
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Header
-            text={selectedRoute.mode}
-            description={`${origin?.nearest_node.name} -> ${destination?.name}`}
-          />
-          <View style={{ marginRight: 20, alignItems: "center" }}>
-            <BackButton additionalBackCleanUp={() => {}} />
+        {!routeReady ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Header
+              text="Route not ready"
+              description="Please select a route first"
+            />
+            <View>
+              <BackButton additionalBackCleanUp={() => {}} />
+            </View>
           </View>
-        </View>
-        {/* map + summary of route chosen */}
-        {/* bottom has button to choose to start navigating */}
-        <View style={styles.mapViewToggle}>
-          <TouchableOpacity
-            style={[
-              styles.mapViewToggleItem,
-              isOutdoor && styles.mapViewToggleItemSelected,
-            ]}
-            onPress={() => setIsOutdoor(true)}
-          >
-            <Text
-              style={[
-                styles.mapViewToggleText,
-                isOutdoor && styles.mapViewToggleTextSelected,
-              ]}
-            >
-              Outdoor
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.mapViewToggleItem,
-              !isOutdoor && styles.mapViewToggleItemSelected,
-            ]}
-            onPress={() => setIsOutdoor(false)}
-          >
-            <Text
-              style={[
-                styles.mapViewToggleText,
-                !isOutdoor && styles.mapViewToggleTextSelected,
-              ]}
-            >
-              Indoor
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.container}>
-          {isOutdoor ? (
-            <MapView
-              style={styles.map}
-              provider={PROVIDER_GOOGLE}
-              region={{
-                latitude: 1.300291282646443,
-                longitude: 103.77733947340228,
-                latitudeDelta: 0.016,
-                longitudeDelta: 0.016,
+        ) : (
+          <>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
-              {/* <Polyline
+              <Header
+                text={selectedRoute.mode}
+                description={`${origin?.nearest_node.name} -> ${destination?.name}`}
+              />
+              <View style={{ marginRight: 20, alignItems: "center" }}>
+                <BackButton additionalBackCleanUp={() => {}} />
+              </View>
+            </View>
+            {/* map + summary of route chosen */}
+            {/* bottom has button to choose to start navigating */}
+            <View style={styles.mapViewToggle}>
+              <TouchableOpacity
+                style={[
+                  styles.mapViewToggleItem,
+                  isOutdoor && styles.mapViewToggleItemSelected,
+                ]}
+                onPress={() => setIsOutdoor(true)}
+              >
+                <Text
+                  style={[
+                    styles.mapViewToggleText,
+                    isOutdoor && styles.mapViewToggleTextSelected,
+                  ]}
+                >
+                  Outdoor
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.mapViewToggleItem,
+                  !isOutdoor && styles.mapViewToggleItemSelected,
+                ]}
+                onPress={() => setIsOutdoor(false)}
+              >
+                <Text
+                  style={[
+                    styles.mapViewToggleText,
+                    !isOutdoor && styles.mapViewToggleTextSelected,
+                  ]}
+                >
+                  Indoor
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.container}>
+              {isOutdoor ? (
+                <MapView
+                  style={styles.map}
+                  provider={PROVIDER_GOOGLE}
+                  region={{
+                    latitude: 1.300291282646443,
+                    longitude: 103.77733947340228,
+                    latitudeDelta: 0.016,
+                    longitudeDelta: 0.016,
+                  }}
+                >
+                  {/* <Polyline
                 coordinates={selectedRoute.path_coordinates.map((path) => ({
                   latitude: path[1],
                   longitude: path[0],
@@ -231,54 +251,56 @@ export default function ConfirmingRoute() {
                 strokeWidth={5}
                 lineDashPattern={[4, 4]}
               /> */}
-              {routeSegments.map((renderPath, index) => (
-                <Polyline
-                  key={index}
-                  coordinates={renderPath.coords}
-                  strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#000000"}
-                  strokeWidth={4}
-                  lineDashPattern={[24, 12]}
-                  lineCap="butt"
-                />
-              ))}
-              {/* {groupOfSteps[1] && (
+                  {routeSegments.map((renderPath, index) => (
+                    <Polyline
+                      key={index}
+                      coordinates={renderPath.coords}
+                      strokeColor={ROUTE_COLOURS[renderPath.mode] ?? "#000000"}
+                      strokeWidth={4}
+                      lineDashPattern={[24, 12]}
+                      lineCap="butt"
+                    />
+                  ))}
+                  {/* {groupOfSteps[1] && (
                 <Polyline 
                   coordinates={groupOfSteps[1].coords}
                   strokeColor="red"
                   strokeWidth={10}
                 />
               )} */}
-            </MapView>
-          ) : (
-            <IndoorView />
-          )}
-          <View style={styles.bottomPanel}>
-            <Text style={styles.summaryTitle}>Route Summary</Text>
+                </MapView>
+              ) : (
+                <IndoorCheck />
+              )}
+              <View style={styles.bottomPanel}>
+                <Text style={styles.summaryTitle}>Route Summary</Text>
 
-            <View style={styles.summaryRow}>
-              <View style={styles.summaryItem}>
-                <Text style={styles.summaryLabel}>Distance</Text>
-                <Text style={styles.summaryValue}>
-                  {selectedRoute.total_distance
-                    ? formatDistance(selectedRoute.total_distance)
-                    : "-"}
-                </Text>
+                <View style={styles.summaryRow}>
+                  <View style={styles.summaryItem}>
+                    <Text style={styles.summaryLabel}>Distance</Text>
+                    <Text style={styles.summaryValue}>
+                      {selectedRoute.total_distance
+                        ? formatDistance(selectedRoute.total_distance)
+                        : "-"}
+                    </Text>
+                  </View>
+
+                  <View style={styles.summaryDivider} />
+
+                  <View style={styles.summaryItem}>
+                    <Text style={styles.summaryLabel}>Estimated Time</Text>
+                    <Text style={styles.summaryValue}>
+                      {selectedRoute.total_estimated_seconds
+                        ? formatDuration(selectedRoute.total_estimated_seconds)
+                        : "-"}
+                    </Text>
+                  </View>
+                </View>
               </View>
-
-              <View style={styles.summaryDivider} />
-
-              <View style={styles.summaryItem}>
-                <Text style={styles.summaryLabel}>Estimated Time</Text>
-                <Text style={styles.summaryValue}>
-                  {selectedRoute.total_estimated_seconds
-                    ? formatDuration(selectedRoute.total_estimated_seconds)
-                    : "-"}
-                </Text>
-              </View>
+              <StylisedButton buttonText="Confirm Route" onPress={toNavigate} />
             </View>
-          </View>
-          <StylisedButton buttonText="Confirm Route" onPress={toNavigate} />
-        </View>
+          </>
+        )}
       </SafeAreaView>
     </View>
   );

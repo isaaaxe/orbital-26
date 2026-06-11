@@ -3,24 +3,24 @@ import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import StylisedButton from "@/components/StylisedButton";
 import { useRouteContext } from "@/context/RouteContext";
-import { router, useNavigation } from "expo-router";
-import { useEffect, useState } from "react";
+import { router } from "expo-router";
+import { useState } from "react";
 import {
   Alert,
   FlatList,
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
   Modal,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   useDeleteSavedLocationMutation,
   useLocationSearchQuery,
-  useSavedLocationsQuery,
+  useSavedLocations,
   useSaveLocationMutation,
 } from "@/hook/useLocations";
 import { Location } from "@/api/locations";
@@ -107,12 +107,33 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "700",
   },
+  loadingModalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  loadingModalBox: {
+    width: 220,
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+  },
+
+  loadingModalText: {
+    marginTop: 12,
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#374151",
+    textAlign: "center",
+  },
 });
 
-// const MOCK_TOKEN = "mock-token";
-
 export default function SearchRoute() {
-  const { user } = useAuthContext();
+  const { user, token } = useAuthContext();
   const { userSearch, setUserSearch, destination, setDestination, origin } =
     useRouteContext();
   const query = useDebounce(userSearch, 1000);
@@ -121,20 +142,17 @@ export default function SearchRoute() {
     isLoading: isSearching,
     error: searchError,
   } = useLocationSearchQuery(query);
-  console.log(searchData);
-  const { data: savedData, isLoading: isLoadingSaved } = useSavedLocationsQuery(
-    user?.user_id,
-  );
+  // console.log(searchData);
+  const {
+    savedLocations,
+    isLoading: savedIsLoading,
+    error: savedError,
+    isLocationSaved,
+  } = useSavedLocations(token);
 
   const locations = searchData ?? [];
-  const savedLocations = savedData ?? [];
 
-  const savedLocationIds = new Set(
-    savedLocations.map((loc) => loc.location_id),
-  );
   const searchLocationIds = new Set(locations.map((loc) => loc.id));
-
-  const navigation = useNavigation();
 
   function handleSearch() {
     //check if origin and destination are the same
@@ -170,7 +188,7 @@ export default function SearchRoute() {
   };
 
   //handling saving and deleting location
-  const saveLocationMutation = useSaveLocationMutation(user?.user_id);
+  const saveLocationMutation = useSaveLocationMutation(token);
   const deleteSavedLocationMutation = useDeleteSavedLocationMutation(
     user?.user_id,
   );
@@ -202,6 +220,15 @@ export default function SearchRoute() {
     setSelectedLocationId("");
     setSavePurpose("");
   }
+
+  const isMutationLoading =
+    saveLocationMutation.isPending || deleteSavedLocationMutation.isPending;
+
+  const loadingMessage = saveLocationMutation.isPending
+    ? "Saving location..."
+    : deleteSavedLocationMutation.isPending
+      ? "Removing saved location..."
+      : "Loading...";
 
   return (
     <View style={styles.screen}>
@@ -247,9 +274,8 @@ export default function SearchRoute() {
         <FlatList
           keyExtractor={(item) => item.id}
           data={locations}
-          extraData={savedLocationIds}
+          extraData={savedLocations}
           renderItem={({ item }) => {
-            const isSaved = savedLocationIds.has(item.id);
             return (
               <CardItem
                 mainIcon={icons.no_image}
@@ -257,9 +283,11 @@ export default function SearchRoute() {
                 cardSubtitle={item.description ? item.description : ""}
                 onPress={() => handleSelect(item)}
                 selected={item.name === destination?.name}
-                saveable={user !== null}
-                isSaved={isSaved}
-                onSavePress={() => handleToggleSaveLocation(item.id, isSaved)}
+                saveable={token !== null}
+                isSaved={isLocationSaved(item.id)}
+                onSavePress={() =>
+                  handleToggleSaveLocation(item.id, isLocationSaved(item.id))
+                }
               />
             );
           }}
@@ -311,6 +339,14 @@ export default function SearchRoute() {
                   <Text style={styles.modalSaveText}>Save</Text>
                 </TouchableOpacity>
               </View>
+            </View>
+          </View>
+        </Modal>
+        <Modal visible={isMutationLoading} transparent animationType="fade">
+          <View style={styles.loadingModalOverlay}>
+            <View style={styles.loadingModalBox}>
+              <ActivityIndicator size="large" />
+              <Text style={styles.loadingModalText}>{loadingMessage}</Text>
             </View>
           </View>
         </Modal>

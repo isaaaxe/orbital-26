@@ -24,13 +24,17 @@ import { Alert } from "react-native";
 // import type { RoutePlace } from "@/context/RouteContext";
 import {
   useDeleteSavedLocationMutation,
-  useRecentlyVisitedQuery,
   useSavedLocations,
-  useSavedLocationsQuery,
   useSaveLocationMutation,
 } from "@/hook/useLocations";
+import {
+  useRecentlyVisitedQuery,
+  deleteRecentlyVisitedMutation,
+  clearRecentlyVisitedMutation,
+} from "@/hook/useUser";
 import { useClosestNodeMutation } from "@/hook/useRoute";
 import { Location } from "@/api/locations";
+import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 const styles = StyleSheet.create({
   screen: {
@@ -130,11 +134,64 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "700",
   },
+  swipeWrapper: {
+    borderRadius: 14,
+    overflow: "hidden",
+    marginBottom: 10,
+  },
+
+  clipWrapper: {
+    borderRadius: 14,
+    overflow: "hidden",
+    backgroundColor: "#DD5550", // red behind the card
+  },
+
+  deleteAction: {
+    width: 90, // final snapped open width
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  deleteText: {
+    color: "white",
+    fontWeight: "700",
+  },
+  outerSwipeWrapper: {
+    marginBottom: 10,
+  },
+
+  cardFix: {
+    marginBottom: -10, // cancels CardItem's internal marginBottom
+  },
+  loadingModalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  loadingModalBox: {
+    width: 220,
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+  },
+
+  loadingModalText: {
+    marginTop: 12,
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#374151",
+    textAlign: "center",
+  },
 });
 // const MOCK_TOKEN = "mock-token";
 
 export default function Index() {
-  const { user } = useAuthContext();
+  //settle react stuff first
+  const { user, token } = useAuthContext();
   const {
     userSearch,
     setUserSearch,
@@ -144,31 +201,30 @@ export default function Index() {
     setSelectedRoute,
   } = useRouteContext();
   //to be implemented
-  // const {
-  //   data: recentlyVisited,
-  //   isLoading: isLoadingRecentlyVisited,
-  //   error: errorRecentlyVisited,
-  // } = useRecentlyVisitedQuery(user?.user_id);
   const {
-    data: savedData,
-    isLoading: isLoadingSaved,
-    refetch: refetchSavedLocations,
-  } = useSavedLocationsQuery(user?.user_id);
+    data: recentlyVisited,
+    isLoading: isLoadingRecentlyVisited,
+    error: errorRecentlyVisited,
+  } = useRecentlyVisitedQuery(token);
+
   const closestNodeMutation = useClosestNodeMutation();
+  const deleteRecentMutation = deleteRecentlyVisitedMutation(token);
+  const clearRecentMutation = clearRecentlyVisitedMutation(token);
 
-  //to be implemented
-  // const recentlyVisitedLocations = recentlyVisited?.recentLocations ?? [];
-  const savedLocations = savedData ?? [];
-
-  const savedLocationIds = new Set(
-    savedLocations.map((loc) => loc.location_id),
-  );
+  const {
+    savedLocations,
+    isLoading: savedIsLoading,
+    error: savedError,
+    isLocationSaved,
+  } = useSavedLocations(token);
 
   const icons = {
     location: require("../../assets/icons/location.png"),
     star: require("../../assets/icons/star.png"),
     no_img: require("../../assets/icons/no_image.png"),
   };
+
+  //
 
   function handleSearch(input: string) {
     setUserSearch(input);
@@ -214,8 +270,6 @@ export default function Index() {
     const currentLocation = await ExpoLocation.getCurrentPositionAsync({
       accuracy: ExpoLocation.Accuracy.High,
     });
-    // send a request to find the nearest location to current coords
-    // const sampleOrigin = sampleLocations[4]
     const closestNode = await closestNodeMutation.mutateAsync({
       latitude: currentLocation.coords.latitude,
       longitude: currentLocation.coords.longitude,
@@ -226,6 +280,23 @@ export default function Index() {
       ...closestNode,
     });
   }
+
+  //recently visited stuff
+  function renderDeleteAction(location_id: string) {
+    return (
+      <TouchableOpacity
+        style={styles.deleteAction}
+        onPress={() =>
+          deleteRecentMutation.mutate({
+            location_id: location_id,
+          })
+        }
+      >
+        <Text style={styles.deleteText}>X</Text>
+      </TouchableOpacity>
+    );
+  }
+
   useEffect(() => {
     getCurrentLocation();
   }, []);
@@ -238,12 +309,11 @@ export default function Index() {
 
   //handling saving and deleting location
   const [saveModalVisible, setSaveModalVisible] = useState(false);
+  // const [clearRecentModalVisible, setClearRecentModalVisible] = useState(false);
   const [selectedLocationId, setSelectedLocationId] = useState("");
   const [savePurpose, setSavePurpose] = useState("");
-  const saveLocationMutation = useSaveLocationMutation(user?.user_id);
-  const deleteSavedLocationMutation = useDeleteSavedLocationMutation(
-    user?.user_id,
-  );
+  const saveLocationMutation = useSaveLocationMutation(token);
+  const deleteSavedLocationMutation = useDeleteSavedLocationMutation(token);
 
   function handleToggleSaveLocation(locationId: string, isSaved: boolean) {
     if (isSaved) {
@@ -269,6 +339,22 @@ export default function Index() {
     setSavePurpose("");
   }
 
+  //loading
+  const isMutationLoading =
+    saveLocationMutation.isPending ||
+    deleteSavedLocationMutation.isPending ||
+    deleteRecentMutation.isPending ||
+    clearRecentMutation.isPending;
+
+  const loadingMessage = saveLocationMutation.isPending
+    ? "Saving location..."
+    : deleteSavedLocationMutation.isPending
+      ? "Removing saved location..."
+      : deleteRecentMutation.isPending
+        ? "Deleting recently visited location..."
+        : clearRecentMutation.isPending
+          ? "Clearing recently visited locations..."
+          : "Loading...";
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -277,7 +363,19 @@ export default function Index() {
           description={"Campus routing with ETA, buses and indoor levels"}
         />
         {/* somewhere here add a small text welcome back xxx unless its guest, then ask for them to sign in */}
-
+        {user && (
+          <View style={{ marginLeft: 20, marginBottom: 8 }}>
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: "400",
+                color: "grey",
+              }}
+            >
+              Welcome back, {user.username}!
+            </Text>
+          </View>
+        )}
         {/* Search bar */}
         <SearchBar
           searchContent={userSearch}
@@ -303,7 +401,7 @@ export default function Index() {
           />
         </View>
         {/* Recently Visited */}
-        {!user && (
+        {!token && (
           <View
             style={{
               marginHorizontal: 20,
@@ -314,17 +412,26 @@ export default function Index() {
             </Text>
           </View>
         )}
-        {user && (
-          <View
-            style={{ flex: 1, justifyContent: "center", marginHorizontal: 20 }}
-          >
-            <Text>Recently visited list to be implemented...</Text>
-          </View>
-        )}
-        {/* {user && (
+        {token && (
           <>
             <View style={styles.bodyView}>
-              <Text style={styles.h3}>Recently Visited</Text>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text style={styles.h3}>Recently Visited</Text>
+                {recentlyVisited && recentlyVisited.length > 0 && (
+                  <TouchableOpacity
+                    onPress={() => clearRecentMutation.mutate()}
+                  >
+                    <Text style={{ color: "#DC2626", fontWeight: "700" }}>
+                      Clear
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
               {isLoadingRecentlyVisited ? (
                 <View style={styles.loadingBox}>
                   <ActivityIndicator />
@@ -336,29 +443,57 @@ export default function Index() {
                 <Text style={styles.mutedText}>
                   Failed to load recently visited locations.
                 </Text>
-              ) : recentlyVisitedLocations.length === 0 ? (
+              ) : !recentlyVisited || recentlyVisited.length === 0 ? (
                 <Text style={styles.mutedText}>
                   No recently visited locations yet.
                 </Text>
               ) : (
                 <FlatList
-                  data={recentlyVisitedLocations}
-                  extraData={savedLocationIds}
-                  keyExtractor={(item) => item.id}
+                  data={recentlyVisited}
+                  extraData={savedLocations}
+                  keyExtractor={(item) => `recent-${item.recent_id}`}
                   renderItem={({ item }) => {
-                    const isSaved = savedLocationIds.has(item.id);
                     return (
-                      <CardItem
-                        mainIcon={icons.no_img}
-                        cardTitle={item.name}
-                        cardSubtitle={item.description ? item.description : ""}
-                        onPress={() => handleSetDestination(item)}
-                        saveable
-                        isSaved={isSaved}
-                        onSavePress={() =>
-                          handleToggleSaveLocation(item.id, isSaved)
-                        }
-                      />
+                      <View style={styles.outerSwipeWrapper}>
+                        <View style={styles.clipWrapper}>
+                          <ReanimatedSwipeable
+                            renderRightActions={() =>
+                              renderDeleteAction(item.location_id)
+                            }
+                            rightThreshold={40}
+                            overshootRight
+                          >
+                            <View style={styles.cardFix}>
+                              <CardItem
+                                mainIcon={icons.no_img}
+                                cardTitle={item.name}
+                                cardSubtitle={
+                                  item.description ? item.description : ""
+                                }
+                                onPress={() =>
+                                  handleSetDestination({
+                                    id: item.location_id,
+                                    name: item.name,
+                                    display_name: item.display_name,
+                                    location_type: item.location_type,
+                                    building_code: item.building_code,
+                                    area_name: item.area_name,
+                                    description: item.description,
+                                  })
+                                }
+                                saveable
+                                isSaved={isLocationSaved(item.location_id)}
+                                onSavePress={() =>
+                                  handleToggleSaveLocation(
+                                    item.location_id,
+                                    isLocationSaved(item.location_id),
+                                  )
+                                }
+                              />
+                            </View>
+                          </ReanimatedSwipeable>
+                        </View>
+                      </View>
                     );
                   }}
                 />
@@ -409,8 +544,16 @@ export default function Index() {
                 </View>
               </View>
             </Modal>
+            <Modal visible={isMutationLoading} transparent animationType="fade">
+              <View style={styles.loadingModalOverlay}>
+                <View style={styles.loadingModalBox}>
+                  <ActivityIndicator size="large" />
+                  <Text style={styles.loadingModalText}>{loadingMessage}</Text>
+                </View>
+              </View>
+            </Modal>
           </>
-        )} */}
+        )}
       </SafeAreaView>
     </View>
   );
