@@ -11,16 +11,13 @@ import {
   saveLocation,
 } from "@/api_debug/users.logged";
 
-import type {
-  SaveLocationRequest,
-  DeleteSavedLocationResponse,
-} from "@/api_debug/users.logged";
+import type { SaveLocationRequest } from "@/api_debug/users.logged";
 
 export function useLocationSearchQuery(query: string) {
   return useQuery<Location[], Error>({
     queryKey: ["locations", "search", query],
     queryFn: () => searchLocations(query),
-    enabled: query.trim().length >= 1,
+    // enabled: query.trim().length >= 0,
   });
 }
 

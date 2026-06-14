@@ -1,3 +1,4 @@
+import { Mode } from "@/app/(tabs)/map";
 import {
   View,
   StyleSheet,
@@ -7,7 +8,12 @@ import {
 } from "react-native";
 
 type ChipProps = {
-  text: string;
+  item: {
+    name: string;
+    code: Mode;
+  };
+  selected: boolean;
+  onSelect: React.Dispatch<React.SetStateAction<Mode>>;
 };
 
 const styles = StyleSheet.create({
@@ -20,17 +26,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  chipSelected: {
+    backgroundColor: "#0B4EA2",
+  },
+
   chipText: {
     fontSize: 12,
     fontWeight: "600",
     color: "#0B4EA2",
   },
+
+  chipTextSelected: {
+    color: "white",
+  },
 });
 
-export default function ChipItem(props: ChipProps) {
+export default function ChipItem({ item, selected, onSelect }: ChipProps) {
   return (
-    <TouchableOpacity style={styles.chip}>
-      <Text style={styles.chipText}>{props.text}</Text>
+    <TouchableOpacity
+      style={[styles.chip, selected && styles.chipSelected]}
+      onPress={() => onSelect(item.code)}
+    >
+      <Text style={[styles.chipText, selected && styles.chipTextSelected]}>
+        {item.name}
+      </Text>
     </TouchableOpacity>
   );
 }

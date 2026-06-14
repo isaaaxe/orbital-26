@@ -228,13 +228,13 @@ export default function Index() {
 
   function handleSearch(input: string) {
     setUserSearch(input);
-    router.push("/searchRoute");
+    router.push("/searchRoute?mode=destination");
   }
 
   function handleSetCurrLocation() {
     // to be able to manually set origin next time, too complicated to do now
     // router.push("/selectOrigin")
-    getCurrentLocation();
+    router.push("/searchRoute?mode=origin");
   }
 
   function handleSetDestination(location: Location) {
@@ -275,7 +275,6 @@ export default function Index() {
       longitude: currentLocation.coords.longitude,
       floor: 1,
     });
-    console.log(closestNode);
     setOrigin({
       ...closestNode,
     });
