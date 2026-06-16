@@ -28,12 +28,12 @@
       ],
       "affine": [
         [
-          3.520583902738572e-07,
-          -3.8168318847175975e-07
+          3.520583902738572e-7,
+          -3.8168318847175975e-7
         ],
         [
-          -3.618218622492009e-07,
-          -9.792574659495124e-08
+          -3.618218622492009e-7,
+          -9.792574659495124e-8
         ],
         [
           103.77391963232265,
@@ -69,12 +69,12 @@
       ],
       "affine": [
         [
-          5.251292277685948e-07,
-          -5.665462633579199e-07
+          5.251292277685948e-7,
+          -5.665462633579199e-7
         ],
         [
-          -4.479940322044129e-07,
-          -4.1058816734919346e-07
+          -4.479940322044129e-7,
+          -4.1058816734919346e-7
         ],
         [
           103.77359400972114,
@@ -110,12 +110,12 @@
       ],
       "affine": [
         [
-          -4.604083159165384e-07,
-          1.7332662557434375e-06
+          -4.604083159165384e-7,
+          0.0000017332662557434375
         ],
         [
-          -3.421526315605661e-07,
-          -7.03428475093415e-07
+          -3.421526315605661e-7,
+          -7.03428475093415e-7
         ],
         [
           103.77412373674815,
@@ -151,12 +151,12 @@
       ],
       "affine": [
         [
-          4.855372965906213e-07,
-          -1.0337703102436535e-06
+          4.855372965906213e-7,
+          -0.0000010337703102436535
         ],
         [
-          -6.450497360699359e-07,
-          -4.129699809514442e-07
+          -6.450497360699359e-7,
+          -4.129699809514442e-7
         ],
         [
           103.77410411818892,
@@ -192,12 +192,12 @@
       ],
       "affine": [
         [
-          6.731085484545929e-07,
-          -1.0157665059629117e-06
+          6.731085484545929e-7,
+          -0.0000010157665059629117
         ],
         [
-          -1.5644948625492816e-06,
-          3.3835209528598753e-07
+          -0.0000015644948625492816,
+          3.3835209528598753e-7
         ],
         [
           103.7743389111738,
@@ -233,12 +233,12 @@
       ],
       "affine": [
         [
-          4.949582423918741e-07,
-          -7.419713412663842e-07
+          4.949582423918741e-7,
+          -7.419713412663842e-7
         ],
         [
-          -9.376502685398691e-07,
-          -1.001743135803368e-07
+          -9.376502685398691e-7,
+          -1.001743135803368e-7
         ],
         [
           103.77421200950926,
@@ -274,12 +274,12 @@
       ],
       "affine": [
         [
-          5.418499280374078e-07,
-          -6.490192065895795e-07
+          5.418499280374078e-7,
+          -6.490192065895795e-7
         ],
         [
-          -9.872766852936365e-07,
-          -5.383752544607656e-07
+          -9.872766852936365e-7,
+          -5.383752544607656e-7
         ],
         [
           103.77414358169176,
@@ -3241,24 +3241,6 @@
       "is_sheltered": true
     },
     {
-      "from": "corr11 com1 floor1",
-      "to": "Embeded systems Teaching Lab1",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "corr11 com1 floor1",
-      "to": "Embeded systems Teaching Lab2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
       "from": "corr13 com1 floor1",
       "to": "E&A cluster ",
       "mode": "walk",
@@ -4346,8 +4328,8 @@
       "reverse_instruction": "Take the lift down to Level 1.",
       "is_accessible": true,
       "is_sheltered": true,
-      "vertical": "lift",
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "stair 1 com1 floor1",
@@ -4357,8 +4339,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair2 com1 floor1",
@@ -4368,8 +4350,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 3 com1 floor1",
@@ -4379,8 +4361,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 4 com1 floor1",
@@ -4390,8 +4372,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 5 com1 floor 1",
@@ -4401,8 +4383,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair A com1 floor B",
@@ -4412,8 +4394,8 @@
       "reverse_instruction": "Take the stairs down to Basement.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair B com1 floor B",
@@ -4423,8 +4405,8 @@
       "reverse_instruction": "Take the stairs down to Basement.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "lift com2 floor 1",
@@ -4434,8 +4416,8 @@
       "reverse_instruction": "Take the lift down to Level 1.",
       "is_accessible": true,
       "is_sheltered": true,
-      "vertical": "lift",
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "lift com2 floor2",
@@ -4445,8 +4427,8 @@
       "reverse_instruction": "Take the lift down to Level 2.",
       "is_accessible": true,
       "is_sheltered": true,
-      "vertical": "lift",
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "lift com2 floor 3",
@@ -4456,8 +4438,8 @@
       "reverse_instruction": "Take the lift down to Level 3.",
       "is_accessible": true,
       "is_sheltered": true,
-      "vertical": "lift",
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "stair 1 com2 floor1",
@@ -4467,8 +4449,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 1 com2 floor2",
@@ -4478,8 +4460,8 @@
       "reverse_instruction": "Take the stairs down to Level 2.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 1 com2 floor 3",
@@ -4489,8 +4471,8 @@
       "reverse_instruction": "Take the stairs down to Level 3.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 3 com2 floor 1",
@@ -4500,8 +4482,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 4 com2 floor1",
@@ -4511,8 +4493,8 @@
       "reverse_instruction": "Take the stairs down to Level 1.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 4 com2 floor2",
@@ -4522,8 +4504,8 @@
       "reverse_instruction": "Take the stairs down to Level 2.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "stair 4 com2 floor 3",
@@ -4533,8 +4515,8 @@
       "reverse_instruction": "Take the stairs down to Level 3.",
       "is_accessible": false,
       "is_sheltered": true,
-      "vertical": "stairs",
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "entrance to teaching office com2 floor2",
@@ -4544,8 +4526,8 @@
       "reverse_instruction": "Take the lift down to Level 2.",
       "is_accessible": true,
       "is_sheltered": true,
-      "vertical": "lift",
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "Com1 main entrance floor 1",
@@ -4590,6 +4572,15 @@
       "instruction": "Middle of stairs from terrace to com1 to corr6 com1 floor2.",
       "reverse_instruction": "corr6 com1 floor2 to Middle of stairs from terrace to com1.",
       "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor 1",
+      "to": "corr13 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
       "is_sheltered": true
     }
   ]
