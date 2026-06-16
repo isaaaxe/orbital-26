@@ -16,7 +16,7 @@ async def get_user_saves(session, current_user):
             name=location.name,
             display_name=location.display_name,
             location_type=location.location_type,
-            building_code=location.building_code,
+            building_code=location.building.building_code if location.building else None,
             area_name=location.area_name,
             purpose=saved_location.purpose,
         )
@@ -42,7 +42,7 @@ async def add_user_save(session, current_user, location_id, purpose):
             name=location.name,
             display_name=location.display_name,
             location_type=location.location_type,
-            building_code=location.building_code,
+            building_code=location.building.building_code if location.building else None,
             area_name=location.area_name,
             purpose=saved_location.purpose,
         )

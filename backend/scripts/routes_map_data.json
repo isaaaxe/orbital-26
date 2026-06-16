@@ -1,0 +1,4596 @@
+{
+  "floors": [
+    {
+      "building": "com1",
+      "floor_number": -1,
+      "image": "COM1B.png",
+      "image_width": 1288,
+      "image_height": 952,
+      "geo_reference": [
+        [
+          1209.0361921474007,
+          222.4400087738539,
+          1.2947641,
+          103.7742648
+        ],
+        [
+          186.3206843606053,
+          228.09037069532792,
+          1.2951539,
+          103.7739027
+        ],
+        [
+          577.6082474226804,
+          82.59355121737221,
+          1.2950188,
+          103.7740931
+        ]
+      ],
+      "affine": [
+        [
+          3.520583902738572e-07,
+          -3.8168318847175975e-07
+        ],
+        [
+          -3.618218622492009e-07,
+          -9.792574659495124e-08
+        ],
+        [
+          103.77391963232265,
+          1.2952473513927298
+        ]
+      ]
+    },
+    {
+      "building": "com1",
+      "floor_number": 1,
+      "image": "COM11.png",
+      "image_width": 1456,
+      "image_height": 840,
+      "geo_reference": [
+        [
+          550.7506032024567,
+          58.31542004825612,
+          1.2952739,
+          103.7738571
+        ],
+        [
+          630.5926738319807,
+          642.759377056372,
+          1.2949887,
+          103.7736372
+        ],
+        [
+          1393.8828690502303,
+          136.56064926518968,
+          1.2947641,
+          103.7742648
+        ]
+      ],
+      "affine": [
+        [
+          5.251292277685948e-07,
+          -5.665462633579199e-07
+        ],
+        [
+          -4.479940322044129e-07,
+          -4.1058816734919346e-07
+        ],
+        [
+          103.77359400972114,
+          1.2956098693177331
+        ]
+      ]
+    },
+    {
+      "building": "com1",
+      "floor_number": 2,
+      "image": "COM12.png",
+      "image_width": 1456,
+      "image_height": 840,
+      "geo_reference": [
+        [
+          515.620092125466,
+          85.4617240622943,
+          1.2952739,
+          103.7738571
+        ],
+        [
+          577.8969072164948,
+          644.3562184689625,
+          1.2949887,
+          103.7736372
+        ],
+        [
+          617.8179425312568,
+          328.18161877604734,
+          1.2952803,
+          103.773727
+        ]
+      ],
+      "affine": [
+        [
+          -4.604083159165384e-07,
+          1.7332662557434375e-06
+        ],
+        [
+          -3.421526315605661e-07,
+          -7.03428475093415e-07
+        ],
+        [
+          103.77412373674815,
+          1.2944403093039796
+        ]
+      ]
+    },
+    {
+      "building": "com2",
+      "floor_number": 1,
+      "image": "COM2_1.png",
+      "image_width": 1288,
+      "image_height": 952,
+      "geo_reference": [
+        [
+          492.85281860057023,
+          390.53827593770563,
+          1.294089,
+          103.7740915
+        ],
+        [
+          807.8604957227461,
+          649.0423338451416,
+          1.2936566,
+          103.7740777
+        ],
+        [
+          861.5389339767491,
+          189.95042772537835,
+          1.2937907,
+          103.7743999
+        ]
+      ],
+      "affine": [
+        [
+          4.855372965906213e-07,
+          -1.0337703102436535e-06
+        ],
+        [
+          -6.450497360699359e-07,
+          -4.129699809514442e-07
+        ],
+        [
+          103.77410411818892,
+          1.294759777195587
+        ]
+      ]
+    },
+    {
+      "building": "com2",
+      "floor_number": 2,
+      "image": "COM2_2.png",
+      "image_width": 1288,
+      "image_height": 952,
+      "geo_reference": [
+        [
+          595.971923667471,
+          414.55231410397016,
+          1.294089,
+          103.7740915
+        ],
+        [
+          1022.5742487387585,
+          463.99298091686774,
+          1.2936724,
+          103.7743013
+        ],
+        [
+          153.83110331212976,
+          229.5029611756964,
+          1.2944755,
+          103.7740834
+        ]
+      ],
+      "affine": [
+        [
+          6.731085484545929e-07,
+          -1.0157665059629117e-06
+        ],
+        [
+          -1.5644948625492816e-06,
+          3.3835209528598753e-07
+        ],
+        [
+          103.7743389111738,
+          1.294554103674571
+        ]
+      ]
+    },
+    {
+      "building": "com2",
+      "floor_number": 3,
+      "image": "COM2_3.png",
+      "image_width": 1288,
+      "image_height": 952,
+      "geo_reference": [
+        [
+          584.6711998245229,
+          437.1537617898662,
+          1.294089,
+          103.7740915
+        ],
+        [
+          1136.9940776486071,
+          504.9581048475543,
+          1.2936724,
+          103.7743013
+        ],
+        [
+          97.32748409738967,
+          188.53783724500985,
+          1.2944755,
+          103.7740834
+        ]
+      ],
+      "affine": [
+        [
+          4.949582423918741e-07,
+          -7.419713412663842e-07
+        ],
+        [
+          -9.376502685398691e-07,
+          -1.001743135803368e-07
+        ],
+        [
+          103.77421200950926,
+          1.2945666008522956
+        ]
+      ]
+    },
+    {
+      "building": "com2",
+      "floor_number": 4,
+      "image": "COM2_4.png",
+      "image_width": 1288,
+      "image_height": 952,
+      "geo_reference": [
+        [
+          569.1327045404694,
+          365.1116472910726,
+          1.294089,
+          103.7740915
+        ],
+        [
+          1131.343715727133,
+          461.16779995613075,
+          1.2936724,
+          103.7743013
+        ],
+        [
+          155.24369379249825,
+          146.1601228339548,
+          1.2944755,
+          103.7740834
+        ]
+      ],
+      "affine": [
+        [
+          5.418499280374078e-07,
+          -6.490192065895795e-07
+        ],
+        [
+          -9.872766852936365e-07,
+          -5.383752544607656e-07
+        ],
+        [
+          103.77414358169176,
+          1.2946549451322298
+        ]
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "SR1",
+      "lat": 1.2956438897040674,
+      "lon": 103.77371235896983,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        765,
+        173
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR7",
+      "lat": 1.2960070308405987,
+      "lon": 103.77364546340137,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        952,
+        117
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR8",
+      "lat": 1.2962079534244226,
+      "lon": 103.77359124750609,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1068,
+        119
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR9",
+      "lat": 1.2964016960179578,
+      "lon": 103.77353978357151,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1180,
+        119
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR10",
+      "lat": 1.2966258838761915,
+      "lon": 103.7734802324472,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1309,
+        119
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR3",
+      "lat": 1.2960317263239272,
+      "lon": 103.77354091408868,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1041,
+        303
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "TR10",
+      "lat": 1.295876122050022,
+      "lon": 103.77352142629206,
+      "node_type": "tutorial room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        998,
+        418
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "TR11",
+      "lat": 1.296017277368169,
+      "lon": 103.77348393113972,
+      "node_type": "tutorial room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1079,
+        418
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "ICPC Lab",
+      "lat": 1.2963211279753295,
+      "lon": 103.77340068495297,
+      "node_type": "lab",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1257,
+        422
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "side entrance to seminar rooms",
+      "lat": 1.2958823930552883,
+      "lon": 103.77361606048898,
+      "node_type": "entrance",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        928,
+        236
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "main entrance to com1 floor2",
+      "lat": 1.2952752857215366,
+      "lon": 103.77372664249728,
+      "node_type": "entrance",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        616,
+        331
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "TR12",
+      "lat": 1.2964676208359593,
+      "lon": 103.7733803561909,
+      "node_type": "tutorial room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1327,
+        387
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "02-AHU2",
+      "lat": 1.2965529080627392,
+      "lon": 103.77341767760066,
+      "node_type": "ahu",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1330,
+        274
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "Computing Club",
+      "lat": 1.2962657647893514,
+      "lon": 103.77335710427954,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1269,
+        533
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "02-AHU4",
+      "lat": 1.2961201972322518,
+      "lon": 103.7733966161935,
+      "node_type": "ahu",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1185,
+        531
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "DR12",
+      "lat": 1.2959275779024364,
+      "lon": 103.77344862649159,
+      "node_type": "discussion room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1073,
+        529
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "Undergraduate studies",
+      "lat": 1.2959905533274194,
+      "lon": 103.77342514040794,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1114,
+        542
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "Students lounge",
+      "lat": 1.2957670483249357,
+      "lon": 103.77349126803739,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        980,
+        529
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "02-AHU5",
+      "lat": 1.2954576622151028,
+      "lon": 103.77357598462227,
+      "node_type": "ahu",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        800,
+        525
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR6",
+      "lat": 1.2950824402624488,
+      "lon": 103.77388261545809,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        425,
+        133
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "Computing Gallery",
+      "lat": 1.2948421671200947,
+      "lon": 103.77394474985074,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        287,
+        137
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR5",
+      "lat": 1.2946235955804601,
+      "lon": 103.77400703279251,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        158,
+        129
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "02-AHU1",
+      "lat": 1.2944617811073864,
+      "lon": 103.77404072354365,
+      "node_type": "ahu",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        72,
+        146
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "02-AHU7",
+      "lat": 1.2949837465277039,
+      "lon": 103.77378465524727,
+      "node_type": "ahu",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        463,
+        368
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "02-AHU6",
+      "lat": 1.2951663372999676,
+      "lon": 103.77373192989334,
+      "node_type": "ahu",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        572,
+        376
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "SR2",
+      "lat": 1.2949074454106826,
+      "lon": 103.77375170474544,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        460,
+        469
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "Cerebro@SoC",
+      "lat": 1.2951090508502565,
+      "lon": 103.77370406535529,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        572,
+        458
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "IT security & OS Lab",
+      "lat": 1.295143067878151,
+      "lon": 103.77385520850655,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        182,
+        355
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "PL1",
+      "lat": 1.2950882116791962,
+      "lon": 103.77390644567438,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        326,
+        354
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "PL4",
+      "lat": 1.29504488377165,
+      "lon": 103.7739355527595,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        434,
+        378
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "PL3",
+      "lat": 1.2949711993629591,
+      "lon": 103.77401182114532,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        631,
+        359
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "PL2",
+      "lat": 1.294958845622355,
+      "lon": 103.7739587074844,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        627,
+        502
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "PL5",
+      "lat": 1.2949415545001772,
+      "lon": 103.77389481921962,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        627,
+        679
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "Active learning lab",
+      "lat": 1.2948014874959217,
+      "lon": 103.7741664445268,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        1075,
+        364
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "Data Communication and networking lab/ parallel and distributed computing lab",
+      "lat": 1.294859024036263,
+      "lon": 103.77420726243736,
+      "node_type": "lab",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        977,
+        156
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "tech hangout",
+      "lat": 1.2949564598823922,
+      "lon": 103.77411419569859,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        720,
+        163
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "Technical room1",
+      "lat": 1.294905049068937,
+      "lon": 103.77407858539172,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        808,
+        347
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "technical room2",
+      "lat": 1.2948743026788685,
+      "lon": 103.77410439056976,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        887,
+        352
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "DR3",
+      "lat": 1.2948938019601524,
+      "lon": 103.77402956057973,
+      "node_type": "discussion room",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        804,
+        478
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "DR4",
+      "lat": 1.2948664288712926,
+      "lon": 103.7740528929779,
+      "node_type": "discussion room",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        874,
+        482
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "DR1",
+      "lat": 1.2952009235380606,
+      "lon": 103.77390467384575,
+      "node_type": "discussion room",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        89,
+        128
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "DR2",
+      "lat": 1.2951938262985985,
+      "lon": 103.7738709822173,
+      "node_type": "discussion room",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        85,
+        217
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "B-AHU2",
+      "lat": 1.2951028456631972,
+      "lon": 103.77373646638567,
+      "node_type": "ahu",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        199,
+        700
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "B-AHU1",
+      "lat": 1.294859559408704,
+      "lon": 103.77396278578146,
+      "node_type": "ahu",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        838,
+        696
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "Computer room1",
+      "lat": 1.2951826026719366,
+      "lon": 103.77366255128453,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        468,
+        395
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "AV control room",
+      "lat": 1.2950218380328942,
+      "lon": 103.7737043930989,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        658,
+        525
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Career consultation room",
+      "lat": 1.2949879581012387,
+      "lon": 103.77373315007958,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        715,
+        528
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Graduate students lounge",
+      "lat": 1.2948648956142104,
+      "lon": 103.77386177013533,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        945,
+        510
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "supplies room",
+      "lat": 1.2951939319374424,
+      "lon": 103.77389946790471,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        664,
+        97
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "E&A cluster ",
+      "lat": 1.2950125525917469,
+      "lon": 103.77389690912159,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        835,
+        303
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Database 2",
+      "lat": 1.2948109147234252,
+      "lon": 103.77411688359875,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1220,
+        263
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Database 3",
+      "lat": 1.294994967426284,
+      "lon": 103.77409314885469,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1023,
+        85
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Database1",
+      "lat": 1.2948708426912237,
+      "lon": 103.77421878423607,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1252,
+        73
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "supplies room 2",
+      "lat": 1.2946569809568238,
+      "lon": 103.7741497477294,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1395,
+        395
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "E&A cluster 2",
+      "lat": 1.2946327982924353,
+      "lon": 103.77407954629543,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1357,
+        507
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "E&A cluster 3",
+      "lat": 1.294707043649305,
+      "lon": 103.77416420694071,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1360,
+        322
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "E&A cluster 4",
+      "lat": 1.2947536197769371,
+      "lon": 103.77420042108132,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1348,
+        226
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "AI 1",
+      "lat": 1.2948884838593702,
+      "lon": 103.7740846777832,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1118,
+        215
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Computational Biology 1",
+      "lat": 1.2947994685908661,
+      "lon": 103.773899921639,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1041,
+        537
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Lobby",
+      "lat": 1.2949269324112418,
+      "lon": 103.7736957751941,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        741,
+        641
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Com1 main entrance floor 1",
+      "lat": 1.2948717160420975,
+      "lon": 103.7736702158334,
+      "node_type": "entrance",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        771,
+        734
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Robot Living studio",
+      "lat": 1.29511683026971,
+      "lon": 103.77385185507858,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        696,
+        240
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Computational biology 2",
+      "lat": 1.2950482064183069,
+      "lon": 103.77393398547092,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        833,
+        218
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Embeded systems Teaching Lab1",
+      "lat": 1.294966678027024,
+      "lon": 103.77397647654838,
+      "node_type": "lab",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        948,
+        258
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "Embeded systems Teaching Lab2",
+      "lat": 1.2949120818279023,
+      "lon": 103.77401914298933,
+      "node_type": "lab",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1038,
+        268
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "PL6",
+      "lat": 1.2947746254206023,
+      "lon": 103.77397322605047,
+      "node_type": "lab",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1129,
+        477
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "MR5",
+      "lat": 1.2947010614587158,
+      "lon": 103.77411021279612,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1319,
+        394
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "MR4",
+      "lat": 1.2948952128104074,
+      "lon": 103.77389850062725,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        948,
+        432
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "01-AHU2",
+      "lat": 1.2949212097055531,
+      "lon": 103.77382280374417,
+      "node_type": "ahu",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        857,
+        494
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "01-AHU1",
+      "lat": 1.294718153765763,
+      "lon": 103.77400836921915,
+      "node_type": "ahu",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1213,
+        497
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "lift floor2 com1",
+      "lat": 1.2949820412339896,
+      "lon": 103.77363812406516,
+      "node_type": "lift_station",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        575,
+        646
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "lift floor1 com1",
+      "lat": 1.2949859859463941,
+      "lon": 103.77363971564421,
+      "node_type": "lift_station",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        635,
+        643
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "LT 19",
+      "lat": 1.293790696199124,
+      "lon": 103.77440582768686,
+      "node_type": "lecture theatre",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        864,
+        183
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "LT 16",
+      "lat": 1.29398663026733,
+      "lon": 103.77391676674553,
+      "node_type": "lecture theatre",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        486,
+        656
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "LT 17",
+      "lat": 1.2936589372307798,
+      "lon": 103.77407541708205,
+      "node_type": "lecture theatre",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        805,
+        650
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "SR @ LT19",
+      "lat": 1.293764216149033,
+      "lon": 103.77426656166696,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        818,
+        364
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "stair 1 com1 floor1",
+      "lat": 1.294620174149545,
+      "lon": 103.77393586646585,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1244,
+        695
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "stair2 com1 floor1",
+      "lat": 1.294788989442711,
+      "lon": 103.77378797111584,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        953,
+        684
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "stair 3 com1 floor1",
+      "lat": 1.294824076902448,
+      "lon": 103.77380506454664,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        935,
+        624
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "stair 4 com1 floor1",
+      "lat": 1.2950280619715488,
+      "lon": 103.77357937047071,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        542,
+        669
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "stair 5 com1 floor 1",
+      "lat": 1.2952685556275172,
+      "lon": 103.773859704363,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        558,
+        61
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "stair A com1 floor 1",
+      "lat": 1.294763834750411,
+      "lon": 103.77427270273506,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1401,
+        127
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "stair A com1 floor B",
+      "lat": 1.294765979990201,
+      "lon": 103.77426178853047,
+      "node_type": "stairs",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        1203,
+        225
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "stair B com1 floor B",
+      "lat": 1.295156194977135,
+      "lon": 103.77390122184896,
+      "node_type": "stairs",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        181,
+        227
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "stair 5 com1 floor2",
+      "lat": 1.2952774314232207,
+      "lon": 103.77386714353774,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        509,
+        65
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "stair 4 com1 floor 2",
+      "lat": 1.2947681970377607,
+      "lon": 103.7736569144529,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        480,
+        718
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "stair 1 com1 floor 2",
+      "lat": 1.2960882164649463,
+      "lon": 103.77332486128704,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1228,
+        683
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "stair 3 com1 floor2",
+      "lat": 1.295532185381737,
+      "lon": 103.77351648638115,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        873,
+        600
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "stair 2 com1 floor 2",
+      "lat": 1.2955094776595604,
+      "lon": 103.77349295246455,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        883,
+        656
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "TR9",
+      "lat": 1.2935860986634928,
+      "lon": 103.77414399784905,
+      "node_type": "tutorial room",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        892,
+        609
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "Innovation and entrepreneurship",
+      "lat": 1.2934233611737633,
+      "lon": 103.7742500612782,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        1063,
+        574
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "Research equipment room",
+      "lat": 1.294070624424825,
+      "lon": 103.7738836235419,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        408,
+        649
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "ISA Lab3",
+      "lat": 1.2938233455499677,
+      "lon": 103.77411193338348,
+      "node_type": "lab",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        700,
+        515
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "Robot experiment lab",
+      "lat": 1.2941347438731416,
+      "lon": 103.77389901061903,
+      "node_type": "lab",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        367,
+        594
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "former information systems 1",
+      "lat": 1.2943278784099452,
+      "lon": 103.77395433106129,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        250,
+        420
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "former information systems 2",
+      "lat": 1.2942147510920694,
+      "lon": 103.7739365650943,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        326,
+        505
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "stair 4 com2 floor1",
+      "lat": 1.29413461152109,
+      "lon": 103.77410542112443,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        466,
+        348
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "stair 1 com2 floor1",
+      "lat": 1.2936467324426508,
+      "lon": 103.77431022778677,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        926,
+        377
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "stair 5 com2 floor1",
+      "lat": 1.2936217687385552,
+      "lon": 103.77421295839125,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        898,
+        507
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "stair 3 com2 floor 1",
+      "lat": 1.293257025210878,
+      "lon": 103.774276333684,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        1200,
+        636
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "lift com2 floor 1",
+      "lat": 1.293606082006642,
+      "lon": 103.77428381787345,
+      "node_type": "lift_station",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        944,
+        432
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "GS Lab @com2",
+      "lat": 1.2945314525990557,
+      "lon": 103.77400656374392,
+      "node_type": "lab",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        109,
+        259
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "stair 4 com2 floor2",
+      "lat": 1.2941027014224102,
+      "lon": 103.7740915331356,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        580,
+        408
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "stair 1 com2 floor2",
+      "lat": 1.2936538784820002,
+      "lon": 103.77438049836368,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        1024,
+        414
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "stair 3 com2 floor2",
+      "lat": 1.2935231211698281,
+      "lon": 103.77409919130606,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        1244,
+        689
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "lift com2 floor2",
+      "lat": 1.2936767045864228,
+      "lon": 103.77429844752697,
+      "node_type": "lift_station",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        1018,
+        464
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "entrance to teaching office com2 floor2",
+      "lat": 1.2942152477995956,
+      "lon": 103.77389424435412,
+      "node_type": "lift_station",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        500,
+        499
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "entrance to teaching office com2 floor3",
+      "lat": 1.294120054535306,
+      "lon": 103.77398281142882,
+      "node_type": "lift_station",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        531,
+        525
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "stair 4 com2 floor 3",
+      "lat": 1.294097610259055,
+      "lon": 103.77409852642604,
+      "node_type": "stairs",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        575,
+        424
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "stair 1 com2 floor 3",
+      "lat": 1.2936974081215076,
+      "lon": 103.77433569827456,
+      "node_type": "stairs",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        1110,
+        454
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "lift com2 floor 3",
+      "lat": 1.2936729660210777,
+      "lon": 103.7743065980603,
+      "node_type": "lift_station",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        1137,
+        499
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "Multipurpose space 04-01",
+      "lat": 1.294413274017055,
+      "lon": 103.77397907608385,
+      "node_type": "room",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        161,
+        255
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "Executive classroom 04-02",
+      "lat": 1.29426980750838,
+      "lon": 103.77391416425402,
+      "node_type": "room",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        275,
+        383
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "Information systems and anayltics research 4: ISA Lab4",
+      "lat": 1.2941540736626436,
+      "lon": 103.77387074906783,
+      "node_type": "lab",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        373,
+        481
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "stair 4 com2 floor4",
+      "lat": 1.2941030226259307,
+      "lon": 103.77410008828198,
+      "node_type": "stairs",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        559,
+        351
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "stair 1 com2 floor4",
+      "lat": 1.2937057268398426,
+      "lon": 103.77435262842585,
+      "node_type": "stairs",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        1126,
+        406
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "lift com2 floor 4",
+      "lat": 1.2936716394960586,
+      "lon": 103.77429990536817,
+      "node_type": "lift_station",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        1131,
+        463
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "junc A com2 floor4",
+      "lat": 1.2940962010102397,
+      "lon": 103.77389674052442,
+      "node_type": "junction",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        449,
+        496
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "junc B com2 floor 4",
+      "lat": 1.294037891902335,
+      "lon": 103.7738216192046,
+      "node_type": "junction",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        467,
+        583
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "junc C com2 floor 4",
+      "lat": 1.2936040899868648,
+      "lon": 103.774185819134,
+      "node_type": "junction",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        1137,
+        581
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "corridor A com2 floor 4",
+      "lat": 1.2943024462624064,
+      "lon": 103.77401071711125,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        297,
+        297
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "corridor B com2 floor 4",
+      "lat": 1.2938080881049678,
+      "lon": 103.77400941756979,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com2",
+      "_px": [
+        819,
+        585
+      ],
+      "_floorId": "com2_l4"
+    },
+    {
+      "name": "junc A com2 floor3",
+      "lat": 1.2941626070000918,
+      "lon": 103.77389766882324,
+      "node_type": "junction",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        466,
+        581
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "junc B com2 floor3",
+      "lat": 1.294118491579946,
+      "lon": 103.77386325309182,
+      "node_type": "junction",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        517,
+        645
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "corridor A com2 floor3",
+      "lat": 1.2938800904241026,
+      "lon": 103.77402796266792,
+      "node_type": "corridor",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        839,
+        639
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "corridor B com2 floor3",
+      "lat": 1.2936496495656409,
+      "lon": 103.77418310531006,
+      "node_type": "corridor",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        1150,
+        638
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "Corridor C com2 floor 3",
+      "lat": 1.2943113182199553,
+      "lon": 103.7739971199679,
+      "node_type": "corridor",
+      "floor": 3,
+      "building_code": "com2",
+      "_px": [
+        292,
+        383
+      ],
+      "_floorId": "com2_l3"
+    },
+    {
+      "name": "junc A com2 floor2",
+      "lat": 1.293702959855533,
+      "lon": 103.77410031559053,
+      "node_type": "junction",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        1037,
+        599
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "junc B com2 floor 2",
+      "lat": 1.294273072062666,
+      "lon": 103.773783379738,
+      "node_type": "junction",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        461,
+        553
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "corridor A com2 floor 2",
+      "lat": 1.2944059299888768,
+      "lon": 103.77396580714125,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        263,
+        352
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "corridor B com2 floor 2",
+      "lat": 1.2939574755678314,
+      "lon": 103.77392320593148,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        789,
+        605
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "corridor C com2 floor2",
+      "lat": 1.2934847397520766,
+      "lon": 103.7742364693802,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com2",
+      "_px": [
+        1254,
+        605
+      ],
+      "_floorId": "com2_l2"
+    },
+    {
+      "name": "stair A com2 floor 1",
+      "lat": 1.294016918889652,
+      "lon": 103.77396608336312,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        487,
+        580
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "stair B com2 floor 1",
+      "lat": 1.2936854232722836,
+      "lon": 103.77411951935001,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        806,
+        583
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr1 com2 floor1",
+      "lat": 1.2942926619021073,
+      "lon": 103.77401366330109,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        304,
+        369
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr2 com2 floor 1",
+      "lat": 1.2941683003377005,
+      "lon": 103.77398555480991,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        383,
+        472
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr3 com2 floor1",
+      "lat": 1.2940655344020913,
+      "lon": 103.77397337733112,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        454,
+        544
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr4 com2 floor1",
+      "lat": 1.2939131070644732,
+      "lon": 103.7740023023336,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        581,
+        595
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr5 com2 floor1",
+      "lat": 1.2937737957675914,
+      "lon": 103.77406654835197,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        715,
+        597
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr6 com2 floor1",
+      "lat": 1.2937501032749188,
+      "lon": 103.77413337962214,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        765,
+        530
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr7 com2 floor1",
+      "lat": 1.2936005775211017,
+      "lon": 103.77419057132545,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        903,
+        546
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr8 com2 floor1",
+      "lat": 1.2938265307044314,
+      "lon": 103.7742408902858,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        759,
+        359
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr9 com2 floor1",
+      "lat": 1.2939076249936543,
+      "lon": 103.77435569047837,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        754,
+        177
+      ],
+      "_floorId": "com2_l1"
+    },
+    {
+      "name": "corr1 com1 floor 2",
+      "lat": 1.2959988429929883,
+      "lon": 103.77361159705474,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        974,
+        186
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr2 com1 floor2",
+      "lat": 1.2962765488835681,
+      "lon": 103.77353481299453,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1137,
+        191
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr3 com1 floor2",
+      "lat": 1.2965572635162546,
+      "lon": 103.77345949240794,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1300,
+        193
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr4 com1 floor2",
+      "lat": 1.2966659966044631,
+      "lon": 103.7734306095875,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1362,
+        193
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr5 com1 floor2",
+      "lat": 1.296572043749445,
+      "lon": 103.77337561804696,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1369,
+        344
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr6 com1 floor2",
+      "lat": 1.2964803853508076,
+      "lon": 103.7733366100683,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1365,
+        464
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr7 com1 floor2",
+      "lat": 1.296243614900468,
+      "lon": 103.77339799505424,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1230,
+        466
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr8 com1 floor2",
+      "lat": 1.2959307024255515,
+      "lon": 103.77347809722319,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        1051,
+        472
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr9 com1 floor2",
+      "lat": 1.2953436303377186,
+      "lon": 103.77363856682737,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        709,
+        464
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr10 com1 floor2",
+      "lat": 1.295531240134397,
+      "lon": 103.77368150212536,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        746,
+        288
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr11 com1 floor2",
+      "lat": 1.295849095022414,
+      "lon": 103.77360008710093,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        927,
+        282
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr12 com1 floor2",
+      "lat": 1.295244486162353,
+      "lon": 103.77359777615372,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        704,
+        590
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr13 com1 floor2",
+      "lat": 1.2951144648272952,
+      "lon": 103.77378542228107,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        511,
+        301
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr14 com1 floor2",
+      "lat": 1.2949759402313776,
+      "lon": 103.77386671814826,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        397,
+        217
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr15 com1 floor2",
+      "lat": 1.2945791510479094,
+      "lon": 103.77397664281668,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com1",
+      "_px": [
+        165,
+        208
+      ],
+      "_floorId": "com1_l2"
+    },
+    {
+      "name": "corr1 com1 floor1",
+      "lat": 1.2952358726370305,
+      "lon": 103.77381560822538,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        551,
+        151
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "stair B com1 floor 1",
+      "lat": 1.2951451958395797,
+      "lon": 103.77392479484158,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        733,
+        121
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr2 com1 floor1",
+      "lat": 1.2949685840952216,
+      "lon": 103.7740607106153,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1020,
+        154
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr3 com1 floor1",
+      "lat": 1.294834690783971,
+      "lon": 103.77418481573379,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1257,
+        154
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr4 com1 floor1",
+      "lat": 1.2947937664136944,
+      "lon": 103.7741565938955,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1271,
+        234
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr5 com1 floor1",
+      "lat": 1.294755083406535,
+      "lon": 103.77411438674554,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1271,
+        328
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr6 com1 floor1",
+      "lat": 1.294710250561327,
+      "lon": 103.77406729514027,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1273,
+        435
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr7 com1 floor1",
+      "lat": 1.2946603353483792,
+      "lon": 103.7741095920632,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1357,
+        440
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr8 com1 floor1",
+      "lat": 1.2946297638895587,
+      "lon": 103.77398312718569,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1276,
+        627
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr9 com1 floor1",
+      "lat": 1.2947102908971795,
+      "lon": 103.77385556349321,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1087,
+        691
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr10 com1 floor1",
+      "lat": 1.2947968411524233,
+      "lon": 103.77404128135817,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1167,
+        370
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr12 com1 floor1",
+      "lat": 1.294839132453171,
+      "lon": 103.77389755769755,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        1001,
+        496
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr11 com1 floor1",
+      "lat": 1.294888554807703,
+      "lon": 103.77394965693078,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        999,
+        378
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr13 com1 floor1",
+      "lat": 1.2950228547227964,
+      "lon": 103.77382782111124,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        765,
+        374
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr14 com1 floor1",
+      "lat": 1.2949310391461133,
+      "lon": 103.77374224606643,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        778,
+        580
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr15 com1 floor1",
+      "lat": 1.295077847081207,
+      "lon": 103.77360484735105,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com1",
+      "_px": [
+        517,
+        582
+      ],
+      "_floorId": "com1_l1"
+    },
+    {
+      "name": "corr1 com1 floorB",
+      "lat": 1.2951664171675932,
+      "lon": 103.77393650196291,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        179,
+        128
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr2 com1 floorB",
+      "lat": 1.2951003280137248,
+      "lon": 103.77394125605757,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        321,
+        252
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr3 com1 floorB",
+      "lat": 1.2950553150604414,
+      "lon": 103.77398405267358,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        439,
+        249
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr4 com1 floorB",
+      "lat": 1.2950312728111768,
+      "lon": 103.77399728707549,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        497,
+        269
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr5 com1 floorB",
+      "lat": 1.2950218239790985,
+      "lon": 103.77395490664303,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        493,
+        382
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr6 com1 floorB",
+      "lat": 1.295005557775247,
+      "lon": 103.7739047630763,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        499,
+        526
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr7 com1 floorB",
+      "lat": 1.2949929839921728,
+      "lon": 103.77386079415835,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        500,
+        649
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr8 com1 floorB",
+      "lat": 1.2949391861238195,
+      "lon": 103.77407775545453,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        736,
+        279
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr9 com1 floorB",
+      "lat": 1.2949136409343436,
+      "lon": 103.77401573232099,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        754,
+        468
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr10 com1 floorB",
+      "lat": 1.2948926573913888,
+      "lon": 103.77394566940744,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        758,
+        666
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr11 com1 floorB",
+      "lat": 1.2948472943809242,
+      "lon": 103.77416890189491,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        980,
+        265
+      ],
+      "_floorId": "com1_b"
+    },
+    {
+      "name": "corr12 com1 floorB",
+      "lat": 1.294762216800068,
+      "lon": 103.77424290518766,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com1",
+      "_px": [
+        1201,
+        275
+      ],
+      "_floorId": "com1_b"
+    }
+  ],
+  "edges": [
+    {
+      "from": "DR1",
+      "to": "corr1 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "DR2",
+      "to": "stair B com1 floor B",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor B",
+      "to": "corr1 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor B",
+      "to": "corr2 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floorB",
+      "to": "corr3 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com1 floorB",
+      "to": "corr4 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr4 com1 floorB",
+      "to": "corr8 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floorB",
+      "to": "corr11 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floorB",
+      "to": "corr12 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr12 com1 floorB",
+      "to": "stair A com1 floor B",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "Data Communication and networking lab/ parallel and distributed computing lab",
+      "to": "corr11 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "tech hangout",
+      "to": "corr8 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "PL3",
+      "to": "corr8 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr4 com1 floorB",
+      "to": "corr5 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floorB",
+      "to": "corr6 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com1 floorB",
+      "to": "corr7 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com1 floorB",
+      "to": "PL2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floorB",
+      "to": "PL4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floorB",
+      "to": "PL5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floorB",
+      "to": "corr9 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr9 com1 floorB",
+      "to": "corr10 com1 floorB",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr10 com1 floorB",
+      "to": "B-AHU1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr9 com1 floorB",
+      "to": "DR3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr9 com1 floorB",
+      "to": "DR4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floorB",
+      "to": "Technical room1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floorB",
+      "to": "technical room2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floorB",
+      "to": "Active learning lab",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floorB",
+      "to": "PL1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor B",
+      "to": "IT security & OS Lab",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 5 com1 floor 1",
+      "to": "corr1 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr1 com1 floor1",
+      "to": "stair B com1 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor 1",
+      "to": "corr2 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor 1",
+      "to": "supplies room",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor1",
+      "to": "Database 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor1",
+      "to": "corr3 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com1 floor1",
+      "to": "Database1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com1 floor1",
+      "to": "stair A com1 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com1 floor1",
+      "to": "corr4 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr4 com1 floor1",
+      "to": "corr5 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr4 com1 floor1",
+      "to": "E&A cluster 4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floor1",
+      "to": "E&A cluster 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floor1",
+      "to": "corr6 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com1 floor1",
+      "to": "corr7 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floor1",
+      "to": "MR5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floor1",
+      "to": "supplies room 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floor1",
+      "to": "E&A cluster 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com1 floor1",
+      "to": "corr8 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floor1",
+      "to": "stair 1 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 1 com1 floor1",
+      "to": "corr9 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com1 floor1",
+      "to": "01-AHU1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floor1",
+      "to": "corr10 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr10 com1 floor1",
+      "to": "PL6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr10 com1 floor1",
+      "to": "corr11 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor1",
+      "to": "Embeded systems Teaching Lab2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor1",
+      "to": "Embeded systems Teaching Lab1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floor1",
+      "to": "MR4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floor1",
+      "to": "corr12 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr12 com1 floor1",
+      "to": "Graduate students lounge",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr12 com1 floor1",
+      "to": "Computational Biology 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floor1",
+      "to": "Embeded systems Teaching Lab1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floor1",
+      "to": "Embeded systems Teaching Lab2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor1",
+      "to": "E&A cluster ",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor 1",
+      "to": "Computational biology 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor1",
+      "to": "corr11 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com1 floor 1",
+      "to": "Robot Living studio",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor1",
+      "to": "corr14 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr14 com1 floor1",
+      "to": "Lobby",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Lobby",
+      "to": "AV control room",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Lobby",
+      "to": "Career consultation room",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Lobby",
+      "to": "Com1 main entrance floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Lobby",
+      "to": "lift floor1 com1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Lobby",
+      "to": "stair 4 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 4 com1 floor1",
+      "to": "corr15 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr15 com1 floor1",
+      "to": "Computer room1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr4 com1 floor1",
+      "to": "Database 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor1",
+      "to": "AI 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr12 com1 floor1",
+      "to": "stair2 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair2 com1 floor1",
+      "to": "stair 3 com1 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor1",
+      "to": "01-AHU2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr15 com1 floor2",
+      "to": "02-AHU1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr15 com1 floor2",
+      "to": "SR5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr15 com1 floor2",
+      "to": "Computing Gallery",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr15 com1 floor2",
+      "to": "corr14 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr14 com1 floor2",
+      "to": "SR6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr14 com1 floor2",
+      "to": "stair 5 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr14 com1 floor2",
+      "to": "corr13 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 5 com1 floor2",
+      "to": "corr13 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor2",
+      "to": "02-AHU7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor2",
+      "to": "02-AHU6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor2",
+      "to": "main entrance to com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "main entrance to com1 floor2",
+      "to": "corr10 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr10 com1 floor2",
+      "to": "corr11 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr11 com1 floor2",
+      "to": "side entrance to seminar rooms",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "side entrance to seminar rooms",
+      "to": "SR1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "side entrance to seminar rooms",
+      "to": "corr1 com1 floor 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr1 com1 floor 2",
+      "to": "SR7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr1 com1 floor 2",
+      "to": "corr2 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor2",
+      "to": "SR8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor2",
+      "to": "SR9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com1 floor2",
+      "to": "corr3 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com1 floor2",
+      "to": "SR10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com1 floor2",
+      "to": "corr4 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr4 com1 floor2",
+      "to": "corr5 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floor2",
+      "to": "02-AHU2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floor2",
+      "to": "TR12",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com1 floor2",
+      "to": "corr6 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com1 floor2",
+      "to": "corr7 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floor2",
+      "to": "ICPC Lab",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floor2",
+      "to": "corr8 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floor2",
+      "to": "TR11",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floor2",
+      "to": "TR10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr1 com1 floor 2",
+      "to": "SR3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr10 com1 floor2",
+      "to": "corr9 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr9 com1 floor2",
+      "to": "corr12 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr9 com1 floor2",
+      "to": "02-AHU5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floor2",
+      "to": "DR12",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floor2",
+      "to": "Students lounge",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com1 floor2",
+      "to": "Undergraduate studies",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floor2",
+      "to": "02-AHU4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com1 floor2",
+      "to": "Computing Club",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "02-AHU5",
+      "to": "stair 3 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 3 com1 floor2",
+      "to": "stair 2 com1 floor 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr12 com1 floor2",
+      "to": "lift floor2 com1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "lift floor2 com1",
+      "to": "stair 4 com1 floor 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr9 com1 floor2",
+      "to": "Cerebro@SoC",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr13 com1 floor2",
+      "to": "SR2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr1 com2 floor1",
+      "to": "former information systems 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr1 com2 floor1",
+      "to": "corr2 com2 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com2 floor 1",
+      "to": "former information systems 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com2 floor 1",
+      "to": "Robot experiment lab",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com2 floor 1",
+      "to": "corr3 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr2 com2 floor 1",
+      "to": "stair 4 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com2 floor1",
+      "to": "stair A com2 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair A com2 floor 1",
+      "to": "LT 16",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "LT 16",
+      "to": "Research equipment room",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr3 com2 floor1",
+      "to": "corr4 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr4 com2 floor1",
+      "to": "corr5 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com2 floor1",
+      "to": "corr6 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com2 floor1",
+      "to": "stair B com2 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair B com2 floor 1",
+      "to": "LT 17",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com2 floor1",
+      "to": "stair 5 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com2 floor1",
+      "to": "corr7 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com2 floor1",
+      "to": "TR9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com2 floor1",
+      "to": "Innovation and entrepreneurship",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr7 com2 floor1",
+      "to": "stair 3 com2 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 5 com2 floor1",
+      "to": "lift com2 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "lift com2 floor 1",
+      "to": "stair 1 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr6 com2 floor1",
+      "to": "corr8 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com2 floor1",
+      "to": "SR @ LT19",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr8 com2 floor1",
+      "to": "corr9 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr9 com2 floor1",
+      "to": "LT 19",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr5 com2 floor1",
+      "to": "ISA Lab3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 4 com2 floor2",
+      "to": "entrance to teaching office com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "entrance to teaching office com2 floor2",
+      "to": "junc B com2 floor 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc B com2 floor 2",
+      "to": "corridor A com2 floor 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor A com2 floor 2",
+      "to": "GS Lab @com2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc B com2 floor 2",
+      "to": "corridor B com2 floor 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor B com2 floor 2",
+      "to": "junc A com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor2",
+      "to": "corridor C com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor C com2 floor2",
+      "to": "stair 3 com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor2",
+      "to": "lift com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor2",
+      "to": "stair 1 com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "lift com2 floor2",
+      "to": "stair 1 com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 4 com2 floor 3",
+      "to": "entrance to teaching office com2 floor3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "entrance to teaching office com2 floor3",
+      "to": "junc A com2 floor3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor3",
+      "to": "Corridor C com2 floor 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor3",
+      "to": "junc B com2 floor3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc B com2 floor3",
+      "to": "corridor A com2 floor3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor A com2 floor3",
+      "to": "corridor B com2 floor3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor B com2 floor3",
+      "to": "lift com2 floor 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "lift com2 floor 3",
+      "to": "stair 1 com2 floor 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 4 com2 floor4",
+      "to": "junc A com2 floor4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor4",
+      "to": "corridor A com2 floor 4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor4",
+      "to": "Information systems and anayltics research 4: ISA Lab4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor A com2 floor 4",
+      "to": "Executive classroom 04-02",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor A com2 floor 4",
+      "to": "Multipurpose space 04-01",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc A com2 floor4",
+      "to": "junc B com2 floor 4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc B com2 floor 4",
+      "to": "corridor B com2 floor 4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor B com2 floor 4",
+      "to": "junc C com2 floor 4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "junc C com2 floor 4",
+      "to": "lift com2 floor 4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "lift com2 floor 4",
+      "to": "stair 1 com2 floor4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "lift floor1 com1",
+      "to": "lift floor2 com1",
+      "mode": "walk",
+      "instruction": "Take the lift up to Level 2.",
+      "reverse_instruction": "Take the lift down to Level 1.",
+      "is_accessible": true,
+      "is_sheltered": true,
+      "vertical": "lift",
+      "manual_seconds": 15
+    },
+    {
+      "from": "stair 1 com1 floor1",
+      "to": "stair 1 com1 floor 2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair2 com1 floor1",
+      "to": "stair 2 com1 floor 2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 3 com1 floor1",
+      "to": "stair 3 com1 floor2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 4 com1 floor1",
+      "to": "stair 4 com1 floor 2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 5 com1 floor 1",
+      "to": "stair 5 com1 floor2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair A com1 floor B",
+      "to": "stair A com1 floor 1",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 1.",
+      "reverse_instruction": "Take the stairs down to Basement.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair B com1 floor B",
+      "to": "stair B com1 floor 1",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 1.",
+      "reverse_instruction": "Take the stairs down to Basement.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "lift com2 floor 1",
+      "to": "lift com2 floor2",
+      "mode": "walk",
+      "instruction": "Take the lift up to Level 2.",
+      "reverse_instruction": "Take the lift down to Level 1.",
+      "is_accessible": true,
+      "is_sheltered": true,
+      "vertical": "lift",
+      "manual_seconds": 15
+    },
+    {
+      "from": "lift com2 floor2",
+      "to": "lift com2 floor 3",
+      "mode": "walk",
+      "instruction": "Take the lift up to Level 3.",
+      "reverse_instruction": "Take the lift down to Level 2.",
+      "is_accessible": true,
+      "is_sheltered": true,
+      "vertical": "lift",
+      "manual_seconds": 15
+    },
+    {
+      "from": "lift com2 floor 3",
+      "to": "lift com2 floor 4",
+      "mode": "walk",
+      "instruction": "Take the lift up to Level 4.",
+      "reverse_instruction": "Take the lift down to Level 3.",
+      "is_accessible": true,
+      "is_sheltered": true,
+      "vertical": "lift",
+      "manual_seconds": 15
+    },
+    {
+      "from": "stair 1 com2 floor1",
+      "to": "stair 1 com2 floor2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 1 com2 floor2",
+      "to": "stair 1 com2 floor 3",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 3.",
+      "reverse_instruction": "Take the stairs down to Level 2.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 1 com2 floor 3",
+      "to": "stair 1 com2 floor4",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 4.",
+      "reverse_instruction": "Take the stairs down to Level 3.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 3 com2 floor 1",
+      "to": "stair 3 com2 floor2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 4 com2 floor1",
+      "to": "stair 4 com2 floor2",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 2.",
+      "reverse_instruction": "Take the stairs down to Level 1.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 4 com2 floor2",
+      "to": "stair 4 com2 floor 3",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 3.",
+      "reverse_instruction": "Take the stairs down to Level 2.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "stair 4 com2 floor 3",
+      "to": "stair 4 com2 floor4",
+      "mode": "walk",
+      "instruction": "Take the stairs up to Level 4.",
+      "reverse_instruction": "Take the stairs down to Level 3.",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "vertical": "stairs",
+      "manual_seconds": 20
+    },
+    {
+      "from": "entrance to teaching office com2 floor2",
+      "to": "entrance to teaching office com2 floor3",
+      "mode": "walk",
+      "instruction": "Take the lift up to Level 3.",
+      "reverse_instruction": "Take the lift down to Level 2.",
+      "is_accessible": true,
+      "is_sheltered": true,
+      "vertical": "lift",
+      "manual_seconds": 15
+    },
+    {
+      "from": "Com1 main entrance floor 1",
+      "to": "Com1 level 1 entrance",
+      "mode": "walk",
+      "instruction": "Com1 main entrance floor 1 to Com1 level 1 entrance.",
+      "reverse_instruction": "Com1 level 1 entrance to Com1 main entrance floor 1.",
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "main entrance to com1 floor2",
+      "to": "Com1 level 2 entrance",
+      "mode": "walk",
+      "instruction": "main entrance to com1 floor2 to Com1 level 2 entrance.",
+      "reverse_instruction": "Com1 level 2 entrance to main entrance to com1 floor2.",
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Com2 entrance",
+      "to": "corr1 com2 floor1",
+      "mode": "walk",
+      "instruction": "Com2 entrance to corr1 com2 floor1.",
+      "reverse_instruction": "corr1 com2 floor1 to Com2 entrance.",
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "The Terrace",
+      "to": "corr1 com2 floor1",
+      "mode": "walk",
+      "instruction": "The Terrace to corr1 com2 floor1.",
+      "reverse_instruction": "corr1 com2 floor1 to The Terrace.",
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Middle of stairs from terrace to com1",
+      "to": "corr6 com1 floor2",
+      "mode": "walk",
+      "instruction": "Middle of stairs from terrace to com1 to corr6 com1 floor2.",
+      "reverse_instruction": "corr6 com1 floor2 to Middle of stairs from terrace to com1.",
+      "is_accessible": false,
+      "is_sheltered": true
+    }
+  ]
+}

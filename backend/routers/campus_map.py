@@ -28,27 +28,40 @@ async def get_node(node_id: str, session: AsyncSession = Depends(database.get_db
         raise HTTPException(status_code=404, detail="Not valid node id")
     return node
 
+#not needed now
 @router.get("/nodes/{node_id}/edges", response_model=list[campus_map.NodeEdges])
 async def get_node_edges(node_id: str, session: AsyncSession = Depends(database.get_db_session)):
     return []
 
-#pass the 2 node_id from all node edges
+#pass the 2 node_id from all node edges, not needed now
 @router.get("/edges", response_model=campus_map.SpecificEdge)
 async def get_edge_between_nodes(start: int, end: int, session: AsyncSession = Depends(database.get_db_session)):
     return {}
 
-@router.get("/buildings",  response_model=list[campus_map.BuildingSearchResult])
+@router.get("/buildings",  response_model=list[campus_map.BuildingDetail])
 async def search_buildings(building_name: str, session: AsyncSession = Depends(database.get_db_session)):
-    return []
+    return await campus_map_service.search_buildings_by_name(session, building_name)
 
 @router.get("/buildings/{building_id}", response_model=campus_map.BuildingDetail)
 async def get_building(building_id: str, session: AsyncSession = Depends(database.get_db_session)):
-    return {}
+    building = await campus_map_service.get_building_detail(session, building_id)
+    if building is None:
+        raise HTTPException(status_code=404, detail="building not found")
+    
+    return building
 
-@router.get("/buildings/{building_id}/floors", response_model=list[campus_map.FloorSearchResult])
+@router.get("/buildings/{building_id}/floors", response_model=list[campus_map.FloorDetail])
 async def get_floors(building_id: str, session: AsyncSession = Depends(database.get_db_session)):
-    return []
+    result = await campus_map_service.get_building_floors(session, building_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="building not found")
+
+    return result
 
 @router.get("/buildings/{building_id}/floors/{floor_number}", response_model=campus_map.FloorDetail)
-async def get_floor(building_id: str, floor_number: str, session: AsyncSession = Depends(database.get_db_session)):
-    return {}
+async def get_floor(building_id: str, floor_number: int, session: AsyncSession = Depends(database.get_db_session)):
+    floor = await campus_map_service.get_building_floor_by_number(session, building_id, floor_number)
+    if floor is None:
+        raise HTTPException(status_code=404, detail="building does not have this floor number")
+    
+    return floor

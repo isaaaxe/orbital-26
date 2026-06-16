@@ -21,7 +21,7 @@ async def get_recent_locations(session, current_user):
             description=location.description,
             display_name=location.display_name,
             location_type=location.location_type,
-            building_code=location.building_code,
+            building_code=location.building.building_code if location.building else None,
             area_name=location.area_name,
         )
         responses.append(response)
@@ -44,7 +44,7 @@ async def update_recent_location(session, current_user, location_id):
         description=location.description,
         display_name=location.display_name,
         location_type=location.location_type,
-        building_code=location.building_code,
+        building_code=location.building.building_code if location.building else None,
         area_name=location.area_name,
     )
 

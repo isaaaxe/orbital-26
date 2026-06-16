@@ -17,12 +17,14 @@ async def generate_route(session, startNode_id, endNode_id, mode):
         from_node_id, to_node_id = edge_nodes
         edge = edge_by_pair[edge_nodes]
         instruction = edge.instruction or f"Travel from {node_by_id[from_node_id].name} to {node_by_id[to_node_id].name}."
+        
         route_step = RouteStep(
             step_number=step_count,
             step_instruction=instruction,
             transport_mode=edge.mode,
             distance_for_step=edge.distance_m,
             estimated_seconds=edge.estimated_seconds,
+            buildings_passed_by_id=[node_by_id[from_node_id].building_id, node_by_id[to_node_id].building_id],
             from_name=node_by_id[from_node_id].name,
             to_name=node_by_id[to_node_id].name,
         )
