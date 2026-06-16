@@ -12,6 +12,8 @@ from models.map_edges import Map_Edge
 from models.users import User
 from models.saved_locations import Saved_Location
 from models.recent_locations import Recent_Location
+from models.buildings import Building
+from models.floors import Floor
 
 
 import os

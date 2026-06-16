@@ -1,11 +1,17 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from models.saved_locations import Saved_Location
 from models.locations import Location
 
 async def get_user_saves(session, user_id):
-    statement = select(Saved_Location, Location).join(Location, Saved_Location.location_id == Location.id).where(Saved_Location.user_id == user_id)
+    statement = (
+        select(Saved_Location, Location)
+        .join(Location, Saved_Location.location_id == Location.id)
+        .where(Saved_Location.user_id == user_id)
+        .options(selectinload(Location.building))
+    )
 
     result = await session.execute(statement)
     return result.all()

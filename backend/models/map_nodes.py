@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Float
+from sqlalchemy import Integer, String, Float, ForeignKey
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -11,8 +11,14 @@ class Map_Node(database.Base):
     name: Mapped[str] = mapped_column(String, nullable=False)
     node_type: Mapped[str] = mapped_column(String, nullable=False) #corner, entrance, bus stop etc
     
-    building_id: Mapped[str] = mapped_column(String, nullable=False)
-    building_code: Mapped[str | None] = mapped_column(String, nullable=True)
+    building_id: Mapped[str | None] = mapped_column(
+        ForeignKey("buildings.building_id"),
+        nullable=True,
+    )
+    building = relationship(
+        "Building",
+    )
+    
     floor: Mapped[int] = mapped_column(Integer, nullable=False)
 
     latitude: Mapped[float] = mapped_column(Float, nullable=False)

@@ -1,14 +1,5 @@
 from pydantic import BaseModel
 
-class LocationSearchResult(BaseModel):
-    id: str
-    name: str
-    description: str = ""
-    display_name: str
-    location_type: str #whether its a lt, seminar room, class room etc
-    building_code: str | None = None
-    area_name: str | None = None
-
 class LocationDetail(BaseModel):
     id: str 
     name: str
@@ -19,8 +10,7 @@ class LocationDetail(BaseModel):
 
     building_code: str | None = None
     building_name: str | None = None
-    floor: int | None = None
-    available_floors: list[int] = []
+    floor_id: int | None = None
 
     area_name: str | None = None
     latitude: float | None = None

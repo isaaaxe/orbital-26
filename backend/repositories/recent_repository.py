@@ -1,5 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 from datetime import datetime, timezone
 
 from models.recent_locations import Recent_Location
@@ -11,6 +12,7 @@ async def get_recent_locations(session, user_id):
         .join(Location, Recent_Location.location_id == Location.id)
         .where(Recent_Location.user_id == user_id)
         .order_by(Recent_Location.time.desc()).limit(5)
+        .options(selectinload(Location.building))
     )
 
     result = await session.execute(statement)

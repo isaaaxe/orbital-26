@@ -5,5 +5,5 @@ from models.map_edges import Map_Edge
 __all__ = [
     "Location",
     "Map_Node",
-    "Map_Edges",
+    "Map_Edge",
 ]

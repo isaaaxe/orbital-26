@@ -56,7 +56,7 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode)
             
             dist_to_end = triangulate_dist(next_node_id, endNode_id, node_by_id)
             estimated_remaining_seconds : float = dist_to_end / fastest_speed_m_per_second
-            heapq.heappush(heap, (time+edgeCost+estimated_remaining_seconds+sheltered_penalty, next_node_id, time+edgeCost, node_id))
+            heapq.heappush(heap, (time+edgeCost+estimated_remaining_seconds+sheltered_penalty, next_node_id, time+edgeCost+sheltered_penalty, node_id))
     
     if endNode_id not in parentDict:
         return None

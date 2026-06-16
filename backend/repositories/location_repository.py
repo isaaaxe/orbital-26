@@ -1,17 +1,26 @@
-from sqlalchemy import select
+from sqlalchemy import select, or_
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 
 from models.locations import Location
+from utils import normalise
 
 async def get_location_by_name(session, location_name) -> list[Location]:
-    statement = select(Location).where(Location.name.ilike(f"%{location_name}%"))
+    key = normalise(location_name)
+    statement = select(Location).where(
+        or_(
+            Location.name.ilike(f"%{location_name}%"),
+            Location.display_name.ilike(f"%{location_name}%"),
+            Location.aliases.any(key),  
+        )
+    ).options(selectinload(Location.building))
 
     result = await session.execute(statement)
     locations = result.scalars().all()
     return list(locations)
 
 async def get_location_by_id(session, location_id):
-    statement = select(Location).where(Location.id == location_id)
+    statement = select(Location).where(Location.id == location_id).options(selectinload(Location.building))
 
     result = await session.execute(statement)
     location = result.scalar_one_or_none()

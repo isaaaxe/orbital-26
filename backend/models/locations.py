@@ -1,6 +1,6 @@
-from sqlalchemy import Integer, String, Float
+from sqlalchemy import Integer, String, Float, ForeignKey
 from sqlalchemy.dialects.postgresql import ARRAY
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from core import database
 
@@ -18,13 +18,21 @@ class Location(database.Base):
     )
     location_type: Mapped[str] = mapped_column(String, nullable=False)
 
-    building_code: Mapped[str | None] = mapped_column(String, nullable=True)
-    building_name: Mapped[str | None] = mapped_column(String, nullable=True)
-    floor: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    available_floors: Mapped[list[int]] = mapped_column(
-        ARRAY(Integer),
-        default=list,
-        nullable=False
+    building_id: Mapped[str | None] = mapped_column(
+        ForeignKey("buildings.building_id"),
+        nullable=True,
+    )
+    building = relationship(
+        "Building",
+    )
+
+    floor_id: Mapped[int | None] = mapped_column(
+        ForeignKey("floors.floor_id"),
+        nullable=True,
+    )
+
+    floor = relationship(
+        "Floor",
     )
 
     area_name: Mapped[str | None] = mapped_column(String, nullable=True)
