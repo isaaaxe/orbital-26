@@ -157,8 +157,8 @@ BASE_NODE_SPECS = [
     {"name": "Central library entrance", "lat": 1.2964906, "lon": 103.7731269, "node_type": "entrance", "floor": 1, "building_code": "clb"},
     {"name": "Central library lift", "lat": 1.2961927, "lon": 103.7731590, "node_type": "lift_station", "floor": 1, "building_code": "clb"},
     {"name": "Outside nus coop store room", "lat": 1.2958464, "lon": 103.7730990, "node_type": "corner", "floor": 1, "building_code": "as6"},
-    {"name": "Outside LT14", "lat": 1.2956714, "lon": 103.7732274, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
-    {"name": "Outside LT15", "lat": 1.2954475, "lon": 103.7732784, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
+    {"name": "Outside LT14", "lat": 1.2956714, "lon": 103.7732274, "node_type": "corner", "floor": 1, "building_code": "as6"},
+    {"name": "Outside LT15", "lat": 1.2954475, "lon": 103.7732784, "node_type": "corner", "floor": 1, "building_code": "as6"},
     {"name": "As6 lift1", "lat": 1.2952890, "lon": 103.7733153, "node_type": "lift_station", "floor": 1, "building_code": "as6"},
     {"name": "Com1 second story outside ahu room", "lat": 1.2954026, "lon": 103.7735443, "node_type": "corner", "floor": 2, "building_code": "com1"},
     {"name": "Com1 level 2 entrance", "lat": 1.2952803, "lon": 103.7737270, "node_type": "entrance", "floor": 2, "building_code": "com1"},
@@ -507,25 +507,59 @@ def _indoor_name_aliases(raw_name):
     return disp, [disp]
 
 
-def build_indoor_room_specs(node_specs):
-    """Return location-spec dicts for indoor destination nodes."""
-    specs = []
+def build_location_specs(node_specs):
+    """Single source of truth for every searchable Location row.
+
+    - Curated LOCATION_SPECS are authoritative.
+    - A destination node (node_type in INDOOR_DEST_TYPES) is auto-promoted to a
+      Location ONLY if no curated row already represents that node.
+    - Raises on any collision (duplicate id, or two specs claiming one node) so
+      problems surface in the dry-run, never silently at search time.
+    """
+    specs, seen_ids, claimed_nodes = [], set(), set()
+
+    def emit(spec, anchor_node):
+        loc_id = location_id_from_name(spec["name"])
+        if loc_id in seen_ids:
+            raise ValueError(f"duplicate Location id {loc_id!r} (name {spec['name']!r})")
+        if anchor_node is not None:
+            if anchor_node in claimed_nodes:
+                raise ValueError(
+                    f"node {anchor_node!r} already mapped to a Location; "
+                    f"{spec['name']!r} would duplicate it"
+                )
+            claimed_nodes.add(anchor_node)
+        seen_ids.add(loc_id)
+        specs.append(spec)
+
+    # 1) curated rows win. only destination-typed rows CLAIM their node, so
+    #    POIs/buildings that merely share a routing node don't block each other.
+    for loc in LOCATION_SPECS:
+        anchor = loc["nearest_node_name"] if loc["location_type"] in INDOOR_DEST_TYPES else None
+        emit({
+            "name": loc["name"], "display_name": loc["display_name"],
+            "aliases": loc["aliases"], "location_type": loc["location_type"],
+            "building_code": loc["building_code"], "floor": loc["floor"],
+            "lat": loc["lat"], "lon": loc["lon"], "area_name": loc["area_name"],
+            "nearest_node_name": loc["nearest_node_name"],
+            "nearest_bus_stop_name": loc["nearest_bus_stop_name"],
+        }, anchor)
+
+    # 2) auto-promote leftover destination nodes (the bulk editor rooms)
     for n in node_specs:
         if n.get("node_type") not in INDOOR_DEST_TYPES:
             continue
-        raw = n["name"]
-        disp, aliases = _indoor_name_aliases(raw)
-        specs.append({
-            "raw_node_name": raw,            # for nearest_node_id (own node)
-            "name": disp,
-            "display_name": disp,
-            "aliases": aliases,
-            "location_type": n["node_type"],
-            "building_code": n.get("building_code"),
-            "floor": n["floor"],
-            "lat": n["lat"],
-            "lon": n["lon"],
-        })
+        if n["name"] in claimed_nodes:        # a curated row already covers it
+            continue
+        disp, aliases = _indoor_name_aliases(n["name"])
+        emit({
+            "name": disp, "display_name": disp, "aliases": aliases,
+            "location_type": n["node_type"], "building_code": n.get("building_code"),
+            "floor": n["floor"], "lat": n["lat"], "lon": n["lon"], "area_name": None,
+            "nearest_node_name": n["name"],   # the room's own node
+            "nearest_bus_stop_name": None,
+        }, n["name"])
+
     return specs
 
 
@@ -626,30 +660,29 @@ async def seed_data(clear_first: bool = True):
             edges = build_edges(edge_specs, node_by_name)
             session.add_all(edges)
 
-            # 5) locations
+            # 5) locations — single source of truth (curated + de-duped promotions)
             locations = []
             canteens = []
-            for loc in LOCATION_SPECS:
-                bid = resolve_building_id(loc["building_code"])
-                fid = floor_id_by_key.get((bid, loc["floor"])) if bid else None
-                loc_id = location_id_from_name(loc["name"])
+            for spec in build_location_specs(node_specs):
+                bid = resolve_building_id(spec["building_code"])
+                fid = floor_id_by_key.get((bid, spec["floor"])) if bid else None
+                loc_id = location_id_from_name(spec["name"])
 
-                extras = POI_EXTRAS.get(loc["name"], {})
-                # deep-copy JSONB dicts: POI_EXTRAS reuses shared pattern objects
-                # across rows, and we don't want one row's mutation to touch others.
+                extras = POI_EXTRAS.get(spec["name"], {})   # empty for promoted rooms
+                # deep-copy JSONB dicts: POI_EXTRAS reuses shared pattern objects.
                 boundaries = copy.deepcopy(extras.get("boundaries"))
                 opening_hours = copy.deepcopy(extras.get("opening_hours"))
                 crowd_density = copy.deepcopy(extras.get("crowd_density"))
 
+                nbs = spec["nearest_bus_stop_name"]
                 locations.append(Location(
-                    id=loc_id,
-                    name=loc["name"], description="",
-                    display_name=loc["display_name"], aliases=loc["aliases"],
-                    location_type=loc["location_type"],
-                    building_id=bid, floor_id=fid,
-                    area_name=loc["area_name"], latitude=loc["lat"], longitude=loc["lon"],
-                    nearest_node_id=node_id_from_name(loc["nearest_node_name"]),
-                    nearest_bus_stop_id=node_id_from_name(loc["nearest_bus_stop_name"]),
+                    id=loc_id, name=spec["name"], description="",
+                    display_name=spec["display_name"], aliases=spec["aliases"],
+                    location_type=spec["location_type"],
+                    building_id=bid, floor_id=fid, area_name=spec["area_name"],
+                    latitude=spec["lat"], longitude=spec["lon"],
+                    nearest_node_id=node_id_from_name(spec["nearest_node_name"]),
+                    nearest_bus_stop_id=node_id_from_name(nbs) if nbs else None,
                     landmark_hint=None, arrival_instruction=None,
                     boundaries=boundaries,
                     opening_hours=opening_hours,
@@ -663,26 +696,6 @@ async def seed_data(clear_first: bool = True):
                         halal_availability=canteen_spec["halal_availability"],
                         stalls=list(canteen_spec.get("stalls", [])),
                     ))
-
-            # 5b) indoor room locations (generated from editor-export nodes).
-            #     nearest_node_id points at the room's OWN node (built from the
-            #     raw name), while name/aliases use the cleaned display form.
-            indoor_specs = build_indoor_room_specs(node_specs)
-            for spec in indoor_specs:
-                bid = resolve_building_id(spec["building_code"])
-                fid = floor_id_by_key.get((bid, spec["floor"])) if bid else None
-                locations.append(Location(
-                    id=location_id_from_name(spec["name"]),
-                    name=spec["name"], description="",
-                    display_name=spec["display_name"], aliases=spec["aliases"],
-                    location_type=spec["location_type"],
-                    building_id=bid, floor_id=fid,
-                    area_name=None, latitude=spec["lat"], longitude=spec["lon"],
-                    nearest_node_id=node_id_from_name(spec["raw_node_name"]),
-                    nearest_bus_stop_id=None,
-                    landmark_hint=None, arrival_instruction=None,
-                    boundaries=None, opening_hours=None, crowd_density=None,
-                ))
 
             session.add_all(locations)
             session.add_all(canteens)
@@ -723,7 +736,6 @@ async def seed_data(clear_first: bool = True):
             print(f"  Nodes:      {len(nodes)}")
             print(f"  Edges:      {len(edges)} ({len(edges)//2} bidirectional)")
             print(f"  Locations:  {len(locations)}")
-            print(f"  (indoor rooms: {len(indoor_specs)})")
             print(f"  Canteens:   {len(canteens)}")
             print(f"  Bus stops:  {len(bus_stops)}")
             print(f"  Buses:      {len(buses)}")
