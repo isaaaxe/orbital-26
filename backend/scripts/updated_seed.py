@@ -1,10 +1,12 @@
 import asyncio
+import copy
 import json
 import os
 import re
 import sys 
 from math import atan2, cos, radians, sin, sqrt
 from pathlib import Path
+from sqlalchemy import update
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -17,6 +19,12 @@ from models.saved_locations import Saved_Location
 from models.recent_locations import Recent_Location
 from models.buildings import Building
 from models.floors import Floor
+from models.canteens import Canteen
+from models.buses import Bus
+from models.bus_stops import Bus_Stop
+from models.bus_stop_schedule import BusStopSchedule
+
+from poi_extras import POI_EXTRAS
 
 
 # ----------------------------------------------------------------------------
@@ -105,11 +113,14 @@ BUILDING_SPECS = [
         "building_id": "com1", "building_code": "com1",
         "name": "COM1", "display_name": "COM1",
         "aliases": ["COM1", "Computing 1"], "area_name": "school of computing",
+        # canonical routing entrance (resolved to a node id at seed time).
+        "entrance_node_name": "Com1 level 1 entrance",
     },
     {
         "building_id": "com2", "building_code": "com2",
         "name": "COM2", "display_name": "COM2",
         "aliases": ["COM2", "Computing 2"], "area_name": "school of computing",
+        "entrance_node_name": "Com2 entrance",
     },
 ]
 
@@ -400,11 +411,134 @@ def normalise_edge_tuple(t):
 # ----------------------------------------------------------------------------
 # clear
 # ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+# bus specs
+# ----------------------------------------------------------------------------
+# Milestone 2: only stops that have a graph node are seeded (the list endpoint
+# filters node_id IS NOT NULL, so nodeless stops would be hidden anyway).
+# Each stop ties to its Map_Node by name -> node_id_from_name().
+BUS_STOP_SPECS = [
+    {"bus_stop_id": "clb_bus_stop",   "name": "Central Library", "node_name": "Central Library bus stop"},
+    {"bus_stop_id": "utown_bus_stop", "name": "University Town",  "node_name": "UTown bus stop"},
+]
+
+# buses (bus_number is a string: "A1", "D1", ...)
+BUS_SPECS = [
+    {"bus_number": "D1"},
+]
+
+# (bus_number, bus_stop_id, interval_minutes) — the mock schedule links.
+BUS_STOP_SCHEDULE_SPECS = [
+    ("D1", "clb_bus_stop",   10),
+    ("D1", "utown_bus_stop", 10),
+]
+
+
+# ----------------------------------------------------------------------------
+# indoor room locations (generated from editor-export nodes)
+# ----------------------------------------------------------------------------
+# Destination node_types become searchable Location rows; corridors/stairs/
+# junctions/ahu/lifts stay pure routing nodes. name = cleaned display name,
+# aliases = name + expansions, nearest_node_id = the room's OWN node (which is
+# built from the ORIGINAL node name, so we resolve it via the raw name).
+INDOOR_DEST_TYPES = {
+    "room", "lab", "seminar room", "discussion room",
+    "tutorial room", "lecture theatre",
+}
+
+_INDOOR_PREFIX = {
+    "SR": "Seminar Room", "PL": "Programming Lab", "TR": "Tutorial Room",
+    "DR": "Discussion Room", "LT": "Lecture Theatre",
+}
+_INDOOR_CODED = re.compile(r"^([A-Za-z]+)\s*(\d+)$")
+
+# original node name -> (display_name, [extra aliases]); fixes typos, long names,
+# and casing. Keys must match the RAW node name (incl. any trailing space).
+_INDOOR_OVERRIDES = {
+    "Embeded systems Teaching Lab1": ("Embedded Systems Teaching Lab 1", []),
+    "Embeded systems Teaching Lab2": ("Embedded Systems Teaching Lab 2", []),
+    "Data Communication and networking lab/ parallel and distributed computing lab":
+        ("Data Comms & Networking Lab",
+         ["Parallel and Distributed Computing Lab",
+          "Data Communication and networking lab/ parallel and distributed computing lab"]),
+    "Information systems and anayltics research 4: ISA Lab4":
+        ("ISA Lab4", ["Information Systems and Analytics Research 4"]),
+    "SR @ LT19": ("SR @ LT19", ["Seminar Room @lt19"]),
+    "AI 1": ("AI 1", ["Artificial Intelligence 1"]),
+    "Database1": ("Database 1", []),
+    "Technical room1": ("Technical Room 1", []),
+    "technical room2": ("Technical Room 2", []),
+    "tech hangout": ("Tech Hangout", []),
+    "supplies room": ("Supplies Room", []),
+    "supplies room 2": ("Supplies Room 2", []),
+    "Computational biology 2": ("Computational Biology 2", []),
+    "Graduate students lounge": ("Graduate Students Lounge", []),
+    "Students lounge": ("Students Lounge", []),
+    "Undergraduate studies": ("Undergraduate Studies", []),
+    "Career consultation room": ("Career Consultation Room", []),
+    "Robot Living studio": ("Robot Living Studio", []),
+    "Robot experiment lab": ("Robot Experiment Lab", []),
+    "Active learning lab": ("Active Learning Lab", []),
+    "Research equipment room": ("Research Equipment Room", []),
+    "Innovation and entrepreneurship": ("Innovation and Entrepreneurship", []),
+    "former information systems 1": ("Former Information Systems 1", []),
+    "former information systems 2": ("Former Information Systems 2", []),
+    "Computer room1": ("Computer Room 1", []),
+    "AV control room": ("AV Control Room", []),
+    "IT security & OS Lab": ("IT Security & OS Lab", []),
+    "E&A cluster ": ("E&A Cluster", []),     # NOTE: trailing space in source
+    "E&A cluster 2": ("E&A Cluster 2", []),
+    "E&A cluster 3": ("E&A Cluster 3", []),
+    "E&A cluster 4": ("E&A Cluster 4", []),
+    "Executive classroom 04-02": ("Executive Classroom 04-02", []),
+    "Multipurpose space 04-01": ("Multipurpose Space 04-01", []),
+}
+
+
+def _indoor_name_aliases(raw_name):
+    if raw_name in _INDOOR_OVERRIDES:
+        disp, extra = _INDOOR_OVERRIDES[raw_name]
+        return disp, [disp] + extra
+    m = _INDOOR_CODED.match(raw_name.strip())
+    if m and m.group(1).upper() in _INDOOR_PREFIX:
+        disp = raw_name.strip()
+        return disp, [disp, f"{_INDOOR_PREFIX[m.group(1).upper()]} {m.group(2)}"]
+    disp = raw_name.strip()
+    return disp, [disp]
+
+
+def build_indoor_room_specs(node_specs):
+    """Return location-spec dicts for indoor destination nodes."""
+    specs = []
+    for n in node_specs:
+        if n.get("node_type") not in INDOOR_DEST_TYPES:
+            continue
+        raw = n["name"]
+        disp, aliases = _indoor_name_aliases(raw)
+        specs.append({
+            "raw_node_name": raw,            # for nearest_node_id (own node)
+            "name": disp,
+            "display_name": disp,
+            "aliases": aliases,
+            "location_type": n["node_type"],
+            "building_code": n.get("building_code"),
+            "floor": n["floor"],
+            "lat": n["lat"],
+            "lon": n["lon"],
+        })
+    return specs
+
+
 async def clear_existing_data(session):
     await session.execute(Saved_Location.__table__.delete())
     await session.execute(Recent_Location.__table__.delete())
     await session.execute(Map_Edge.__table__.delete())
+    await session.execute(BusStopSchedule.__table__.delete())
+    await session.execute(Bus.__table__.delete())
+    await session.execute(Bus_Stop.__table__.delete())
+    await session.execute(Canteen.__table__.delete())
     await session.execute(Location.__table__.delete())
+    await session.execute(update(Building).values(entrance_node_id=None))
     await session.execute(Map_Node.__table__.delete())
     await session.execute(Floor.__table__.delete())
     await session.execute(Building.__table__.delete())
@@ -424,7 +558,17 @@ async def seed_data(clear_first: bool = True):
                 await clear_existing_data(session)
 
             # 1) buildings
-            buildings = [Building(**spec) for spec in BUILDING_SPECS]
+            #    Build without entrance_node_id first: it's a FK into map_nodes,
+            #    and nodes aren't inserted until step 3. We set it in step 3a once
+            #    the referenced nodes exist, then commit at the end.
+            building_by_id = {}
+            buildings = []
+            for spec in BUILDING_SPECS:
+                spec = dict(spec)                      # don't mutate the module-level spec
+                spec.pop("entrance_node_name", None)   # not a model column
+                b = Building(**spec)
+                buildings.append(b)
+                building_by_id[b.building_id] = b
             session.add_all(buildings)
             await session.flush()
 
@@ -456,6 +600,22 @@ async def seed_data(clear_first: bool = True):
             nodes = build_nodes(node_specs)
             session.add_all(nodes)
 
+            # 3a) now that nodes exist, resolve each building's entrance FK.
+            #     Flush so the FK target rows are present before we reference them.
+            await session.flush()
+            for spec in BUILDING_SPECS:
+                entrance_name = spec.get("entrance_node_name")
+                if entrance_name is None:
+                    continue
+                if entrance_name not in node_by_name:
+                    raise KeyError(
+                        f"building {spec['building_id']!r} references missing "
+                        f"entrance node: {entrance_name!r}"
+                    )
+                building_by_id[spec["building_id"]].entrance_node_id = (
+                    node_id_from_name(entrance_name)
+                )
+
             # 4) edges (base + accessible + editor)
             edge_specs = (
                 [normalise_edge_tuple(t) for t in BASE_EDGE_SPECS]
@@ -467,11 +627,21 @@ async def seed_data(clear_first: bool = True):
 
             # 5) locations
             locations = []
+            canteens = []
             for loc in LOCATION_SPECS:
                 bid = resolve_building_id(loc["building_code"])
                 fid = floor_id_by_key.get((bid, loc["floor"])) if bid else None
+                loc_id = location_id_from_name(loc["name"])
+
+                extras = POI_EXTRAS.get(loc["name"], {})
+                # deep-copy JSONB dicts: POI_EXTRAS reuses shared pattern objects
+                # across rows, and we don't want one row's mutation to touch others.
+                boundaries = copy.deepcopy(extras.get("boundaries"))
+                opening_hours = copy.deepcopy(extras.get("opening_hours"))
+                crowd_density = copy.deepcopy(extras.get("crowd_density"))
+
                 locations.append(Location(
-                    id=location_id_from_name(loc["name"]),
+                    id=loc_id,
                     name=loc["name"], description="",
                     display_name=loc["display_name"], aliases=loc["aliases"],
                     location_type=loc["location_type"],
@@ -480,17 +650,83 @@ async def seed_data(clear_first: bool = True):
                     nearest_node_id=node_id_from_name(loc["nearest_node_name"]),
                     nearest_bus_stop_id=node_id_from_name(loc["nearest_bus_stop_name"]),
                     landmark_hint=None, arrival_instruction=None,
+                    boundaries=boundaries,
+                    opening_hours=opening_hours,
+                    crowd_density=crowd_density,
                 ))
+
+                canteen_spec = extras.get("canteen")
+                if canteen_spec is not None:
+                    canteens.append(Canteen(
+                        location_id=loc_id,
+                        halal_availability=canteen_spec["halal_availability"],
+                        stalls=list(canteen_spec.get("stalls", [])),
+                    ))
+
+            # 5b) indoor room locations (generated from editor-export nodes).
+            #     nearest_node_id points at the room's OWN node (built from the
+            #     raw name), while name/aliases use the cleaned display form.
+            indoor_specs = build_indoor_room_specs(node_specs)
+            for spec in indoor_specs:
+                bid = resolve_building_id(spec["building_code"])
+                fid = floor_id_by_key.get((bid, spec["floor"])) if bid else None
+                locations.append(Location(
+                    id=location_id_from_name(spec["name"]),
+                    name=spec["name"], description="",
+                    display_name=spec["display_name"], aliases=spec["aliases"],
+                    location_type=spec["location_type"],
+                    building_id=bid, floor_id=fid,
+                    area_name=None, latitude=spec["lat"], longitude=spec["lon"],
+                    nearest_node_id=node_id_from_name(spec["raw_node_name"]),
+                    nearest_bus_stop_id=None,
+                    landmark_hint=None, arrival_instruction=None,
+                    boundaries=None, opening_hours=None, crowd_density=None,
+                ))
+
             session.add_all(locations)
+            session.add_all(canteens)
+
+            # 6) bus stops + buses (independent of each other), then schedule links.
+            #    bus_stops.node_id -> map_nodes (already inserted above).
+            bus_stops = [
+                Bus_Stop(
+                    bus_stop_id=spec["bus_stop_id"],
+                    name=spec["name"],
+                    node_id=node_id_from_name(spec["node_name"]),
+                )
+                for spec in BUS_STOP_SPECS
+            ]
+            buses = [Bus(bus_number=spec["bus_number"]) for spec in BUS_SPECS]
+            session.add_all(bus_stops)
+            session.add_all(buses)
+
+            # flush so Bus.bus_id (autoincrement) is populated before we link.
+            await session.flush()
+            bus_id_by_number = {b.bus_number: b.bus_id for b in buses}
+
+            schedules = [
+                BusStopSchedule(
+                    bus_id=bus_id_by_number[bus_number],
+                    bus_stop_id=bus_stop_id,
+                    schedule=interval,
+                )
+                for (bus_number, bus_stop_id, interval) in BUS_STOP_SCHEDULE_SPECS
+            ]
+            session.add_all(schedules)
 
             await session.commit()
 
             print("Seed data inserted successfully.")
-            print(f"  Buildings: {len(buildings)}")
-            print(f"  Floors:    {len(floors)}")
-            print(f"  Nodes:     {len(nodes)}")
-            print(f"  Edges:     {len(edges)} ({len(edges)//2} bidirectional)")
-            print(f"  Locations: {len(locations)}")
+            print(f"  Buildings:  {len(buildings)}")
+            print(f"  Floors:     {len(floors)}")
+            print(f"  Nodes:      {len(nodes)}")
+            print(f"  Edges:      {len(edges)} ({len(edges)//2} bidirectional)")
+            print(f"  Locations:  {len(locations)}")
+            print(f"  (indoor rooms: {len(indoor_specs)})")
+            print(f"  Canteens:   {len(canteens)}")
+            print(f"  Bus stops:  {len(bus_stops)}")
+            print(f"  Buses:      {len(buses)}")
+            print(f"  Schedules:  {len(schedules)}")
 
         except Exception:
             await session.rollback()

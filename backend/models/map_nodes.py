@@ -17,6 +17,7 @@ class Map_Node(database.Base):
     )
     building = relationship(
         "Building",
+        foreign_keys=[building_id],
     )
     
     floor: Mapped[int] = mapped_column(Integer, nullable=False)
