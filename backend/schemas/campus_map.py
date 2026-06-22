@@ -51,6 +51,7 @@ class FloorDetail(BaseModel):
     floor_number: int
 
     geo_reference: list[list[float]]
+    affine: list[list[float]] | None = None
     
     image_url: str 
     image_width: int
