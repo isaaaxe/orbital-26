@@ -4,7 +4,7 @@ from sqlalchemy.orm import selectinload
 
 from models.buildings import Building
 from models.floors import Floor
-from utils import normalise
+from utils.normalise import normalise
 
 async def get_building_by_name(session, building_name):
     key = normalise(building_name)
