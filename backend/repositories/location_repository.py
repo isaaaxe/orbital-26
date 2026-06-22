@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from models.locations import Location
-from utils import normalise
+from utils.normalise import normalise
 
 async def get_location_by_name(session, location_name) -> list[Location]:
     key = normalise(location_name)
