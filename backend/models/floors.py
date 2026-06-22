@@ -25,6 +25,10 @@ class Floor(database.Base):
         JSONB,
         nullable=False,
     )
+    affine: Mapped[list[list[float]]] = mapped_column(
+        JSONB,
+        nullable=True,
+    )
 
     image_url: Mapped[str] = mapped_column(String, nullable=False)
     image_width: Mapped[int] = mapped_column(Integer, nullable=False)

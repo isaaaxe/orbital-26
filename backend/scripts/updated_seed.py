@@ -582,6 +582,7 @@ async def seed_data(clear_first: bool = True):
                     floor_name=floor_name_for(f["floor_number"]),
                     building_id=f["building"],
                     geo_reference=f.get("geo_reference") or [],
+                    affine=f.get("affine") or [],
                     image_url=f"{IMAGE_BASE_URL}/{f['image']}",
                     image_width=f["image_width"],
                     image_height=f["image_height"],
