@@ -14,6 +14,10 @@ from models.saved_locations import Saved_Location
 from models.recent_locations import Recent_Location
 from models.buildings import Building
 from models.floors import Floor
+from models.canteens import Canteen
+from models.bus_stop_schedule import BusStopSchedule
+from models.bus_stops import Bus_Stop
+from models.buses import Bus
 
 
 import os

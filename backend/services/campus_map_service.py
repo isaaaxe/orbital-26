@@ -49,6 +49,8 @@ async def search_buildings_by_name(session, building_name):
             aliases=building.aliases,
             area_name=building.area_name,
             available_floors=[floor.floor_number for floor in building.floors],
+            boundaries=building.boundaries,
+            entrance_node_id=building.entrance_node_id,
         )
         search_result_list.append(search_result)
 
@@ -69,7 +71,31 @@ async def get_building_detail(session, building_id):
         aliases=building.aliases,
         area_name=building.area_name,
         available_floors=[floor.floor_number for floor in building.floors],
+        boundaries=building.boundaries,
+        entrance_node_id=building.entrance_node_id,
     )
+
+async def get_all_buildings(session):
+    buildings = await campus_map_repository.get_all_buildings(session)
+    search_result_list =[]
+
+    for building in buildings:
+        building: Building
+        search_result = campus_map.BuildingDetail(
+            name=building.name,
+            display_name=building.display_name,
+            building_id=building.building_id,
+            building_code=building.building_code,
+            aliases=building.aliases,
+            area_name=building.area_name,
+            available_floors=[floor.floor_number for floor in building.floors],
+            boundaries=building.boundaries,
+            entrance_node_id=building.entrance_node_id
+        )
+        search_result_list.append(search_result)
+
+    return search_result_list
+    
 
 async def get_building_floors(session, building_id):
     building = await campus_map_repository.get_building_by_id(session, building_id)

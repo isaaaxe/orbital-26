@@ -27,6 +27,12 @@ async def get_building_by_id(session, building_id):
     building = result.scalar_one_or_none()
     return building
 
+async def get_all_buildings(session):
+    statement = select(Building).options(selectinload(Building.floors))
+    result = await session.execute(statement)
+    return list(result.scalars().all())
+
+
 async def get_floors(session, building_id):
     statement = select(Floor).where(Floor.building_id == building_id).order_by(Floor.floor_number)
 

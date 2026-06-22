@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class NodeDetail(BaseModel):
@@ -39,8 +39,10 @@ class BuildingDetail(BaseModel):
     building_code: str | None = None
     aliases: list[str] = [] #may not be necessary
     area_name: str | None = None
+    boundaries: dict | None = None
 
     available_floors: list[int]
+    entrance_node_id: str | None = None
 
 class FloorDetail(BaseModel):
     floor_id: int
@@ -54,3 +56,10 @@ class FloorDetail(BaseModel):
     image_width: int
     image_height: int
 
+
+class Canteen(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    location_id: str
+    halal_availability: bool
+    stalls: list[str] = []

@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, String, Float, ForeignKey
-from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from core import database
@@ -38,12 +38,18 @@ class Location(database.Base):
     area_name: Mapped[str | None] = mapped_column(String, nullable=True)
     latitude: Mapped[float | None] = mapped_column(Float, nullable=True)
     longitude: Mapped[float | None] = mapped_column(Float, nullable=True)
+    boundaries: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
 
     nearest_node_id: Mapped[str | None] = mapped_column(String, nullable=True)
     nearest_bus_stop_id: Mapped[str | None] = mapped_column(String, nullable=True)
     
     landmark_hint: Mapped[str | None] = mapped_column(String, nullable=True)
     arrival_instruction: Mapped[str | None] = mapped_column(String, nullable=True)
+
+    crowd_density: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
+    opening_hours: Mapped[dict | None] = mapped_column(JSONB, nullable=True)
+
+    canteen = relationship("Canteen", back_populates="location", uselist=False)
     
     
 

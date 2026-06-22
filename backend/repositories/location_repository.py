@@ -13,16 +13,23 @@ async def get_location_by_name(session, location_name) -> list[Location]:
             Location.display_name.ilike(f"%{location_name}%"),
             Location.aliases.any(key),  
         )
-    ).options(selectinload(Location.building))
+    ).options(selectinload(Location.building), selectinload(Location.canteen))
 
     result = await session.execute(statement)
     locations = result.scalars().all()
     return list(locations)
 
 async def get_location_by_id(session, location_id):
-    statement = select(Location).where(Location.id == location_id).options(selectinload(Location.building))
+    statement = select(Location).where(Location.id == location_id).options(selectinload(Location.building), selectinload(Location.canteen))
 
     result = await session.execute(statement)
     location = result.scalar_one_or_none()
     return location
+
+async def get_location_by_type(session, location_type):
+    statement = select(Location).where(Location.location_type==location_type).options(selectinload(Location.building), selectinload(Location.canteen))
+
+    result = await session.execute(statement)
+    locations = result.scalars().all()
+    return list(locations)
 

@@ -23,3 +23,9 @@ async def get_location(location_id: str, session: AsyncSession = Depends(databas
         raise HTTPException(status_code=404, detail="Location not found")
 
     return location
+
+@router.get("", response_model=list[location.LocationDetail])
+async def get_location_by_type(location_type: str, session: AsyncSession = Depends(database.get_db_session)):
+    locations = await location_service.get_location_by_type(session, location_type)
+    
+    return locations
