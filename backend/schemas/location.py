@@ -17,6 +17,8 @@ class LocationDetail(BaseModel):
     latitude: float | None = None
     longitude: float | None = None
     boundaries: dict | None = None
+    #polgon: list...
+    
 
     nearest_node_id: str | None = None
     nearest_bus_stop_id: str | None = None

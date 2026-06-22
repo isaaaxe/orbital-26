@@ -1,4 +1,4 @@
-from sqlalchemy import select, or_
+from sqlalchemy import select, or_, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -12,7 +12,9 @@ async def get_building_by_name(session, building_name):
         or_(
             Building.name.ilike(f"%{building_name}%"),
             Building.display_name.ilike(f"%{building_name}%"),
-            Building.aliases.any(key),  
+            func.array_to_string(Building.aliases, " ").ilike(f"%{building_name}%"),
+            func.array_to_string(Building.aliases, "").ilike(f"%{key}%"),
+   
         )
     ).options(selectinload(Building.floors))
 

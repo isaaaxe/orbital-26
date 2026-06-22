@@ -18,6 +18,10 @@ async def get_bus_detail(bus_number: str, session: AsyncSession = Depends(databa
         raise HTTPException(status_code=404, detail="Invalid bus number")
     
     return bus
+
+#if u want i can include get all bus 
+#original plan was, user clicks on bus stop => it will show available buses this all they need
+#unless u want a feature where user clicks a buses tab, it will show all buses available 
     
 @router.get("/bus_stop/id/{bus_stop_id}", response_model=BusStopResponse)
 async def get_bus_stop_by_id(bus_stop_id: str, session: AsyncSession = Depends(database.get_db_session)):
