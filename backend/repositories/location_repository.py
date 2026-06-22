@@ -1,4 +1,4 @@
-from sqlalchemy import select, or_
+from sqlalchemy import select, or_, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -11,7 +11,8 @@ async def get_location_by_name(session, location_name) -> list[Location]:
         or_(
             Location.name.ilike(f"%{location_name}%"),
             Location.display_name.ilike(f"%{location_name}%"),
-            Location.aliases.any(key),  
+            func.array_to_string(Location.aliases, " ").ilike(f"%{location_name}%"),
+            func.array_to_string(Location.aliases, "").ilike(f"%{key}%"), 
         )
     ).options(selectinload(Location.building), selectinload(Location.canteen))
 

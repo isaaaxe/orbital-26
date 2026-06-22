@@ -38,6 +38,7 @@ async def get_node_edges(node_id: str, session: AsyncSession = Depends(database.
 async def get_edge_between_nodes(start: int, end: int, session: AsyncSession = Depends(database.get_db_session)):
     return {}
 
+#we are searching by location so see how
 @router.get("/buildings",  response_model=list[campus_map.BuildingDetail])
 async def search_buildings(building_name: str, session: AsyncSession = Depends(database.get_db_session)):
     return await campus_map_service.search_buildings_by_name(session, building_name)

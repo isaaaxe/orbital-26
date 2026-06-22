@@ -21,10 +21,15 @@ async def get_bus_stop_by_id(session, bus_stop_id):
     return bus_stop
 
 async def get_bus_stop_by_name(session, bus_stop_name):
-    statement = select(Bus_Stop).where(Bus_Stop.name == bus_stop_name).options(selectinload(Bus_Stop.bus_links).selectinload(BusStopSchedule.bus), selectinload(Bus_Stop.map_node))
+    statement = (
+        select(Bus_Stop)
+        .where(Bus_Stop.name.ilike(f"%{bus_stop_name}%"))
+        .options(selectinload(Bus_Stop.bus_links).selectinload(BusStopSchedule.bus), selectinload(Bus_Stop.map_node))
+    )
+                
 
     result = await session.execute(statement)
-    bus_stop = result.scalar_one_or_none()
+    bus_stop = result.scalars().first()
     return bus_stop
 
 async def get_all_bus_stops(session):
