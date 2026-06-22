@@ -44,7 +44,10 @@ SEEDED_BUILDINGS = {"com1", "com2"}
 # Floor-plan images. Point this at wherever you host them (see notes at bottom).
 #   Supabase public bucket:  https://<proj>.supabase.co/storage/v1/object/public/floors
 #   FastAPI StaticFiles:     /static/floors
-IMAGE_BASE_URL = os.getenv("FLOOR_IMAGE_BASE_URL", "/static/floors").rstrip("/")
+IMAGE_BASE_URL = os.getenv(
+    "FLOOR_IMAGE_BASE_URL",
+    "https://dngynyaooicsuxbqnfth.supabase.co/storage/v1/object/public/floors",
+).rstrip("/")
 
 # Editor export (floors calibration + room nodes + edges). Optional.
 MAP_DATA_JSON = Path(os.getenv("MAP_DATA_JSON", Path(__file__).parent / "routes_map_data.json"))
