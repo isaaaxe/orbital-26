@@ -47,7 +47,7 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode)
             if mode == "accessible" and edge_is_accessible == False:
                 continue
 
-            if mode == "walking" and edge_mode != "walking":
+            if mode == "walking" and edge_mode != "walk":
                 continue
 
             if mode == "sheltered" and edge_is_sheltered == False:
