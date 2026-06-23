@@ -604,6 +604,9 @@ async def seed_data(clear_first: bool = True):
                 spec = dict(spec)                      # don't mutate the module-level spec
                 spec.pop("entrance_node_name", None)   # not a model column
                 b = Building(**spec)
+                # footprint polygon lives in POI_EXTRAS (single source of truth), keyed by
+                # name; mirror it onto the Building row so /campus-map serves it too.
+                b.boundaries = copy.deepcopy(POI_EXTRAS.get(spec["name"], {}).get("boundaries"))
                 buildings.append(b)
                 building_by_id[b.building_id] = b
             session.add_all(buildings)
