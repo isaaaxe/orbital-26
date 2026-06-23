@@ -25,6 +25,7 @@ async def generate_route(session, startNode_id, endNode_id, mode):
             distance_for_step=edge.distance_m,
             estimated_seconds=edge.estimated_seconds,
             buildings_passed_by_id=[node_by_id[from_node_id].building_id, node_by_id[to_node_id].building_id],
+            floor_transition=[node_by_id[from_node_id].floor, node_by_id[to_node_id].floor],
             from_name=node_by_id[from_node_id].name,
             to_name=node_by_id[to_node_id].name,
         )
