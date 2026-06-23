@@ -33,7 +33,8 @@ import {
   clearRecentlyVisitedMutation,
 } from "@/hook/useUser";
 import { useClosestNodeMutation } from "@/hook/useRoute";
-import { Location } from "@/api/locations";
+import { LocationDetail } from "@/api_debug/locations.logged";
+import { useGetLocationDetails } from "@/hook/useLocations";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 const styles = StyleSheet.create({
@@ -223,34 +224,48 @@ export default function Index() {
     star: require("../../assets/icons/star.png"),
     no_img: require("../../assets/icons/no_image.png"),
   };
-
+  const [detailLocationId, setDetailLocationId] = useState<string | null>(null);
+  const {
+    data: locDetail,
+    isFetching: locDetailLoading,
+    error: locDetailError,
+  } = useGetLocationDetails(detailLocationId);
   //
 
   function handleSearch(input: string) {
     setUserSearch(input);
-    router.push("/searchRoute");
+    router.push("/searchRoute?mode=destination");
   }
 
   function handleSetCurrLocation() {
     // to be able to manually set origin next time, too complicated to do now
     // router.push("/selectOrigin")
-    getCurrentLocation();
+    router.push("/searchRoute?mode=origin");
   }
 
-  function handleSetDestination(location: Location) {
+  function handleSetDestination(location_id: string) {
     if (origin == null) {
       Alert.alert("Please enable your current location");
       return;
     }
-    if (location.id == origin.nearest_node.node_id) {
+    if (location_id == origin.nearest_node.node_id) {
       Alert.alert(
         "Please choose a destination that is different from your starting point",
       );
       return;
     }
-    setDestination(location);
-    router.push("/chooseRoute");
+    //think i need to get location detail sigh
+    setDetailLocationId(location_id);
   }
+
+  useEffect(() => {
+    if (!locDetail) return;
+    if (!origin) return;
+
+    setDestination(locDetail);
+    setDetailLocationId(null);
+    router.push("/chooseRoute");
+  }, [locDetail]);
 
   //asking for location data
   async function getCurrentLocation() {
@@ -344,7 +359,8 @@ export default function Index() {
     saveLocationMutation.isPending ||
     deleteSavedLocationMutation.isPending ||
     deleteRecentMutation.isPending ||
-    clearRecentMutation.isPending;
+    clearRecentMutation.isPending ||
+    locDetailLoading;
 
   const loadingMessage = saveLocationMutation.isPending
     ? "Saving location..."
@@ -354,7 +370,10 @@ export default function Index() {
         ? "Deleting recently visited location..."
         : clearRecentMutation.isPending
           ? "Clearing recently visited locations..."
-          : "Loading...";
+          : locDetailLoading
+            ? "Fetching location details..."
+            : "Loading...";
+
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -471,15 +490,7 @@ export default function Index() {
                                   item.description ? item.description : ""
                                 }
                                 onPress={() =>
-                                  handleSetDestination({
-                                    id: item.location_id,
-                                    name: item.name,
-                                    display_name: item.display_name,
-                                    location_type: item.location_type,
-                                    building_code: item.building_code,
-                                    area_name: item.area_name,
-                                    description: item.description,
-                                  })
+                                  handleSetDestination(item.location_id)
                                 }
                                 saveable
                                 isSaved={isLocationSaved(item.location_id)}

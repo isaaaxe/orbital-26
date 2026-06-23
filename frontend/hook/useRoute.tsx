@@ -1,10 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  ClosestNodeRequest,
-  fetchRoutes,
-  getClosestNode,
-  RouteResponse,
-} from "@/api_debug/routes.logged";
+import { fetchRoutes, RouteResponse } from "@/api_debug/routes.logged";
+
+import { getClosestNode } from "@/api_debug/campus_map.logged";
 
 export function useRouteQuery(startNodeId?: string, endNodeId?: string) {
   return useQuery<RouteResponse[]>({

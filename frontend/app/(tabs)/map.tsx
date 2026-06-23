@@ -5,6 +5,7 @@ import {
   Alert,
   Modal,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, {
@@ -16,10 +17,18 @@ import MapView, {
   Region,
 } from "react-native-maps";
 import { useRouteContext } from "@/context/RouteContext";
-import { POI_DATA, POI_DATA_TYPE, POI_GROUPS } from "../data/POI";
+import {
+  POI_DATA,
+  POI_DATA_TYPE,
+  POI_GROUPS,
+  POI_CANTEEN,
+  POI_BUS_STOPS,
+} from "../data/POI";
 import { useState } from "react";
 import { router } from "expo-router";
 import BackButton from "@/components/BackButton";
+import { useAuthContext } from "@/context/AuthContext";
+import ChipList, { ChipListProps } from "@/components/ChipList";
 
 const styles = StyleSheet.create({
   screen: {
@@ -48,7 +57,6 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     borderColor: "#4169e1",
-
     minWidth: 12,
     alignItems: "center",
     justifyContent: "center",
@@ -112,18 +120,34 @@ const styles = StyleSheet.create({
     color: "#0B2D73",
     fontWeight: "700",
   },
+  chipOverlay: {
+    position: "absolute",
+    top: 12,
+    left: 16,
+    right: 16,
+    zIndex: 10,
+  },
 });
+export type Mode = "building" | "canteen" | "bus_stop";
 
 export default function MapPage() {
+  const { token } = useAuthContext();
   const { origin, routePOIs, setRoutePOIs } = useRouteContext();
   const [visible, setVisible] = useState(false);
   const [region, setRegion] = useState<Region | null>(null);
+  const [mapMode, setMapMode] = useState<Mode>("building");
   const showPOI = region !== null && region.latitudeDelta < 0.015;
-  // const {
-  //   data: originDetails,
-  //   isLoading,
-  //   error,
-  // } = useGetLocationDetails(origin?.nearest_node.);
+
+  const chipData: ChipListProps<Mode> = {
+    data: [
+      { name: "Buildings", code: "building" },
+      { name: "Canteens", code: "canteen" },
+      { name: "Bus stops", code: "bus_stop" },
+    ],
+    selected: mapMode,
+    onSelect: setMapMode,
+  };
+
   const boundaryCoordinates = [
     { latitude: 1.309274704980008, longitude: 103.77196245668526 },
     { latitude: 1.307506885450094, longitude: 103.77726729866667 },
@@ -142,12 +166,16 @@ export default function MapPage() {
   ];
 
   function getCurrentLocation() {
-    Alert.alert(`Current Location\n${origin?.nearest_node.name}`);
+    Alert.alert(`Current Location`, `${origin?.nearest_node.name}`);
   }
 
   function handleIndoor() {
     setVisible(false);
     router.push("/floorPlanView");
+  }
+
+  function handleSaveLocation() {
+    //
   }
 
   return (
@@ -157,7 +185,8 @@ export default function MapPage() {
           style={{
             alignItems: "center",
             justifyContent: "space-between",
-            margin: 20,
+            marginHorizontal: 20,
+            marginVertical: 8,
             flexDirection: "row",
           }}
         >
@@ -171,6 +200,13 @@ export default function MapPage() {
           </View>
         </View>
         <View style={styles.container}>
+          <View style={styles.chipOverlay}>
+            <ChipList
+              data={chipData.data}
+              selected={mapMode}
+              onSelect={setMapMode}
+            />
+          </View>
           <MapView
             style={styles.map}
             provider={PROVIDER_GOOGLE}
@@ -209,64 +245,118 @@ export default function MapPage() {
                   longitude: origin.nearest_node.longitude!,
                 }}
                 onPress={getCurrentLocation}
-              />
+              >
+                <Image
+                  source={require("../../assets/icons/location.png")}
+                  style={{ width: 28, height: 28 }}
+                  resizeMode="contain"
+                />
+              </Marker>
             ) : (
               <></>
             )}
             {/* Point of interests: buildings */}
-            {showPOI &&
-              POI_DATA.map((currPoi, index) => (
-                <Polygon
-                  key={`poly_${index}`}
-                  coordinates={currPoi.boundary}
-                  fillColor={currPoi.color}
-                  strokeColor={currPoi.color}
-                  tappable={true}
-                  onPress={() => {
-                    setVisible(true);
-                    setRoutePOIs([currPoi]);
-                  }}
-                />
-              ))}
-            {showPOI &&
-              POI_DATA.map((currPoi, index) => (
-                <Marker
-                  key={`marker_${index}`}
-                  coordinate={currPoi.center}
-                  anchor={{ x: 0.5, y: 0.5 }}
-                  onPress={() => {
-                    setVisible(true);
-                    setRoutePOIs([currPoi]);
-                  }}
-                >
-                  <View style={styles.mapLabel}>
-                    <Text style={styles.mapLabelText}>
-                      {currPoi.display_name}
-                    </Text>
-                  </View>
-                </Marker>
-              ))}
-            {!showPOI &&
-              POI_GROUPS.map((group, index) => (
-                <Polygon
-                  key={`group_${index}`}
-                  coordinates={group.boundary}
-                  fillColor={group.color}
-                  strokeColor={group.color}
-                />
-              ))}
-            {!showPOI &&
-              POI_GROUPS.map((group, index) => (
-                <Marker
-                  key={`group_marker_${index}`}
-                  coordinate={group.center}
-                  anchor={{ x: 0.5, y: 0.5 }}
-                >
-                  <View style={styles.mapLabel}>
-                    <Text style={styles.mapLabelText}>{group.name}</Text>
-                  </View>
-                </Marker>
-              ))}
+            {mapMode === "building" && (
+              <>
+                {showPOI &&
+                  POI_DATA.map((currPoi, index) => (
+                    <Polygon
+                      key={`poly_${index}`}
+                      coordinates={currPoi.boundary}
+                      fillColor={currPoi.color}
+                      strokeColor={currPoi.color}
+                      tappable={true}
+                      onPress={() => {
+                        setVisible(true);
+                        setRoutePOIs([currPoi]);
+                      }}
+                    />
+                  ))}
+
+                {showPOI &&
+                  POI_DATA.map((currPoi, index) => (
+                    <Marker
+                      key={`marker_${index}`}
+                      coordinate={currPoi.center}
+                      anchor={{ x: 0.5, y: 0.5 }}
+                      onPress={() => {
+                        setVisible(true);
+                        setRoutePOIs([currPoi]);
+                      }}
+                    >
+                      <View style={styles.mapLabel}>
+                        <Text style={styles.mapLabelText}>
+                          {currPoi.display_name}
+                        </Text>
+                      </View>
+                    </Marker>
+                  ))}
+
+                {!showPOI &&
+                  POI_GROUPS.map((group, index) => (
+                    <Polygon
+                      key={`group_${index}`}
+                      coordinates={group.boundary}
+                      fillColor={group.color}
+                      strokeColor={group.color}
+                    />
+                  ))}
+
+                {!showPOI &&
+                  POI_GROUPS.map((group, index) => (
+                    <Marker
+                      key={`group_marker_${index}`}
+                      coordinate={group.center}
+                      anchor={{ x: 0.5, y: 0.5 }}
+                    >
+                      <View style={styles.mapLabel}>
+                        <Text style={styles.mapLabelText}>{group.name}</Text>
+                      </View>
+                    </Marker>
+                  ))}
+              </>
+            )}
+            {mapMode === "canteen" && (
+              <>
+                {POI_CANTEEN.map((canteen, index) => (
+                  <Polygon
+                    key={`canteen_${index}`}
+                    coordinates={canteen.boundary}
+                    fillColor={canteen.color}
+                    strokeColor={canteen.color}
+                  />
+                ))}
+                {POI_CANTEEN.map((canteen, index) => (
+                  <Marker
+                    key={`canteen_marker_${index}`}
+                    coordinate={canteen.center}
+                    anchor={{ x: 0.5, y: 0.5 }}
+                  >
+                    <Image
+                      source={require("../../assets/icons/location.png")}
+                      style={{ height: 28, width: 28 }}
+                    />
+                  </Marker>
+                ))}
+              </>
+            )}
+            {mapMode === "bus_stop" && (
+              <>
+                {POI_BUS_STOPS.map((stop, index) => (
+                  <Marker
+                    key={`bus_stop_${index}`}
+                    coordinate={stop.center}
+                    anchor={{ x: 0.5, y: 0.5 }}
+                  >
+                    <Image
+                      source={require("../../assets/icons/bus-stop.png")}
+                      style={{ width: 22, height: 22 }}
+                      resizeMode="contain"
+                    />
+                  </Marker>
+                ))}
+              </>
+            )}
           </MapView>
           <Modal
             visible={visible}
@@ -280,11 +370,16 @@ export default function MapPage() {
                   {routePOIs.length > 0 ? routePOIs[0].name : ""}
                 </Text>
                 <View>
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={handleIndoor}
-                  >
-                    <Text style={styles.modalButtonText}>View floorplan</Text>
+                  {mapMode == "building" && (
+                    <TouchableOpacity
+                      style={styles.modalButton}
+                      onPress={handleIndoor}
+                    >
+                      <Text style={styles.modalButtonText}>View floorplan</Text>
+                    </TouchableOpacity>
+                  )}
+                  <TouchableOpacity style={styles.modalButton}>
+                    <Text style={styles.modalButtonText}>Save Location</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.modalButtonClose}

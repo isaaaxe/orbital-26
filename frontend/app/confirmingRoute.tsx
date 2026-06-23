@@ -157,7 +157,6 @@ export default function ConfirmingRoute() {
   }
 
   const routeReady = !!selectedRoute;
-
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -261,13 +260,6 @@ export default function ConfirmingRoute() {
                       lineCap="butt"
                     />
                   ))}
-                  {/* {groupOfSteps[1] && (
-                <Polyline 
-                  coordinates={groupOfSteps[1].coords}
-                  strokeColor="red"
-                  strokeWidth={10}
-                />
-              )} */}
                 </MapView>
               ) : (
                 <IndoorCheck />

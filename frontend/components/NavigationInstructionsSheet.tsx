@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { RouteStep } from "@/api/routes";
+import { RouteStep } from "@/api_debug/routes.logged";
 import { router } from "expo-router";
 import { useRouteContext } from "@/context/RouteContext";
 
@@ -132,6 +132,12 @@ const styles = StyleSheet.create({
   },
 });
 
+function formatDistance(distanceMeters: number) {
+  return distanceMeters >= 1000
+    ? `${(distanceMeters / 1000).toFixed(1)} km`
+    : `${Math.round(distanceMeters)} m`;
+}
+
 export default function NavigationInstructionsSheet({
   steps,
 }: NavigationInstructionsSheetProps) {
@@ -171,7 +177,7 @@ export default function NavigationInstructionsSheet({
 
                 {step.distance_for_step !== undefined && (
                   <Text style={styles.meta}>
-                    {(step.distance_for_step / 1000).toFixed(1)} km
+                    {formatDistance(step.distance_for_step)}
                   </Text>
                 )}
               </View>

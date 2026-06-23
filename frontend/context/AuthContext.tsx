@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
-import { UserDetail } from "@/api/users";
+import { UserDetail } from "@/api_debug/users.logged";
 import {
   useCreateUserMutation,
   useDeleteUserMutation,

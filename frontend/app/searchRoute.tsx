@@ -15,6 +15,7 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Linking,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -23,10 +24,14 @@ import {
   useSavedLocations,
   useSaveLocationMutation,
 } from "@/hook/useLocations";
-import { Location } from "@/api/locations";
+import { LocationDetail } from "@/api_debug/locations.logged";
 import { useAuthContext } from "@/context/AuthContext";
 import { useDebounce } from "@/hook/useDebounce";
 import BackButton from "@/components/BackButton";
+import { useLocalSearchParams } from "expo-router";
+import * as ExpoLocation from "expo-location";
+import { useClosestNodeMutation } from "@/hook/useRoute";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 const styles = StyleSheet.create({
   screen: {
@@ -130,19 +135,46 @@ const styles = StyleSheet.create({
     color: "#374151",
     textAlign: "center",
   },
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 999,
+  },
+  loadingItem: {
+    alignItems: "center",
+  },
+  mapSection: {
+    flex: 2,
+    marginHorizontal: 20,
+    marginTop: 8,
+    borderRadius: 16,
+    overflow: "hidden",
+    backgroundColor: "#eee",
+  },
+  listSection: {
+    flex: 3,
+    marginTop: 12,
+  },
 });
 
 export default function SearchRoute() {
   const { user, token } = useAuthContext();
-  const { userSearch, setUserSearch, destination, setDestination, origin } =
-    useRouteContext();
+  const {
+    userSearch,
+    setUserSearch,
+    destination,
+    setDestination,
+    origin,
+    setOrigin,
+  } = useRouteContext();
   const query = useDebounce(userSearch, 1000);
   const {
     data: searchData,
     isLoading: isSearching,
     error: searchError,
   } = useLocationSearchQuery(query);
-  // console.log(searchData);
   const {
     savedLocations,
     isLoading: savedIsLoading,
@@ -150,41 +182,106 @@ export default function SearchRoute() {
     isLocationSaved,
   } = useSavedLocations(token);
 
+  const closestNodeMutation = useClosestNodeMutation();
+
   const locations = searchData ?? [];
 
   const searchLocationIds = new Set(locations.map((loc) => loc.id));
 
+  const { mode } = useLocalSearchParams<{ mode: "origin" | "destination" }>();
+  const isOriginMode = mode === "origin";
+  const [selectItem, setSelectItem] = useState<LocationDetail | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   function handleSearch() {
-    //check if origin and destination are the same
-    if (origin == null) {
-      Alert.alert("Please enable your location");
-      return;
-    }
-    if (destination == null) {
-      Alert.alert("Please select a destination");
-      return;
-    }
-    if (origin.nearest_node.node_id == destination.id) {
-      Alert.alert(
-        "Please choose a destination that is different from your starting point",
-      );
-      return;
-    }
-    //check if the thing matchy,
-    if (searchLocationIds.has(destination.id)) {
-      router.push("/chooseRoute");
+    if (isOriginMode) {
+      //origin mode
+      if (selectItem == null) {
+        Alert.alert(
+          "Please enable your location or select a location to start from.",
+        );
+      } else if (searchLocationIds.has(selectItem.id)) {
+        //need to fetch item
+        setOrigin(null);
+        router.back();
+      } else {
+        //i dont think this is currently possible but just in case
+        Alert.alert("Please choose one of the currently listed destinations");
+      }
     } else {
-      //i dont think this is currently possible but just in case
-      Alert.alert("Please choose one of the currently listed destinations");
+      //destination mode
+      if (origin == null) {
+        Alert.alert(
+          "Please enable your location or select a location to start from.",
+          "",
+          [
+            {
+              text: "OK",
+              onPress: () => router.back(),
+            },
+          ],
+          {
+            cancelable: true,
+            onDismiss: () => router.back(),
+          },
+        );
+
+        return;
+      }
+      if (selectItem == null) {
+        Alert.alert("Please select a destination");
+        return;
+      }
+      if (origin.nearest_node.node_id == selectItem.id) {
+        Alert.alert(
+          "Please choose a destination that is different from your starting point",
+        );
+        return;
+      }
+      //check if the thing matchy,
+      if (searchLocationIds.has(selectItem.id)) {
+        setDestination(selectItem);
+        router.push("/chooseRoute");
+      } else {
+        //i dont think this is currently possible but just in case
+        Alert.alert("Please choose one of the currently listed destinations");
+      }
     }
   }
 
-  function handleSelect(input: Location) {
-    setDestination(input);
+  function handleSelect(input: LocationDetail) {
+    setSelectItem(input);
   }
+  async function getCurrentLocation() {
+    const permission = await ExpoLocation.requestForegroundPermissionsAsync();
 
+    if (permission.status !== "granted") {
+      console.log("Permission denied");
+
+      if (!permission.canAskAgain) {
+        console.log("User must enable location manually in settings");
+        // lead them to settings
+        Linking.openSettings();
+      }
+      return;
+    }
+    setIsLoading(true);
+    const currentLocation = await ExpoLocation.getCurrentPositionAsync({
+      accuracy: ExpoLocation.Accuracy.High,
+    });
+    const closestNode = await closestNodeMutation.mutateAsync({
+      latitude: currentLocation.coords.latitude,
+      longitude: currentLocation.coords.longitude,
+      floor: 1,
+    });
+    setOrigin({
+      ...closestNode,
+    });
+    setIsLoading(false);
+  }
   const icons = {
     no_image: require("../assets/icons/no_image.png"),
+    location: require("../assets/icons/location.png"),
   };
 
   //handling saving and deleting location
@@ -250,53 +347,94 @@ export default function SearchRoute() {
         </View>
         {/* another search bar they can alter incase they typed wrongly or smth */}
         {/* actually this onSearch for search should be fuzzy searching things on the catalogue, not supposed to search */}
-        <SearchBar
-          searchContent={userSearch}
-          onSearch={handleSearch}
-          onChangeText={(text) => {
-            setUserSearch(text);
-            setDestination(null);
-          }}
-        />
-        {isSearching && (
-          <Text style={styles.message}>Searching locations...</Text>
-        )}
+        <View style={styles.mapSection}>
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={StyleSheet.absoluteFillObject}
+            region={{
+              latitude: 1.300291282646443,
+              longitude: 103.77733947340228,
+              latitudeDelta: 0.016,
+              longitudeDelta: 0.016,
+            }}
+            customMapStyle={[
+              {
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [{ visibility: "off" }],
+              },
+            ]}
+          >
+            {/* selected marker here */}
+          </MapView>
+        </View>
+        <View style={styles.listSection}>
+          <SearchBar
+            searchContent={userSearch}
+            onSearch={handleSearch}
+            onChangeText={(text) => {
+              setUserSearch(text);
+              setDestination(null);
+            }}
+          />
+          {isSearching && (
+            <Text style={styles.message}>Searching locations...</Text>
+          )}
 
-        {searchError && (
-          <Text style={styles.message}>Failed to search locations</Text>
-        )}
-
-        {!isSearching &&
-          userSearch.trim().length >= 2 &&
-          locations.length === 0 && (
+          {!isSearching && locations.length === 0 && (
             <Text style={styles.message}>No locations found</Text>
           )}
-        <FlatList
-          keyExtractor={(item) => item.id}
-          data={locations}
-          extraData={savedLocations}
-          renderItem={({ item }) => {
-            return (
+          {searchError && (
+            <Text style={styles.message}>Failed to search locations</Text>
+          )}
+
+          {/* {!isSearching &&
+            userSearch.trim().length >= 2 &&
+            locations.length === 0 && (
+              <Text style={styles.message}>No locations found</Text>
+            )} */}
+          {/* function to choose origin available if there is no search*/}
+          {isOriginMode && (
+            <View style={{ marginHorizontal: 20 }}>
               <CardItem
-                mainIcon={icons.no_image}
-                cardTitle={item.name}
-                cardSubtitle={item.description ? item.description : ""}
-                onPress={() => handleSelect(item)}
-                selected={item.name === destination?.name}
-                saveable={token !== null}
-                isSaved={isLocationSaved(item.id)}
-                onSavePress={() =>
-                  handleToggleSaveLocation(item.id, isLocationSaved(item.id))
-                }
+                mainIcon={icons.location}
+                cardTitle="Current location"
+                cardSubtitle="Selects registered place closest to your location"
+                onPress={getCurrentLocation}
               />
-            );
-          }}
-          style={{ marginHorizontal: 20 }}
-        />
-        <StylisedButton
-          buttonText="Choose destination"
-          onPress={handleSearch}
-        />
+            </View>
+          )}
+          <FlatList
+            keyExtractor={(item) => item.id}
+            data={locations}
+            extraData={savedLocations}
+            renderItem={({ item }) => {
+              return (
+                <CardItem
+                  mainIcon={icons.no_image}
+                  cardTitle={item.name}
+                  cardSubtitle={
+                    item.aliases.length > 0 ? item.aliases.join(", ") : ""
+                  }
+                  onPress={() => handleSelect(item)}
+                  selected={item.name === selectItem?.name}
+                  saveable={token !== null}
+                  isSaved={isLocationSaved(item.id)}
+                  onSavePress={() =>
+                    handleToggleSaveLocation(item.id, isLocationSaved(item.id))
+                  }
+                />
+              );
+            }}
+            style={{ marginHorizontal: 20 }}
+          />
+          <StylisedButton
+            buttonText={
+              isOriginMode ? "Choose starting point" : "Choose destination"
+            }
+            onPress={handleSearch}
+          />
+        </View>
         <Modal
           visible={saveModalVisible}
           transparent
@@ -351,6 +489,13 @@ export default function SearchRoute() {
           </View>
         </Modal>
       </SafeAreaView>
+      {isLoading && (
+        <View style={styles.loadingOverlay}>
+          <View style={styles.loadingItem}>
+            <ActivityIndicator size="large" />
+          </View>
+        </View>
+      )}
     </View>
   );
 }

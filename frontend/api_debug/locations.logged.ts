@@ -1,37 +1,32 @@
 // import type { RoutePlace } from "@/context/RouteContext";
-import { sampleLocations } from "@/app/data/sampleLocations";
-
-export type Location = {
-  id: string;
-  name: string;
-  display_name: string;
-  location_type: string;
-  building_code: string | null;
-  area_name: string | null;
-  description: string | null;
-};
+import { Canteen } from "./campus_map.logged";
 
 export type LocationDetail = {
   id: string;
   name: string;
+  description: string;
   display_name: string;
   aliases: string[];
   location_type: string;
-  description: string | null;
 
   building_code: string | null;
   building_name: string | null;
-  floor: number | null;
-  available_floors: number[];
+  floor_id: number | null;
 
   area_name: string | null;
   latitude: number | null;
   longitude: number | null;
+  boundaries: { type: string; coordinates: [number, number][] } | null;
+
   nearest_node_id: string | null;
   nearest_bus_stop_id: string | null;
 
   landmark_hint: string | null;
   arrival_instruction: string | null;
+
+  crowd_density: Record<string, number> | null;
+  opening_hours: Record<string, [string, string]> | null;
+  canteen: Canteen | null;
 };
 
 const API_BASE_URL = "https://orbital-26.onrender.com";
@@ -68,14 +63,16 @@ async function debugFetch(url: string, options?: RequestInit) {
   }
 }
 
-export async function searchLocations(query: string): Promise<Location[]> {
-  if (useMockAPI) {
-    const lowerQuery = query.trim().toLowerCase();
-    const locations = sampleLocations.filter((location) =>
-      location.name.toLowerCase().includes(lowerQuery),
-    );
-    return locations;
-  }
+export async function searchLocations(
+  query: string,
+): Promise<LocationDetail[]> {
+  // if (useMockAPI) {
+  //   const lowerQuery = query.trim().toLowerCase();
+  //   const locations = sampleLocations.filter((location) =>
+  //     location.name.toLowerCase().includes(lowerQuery),
+  //   );
+  //   return locations;
+  // }
 
   const res = await debugFetch(
     `${API_BASE_URL}/locations/search?q=${encodeURIComponent(query)}`,
@@ -96,6 +93,18 @@ export async function fetchLocationDetail(
   );
   if (!res.ok) {
     throw new Error("Failed to fetch location detail");
+  }
+  return res.json();
+}
+
+export async function fetchLocationDetailByType(
+  location_type: string,
+): Promise<LocationDetail[]> {
+  const res = await debugFetch(
+    `${API_BASE_URL}/locations?location_type=${encodeURIComponent(location_type)}`,
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch location type/invalid types");
   }
   return res.json();
 }

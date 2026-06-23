@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   },
 
   textContainer: {
+    flex: 1,
     marginLeft: 20,
     height: 36,
     justifyContent: "center",
@@ -104,9 +105,17 @@ export default function CardItem({
             cardSubtitle.length == 0 && styles.textContainerCentered,
           ]}
         >
-          <Text style={styles.cardTitle}>{cardTitle}</Text>
+          <Text style={styles.cardTitle} numberOfLines={1} ellipsizeMode="tail">
+            {cardTitle}
+          </Text>
           {cardSubtitle.length > 0 ? (
-            <Text style={styles.cardSubtitle}>{cardSubtitle}</Text>
+            <Text
+              style={styles.cardSubtitle}
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            >
+              {cardSubtitle}
+            </Text>
           ) : (
             <></>
           )}

@@ -6,8 +6,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-type ChipProps = {
-  text: string;
+type ChipProps<TCode extends string = string> = {
+  item: {
+    name: string;
+    code: TCode;
+  };
+  selected: boolean;
+  onSelect: (code: TCode) => void;
 };
 
 const styles = StyleSheet.create({
@@ -25,12 +30,27 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#0B4EA2",
   },
+  chipSelected: {
+    backgroundColor: "#0B4EA2",
+  },
+  chipTextSelected: {
+    color: "white",
+  },
 });
 
-export default function ChipItem(props: ChipProps) {
+export default function ChipItem<TCode extends string = string>({
+  item,
+  selected,
+  onSelect,
+}: ChipProps<TCode>) {
   return (
-    <TouchableOpacity style={styles.chip}>
-      <Text style={styles.chipText}>{props.text}</Text>
+    <TouchableOpacity
+      style={[styles.chip, selected && styles.chipSelected]}
+      onPress={() => onSelect(item.code)}
+    >
+      <Text style={[styles.chipText, selected && styles.chipTextSelected]}>
+        {item.name}
+      </Text>
     </TouchableOpacity>
   );
 }

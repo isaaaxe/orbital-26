@@ -10,16 +10,19 @@ import {
   ScrollView,
   Modal,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 // import { sampleSavedLocations } from "../data/sampleLocations";
 // import type { RoutePlace } from "@/context/RouteContext";
 import {
   useDeleteSavedLocationMutation,
+  useGetLocationDetails,
   useSavedLocationsQuery,
 } from "@/hook/useLocations";
-import { Location } from "@/api/locations";
+import { LocationDetail } from "@/api_debug/locations.logged";
 import { useAuthContext } from "@/context/AuthContext";
+import { useEffect, useState } from "react";
 
 // curr default image should be selected by tag later on?
 const icons = {
@@ -75,15 +78,31 @@ const styles = StyleSheet.create({
 // const MOCK_TOKEN = "mock-token"
 export default function SavedPage() {
   const { token } = useAuthContext();
-  const { setUserSearch, setDestination } = useRouteContext();
+  const { origin, setUserSearch, setDestination } = useRouteContext();
   const { data: savedData, isLoading: isLoadingSaved } =
     useSavedLocationsQuery(token);
+  const [detailLocationId, setDetailLocationId] = useState<string | null>(null);
+  const {
+    data: locDetail,
+    isFetching: locDetailLoading,
+    error: locDetailError,
+  } = useGetLocationDetails(detailLocationId);
 
-  function handleSelect(input: Location) {
-    setUserSearch(input.name);
-    setDestination(input);
-    router.push("/chooseRoute");
+  function handleSelect(location_id: string, name: string) {
+    setUserSearch(name);
+    setDetailLocationId(location_id);
   }
+
+  useEffect(() => {
+    if (!locDetail) return;
+    if (!origin) {
+      Alert.alert("No origin detected", "Please choose a starting point");
+    }
+
+    setDestination(locDetail);
+    setDetailLocationId(null);
+    router.push("/chooseRoute");
+  }, [locDetail]);
 
   const deleteSavedLocationMutation = useDeleteSavedLocationMutation(token);
   const savedLocations = savedData ?? [];
@@ -92,7 +111,9 @@ export default function SavedPage() {
 
   const loadingMessage = deleteSavedLocationMutation.isPending
     ? "Removing saved location..."
-    : "Loading...";
+    : locDetailLoading
+      ? "Fetching location details..."
+      : "Loading...";
 
   return (
     <View style={styles.screen}>
@@ -134,17 +155,7 @@ export default function SavedPage() {
                   mainIcon={icons.no_image}
                   cardTitle={item.name}
                   cardSubtitle={item.purpose ? item.purpose : ""}
-                  onPress={() =>
-                    handleSelect({
-                      id: item.location_id,
-                      name: item.name,
-                      description: "",
-                      area_name: item.area_name,
-                      building_code: item.building_code,
-                      display_name: item.display_name,
-                      location_type: item.location_type,
-                    })
-                  }
+                  onPress={() => handleSelect(item.location_id, item.name)}
                   saveable
                   isSaved
                   onSavePress={() =>

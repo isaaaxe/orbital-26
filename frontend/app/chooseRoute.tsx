@@ -15,7 +15,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect } from "react";
 import { useRouteQuery } from "@/hook/useRoute";
-import { RouteResponse } from "@/api/routes";
+import { RouteResponse } from "@/api_debug/routes.logged";
 import { useGetLocationDetails } from "@/hook/useLocations";
 import BackButton from "@/components/BackButton";
 
@@ -55,12 +55,6 @@ function formatDuration(totalSeconds: number) {
     : minutes > 0
       ? `${minutes}m ${seconds}s`
       : `${seconds}s`;
-}
-
-function formatDistance(distanceMeters: number) {
-  return distanceMeters >= 1000
-    ? `${(distanceMeters / 1000).toFixed(1)} km`
-    : `${Math.round(distanceMeters)} m`;
 }
 
 export default function ChooseRoute() {

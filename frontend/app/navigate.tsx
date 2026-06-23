@@ -65,14 +65,7 @@ export default function Navigate() {
   //    from api calls to sql retrievals
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { origin, destination, selectedRoute, routeSegments } =
-    useRouteContext();
-  const {
-    data: destinationDetails,
-    isLoading: isGetDetailsLoading,
-    error: detailsError,
-  } = useGetLocationDetails(destination?.id);
-  //note: might be able to remove this, as route should be already loaded before coming to this page
+  const { selectedRoute, routeSegments } = useRouteContext();
   if (!selectedRoute) {
     return (
       <View>

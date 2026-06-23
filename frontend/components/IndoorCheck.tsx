@@ -19,9 +19,9 @@ const styles = StyleSheet.create({
 });
 
 export default function IndoorCheck() {
-  const { routePOIs } = useRouteContext();
+  const { floorPlans } = useRouteContext();
 
-  if (routePOIs.length === 0) {
+  if (!floorPlans || Object.keys(floorPlans).length == 0) {
     return (
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyText}>No indoor routing involved!</Text>
@@ -29,5 +29,5 @@ export default function IndoorCheck() {
     );
   }
 
-  return <IndoorView routePOIs={routePOIs} />;
+  return <IndoorView floorPlans={floorPlans} />;
 }

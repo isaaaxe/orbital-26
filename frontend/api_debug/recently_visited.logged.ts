@@ -50,7 +50,7 @@ export type RecentLocationResponse = {
   display_name: string;
   location_type: string;
   building_code: string | null;
-  area_name: string;
+  area_name: string | null;
 };
 
 export type DeleteResponse = {
