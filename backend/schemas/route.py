@@ -12,6 +12,7 @@ class RouteStep(BaseModel):
     distance_for_step: float
     estimated_seconds: float
     buildings_passed_by_id: list[str | None] = []
+    floor_transition: list[int]
     from_name: str | None = None #for corners
     to_name: str | None = None   #for corners
 
