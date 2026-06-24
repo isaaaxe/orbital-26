@@ -9,6 +9,7 @@ export type LocationDetail = {
   aliases: string[];
   location_type: string;
 
+  building_id: string | null;
   building_code: string | null;
   building_name: string | null;
   floor_id: number | null;

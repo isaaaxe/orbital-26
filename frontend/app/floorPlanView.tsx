@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet } from "react-native";
 import BackButton from "@/components/BackButton";
 import IndoorCheck from "@/components/IndoorCheck";
+import { useBuildingFloors } from "@/hook/useCampusMap";
 
 const styles = StyleSheet.create({
   container: {
@@ -36,11 +37,11 @@ const styles = StyleSheet.create({
 });
 
 export default function FloorPlanView() {
-  const { routePOIs, setRoutePOIs } = useRouteContext();
+  const { selectedLocation, setSelectedLocation } = useRouteContext();
   const navigate = useNavigation();
   useEffect(() => {
     const unsubscribe = navigate.addListener("beforeRemove", () => {
-      setRoutePOIs([]);
+      setSelectedLocation(null);
     });
 
     return unsubscribe;
@@ -48,7 +49,9 @@ export default function FloorPlanView() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>{routePOIs[0]?.name ?? "Indoor View"}</Text>
+        <Text style={styles.title}>
+          {selectedLocation?.display_name ?? "Indoor View"}
+        </Text>
         <BackButton additionalBackCleanUp={() => {}} />
       </View>
       <View style={styles.indoorContainer}>

@@ -23,11 +23,8 @@ import {
 import { LocationDetail } from "@/api_debug/locations.logged";
 import { useAuthContext } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
-
+import { icons } from "../data/loadIcons";
 // curr default image should be selected by tag later on?
-const icons = {
-  no_image: require("../../assets/icons/no_image.png"),
-};
 
 const styles = StyleSheet.create({
   screen: {
@@ -152,7 +149,7 @@ export default function SavedPage() {
               keyExtractor={(item) => item.location_id}
               renderItem={({ item }) => (
                 <CardItem
-                  mainIcon={icons.no_image}
+                  mainIcon={icons[item.location_type] ?? icons.no_image}
                   cardTitle={item.name}
                   cardSubtitle={item.purpose ? item.purpose : ""}
                   onPress={() => handleSelect(item.location_id, item.name)}

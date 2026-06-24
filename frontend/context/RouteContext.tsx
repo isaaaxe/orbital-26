@@ -70,10 +70,12 @@ type RouteContextType = {
   // routes: RouteResponse[] | null;
   // setRoutes: (routes: RouteResponse[] | null) => void;
   routeSegments: RenderPath[];
-  routePOIs: POI_DATA_TYPE[];
-  setRoutePOIs: (poi: POI_DATA_TYPE[]) => void;
+  // routePOIs: POI_DATA_TYPE[];
+  // setRoutePOIs: (poi: POI_DATA_TYPE[]) => void;
   floorPlans: FloorPlansByBuildingFloor | undefined;
   // floorPlanWithNodes: FloorPlanLayouts | undefined
+  selectedLocation: LocationDetail | null;
+  setSelectedLocation: (loc_detail: LocationDetail | null) => void;
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
@@ -87,7 +89,9 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
 
   const [origin, setOrigin] = useState<NearestNode | null>(null);
   const [destination, setDestination] = useState<LocationDetail | null>(null);
-  const [routePOIs, setRoutePOIs] = useState<POI_DATA_TYPE[]>([]);
+  const [selectedLocation, setSelectedLocation] =
+    useState<LocationDetail | null>(null);
+  // const [routePOIs, setRoutePOIs] = useState<POI_DATA_TYPE[]>([]);
   // const [routes, setRoutes] = useState<RouteResponse[] | null>(null);
   //selectedRoute available, need to
   //1. group by colour
@@ -95,10 +99,11 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
   //struct = [{mode: "walk", coords: LatLng[]}, {mode: "campus bus", coords: LatLng[]}]
 
   function buildRenderPath(selectedRoute: RouteResponse): RenderPath[] {
-    console.log(selectedRoute.steps.length);
-    console.log(selectedRoute.path_coordinates.length);
-    console.log(selectedRoute.path_coordinates);
-    selectedRoute.steps.forEach((step) => console.log(step.floor_transition));
+    // console.log(selectedRoute.steps.length);
+    // console.log(selectedRoute.path_coordinates.length);
+    // console.log(selectedRoute.steps.length);
+    // console.log(selectedRoute.path_coordinates.length);
+    // console.log(selectedRoute.path_coordinates);
     const groupOfSteps: RenderPath[] = [];
     let prev = null;
     for (let i = 0; i < selectedRoute.steps.length; i++) {
@@ -169,7 +174,11 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
       //look at index 1 item
       let building_code = selectedRoute.steps[i].buildings_passed_by_id[1];
       let floor = selectedRoute.steps[i].floor_transition[1];
-      if (curr == building_code && curr_floor == floor) {
+      if (
+        curr == building_code &&
+        curr_floor == floor &&
+        building_code != null
+      ) {
         //continues from latest path
         //add the node to latest
         nodesByBuildingFloor[nodesByBuildingFloor.length - 1].push({
@@ -226,7 +235,10 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         floorPlansByBuildingFloor[building_code] = null;
       }
     });
-
+    // console.log(floorPlansByBuildingFloor);
+    // Object.values(floorPlansByBuildingFloor).forEach((floor) => {
+    //   console.log(floor?.nodes);
+    // });
     return floorPlansByBuildingFloor;
   }
 
@@ -239,6 +251,8 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     queryFn: () => getFloorPlans(selectedRoute!),
     enabled: !!selectedRoute,
   });
+  // console.log(selectedRoute?.path_coordinates.length);
+  // console.log(selectedRoute?.path_coordinates);
 
   return (
     <RouteContext.Provider
@@ -252,10 +266,9 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         destination,
         setDestination,
         routeSegments,
-        routePOIs,
-        setRoutePOIs,
         floorPlans,
-        // floorPlanWithNodes
+        selectedLocation,
+        setSelectedLocation,
       }}
     >
       {children}

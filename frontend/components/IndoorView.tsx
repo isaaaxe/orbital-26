@@ -10,13 +10,11 @@ import Svg, { Polyline, Circle } from "react-native-svg";
 import IndoorViewButtons from "./IndoorViewButtons";
 
 //For testing
-import { POI_DATA_TYPE } from "@/app/data/POI";
-import { floorPlans } from "@/app/data/floorPlans";
 import { useEffect, useState, useMemo } from "react";
-import { useRouteContext } from "@/context/RouteContext";
-import { FloorDetail } from "@/api_debug/campus_map.logged";
+import { FloorPlanLayout, getBuildingFloorKey } from "@/context/RouteContext";
 import ChipList from "./ChipList";
 import { FloorPlansByBuildingFloor } from "@/context/RouteContext";
+import { AffineCoeff } from "@/api_debug/campus_map.logged";
 
 type RoutePoints = {
   x: number;
@@ -57,6 +55,51 @@ function getFloorLabel(floorNumber: number) {
   return `${floorNumber}`;
 }
 
+//to derive buildingId and floornumber
+export function parseBuildingFloorKey(key: string): {
+  buildingId: string;
+  floorNumber: number;
+} | null {
+  const separatorIndex = key.lastIndexOf(":");
+
+  if (separatorIndex === -1) return null;
+
+  const buildingId = key.slice(0, separatorIndex);
+  const floorNumber = Number(key.slice(separatorIndex + 1));
+
+  if (!buildingId || Number.isNaN(floorNumber)) return null;
+
+  return {
+    buildingId,
+    floorNumber,
+  };
+}
+
+type PixelPoint = {
+  x: number;
+  y: number;
+};
+
+function geoToPixel(lat: number, lng: number, coeff: AffineCoeff): PixelPoint {
+  const [[a, d], [b, e], [c, f]] = coeff;
+
+  const det = a * e - b * d;
+
+  // if (Math.abs(det) < 1e-12) {
+  //   throw new Error(
+  //     "Invalid affine coefficient: determinant is too close to 0",
+  //   );
+  // }
+
+  const dlng = lng - c;
+  const dlat = lat - f;
+
+  const x = (e * dlng - b * dlat) / det;
+  const y = (-d * dlng + a * dlat) / det;
+
+  return { x, y };
+}
+
 export default function IndoorView({ floorPlans }: IndoorViewProps) {
   // const floorsPerPOI = routePOIs.map((poi) => {
   //   return Object.keys(floorPlans[poi.code]);
@@ -66,17 +109,39 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
   const [selectedBuildingId, setSelectedBuildingId] = useState<string | null>(
     null,
   );
+
+  const [selectedFloorNumber, setSelectedFloorNumber] = useState<number | null>(
+    null,
+  );
   const [containerSize, setContainerSize] = useState({
     width: 0,
     height: 0,
   });
-  const [selectedFloorNumber, setSelectedFloorNumber] = useState<number | null>(
-    null,
-  );
+
+  const floorPlansByBuilding = useMemo(() => {
+    const grouped: Record<string, FloorPlanLayout[] | null> = {};
+    Object.entries(floorPlans).forEach(([key, floorPlan]) => {
+      if (!floorPlan) return;
+
+      const parsed = parseBuildingFloorKey(key);
+      if (!parsed) return;
+      const { buildingId } = parsed;
+      if (!grouped[buildingId]) {
+        grouped[buildingId] = [];
+      }
+      grouped[buildingId].push(floorPlan);
+    });
+    Object.values(grouped).forEach((floors) => {
+      floors?.sort(
+        (a, b) => a.floorDetail.floor_number - b.floorDetail.floor_number,
+      );
+    });
+    return grouped;
+  }, [floorPlans]);
 
   const buildingIds = useMemo(() => {
-    return Object.keys(floorPlans);
-  }, [floorPlans]);
+    return Object.keys(floorPlansByBuilding);
+  }, [floorPlansByBuilding]);
 
   useEffect(() => {
     if (!selectedBuildingId || !buildingIds.includes(selectedBuildingId)) {
@@ -87,12 +152,8 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
   const floors = useMemo(() => {
     if (!selectedBuildingId) return [];
 
-    const buildingFloors = floorPlans[selectedBuildingId];
-
-    if (!buildingFloors) return [];
-
-    return [...buildingFloors].sort((a, b) => a.floor_number - b.floor_number);
-  }, [floorPlans, selectedBuildingId]);
+    return floorPlansByBuilding[selectedBuildingId] ?? [];
+  }, [floorPlansByBuilding, selectedBuildingId]);
 
   useEffect(() => {
     if (floors.length === 0) {
@@ -101,20 +162,24 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
     }
 
     const selectedFloorStillExists = floors.some(
-      (floor) => floor.floor_number === selectedFloorNumber,
+      (floor) => floor.floorDetail.floor_number === selectedFloorNumber,
     );
 
     if (!selectedFloorStillExists) {
-      const levelOne = floors.find((floor) => floor.floor_number === 1);
-      setSelectedFloorNumber((levelOne ?? floors[0]).floor_number);
+      const levelOne = floors.find(
+        (floor) => floor.floorDetail.floor_number === 1,
+      );
+      setSelectedFloorNumber((levelOne ?? floors[0]).floorDetail.floor_number);
     }
   }, [floors, selectedFloorNumber]);
 
   const currentFloor = useMemo(() => {
-    if (selectedFloorNumber == null) return null;
+    if (!selectedBuildingId || selectedFloorNumber == null) return null;
 
     return (
-      floors.find((floor) => floor.floor_number === selectedFloorNumber) ?? null
+      floors.find(
+        (floor) => floor.floorDetail.floor_number === selectedFloorNumber,
+      ) ?? null
     );
   }, [floors, selectedFloorNumber]);
 
@@ -126,7 +191,23 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
     );
   }
 
-  const imageAspectRatio = currentFloor.image_width / currentFloor.image_height;
+  //here currentFloor is determined
+  const pixelNodes = useMemo(() => {
+    return currentFloor.nodes.map((node) =>
+      geoToPixel(
+        node.latitude,
+        node.longitude,
+        currentFloor.floorDetail.affine,
+      ),
+    );
+  }, [currentFloor]);
+  const routePoints = useMemo(() => {
+    return pixelNodes.map((p) => `${p.x},${p.y}`).join(" ");
+  }, [pixelNodes]);
+
+  const imageAspectRatio =
+    currentFloor.floorDetail.image_width /
+    currentFloor.floorDetail.image_height;
 
   const fittedSize =
     containerSize.width === 0 || containerSize.height === 0
@@ -136,8 +217,12 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
           height: containerSize.height,
         });
 
-  const scaleX = fittedSize ? fittedSize.width / currentFloor.image_width : 1;
-  const scaleY = fittedSize ? fittedSize.height / currentFloor.image_height : 1;
+  const scaleX = fittedSize
+    ? fittedSize.width / currentFloor.floorDetail.image_width
+    : 1;
+  const scaleY = fittedSize
+    ? fittedSize.height / currentFloor.floorDetail.image_height
+    : 1;
 
   const buildingData = buildingIds.map((buildingId) => ({
     name: buildingId.toUpperCase(),
@@ -163,19 +248,45 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
         <ResumableZoom minScale={1} maxScale={5} panMode="clamp">
           <View style={{ width: fittedSize.width, height: fittedSize.height }}>
             <Image
-              source={{ uri: currentFloor.image_url }}
+              source={{ uri: currentFloor.floorDetail.image_url }}
               style={{
                 width: fittedSize.width,
                 height: fittedSize.height,
               }}
               resizeMode="contain"
             />
+            <Svg
+              width={fittedSize.width}
+              height={fittedSize.height}
+              viewBox={`0 0 ${currentFloor.floorDetail.image_width} ${currentFloor.floorDetail.image_height}`}
+              style={[StyleSheet.absoluteFill, { zIndex: 10, elevation: 10 }]}
+            >
+              <Polyline
+                points={routePoints}
+                fill="none"
+                stroke="#0B4EA2"
+                strokeWidth={8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              {pixelNodes.map((point, index) => (
+                <Circle
+                  key={index}
+                  cx={point.x}
+                  cy={point.y}
+                  r={12}
+                  fill="#0B4EA2"
+                />
+              ))}
+            </Svg>
           </View>
         </ResumableZoom>
       )}
       <View style={styles.layerButtonsOverlay}>
         <IndoorViewButtons
-          layers={floors.map((floor) => getFloorLabel(floor.floor_number))}
+          layers={floors.map((floor) =>
+            getFloorLabel(floor.floorDetail.floor_number),
+          )}
           selectedLayer={
             selectedFloorNumber == null
               ? undefined
@@ -183,11 +294,12 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
           }
           onPress={(layer) => {
             const selected = floors.find(
-              (floor) => getFloorLabel(floor.floor_number) === layer,
+              (floor) =>
+                getFloorLabel(floor.floorDetail.floor_number) === layer,
             );
 
             if (selected) {
-              setSelectedFloorNumber(selected.floor_number);
+              setSelectedFloorNumber(selected.floorDetail.floor_number);
             }
           }}
         />

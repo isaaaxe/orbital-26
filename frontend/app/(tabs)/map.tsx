@@ -29,6 +29,13 @@ import { router } from "expo-router";
 import BackButton from "@/components/BackButton";
 import { useAuthContext } from "@/context/AuthContext";
 import ChipList, { ChipListProps } from "@/components/ChipList";
+import { icons } from "../data/loadIcons";
+import { useAllBuildingDetails } from "@/hook/useCampusMap";
+import {
+  useGetLocationDetailsByType,
+  useSaveLocationMutation,
+} from "@/hook/useLocations";
+import { useFetchAllBusStop } from "@/hook/useBus";
 
 const styles = StyleSheet.create({
   screen: {
@@ -128,15 +135,64 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
 });
+const scamColourWheel = [
+  "rgba(130, 202, 255, 0.75)",
+  "rgba(65, 105, 225, 0.75)",
+  "rgba(155, 210, 255, 0.75)",
+  "rgba(30, 144, 255, 0.75)",
+  "rgba(118, 180, 250, 0.75)",
+  "rgba(72, 118, 255, 0.75)",
+  "rgba(86, 165, 235, 0.75)",
+  "rgba(100, 149, 237, 0.75)",
+];
 export type Mode = "building" | "canteen" | "bus_stop";
+
+export const boundaryCoordinates = [
+  { latitude: 1.309274704980008, longitude: 103.77196245668526 },
+  { latitude: 1.307506885450094, longitude: 103.77726729866667 },
+  { latitude: 1.3019869511579418, longitude: 103.77622076521456 },
+  { latitude: 1.2950634383403345, longitude: 103.78665786634224 },
+  { latitude: 1.288220180328691, longitude: 103.78144365183114 },
+  { latitude: 1.293711950030539, longitude: 103.76895528652895 },
+  { latitude: 1.309274704980008, longitude: 103.77196245668526 },
+];
+
+export const outerBoundary = [
+  { latitude: 85, longitude: -85 },
+  { latitude: 85, longitude: 175 },
+  { latitude: -85, longitude: 175 },
+  { latitude: -85, longitude: -85 },
+];
+
+function firstAndLast(str: string) {
+  if (str.length <= 3) return str;
+  return str[0] + str[str.length - 1];
+}
 
 export default function MapPage() {
   const { token } = useAuthContext();
-  const { origin, routePOIs, setRoutePOIs } = useRouteContext();
+  const saveMutation = useSaveLocationMutation(token);
+  const { origin, selectedLocation, setSelectedLocation } = useRouteContext();
   const [visible, setVisible] = useState(false);
   const [region, setRegion] = useState<Region | null>(null);
   const [mapMode, setMapMode] = useState<Mode>("building");
   const showPOI = region !== null && region.latitudeDelta < 0.015;
+  const {
+    data: buildingDetails,
+    isLoading: buildingDetailsLoading,
+    error: buildingDetailsError,
+  } = useGetLocationDetailsByType("COM");
+  //temp put com here
+  const {
+    data: canteens,
+    isLoading: canteensLoading,
+    error: canteensError,
+  } = useGetLocationDetailsByType("canteen");
+  const {
+    data: busStops,
+    isLoading: busStopsLoading,
+    error: busStopsError,
+  } = useFetchAllBusStop();
 
   const chipData: ChipListProps<Mode> = {
     data: [
@@ -147,23 +203,6 @@ export default function MapPage() {
     selected: mapMode,
     onSelect: setMapMode,
   };
-
-  const boundaryCoordinates = [
-    { latitude: 1.309274704980008, longitude: 103.77196245668526 },
-    { latitude: 1.307506885450094, longitude: 103.77726729866667 },
-    { latitude: 1.3019869511579418, longitude: 103.77622076521456 },
-    { latitude: 1.2950634383403345, longitude: 103.78665786634224 },
-    { latitude: 1.288220180328691, longitude: 103.78144365183114 },
-    { latitude: 1.293711950030539, longitude: 103.76895528652895 },
-    { latitude: 1.309274704980008, longitude: 103.77196245668526 },
-  ];
-
-  const outerBoundary = [
-    { latitude: 85, longitude: -85 },
-    { latitude: 85, longitude: 175 },
-    { latitude: -85, longitude: 175 },
-    { latitude: -85, longitude: -85 },
-  ];
 
   function getCurrentLocation() {
     Alert.alert(`Current Location`, `${origin?.nearest_node.name}`);
@@ -247,7 +286,7 @@ export default function MapPage() {
                 onPress={getCurrentLocation}
               >
                 <Image
-                  source={require("../../assets/icons/location.png")}
+                  source={icons.location}
                   style={{ width: 28, height: 28 }}
                   resizeMode="contain"
                 />
@@ -256,43 +295,56 @@ export default function MapPage() {
               <></>
             )}
             {/* Point of interests: buildings */}
-            {mapMode === "building" && (
-              <>
-                {showPOI &&
-                  POI_DATA.map((currPoi, index) => (
-                    <Polygon
-                      key={`poly_${index}`}
-                      coordinates={currPoi.boundary}
-                      fillColor={currPoi.color}
-                      strokeColor={currPoi.color}
-                      tappable={true}
-                      onPress={() => {
-                        setVisible(true);
-                        setRoutePOIs([currPoi]);
-                      }}
-                    />
-                  ))}
-
-                {showPOI &&
-                  POI_DATA.map((currPoi, index) => (
-                    <Marker
-                      key={`marker_${index}`}
-                      coordinate={currPoi.center}
-                      anchor={{ x: 0.5, y: 0.5 }}
-                      onPress={() => {
-                        setVisible(true);
-                        setRoutePOIs([currPoi]);
-                      }}
-                    >
-                      <View style={styles.mapLabel}>
-                        <Text style={styles.mapLabelText}>
-                          {currPoi.display_name}
-                        </Text>
+            {mapMode === "building" &&
+              !buildingDetailsLoading &&
+              buildingDetails && (
+                <>
+                  {showPOI &&
+                    buildingDetails.map((buildingDetail, index) => (
+                      <View key={`poi_${index}`}>
+                        <Polygon
+                          key={`poly_${index}`}
+                          coordinates={buildingDetail.boundaries!.coordinates.map(
+                            (coords) => {
+                              return {
+                                latitude: coords[1],
+                                longitude: coords[0],
+                              };
+                            },
+                          )}
+                          fillColor={
+                            scamColourWheel[index % scamColourWheel.length]
+                          }
+                          strokeColor={
+                            scamColourWheel[index % scamColourWheel.length]
+                          }
+                          tappable={true}
+                          onPress={() => {
+                            setVisible(true);
+                            setSelectedLocation(buildingDetail);
+                          }}
+                        />
+                        <Marker
+                          key={`marker_${index}`}
+                          coordinate={{
+                            latitude: buildingDetail.latitude!,
+                            longitude: buildingDetail.longitude!,
+                          }}
+                          anchor={{ x: 0.5, y: 0.5 }}
+                          onPress={() => {
+                            setVisible(true);
+                            setSelectedLocation(buildingDetail);
+                          }}
+                        >
+                          <View style={styles.mapLabel}>
+                            <Text style={styles.mapLabelText}>
+                              {firstAndLast(buildingDetail.display_name)}
+                            </Text>
+                          </View>
+                        </Marker>
                       </View>
-                    </Marker>
-                  ))}
-
-                {!showPOI &&
+                    ))}
+                  {/* {!showPOI &&
                   POI_GROUPS.map((group, index) => (
                     <Polygon
                       key={`group_${index}`}
@@ -313,34 +365,45 @@ export default function MapPage() {
                         <Text style={styles.mapLabelText}>{group.name}</Text>
                       </View>
                     </Marker>
-                  ))}
-              </>
-            )}
-            {mapMode === "canteen" && (
+                  ))} */}
+                </>
+              )}
+            {mapMode === "canteen" && !canteensLoading && canteens && (
               <>
-                {POI_CANTEEN.map((canteen, index) => (
-                  <Polygon
-                    key={`canteen_${index}`}
-                    coordinates={canteen.boundary}
-                    fillColor={canteen.color}
-                    strokeColor={canteen.color}
-                  />
-                ))}
-                {POI_CANTEEN.map((canteen, index) => (
-                  <Marker
-                    key={`canteen_marker_${index}`}
-                    coordinate={canteen.center}
-                    anchor={{ x: 0.5, y: 0.5 }}
-                  >
-                    <Image
-                      source={require("../../assets/icons/location.png")}
-                      style={{ height: 28, width: 28 }}
+                {canteens.map((canteen, index) => (
+                  <View key={`can_${index}`}>
+                    <Polygon
+                      key={`canteen_${index}`}
+                      coordinates={canteen.boundaries!.coordinates.map(
+                        (coord) => {
+                          return { latitude: coord[1], longitude: coord[0] };
+                        },
+                      )}
+                      fillColor={
+                        scamColourWheel[index % scamColourWheel.length]
+                      }
+                      strokeColor={
+                        scamColourWheel[index % scamColourWheel.length]
+                      }
                     />
-                  </Marker>
+                    <Marker
+                      key={`canteen_marker_${index}`}
+                      coordinate={{
+                        latitude: canteen.latitude!,
+                        longitude: canteen.longitude!,
+                      }}
+                      anchor={{ x: 0.5, y: 0.5 }}
+                    >
+                      <Image
+                        source={icons.location}
+                        style={{ height: 28, width: 28 }}
+                      />
+                    </Marker>
+                  </View>
                 ))}
               </>
             )}
-            {mapMode === "bus_stop" && (
+            {/* {mapMode === "bus_stop" && (
               <>
                 {POI_BUS_STOPS.map((stop, index) => (
                   <Marker
@@ -349,12 +412,32 @@ export default function MapPage() {
                     anchor={{ x: 0.5, y: 0.5 }}
                   >
                     <Image
-                      source={require("../../assets/icons/bus-stop.png")}
+                      source={icons.bus_stop}
                       style={{ width: 22, height: 22 }}
                       resizeMode="contain"
                     />
                   </Marker>
                 ))}
+              </>
+            )} */}
+            {mapMode === "bus_stop" && !busStopsLoading && busStops && (
+              <>
+                {busStops.map((stop, index) => {
+                  <Marker
+                    key={`bus_stop_${index}`}
+                    coordinate={{
+                      latitude: stop.latitude,
+                      longitude: stop.longitude,
+                    }}
+                    anchor={{ x: 0.5, y: 0.5 }}
+                  >
+                    <Image
+                      source={icons.bus_stop}
+                      style={{ width: 22, height: 22 }}
+                      resizeMode="contain"
+                    />
+                  </Marker>;
+                })}
               </>
             )}
           </MapView>
@@ -367,7 +450,7 @@ export default function MapPage() {
             <View style={styles.modalBackdrop}>
               <View style={styles.modalCard}>
                 <Text style={styles.modalTitle}>
-                  {routePOIs.length > 0 ? routePOIs[0].name : ""}
+                  {selectedLocation ? selectedLocation.display_name : ""}
                 </Text>
                 <View>
                   {mapMode == "building" && (
@@ -378,14 +461,22 @@ export default function MapPage() {
                       <Text style={styles.modalButtonText}>View floorplan</Text>
                     </TouchableOpacity>
                   )}
-                  <TouchableOpacity style={styles.modalButton}>
-                    <Text style={styles.modalButtonText}>Save Location</Text>
-                  </TouchableOpacity>
+                  {mapMode != "bus_stop" && token && (
+                    <TouchableOpacity
+                      style={styles.modalButton}
+                      onPress={async () => {
+                        //handle saving
+                        saveMutation.mutateAsync();
+                      }}
+                    >
+                      <Text style={styles.modalButtonText}>Save Location</Text>
+                    </TouchableOpacity>
+                  )}
                   <TouchableOpacity
                     style={styles.modalButtonClose}
                     onPress={() => {
                       setVisible(false);
-                      setRoutePOIs([]);
+                      setSelectedLocation(null);
                     }}
                   >
                     <Text style={styles.modalButtonTextClose}>Close</Text>

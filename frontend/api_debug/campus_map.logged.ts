@@ -2,8 +2,7 @@ export type NodeDetail = {
   node_id: string;
   name: string;
   node_type: string;
-  building_id: string;
-  building_code: string;
+  building_id: string | null;
   floor: number;
   latitude: number;
   longitude: number;

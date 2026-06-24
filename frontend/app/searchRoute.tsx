@@ -4,7 +4,7 @@ import SearchBar from "@/components/SearchBar";
 import StylisedButton from "@/components/StylisedButton";
 import { useRouteContext } from "@/context/RouteContext";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Alert,
   FlatList,
@@ -31,7 +31,15 @@ import BackButton from "@/components/BackButton";
 import { useLocalSearchParams } from "expo-router";
 import * as ExpoLocation from "expo-location";
 import { useClosestNodeMutation } from "@/hook/useRoute";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, {
+  PROVIDER_GOOGLE,
+  Marker,
+  Polyline,
+  Polygon,
+} from "react-native-maps";
+import { NearestNode } from "@/api_debug/campus_map.logged";
+import { icons } from "./data/loadIcons";
+import { boundaryCoordinates, outerBoundary } from "./(tabs)/map";
 
 const styles = StyleSheet.create({
   screen: {
@@ -185,7 +193,6 @@ export default function SearchRoute() {
   const closestNodeMutation = useClosestNodeMutation();
 
   const locations = searchData ?? [];
-
   const searchLocationIds = new Set(locations.map((loc) => loc.id));
 
   const { mode } = useLocalSearchParams<{ mode: "origin" | "destination" }>();
@@ -202,7 +209,20 @@ export default function SearchRoute() {
         );
       } else if (searchLocationIds.has(selectItem.id)) {
         //need to fetch item
-        setOrigin(null);
+        //actually we already have location detail, just need to force fit into origin
+        const nodeConvert: NearestNode = {
+          nearest_node: {
+            node_id: selectItem.nearest_node_id!,
+            name: selectItem.name,
+            node_type: selectItem.location_type,
+            building_id: selectItem.building_code,
+            floor: 1,
+            latitude: selectItem.latitude!,
+            longitude: selectItem.longitude!, //fix this later, need check with yz
+          },
+          distance_to_nearest_node: 0,
+        };
+        setOrigin(nodeConvert);
         router.back();
       } else {
         //i dont think this is currently possible but just in case
@@ -263,9 +283,8 @@ export default function SearchRoute() {
         // lead them to settings
         Linking.openSettings();
       }
-      return;
+      return false;
     }
-    setIsLoading(true);
     const currentLocation = await ExpoLocation.getCurrentPositionAsync({
       accuracy: ExpoLocation.Accuracy.High,
     });
@@ -277,12 +296,24 @@ export default function SearchRoute() {
     setOrigin({
       ...closestNode,
     });
-    setIsLoading(false);
+    return true;
   }
-  const icons = {
-    no_image: require("../assets/icons/no_image.png"),
-    location: require("../assets/icons/location.png"),
-  };
+
+  async function handleGetCurrentLocation() {
+    try {
+      setIsLoading(true);
+
+      const success = await getCurrentLocation();
+
+      if (success) {
+        router.back();
+      }
+    } catch (error) {
+      console.error("Failed to get current location:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   //handling saving and deleting location
   const saveLocationMutation = useSaveLocationMutation(token);
@@ -327,6 +358,16 @@ export default function SearchRoute() {
       ? "Removing saved location..."
       : "Loading...";
 
+  const originMarkerNode = useMemo(() => {
+    if (selectItem)
+      return { latitude: selectItem.latitude, longitude: selectItem.longitude };
+    else if (origin)
+      return {
+        latitude: origin.nearest_node.latitude,
+        longitude: origin.nearest_node.longitude,
+      };
+    else return null;
+  }, [origin, selectItem]);
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -338,8 +379,12 @@ export default function SearchRoute() {
           }}
         >
           <Header
-            text={"Search destination"}
-            description={"Find classrooms, bus stops, and buildings"}
+            text={isOriginMode ? "Set starting point" : "Search destination"}
+            description={
+              isOriginMode
+                ? "Choose a location as your staring point"
+                : "Find classrooms, bus stops, and buildings"
+            }
           />
           <View style={{ alignItems: "center", marginRight: 20 }}>
             <BackButton additionalBackCleanUp={() => setUserSearch("")} />
@@ -352,10 +397,14 @@ export default function SearchRoute() {
             provider={PROVIDER_GOOGLE}
             style={StyleSheet.absoluteFillObject}
             region={{
-              latitude: 1.300291282646443,
-              longitude: 103.77733947340228,
-              latitudeDelta: 0.016,
-              longitudeDelta: 0.016,
+              latitude: originMarkerNode
+                ? originMarkerNode.latitude!
+                : 1.300291282646443,
+              longitude: originMarkerNode
+                ? originMarkerNode.longitude!
+                : 103.77733947340228,
+              latitudeDelta: originMarkerNode ? 0.008 : 0.016,
+              longitudeDelta: originMarkerNode ? 0.008 : 0.016,
             }}
             customMapStyle={[
               {
@@ -365,18 +414,55 @@ export default function SearchRoute() {
               },
             ]}
           >
+            <Polyline
+              coordinates={boundaryCoordinates}
+              strokeWidth={5}
+              strokeColor="#f86a04"
+              lineCap="round"
+              lineJoin="round"
+            />
+            <Polygon
+              coordinates={outerBoundary}
+              holes={[boundaryCoordinates]}
+              fillColor="rgba(0, 0, 0, 0.45)"
+              strokeColor="rgba(0, 0, 0, 0)"
+            />
             {/* selected marker here */}
+            {/*
+            origin mode, need to check to display location if  
+            1. Origin doesnt exist and no selected node -> no marker displayed
+            2. Origin exists and no selected node -> marker displayed using origin
+            3. Origin exists but selected node also exists -> marker displayed using selected
+            */}
+            {originMarkerNode && (
+              <Marker
+                coordinate={{
+                  latitude: originMarkerNode.latitude!,
+                  longitude: originMarkerNode.longitude!,
+                }}
+              />
+            )}
           </MapView>
         </View>
         <View style={styles.listSection}>
           <SearchBar
             searchContent={userSearch}
-            onSearch={handleSearch}
+            onSearch={() => setUserSearch(userSearch)}
             onChangeText={(text) => {
               setUserSearch(text);
               setDestination(null);
             }}
           />
+          {isOriginMode && (
+            <View style={{ marginHorizontal: 20 }}>
+              <CardItem
+                mainIcon={icons.location}
+                cardTitle="Current location"
+                cardSubtitle="Selects registered place closest to your location"
+                onPress={handleGetCurrentLocation}
+              />
+            </View>
+          )}
           {isSearching && (
             <Text style={styles.message}>Searching locations...</Text>
           )}
@@ -388,22 +474,6 @@ export default function SearchRoute() {
             <Text style={styles.message}>Failed to search locations</Text>
           )}
 
-          {/* {!isSearching &&
-            userSearch.trim().length >= 2 &&
-            locations.length === 0 && (
-              <Text style={styles.message}>No locations found</Text>
-            )} */}
-          {/* function to choose origin available if there is no search*/}
-          {isOriginMode && (
-            <View style={{ marginHorizontal: 20 }}>
-              <CardItem
-                mainIcon={icons.location}
-                cardTitle="Current location"
-                cardSubtitle="Selects registered place closest to your location"
-                onPress={getCurrentLocation}
-              />
-            </View>
-          )}
           <FlatList
             keyExtractor={(item) => item.id}
             data={locations}
@@ -411,7 +481,7 @@ export default function SearchRoute() {
             renderItem={({ item }) => {
               return (
                 <CardItem
-                  mainIcon={icons.no_image}
+                  mainIcon={icons[item.location_type] ?? icons.no_image}
                   cardTitle={item.name}
                   cardSubtitle={
                     item.aliases.length > 0 ? item.aliases.join(", ") : ""

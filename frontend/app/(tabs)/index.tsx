@@ -36,6 +36,7 @@ import { useClosestNodeMutation } from "@/hook/useRoute";
 import { LocationDetail } from "@/api_debug/locations.logged";
 import { useGetLocationDetails } from "@/hook/useLocations";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import { icons } from "../data/loadIcons";
 
 const styles = StyleSheet.create({
   screen: {
@@ -193,6 +194,7 @@ const styles = StyleSheet.create({
 export default function Index() {
   //settle react stuff first
   const { user, token } = useAuthContext();
+  const [isLocationLoading, setIsLocationLoading] = useState(false);
   const {
     userSearch,
     setUserSearch,
@@ -219,11 +221,6 @@ export default function Index() {
     isLocationSaved,
   } = useSavedLocations(token);
 
-  const icons = {
-    location: require("../../assets/icons/location.png"),
-    star: require("../../assets/icons/star.png"),
-    no_img: require("../../assets/icons/no_image.png"),
-  };
   const [detailLocationId, setDetailLocationId] = useState<string | null>(null);
   const {
     data: locDetail,
@@ -279,7 +276,7 @@ export default function Index() {
         // lead them to settings
         Linking.openSettings();
       }
-      return;
+      return false;
     }
 
     const currentLocation = await ExpoLocation.getCurrentPositionAsync({
@@ -294,6 +291,7 @@ export default function Index() {
     setOrigin({
       ...closestNode,
     });
+    return true;
   }
 
   //recently visited stuff
@@ -313,8 +311,19 @@ export default function Index() {
   }
 
   useEffect(() => {
-    getCurrentLocation();
+    async function loadCurrentLocation() {
+      try {
+        setIsLocationLoading(true);
+        await getCurrentLocation();
+      } catch (error) {
+        console.log("failed to get current location");
+      } finally {
+        setIsLocationLoading(false);
+      }
+    }
+    loadCurrentLocation();
   }, []);
+
   useFocusEffect(
     useCallback(() => {
       setSelectedRoute(null);
@@ -372,7 +381,9 @@ export default function Index() {
           ? "Clearing recently visited locations..."
           : locDetailLoading
             ? "Fetching location details..."
-            : "Loading...";
+            : isLocationLoading
+              ? "Fetching current location..."
+              : "Loading...";
 
   return (
     <View style={styles.screen}>
@@ -484,7 +495,9 @@ export default function Index() {
                           >
                             <View style={styles.cardFix}>
                               <CardItem
-                                mainIcon={icons.no_img}
+                                mainIcon={
+                                  icons[item.location_type] ?? icons.no_image
+                                }
                                 cardTitle={item.name}
                                 cardSubtitle={
                                   item.description ? item.description : ""

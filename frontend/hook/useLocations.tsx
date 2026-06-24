@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   fetchLocationDetail,
+  fetchLocationDetailByType,
   LocationDetail,
   searchLocations,
 } from "@/api_debug/locations.logged"; //rmb to change back
@@ -25,6 +26,14 @@ export function useGetLocationDetails(locationId?: string | null) {
     queryKey: ["location-detail", locationId],
     queryFn: () => fetchLocationDetail(locationId!),
     enabled: !!locationId,
+  });
+}
+
+export function useGetLocationDetailsByType(location_type: string) {
+  return useQuery<LocationDetail[]>({
+    queryKey: ["locations-type", location_type],
+    queryFn: () => fetchLocationDetailByType(location_type),
+    enabled: !!location_type,
   });
 }
 
