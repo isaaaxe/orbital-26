@@ -9,6 +9,7 @@ class LocationDetail(BaseModel):
     aliases: list[str] = [] #may not be necessary
     location_type: str
 
+    building_id: str | None = None
     building_code: str | None = None
     building_name: str | None = None
     floor_id: int | None = None
