@@ -6,6 +6,8 @@ import {
   Modal,
   TouchableOpacity,
   Image,
+  TextInput,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, {
@@ -13,24 +15,15 @@ import MapView, {
   Polyline,
   Polygon,
   PROVIDER_GOOGLE,
-  Callout,
   Region,
 } from "react-native-maps";
 import { useRouteContext } from "@/context/RouteContext";
-import {
-  POI_DATA,
-  POI_DATA_TYPE,
-  POI_GROUPS,
-  POI_CANTEEN,
-  POI_BUS_STOPS,
-} from "../data/POI";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { router } from "expo-router";
 import BackButton from "@/components/BackButton";
 import { useAuthContext } from "@/context/AuthContext";
 import ChipList, { ChipListProps } from "@/components/ChipList";
 import { icons } from "../data/loadIcons";
-import { useAllBuildingDetails } from "@/hook/useCampusMap";
 import {
   useGetLocationDetailsByType,
   useSaveLocationMutation,
@@ -134,6 +127,119 @@ const styles = StyleSheet.create({
     right: 16,
     zIndex: 10,
   },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 24,
+  },
+
+  modalBox: {
+    width: "100%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 18,
+    padding: 20,
+  },
+  modalMessage: {
+    fontSize: 14,
+    color: "#6B7280",
+    marginBottom: 16,
+    lineHeight: 20,
+  },
+
+  modalInput: {
+    borderWidth: 1,
+    borderColor: "#D1D5DB",
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    fontSize: 15,
+    color: "#111827",
+    marginBottom: 18,
+  },
+
+  modalButtonRow: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    gap: 12,
+  },
+
+  modalCancelButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+  },
+
+  modalCancelText: {
+    fontSize: 15,
+    color: "#6B7280",
+    fontWeight: "600",
+  },
+
+  modalSaveButton: {
+    backgroundColor: "#2563EB",
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 10,
+  },
+
+  modalSaveText: {
+    fontSize: 15,
+    color: "#FFFFFF",
+    fontWeight: "700",
+  },
+  swipeWrapper: {
+    borderRadius: 14,
+    overflow: "hidden",
+    marginBottom: 10,
+  },
+
+  clipWrapper: {
+    borderRadius: 14,
+    overflow: "hidden",
+    backgroundColor: "#DD5550", // red behind the card
+  },
+
+  deleteAction: {
+    width: 90, // final snapped open width
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  deleteText: {
+    color: "white",
+    fontWeight: "700",
+  },
+  outerSwipeWrapper: {
+    marginBottom: 10,
+  },
+
+  cardFix: {
+    marginBottom: -10, // cancels CardItem's internal marginBottom
+  },
+  loadingModalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.35)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  loadingModalBox: {
+    width: 220,
+    paddingVertical: 24,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+  },
+
+  loadingModalText: {
+    marginTop: 12,
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#374151",
+    textAlign: "center",
+  },
 });
 const scamColourWheel = [
   "rgba(130, 202, 255, 0.75)",
@@ -169,31 +275,88 @@ function firstAndLast(str: string) {
   return str[0] + str[str.length - 1];
 }
 
+// type DayKey = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
+
+// type OpeningHours = Partial<Record<DayKey, [string, string]>>;
+// type CrowdDensity = Partial<Record<DayKey, Record<string, number>>>;
+
+// const dayOrder: DayKey[] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+// const dayLabels: Record<string, string> = {
+//   mon: "Mon",
+//   tue: "Tue",
+//   wed: "Wed",
+//   thu: "Thu",
+//   fri: "Fri",
+//   sat: "Sat",
+//   sun: "Sun",
+// };
+
+// function getTodayKey() {
+//   const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+//   return days[new Date().getDay()];
+// }
+
+// function getOpeningHoursText(openingHours?: OpeningHours | null) {
+//   const today = getTodayKey();
+//   const hours = openingHours?.[today]
+
+//   if (!hours || hours.length < 2) return "Opening hours unavailable";
+
+//   return `${hours[0]} - ${hours[1]}`;
+// }
+
+// function getDensityColor(value?: number) {
+//   if (value == null) return "#E5E7EB";
+//   if (value < 35) return "#22C55E";
+//   if (value < 70) return "#FACC15";
+//   return "#EF4444";
+// }
+
+// function getDensityText(value?: number) {
+//   if (value == null) return "Unknown";
+//   if (value < 35) return "Quiet";
+//   if (value < 70) return "Moderate";
+//   return "Crowded";
+// }
+
+
+// function getCrowdHours(crowdDensity?: CrowdDensity | null) {
+//   return Array.from(
+//     new Set(
+//       Object.values(crowdDensity ?? {}).flatMap((dayData) =>
+//         Object.keys(dayData ?? {}),
+//       ),
+//     ),
+//   ).sort((a, b) => Number(a) - Number(b));
+// }
+
 export default function MapPage() {
   const { token } = useAuthContext();
-  const saveMutation = useSaveLocationMutation(token);
-  const { origin, selectedLocation, setSelectedLocation } = useRouteContext();
+  const saveLocationMutation = useSaveLocationMutation(token);
+  const { origin, selectedLocation, setSelectedLocation, setFloorPlanSource } = useRouteContext();
   const [visible, setVisible] = useState(false);
   const [region, setRegion] = useState<Region | null>(null);
-  const [mapMode, setMapMode] = useState<Mode>("building");
+  const {mapMode, setMapMode} = useRouteContext()
+  const [saveModalVisible, setSaveModalVisible] = useState(false)
+  const [savePurpose, setSavePurpose] = useState("")
   const showPOI = region !== null && region.latitudeDelta < 0.015;
   const {
     data: buildingDetails,
-    isLoading: buildingDetailsLoading,
+    isFetching: buildingDetailsLoading,
     error: buildingDetailsError,
   } = useGetLocationDetailsByType("COM");
   //temp put com here
   const {
     data: canteens,
-    isLoading: canteensLoading,
+    isFetching: canteensLoading,
     error: canteensError,
   } = useGetLocationDetailsByType("canteen");
   const {
     data: busStops,
-    isLoading: busStopsLoading,
+    isFetching: busStopsLoading,
     error: busStopsError,
   } = useFetchAllBusStop();
-
   const chipData: ChipListProps<Mode> = {
     data: [
       { name: "Buildings", code: "building" },
@@ -210,11 +373,18 @@ export default function MapPage() {
 
   function handleIndoor() {
     setVisible(false);
+    setFloorPlanSource("building")
     router.push("/floorPlanView");
   }
 
   function handleSaveLocation() {
-    //
+    saveLocationMutation.mutate({
+      locationId: selectedLocation?.id!,
+      purpose: savePurpose,
+    });
+    setSelectedLocation(null);
+    setSavePurpose("");
+    //want to cause a small pop up to appear to show that saving was successful
   }
 
   return (
@@ -299,12 +469,11 @@ export default function MapPage() {
               !buildingDetailsLoading &&
               buildingDetails && (
                 <>
-                  {showPOI &&
-                    buildingDetails.map((buildingDetail, index) => (
+                  {buildingDetails.map((buildingDetail, index) => (
                       <View key={`poi_${index}`}>
                         <Polygon
                           key={`poly_${index}`}
-                          coordinates={buildingDetail.boundaries!.coordinates.map(
+                          coordinates={buildingDetail.boundaries!.coordinates[0].map(
                             (coords) => {
                               return {
                                 latitude: coords[1],
@@ -344,37 +513,16 @@ export default function MapPage() {
                         </Marker>
                       </View>
                     ))}
-                  {/* {!showPOI &&
-                  POI_GROUPS.map((group, index) => (
-                    <Polygon
-                      key={`group_${index}`}
-                      coordinates={group.boundary}
-                      fillColor={group.color}
-                      strokeColor={group.color}
-                    />
-                  ))}
-
-                {!showPOI &&
-                  POI_GROUPS.map((group, index) => (
-                    <Marker
-                      key={`group_marker_${index}`}
-                      coordinate={group.center}
-                      anchor={{ x: 0.5, y: 0.5 }}
-                    >
-                      <View style={styles.mapLabel}>
-                        <Text style={styles.mapLabelText}>{group.name}</Text>
-                      </View>
-                    </Marker>
-                  ))} */}
                 </>
               )}
+              {/* canteen */}
             {mapMode === "canteen" && !canteensLoading && canteens && (
               <>
                 {canteens.map((canteen, index) => (
                   <View key={`can_${index}`}>
                     <Polygon
                       key={`canteen_${index}`}
-                      coordinates={canteen.boundaries!.coordinates.map(
+                      coordinates={canteen.boundaries!.coordinates[0].map(
                         (coord) => {
                           return { latitude: coord[1], longitude: coord[0] };
                         },
@@ -385,6 +533,11 @@ export default function MapPage() {
                       strokeColor={
                         scamColourWheel[index % scamColourWheel.length]
                       }
+                      onPress={ () => {
+                            setVisible(true);
+                            setSelectedLocation(canteen)
+                            //to be updated to show the canteen instead 
+                      }}
                     />
                     <Marker
                       key={`canteen_marker_${index}`}
@@ -393,6 +546,10 @@ export default function MapPage() {
                         longitude: canteen.longitude!,
                       }}
                       anchor={{ x: 0.5, y: 0.5 }}
+                      onPress={ () => {
+                            setVisible(true);
+                            setSelectedLocation(canteen)
+                      }}
                     >
                       <Image
                         source={icons.location}
@@ -403,13 +560,18 @@ export default function MapPage() {
                 ))}
               </>
             )}
-            {/* {mapMode === "bus_stop" && (
+            {/* bus stop */}
+            {mapMode === "bus_stop" && !busStopsLoading && busStops && (
               <>
-                {POI_BUS_STOPS.map((stop, index) => (
+                {busStops.map((stop, index) => (
                   <Marker
                     key={`bus_stop_${index}`}
-                    coordinate={stop.center}
+                    coordinate={{
+                      latitude: stop.latitude,
+                      longitude: stop.longitude,
+                    }}
                     anchor={{ x: 0.5, y: 0.5 }}
+
                   >
                     <Image
                       source={icons.bus_stop}
@@ -419,28 +581,9 @@ export default function MapPage() {
                   </Marker>
                 ))}
               </>
-            )} */}
-            {mapMode === "bus_stop" && !busStopsLoading && busStops && (
-              <>
-                {busStops.map((stop, index) => {
-                  <Marker
-                    key={`bus_stop_${index}`}
-                    coordinate={{
-                      latitude: stop.latitude,
-                      longitude: stop.longitude,
-                    }}
-                    anchor={{ x: 0.5, y: 0.5 }}
-                  >
-                    <Image
-                      source={icons.bus_stop}
-                      style={{ width: 22, height: 22 }}
-                      resizeMode="contain"
-                    />
-                  </Marker>;
-                })}
-              </>
             )}
           </MapView>
+          {/* this modal should only be for buildings for now */}
           <Modal
             visible={visible}
             transparent
@@ -461,12 +604,13 @@ export default function MapPage() {
                       <Text style={styles.modalButtonText}>View floorplan</Text>
                     </TouchableOpacity>
                   )}
+                  {/* setting up like these for future saveable types that i can use this modal with */}
                   {mapMode != "bus_stop" && token && (
                     <TouchableOpacity
                       style={styles.modalButton}
-                      onPress={async () => {
-                        //handle saving
-                        saveMutation.mutateAsync();
+                      onPress={()=>{
+                        setVisible(false)
+                        setSaveModalVisible(true)
                       }}
                     >
                       <Text style={styles.modalButtonText}>Save Location</Text>
@@ -480,6 +624,53 @@ export default function MapPage() {
                     }}
                   >
                     <Text style={styles.modalButtonTextClose}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
+
+          {/* saving modal, for now used for buildings and canteen */}
+          <Modal
+            visible={saveModalVisible}
+            transparent
+            animationType="fade"
+            onRequestClose={() => setSaveModalVisible(false)}
+          >
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalBox}>
+                <Text style={styles.modalTitle}>Save location</Text>
+
+                <Text style={styles.modalMessage}>Purpose of location</Text>
+
+                <TextInput
+                  style={styles.modalInput}
+                  value={savePurpose}
+                  onChangeText={setSavePurpose}
+                  placeholder="Reason"
+                  autoFocus
+                />
+
+                <View style={styles.modalButtonRow}>
+                  <TouchableOpacity
+                    style={styles.modalCancelButton}
+                    onPress={() => {
+                      setSaveModalVisible(false);
+                      setSelectedLocation(null);
+                      setSavePurpose("");
+                    }}
+                  >
+                    <Text style={styles.modalCancelText}>Cancel</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.modalSaveButton}
+                    onPress={() => {
+                      setSaveModalVisible(false);
+                      handleSaveLocation();
+                    }}
+                  >
+                    <Text style={styles.modalSaveText}>Save</Text>
                   </TouchableOpacity>
                 </View>
               </View>

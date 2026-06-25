@@ -361,7 +361,7 @@ export default function SearchRoute() {
   const originMarkerNode = useMemo(() => {
     if (selectItem)
       return { latitude: selectItem.latitude, longitude: selectItem.longitude };
-    else if (origin)
+    else if (origin && isOriginMode)
       return {
         latitude: origin.nearest_node.latitude,
         longitude: origin.nearest_node.longitude,

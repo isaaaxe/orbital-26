@@ -1,5 +1,5 @@
 import { useRouteContext } from "@/context/RouteContext";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import IndoorView from "./IndoorView";
 
 const styles = StyleSheet.create({
@@ -19,14 +19,23 @@ const styles = StyleSheet.create({
 });
 
 export default function IndoorCheck() {
-  const { floorPlans } = useRouteContext();
+  const { floorPlans, floorPlanSource, floorPlansLoading} = useRouteContext();
+  if (floorPlansLoading) {
+    return (
+      <View style={styles.emptyContainer}>
+        <ActivityIndicator size={"large"}/>
+        <Text style={styles.emptyText}>{floorPlanSource == "route" ? "Fetching indoor route...": "Fetching floor plan..."}</Text>
+      </View>
+    )
+  }
 
   if (!floorPlans || Object.keys(floorPlans).length == 0) {
     return (
       <View style={styles.emptyContainer}>
-        <Text style={styles.emptyText}>No indoor routing involved!</Text>
+        <Text style={styles.emptyText}>{floorPlanSource == "route" ? "No indoor routing involved!": "No floor plan available"}</Text>
       </View>
     );
+
   }
 
   return <IndoorView floorPlans={floorPlans} />;

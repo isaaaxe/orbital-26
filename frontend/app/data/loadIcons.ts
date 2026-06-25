@@ -16,4 +16,5 @@ export const icons: IconType = {
   location: require("../../assets/icons/location.png"),
   star: require("../../assets/icons/star.png"),
   "bus stop": require("../../assets/icons/bus-stop.png"),
+  bus_stop: require("../../assets/icons/bus-stop.png"),
 };

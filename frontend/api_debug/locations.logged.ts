@@ -17,7 +17,7 @@ export type LocationDetail = {
   area_name: string | null;
   latitude: number | null;
   longitude: number | null;
-  boundaries: { type: string; coordinates: [number, number][] } | null;
+  boundaries: { type: string; coordinates: [number, number][][] } | null;
 
   nearest_node_id: string | null;
   nearest_bus_stop_id: string | null;

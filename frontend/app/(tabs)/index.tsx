@@ -8,6 +8,7 @@ import {
   Modal,
   TextInput,
   TouchableOpacity,
+  Image
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, useFocusEffect } from "expo-router";
@@ -202,6 +203,8 @@ export default function Index() {
     setOrigin,
     setDestination,
     setSelectedRoute,
+    mapMode,
+    setMapMode
   } = useRouteContext();
   //to be implemented
   const {
@@ -413,8 +416,30 @@ export default function Index() {
           onChangeText={setUserSearch}
         />
 
-        {/* Automatic starting point but it should be selectable as well */}
+        
         {/* Quick Destinations, common areas people navigate to, we can keep this fixed for now */}
+        {/* <View>
+          <View>
+            <TouchableOpacity>
+              <Image source={icons.building}/>
+            </TouchableOpacity>
+            <Text>Buildings</Text>
+          </View>
+          <View>
+            <TouchableOpacity>
+              <Image source={icons.canteen}/>
+            </TouchableOpacity>
+            <Text>Canteens</Text>
+          </View> 
+          <View>
+            <TouchableOpacity>
+              <Image source={icons.bus_stop}/>
+            </TouchableOpacity>
+            <Text>Bus</Text>
+          </View> 
+        </View>         */}
+
+        {/* Automatic starting point but it should be selectable as well */}
         <View style={styles.bodyView}>
           <Text style={styles.h3}>Starting Point</Text>
           <CardItem

@@ -48,6 +48,19 @@ const styles = StyleSheet.create({
     right: 16,
     zIndex: 10,
   },
+  loadingOverlay: {
+  ...StyleSheet.absoluteFillObject,
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "#F2F2F2",
+  zIndex: 20,
+  elevation: 20,
+},
+loadingText: {
+  fontSize: 14,
+  fontWeight: "600",
+  color: "#555",
+},
 });
 
 function getFloorLabel(floorNumber: number) {
@@ -105,6 +118,8 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
   //   return Object.keys(floorPlans[poi.code]);
   // });
   //default take first item?
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+const [imageLoadError, setImageLoadError] = useState(false);
 
   const [selectedBuildingId, setSelectedBuildingId] = useState<string | null>(
     null,
@@ -183,6 +198,11 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
     );
   }, [floors, selectedFloorNumber]);
 
+  useEffect(() => {
+    setIsImageLoaded(false);
+    setImageLoadError(false);
+  }, [currentFloor?.floorDetail.image_url]);
+
   if (!currentFloor || !selectedBuildingId) {
     return (
       <View style={styles.mapWindow}>
@@ -193,6 +213,7 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
 
   //here currentFloor is determined
   const pixelNodes = useMemo(() => {
+    if (!currentFloor.nodes) return null
     return currentFloor.nodes.map((node) =>
       geoToPixel(
         node.latitude,
@@ -202,6 +223,7 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
     );
   }, [currentFloor]);
   const routePoints = useMemo(() => {
+    if (!pixelNodes) return null
     return pixelNodes.map((p) => `${p.x},${p.y}`).join(" ");
   }, [pixelNodes]);
 
@@ -244,6 +266,11 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
           onSelect={setSelectedBuildingId}
         />
       </View>
+      {!fittedSize && (
+        <View style={styles.loadingOverlay}>
+          <Text style={styles.loadingText}>Loading indoor map...</Text>
+        </View>
+      )}
       {fittedSize && (
         <ResumableZoom minScale={1} maxScale={5} panMode="clamp">
           <View style={{ width: fittedSize.width, height: fittedSize.height }}>
@@ -252,24 +279,46 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
               style={{
                 width: fittedSize.width,
                 height: fittedSize.height,
+                opacity: isImageLoaded ? 1 : 0
               }}
               resizeMode="contain"
+              onLoadStart={() => {
+                setIsImageLoaded(false);
+                setImageLoadError(false);
+              }}
+              onLoad={() => {
+                setIsImageLoaded(true);
+              }}
+              onError={() => {
+                setImageLoadError(true);
+              }}
             />
-            <Svg
+            {!isImageLoaded && !imageLoadError && (
+              <View style={styles.loadingOverlay}>
+                <Text style={styles.loadingText}>Loading indoor map...</Text>
+              </View>
+            )}
+
+            {imageLoadError && (
+              <View style={styles.loadingOverlay}>
+                <Text style={styles.loadingText}>Failed to load indoor map</Text>
+              </View>
+            )}
+            {isImageLoaded && <Svg
               width={fittedSize.width}
               height={fittedSize.height}
               viewBox={`0 0 ${currentFloor.floorDetail.image_width} ${currentFloor.floorDetail.image_height}`}
               style={[StyleSheet.absoluteFill, { zIndex: 10, elevation: 10 }]}
             >
-              <Polyline
+              {routePoints && (<Polyline
                 points={routePoints}
                 fill="none"
                 stroke="#0B4EA2"
                 strokeWidth={8}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              />
-              {pixelNodes.map((point, index) => (
+              />)}
+              {pixelNodes && pixelNodes.map((point, index) => (
                 <Circle
                   key={index}
                   cx={point.x}
@@ -278,7 +327,7 @@ export default function IndoorView({ floorPlans }: IndoorViewProps) {
                   fill="#0B4EA2"
                 />
               ))}
-            </Svg>
+            </Svg>}
           </View>
         </ResumableZoom>
       )}

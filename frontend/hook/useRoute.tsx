@@ -10,7 +10,7 @@ export function useRouteQuery(startNodeId?: string, endNodeId?: string) {
       fetchRoutes({
         start_id: startNodeId!,
         destination_id: endNodeId!,
-        mode: ["fastest"], //hard coded for now
+        mode: ["fastest", "sheltered", "accessible"], //hard coded for now
       }),
     enabled: !!startNodeId && !!endNodeId,
   });

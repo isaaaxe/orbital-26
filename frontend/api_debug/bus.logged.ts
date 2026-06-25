@@ -48,7 +48,7 @@ async function debugFetch(url: string, options?: RequestInit) {
 
 export async function fetchBus(bus_number: string): Promise<BusResponse> {
   const res = await debugFetch(
-    `${API_BASE_URL}/bus_service/bus?bus_number=${encodeURIComponent(bus_number)}`,
+    `${API_BASE_URL}/bus-service/bus?bus_number=${encodeURIComponent(bus_number)}`,
   );
   if (!res.ok) {
     throw new Error("Failed to fetch bus");
@@ -60,7 +60,7 @@ export async function fetchBusStopById(
   bus_stop_id: string,
 ): Promise<BusStopResponse> {
   const res = await debugFetch(
-    `${API_BASE_URL}/bus_service/bus_stop/id/${bus_stop_id}`,
+    `${API_BASE_URL}/bus-service/bus_stop/id/${bus_stop_id}`,
   );
   if (!res.ok) {
     throw new Error("Failed to fetch bus stop details");
@@ -72,7 +72,7 @@ export async function fetchBusStopByName(
   bus_stop_name: string,
 ): Promise<BusStopResponse> {
   const res = await debugFetch(
-    `${API_BASE_URL}/bus_service/bus_stop/name/${bus_stop_name}`,
+    `${API_BASE_URL}/bus-service/bus_stop/name/${bus_stop_name}`,
   );
   if (!res.ok) {
     throw new Error("Failed to fetch bus stop details");
@@ -81,7 +81,7 @@ export async function fetchBusStopByName(
 }
 
 export async function fetchAllBusStop(): Promise<BusStopResponse[]> {
-  const res = await debugFetch(`${API_BASE_URL}/bus_service/bus_stop/all`);
+  const res = await debugFetch(`${API_BASE_URL}/bus-service/bus_stop/all`);
   if (!res.ok) {
     throw new Error("Failed to fetch bus stop details");
   }

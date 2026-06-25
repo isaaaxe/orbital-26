@@ -5,11 +5,13 @@ import { RouteResponse } from "@/api_debug/routes.logged";
 import {
   AffineCoeff,
   getBuildingFloorByLevel,
+  getBuildingFloors,
   NearestNode,
 } from "@/api_debug/campus_map.logged";
 import { POI_DATA_TYPE } from "@/app/data/POI";
 import { FloorDetail } from "@/api_debug/campus_map.logged";
 import { useQuery } from "@tanstack/react-query";
+import { Mode } from "@/app/(tabs)/map";
 
 export type Coordinate = {
   latitude: number;
@@ -37,7 +39,7 @@ type BuildingFloorKey = `${BuildId}:${FloorNumber}`;
 
 export type FloorPlanLayout = {
   floorDetail: FloorDetail;
-  nodes: Coordinate[];
+  nodes: Coordinate[] | null;
   affine: AffineCoeff;
 };
 
@@ -73,9 +75,13 @@ type RouteContextType = {
   // routePOIs: POI_DATA_TYPE[];
   // setRoutePOIs: (poi: POI_DATA_TYPE[]) => void;
   floorPlans: FloorPlansByBuildingFloor | undefined;
-  // floorPlanWithNodes: FloorPlanLayouts | undefined
+  floorPlansLoading: boolean
   selectedLocation: LocationDetail | null;
   setSelectedLocation: (loc_detail: LocationDetail | null) => void;
+  floorPlanSource: "route" | "building" | null
+  setFloorPlanSource: (source: "route" | "building" | null) => void
+  mapMode: Mode
+  setMapMode: (mode: Mode) => void
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
@@ -91,12 +97,8 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
   const [destination, setDestination] = useState<LocationDetail | null>(null);
   const [selectedLocation, setSelectedLocation] =
     useState<LocationDetail | null>(null);
-  // const [routePOIs, setRoutePOIs] = useState<POI_DATA_TYPE[]>([]);
-  // const [routes, setRoutes] = useState<RouteResponse[] | null>(null);
-  //selectedRoute available, need to
-  //1. group by colour
-  //2. create array of array of LatLng objects
-  //struct = [{mode: "walk", coords: LatLng[]}, {mode: "campus bus", coords: LatLng[]}]
+  const [floorPlanSource, setFloorPlanSource] = useState<"route" | "building" | null>("route");
+  const [mapMode, setMapMode] = useState<Mode>("building");
 
   function buildRenderPath(selectedRoute: RouteResponse): RenderPath[] {
     // console.log(selectedRoute.steps.length);
@@ -153,7 +155,7 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     return buildRenderPath(selectedRoute);
   }, [selectedRoute]);
 
-  async function getFloorPlans(
+  async function getFloorPlansByRoute(
     selectedRoute: RouteResponse,
   ): Promise<FloorPlansByBuildingFloor> {
     const building_codes: BuildingFloorKey[] = [];
@@ -203,10 +205,10 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         building_codes.push(getBuildingFloorKey(curr, curr_floor));
         //make new entry in nodesByBuildingFloor, but capture the prev node as well
         nodesByBuildingFloor.push([
-          {
-            latitude: selectedRoute.path_coordinates[i * 2][1],
-            longitude: selectedRoute.path_coordinates[i * 2][0],
-          },
+          // {
+          //   latitude: selectedRoute.path_coordinates[i * 2][1],
+          //   longitude: selectedRoute.path_coordinates[i * 2][0],
+          // },
           {
             latitude: selectedRoute.path_coordinates[i * 2 + 1][1],
             longitude: selectedRoute.path_coordinates[i * 2 + 1][0],
@@ -242,15 +244,46 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     return floorPlansByBuildingFloor;
   }
 
+  async function getFloorPlansByBuilding(selectedLocation: LocationDetail) {
+    const buildingId = selectedLocation.building_id
+    const building_floor_plans: FloorDetail[] = await getBuildingFloors(buildingId!)
+    const res: FloorPlansByBuildingFloor = {}
+    building_floor_plans.forEach((floor) => {
+      const key = getBuildingFloorKey(floor.building_id, floor.floor_number)
+      res[key] = {floorDetail: floor, nodes: null, affine: floor.affine}
+    })
+    return res
+  }
+
   const {
-    data: floorPlans,
-    isLoading: isFloorPlanLoading,
-    error: floorPlansError,
+    data: floorPlansByRoute,
+    isLoading: isFloorPlanLoadingByRoute,
+    error: floorPlansErrorByRoute,
   } = useQuery<FloorPlansByBuildingFloor>({
     queryKey: ["floorPlans", selectedRoute],
-    queryFn: () => getFloorPlans(selectedRoute!),
-    enabled: !!selectedRoute,
+    queryFn: () => getFloorPlansByRoute(selectedRoute!),
+    enabled: !!selectedRoute && floorPlanSource == "route",
   });
+
+  const {
+    data: floorPlansByBuilding,
+    isLoading: isFloorPlanLoadingByBuilding,
+    error: floorPlansErrorByBuilding,
+  } = useQuery<FloorPlansByBuildingFloor>({
+    queryKey: ["floorPlans", selectedLocation],
+    queryFn: () => getFloorPlansByBuilding(selectedLocation!),
+    enabled: !!selectedLocation && floorPlanSource == "building"
+  })
+
+  const floorPlans =
+  floorPlanSource === "route"
+    ? floorPlansByRoute
+    : floorPlansByBuilding
+
+  const floorPlansLoading = 
+    floorPlanSource === "route"
+    ? isFloorPlanLoadingByRoute
+    : isFloorPlanLoadingByBuilding
   // console.log(selectedRoute?.path_coordinates.length);
   // console.log(selectedRoute?.path_coordinates);
 
@@ -267,8 +300,13 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         setDestination,
         routeSegments,
         floorPlans,
+        floorPlansLoading, 
         selectedLocation,
         setSelectedLocation,
+        floorPlanSource,
+        setFloorPlanSource,
+        mapMode,
+        setMapMode
       }}
     >
       {children}

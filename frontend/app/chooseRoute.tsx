@@ -58,13 +58,14 @@ function formatDuration(totalSeconds: number) {
 }
 
 export default function ChooseRoute() {
-  const { destination, selectedRoute, setSelectedRoute, origin } =
+  const { destination, selectedRoute, setSelectedRoute, origin, setFloorPlanSource } =
     useRouteContext();
   const navigation = useNavigation();
   const toConfirmRoute = () => {
     if (!selectedRoute) {
       Alert.alert("Please choose a route.");
     } else {
+      setFloorPlanSource("route")
       router.push("/confirmingRoute");
     }
   };

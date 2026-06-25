@@ -37,11 +37,12 @@ const styles = StyleSheet.create({
 });
 
 export default function FloorPlanView() {
-  const { selectedLocation, setSelectedLocation } = useRouteContext();
+  const { selectedLocation, setSelectedLocation, setFloorPlanSource } = useRouteContext();
   const navigate = useNavigation();
   useEffect(() => {
     const unsubscribe = navigate.addListener("beforeRemove", () => {
       setSelectedLocation(null);
+      setFloorPlanSource(null)
     });
 
     return unsubscribe;

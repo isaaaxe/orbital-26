@@ -5,7 +5,7 @@ import {
   ROUTE_COLOURS,
   useRouteContext,
 } from "@/context/RouteContext";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import { Text, TouchableOpacity, View, StyleSheet, Alert } from "react-native";
 import MapView, {
   Marker,
@@ -14,7 +14,7 @@ import MapView, {
   PROVIDER_GOOGLE,
 } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackButton from "@/components/BackButton";
 import { useAuthContext } from "@/context/AuthContext";
 import { addRecentlyVisitedMutation } from "@/hook/useUser";
@@ -113,8 +113,9 @@ export default function ConfirmingRoute() {
   const [isOutdoor, setIsOutdoor] = useState(true);
   const { token } = useAuthContext();
   // const addRecentMutation = addRecentlyVisitedMutation(token);
+  const navigation = useNavigation()
 
-  const { origin, destination, selectedRoute, routeSegments } =
+  const { origin, destination, selectedRoute, routeSegments, setFloorPlanSource} =
     useRouteContext();
   const queryClient = useQueryClient();
 
@@ -157,6 +158,16 @@ export default function ConfirmingRoute() {
   }
 
   const routeReady = !!selectedRoute;
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", () => {
+      setFloorPlanSource(null)
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+  
+
   return (
     <View style={styles.screen}>
       <SafeAreaView style={{ flex: 1 }}>
