@@ -8,7 +8,7 @@ import {
   Modal,
   TextInput,
   TouchableOpacity,
-  Image
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router, useFocusEffect } from "expo-router";
@@ -38,6 +38,7 @@ import { LocationDetail } from "@/api_debug/locations.logged";
 import { useGetLocationDetails } from "@/hook/useLocations";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { icons } from "../data/loadIcons";
+import { Mode } from "./map";
 
 const styles = StyleSheet.create({
   screen: {
@@ -189,6 +190,42 @@ const styles = StyleSheet.create({
     color: "#374151",
     textAlign: "center",
   },
+  mapCategoryContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    marginHorizontal: 20,
+    marginBottom: 20,
+  },
+
+  mapCategoryItem: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 16,
+  },
+
+  mapCategoryIconButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 32,
+    backgroundColor: "#EAF3FF",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  mapCategoryIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: "contain",
+  },
+
+  mapCategoryText: {
+    marginTop: 6,
+    fontSize: 13,
+    fontWeight: "500",
+    color: "#1F2937",
+    textAlign: "center",
+  },
 });
 // const MOCK_TOKEN = "mock-token";
 
@@ -204,7 +241,7 @@ export default function Index() {
     setDestination,
     setSelectedRoute,
     mapMode,
-    setMapMode
+    setMapMode,
   } = useRouteContext();
   //to be implemented
   const {
@@ -331,6 +368,7 @@ export default function Index() {
     useCallback(() => {
       setSelectedRoute(null);
       setDestination(null);
+      setUserSearch("");
     }, []),
   );
 
@@ -364,6 +402,11 @@ export default function Index() {
     });
     setSelectedLocationId("");
     setSavePurpose("");
+  }
+
+  function handleToMap(mode: Mode) {
+    setMapMode(mode);
+    router.push("/map");
   }
 
   //loading
@@ -416,28 +459,38 @@ export default function Index() {
           onChangeText={setUserSearch}
         />
 
-        
         {/* Quick Destinations, common areas people navigate to, we can keep this fixed for now */}
-        {/* <View>
-          <View>
-            <TouchableOpacity>
-              <Image source={icons.building}/>
+        <View style={styles.mapCategoryContainer}>
+          <View style={styles.mapCategoryItem}>
+            <TouchableOpacity
+              style={styles.mapCategoryIconButton}
+              onPress={() => handleToMap("building")}
+            >
+              <Image source={icons.building} style={styles.mapCategoryIcon} />
             </TouchableOpacity>
-            <Text>Buildings</Text>
+            <Text style={styles.mapCategoryText}>Buildings</Text>
           </View>
-          <View>
-            <TouchableOpacity>
-              <Image source={icons.canteen}/>
+
+          <View style={styles.mapCategoryItem}>
+            <TouchableOpacity
+              style={styles.mapCategoryIconButton}
+              onPress={() => handleToMap("canteen")}
+            >
+              <Image source={icons.canteen} style={styles.mapCategoryIcon} />
             </TouchableOpacity>
-            <Text>Canteens</Text>
-          </View> 
-          <View>
-            <TouchableOpacity>
-              <Image source={icons.bus_stop}/>
+            <Text style={styles.mapCategoryText}>Canteens</Text>
+          </View>
+
+          <View style={styles.mapCategoryItem}>
+            <TouchableOpacity
+              style={styles.mapCategoryIconButton}
+              onPress={() => handleToMap("bus_stop")}
+            >
+              <Image source={icons.bus_stop} style={styles.mapCategoryIcon} />
             </TouchableOpacity>
-            <Text>Bus</Text>
-          </View> 
-        </View>         */}
+            <Text style={styles.mapCategoryText}>Bus</Text>
+          </View>
+        </View>
 
         {/* Automatic starting point but it should be selectable as well */}
         <View style={styles.bodyView}>

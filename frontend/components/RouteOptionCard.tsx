@@ -68,7 +68,7 @@ export default function RouteOptionCard({
 }: RouteOptionProps) {
   const colorMap = new Map([
     ["fastest", "#FF4A1C"],
-    ["walking only", "#0B3A7E"],
+    ["sheltered", "#0B3A7E"],
     ["accessible", "#168A45"],
     ["carpark", "#0B3A7E"],
   ]);

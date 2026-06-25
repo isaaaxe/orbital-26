@@ -8,6 +8,7 @@ import {
   Image,
   TextInput,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, {
@@ -29,6 +30,10 @@ import {
   useSaveLocationMutation,
 } from "@/hook/useLocations";
 import { useFetchAllBusStop } from "@/hook/useBus";
+import { FlatList } from "react-native-gesture-handler";
+import CrowdHeatmap from "@/components/CrowdHeatmap";
+import { LocationDetail } from "@/api_debug/locations.logged";
+import { BusStopResponse } from "@/api_debug/bus.logged";
 
 const styles = StyleSheet.create({
   screen: {
@@ -240,6 +245,161 @@ const styles = StyleSheet.create({
     color: "#374151",
     textAlign: "center",
   },
+
+  bottomOverlay: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+
+    maxHeight: "42%",
+    backgroundColor: "rgba(255, 255, 255, 1)",
+
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 24,
+
+    // shadowColor: "#000",
+    // shadowOffset: { width: 0, height: -4 },
+    // shadowOpacity: 0.16,
+    // shadowRadius: 12,
+    // elevation: 8,
+  },
+
+  overlayList: {
+    paddingBottom: 4,
+  },
+
+  itemGap: {
+    height: 10,
+  },
+
+  overlayCard: {
+    backgroundColor: "#F9FAFB",
+    borderRadius: 16,
+    padding: 14,
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+  },
+
+  cardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  cardTitleButton: {
+    flex: 1,
+  },
+
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#111827",
+  },
+
+  saveButton: {
+    marginLeft: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: "#EAF3FF",
+  },
+
+  saveButtonText: {
+    fontSize: 12,
+    fontWeight: "700",
+    color: "#0B4EA2",
+  },
+
+  detailsContainer: {
+    marginTop: 12,
+  },
+
+  statusRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 10,
+  },
+
+  statusText: {
+    fontSize: 13,
+    fontWeight: "800",
+  },
+
+  openText: {
+    color: "#16A34A",
+  },
+
+  closedText: {
+    color: "#DC2626",
+  },
+
+  openingText: {
+    flex: 1,
+    fontSize: 13,
+    fontWeight: "500",
+    color: "#4B5563",
+  },
+
+  chevronText: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#6B7280",
+  },
+
+  scheduleContainer: {
+    marginBottom: 10,
+  },
+
+  scheduleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 5,
+  },
+
+  scheduleDay: {
+    width: 46,
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#111827",
+  },
+
+  scheduleHours: {
+    flex: 1,
+    fontSize: 13,
+    color: "#4B5563",
+  },
+
+  busRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 8,
+    borderTopWidth: 1,
+    borderTopColor: "#E5E7EB",
+  },
+
+  busBadge: {
+    backgroundColor: "#0B4EA2",
+    color: "white",
+    fontSize: 13,
+    fontWeight: "800",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    overflow: "hidden",
+  },
+
+  busTiming: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#111827",
+  },
 });
 const scamColourWheel = [
   "rgba(130, 202, 255, 0.75)",
@@ -275,43 +435,62 @@ function firstAndLast(str: string) {
   return str[0] + str[str.length - 1];
 }
 
-// type DayKey = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
+type DayKey = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
 
 // type OpeningHours = Partial<Record<DayKey, [string, string]>>;
 // type CrowdDensity = Partial<Record<DayKey, Record<string, number>>>;
 
-// const dayOrder: DayKey[] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const dayOrder: DayKey[] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
-// const dayLabels: Record<string, string> = {
-//   mon: "Mon",
-//   tue: "Tue",
-//   wed: "Wed",
-//   thu: "Thu",
-//   fri: "Fri",
-//   sat: "Sat",
-//   sun: "Sun",
-// };
+const dayLabels: Record<string, string> = {
+  mon: "Mon",
+  tue: "Tue",
+  wed: "Wed",
+  thu: "Thu",
+  fri: "Fri",
+  sat: "Sat",
+  sun: "Sun",
+};
 
-// function getTodayKey() {
-//   const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-//   return days[new Date().getDay()];
-// }
+function getTodayKey() {
+  const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+  return days[new Date().getDay()];
+}
 
-// function getOpeningHoursText(openingHours?: OpeningHours | null) {
-//   const today = getTodayKey();
-//   const hours = openingHours?.[today]
+export function formatHour(time: string): string {
+  const [hour, minutes] = time.split(":");
+  if (Number(hour) > 12) return `${Number(hour) - 12}:${minutes} pm`;
+  return `${Number(hour)}:${minutes} am`;
+}
 
-//   if (!hours || hours.length < 2) return "Opening hours unavailable";
+function formatOpeningHours(openingHours: [string, string]): string {
+  return `${formatHour(openingHours[0])} - ${formatHour(openingHours[1])}`;
+}
 
-//   return `${hours[0]} - ${hours[1]}`;
-// }
+export function getDensityColor(value?: number) {
+  if (value == null) return "#E5E7EB";
+  if (value < 35) return "#22C55E";
+  if (value < 70) return "#FACC15";
+  return "#EF4444";
+}
 
-// function getDensityColor(value?: number) {
-//   if (value == null) return "#E5E7EB";
-//   if (value < 35) return "#22C55E";
-//   if (value < 70) return "#FACC15";
-//   return "#EF4444";
-// }
+function timeToMinutes(time: string) {
+  const [hour, minute] = time.split(":").map(Number);
+  return hour * 60 + minute;
+}
+
+function isCurrentlyOpen(openingHours: [string, string]) {
+  // openingHours example: "09:30 - 22:00"
+  const [openTime, closeTime] = openingHours;
+
+  const openMinutes = timeToMinutes(openTime);
+  const closeMinutes = timeToMinutes(closeTime);
+
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  return currentMinutes >= openMinutes && currentMinutes <= closeMinutes;
+}
 
 // function getDensityText(value?: number) {
 //   if (value == null) return "Unknown";
@@ -319,7 +498,6 @@ function firstAndLast(str: string) {
 //   if (value < 70) return "Moderate";
 //   return "Crowded";
 // }
-
 
 // function getCrowdHours(crowdDensity?: CrowdDensity | null) {
 //   return Array.from(
@@ -334,12 +512,13 @@ function firstAndLast(str: string) {
 export default function MapPage() {
   const { token } = useAuthContext();
   const saveLocationMutation = useSaveLocationMutation(token);
-  const { origin, selectedLocation, setSelectedLocation, setFloorPlanSource } = useRouteContext();
+  const { origin, selectedLocation, setSelectedLocation, setFloorPlanSource } =
+    useRouteContext();
   const [visible, setVisible] = useState(false);
   const [region, setRegion] = useState<Region | null>(null);
-  const {mapMode, setMapMode} = useRouteContext()
-  const [saveModalVisible, setSaveModalVisible] = useState(false)
-  const [savePurpose, setSavePurpose] = useState("")
+  const { mapMode, setMapMode } = useRouteContext();
+  const [saveModalVisible, setSaveModalVisible] = useState(false);
+  const [savePurpose, setSavePurpose] = useState("");
   const showPOI = region !== null && region.latitudeDelta < 0.015;
   const {
     data: buildingDetails,
@@ -364,8 +543,23 @@ export default function MapPage() {
       { name: "Bus stops", code: "bus_stop" },
     ],
     selected: mapMode,
-    onSelect: setMapMode,
+    onSelect: handleSelectChip,
   };
+  // expanded view of item
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [canteenSelected, setCanteenSelected] = useState<LocationDetail | null>(
+    null,
+  );
+  const [busStopSelected, setBusStopSelected] =
+    useState<BusStopResponse | null>(null);
+  // const [canteenScheduleExpanded, setCanteenScheduleExpanded] = useState(false);
+
+  function handleSelectChip(mode: Mode) {
+    setIsExpanded(false);
+    setCanteenSelected(null);
+    setBusStopSelected(null);
+    setMapMode(mode);
+  }
 
   function getCurrentLocation() {
     Alert.alert(`Current Location`, `${origin?.nearest_node.name}`);
@@ -373,7 +567,7 @@ export default function MapPage() {
 
   function handleIndoor() {
     setVisible(false);
-    setFloorPlanSource("building")
+    setFloorPlanSource("building");
     router.push("/floorPlanView");
   }
 
@@ -470,52 +664,52 @@ export default function MapPage() {
               buildingDetails && (
                 <>
                   {buildingDetails.map((buildingDetail, index) => (
-                      <View key={`poi_${index}`}>
-                        <Polygon
-                          key={`poly_${index}`}
-                          coordinates={buildingDetail.boundaries!.coordinates[0].map(
-                            (coords) => {
-                              return {
-                                latitude: coords[1],
-                                longitude: coords[0],
-                              };
-                            },
-                          )}
-                          fillColor={
-                            scamColourWheel[index % scamColourWheel.length]
-                          }
-                          strokeColor={
-                            scamColourWheel[index % scamColourWheel.length]
-                          }
-                          tappable={true}
-                          onPress={() => {
-                            setVisible(true);
-                            setSelectedLocation(buildingDetail);
-                          }}
-                        />
-                        <Marker
-                          key={`marker_${index}`}
-                          coordinate={{
-                            latitude: buildingDetail.latitude!,
-                            longitude: buildingDetail.longitude!,
-                          }}
-                          anchor={{ x: 0.5, y: 0.5 }}
-                          onPress={() => {
-                            setVisible(true);
-                            setSelectedLocation(buildingDetail);
-                          }}
-                        >
-                          <View style={styles.mapLabel}>
-                            <Text style={styles.mapLabelText}>
-                              {firstAndLast(buildingDetail.display_name)}
-                            </Text>
-                          </View>
-                        </Marker>
-                      </View>
-                    ))}
+                    <View key={`poi_${index}`}>
+                      <Polygon
+                        key={`poly_${index}`}
+                        coordinates={buildingDetail.boundaries!.coordinates[0].map(
+                          (coords) => {
+                            return {
+                              latitude: coords[1],
+                              longitude: coords[0],
+                            };
+                          },
+                        )}
+                        fillColor={
+                          scamColourWheel[index % scamColourWheel.length]
+                        }
+                        strokeColor={
+                          scamColourWheel[index % scamColourWheel.length]
+                        }
+                        tappable={true}
+                        onPress={() => {
+                          setVisible(true);
+                          setSelectedLocation(buildingDetail);
+                        }}
+                      />
+                      <Marker
+                        key={`marker_${index}`}
+                        coordinate={{
+                          latitude: buildingDetail.latitude!,
+                          longitude: buildingDetail.longitude!,
+                        }}
+                        anchor={{ x: 0.5, y: 0.5 }}
+                        onPress={() => {
+                          setVisible(true);
+                          setSelectedLocation(buildingDetail);
+                        }}
+                      >
+                        <View style={styles.mapLabel}>
+                          <Text style={styles.mapLabelText}>
+                            {firstAndLast(buildingDetail.display_name)}
+                          </Text>
+                        </View>
+                      </Marker>
+                    </View>
+                  ))}
                 </>
               )}
-              {/* canteen */}
+            {/* canteen */}
             {mapMode === "canteen" && !canteensLoading && canteens && (
               <>
                 {canteens.map((canteen, index) => (
@@ -533,10 +727,10 @@ export default function MapPage() {
                       strokeColor={
                         scamColourWheel[index % scamColourWheel.length]
                       }
-                      onPress={ () => {
-                            setVisible(true);
-                            setSelectedLocation(canteen)
-                            //to be updated to show the canteen instead 
+                      onPress={() => {
+                        setVisible(true);
+                        setSelectedLocation(canteen);
+                        //to be updated to show the canteen instead
                       }}
                     />
                     <Marker
@@ -546,9 +740,9 @@ export default function MapPage() {
                         longitude: canteen.longitude!,
                       }}
                       anchor={{ x: 0.5, y: 0.5 }}
-                      onPress={ () => {
-                            setVisible(true);
-                            setSelectedLocation(canteen)
+                      onPress={() => {
+                        setVisible(true);
+                        setSelectedLocation(canteen);
                       }}
                     >
                       <Image
@@ -571,7 +765,6 @@ export default function MapPage() {
                       longitude: stop.longitude,
                     }}
                     anchor={{ x: 0.5, y: 0.5 }}
-
                   >
                     <Image
                       source={icons.bus_stop}
@@ -584,6 +777,166 @@ export default function MapPage() {
             )}
           </MapView>
           {/* this modal should only be for buildings for now */}
+
+          {(mapMode === "canteen" || mapMode === "bus_stop") && (
+            <View style={styles.bottomOverlay}>
+              {mapMode === "canteen" && (
+                <FlatList
+                  data={canteens}
+                  keyExtractor={(item) => item.id}
+                  showsVerticalScrollIndicator={false}
+                  contentContainerStyle={styles.overlayList}
+                  ItemSeparatorComponent={() => <View style={styles.itemGap} />}
+                  renderItem={({ item }) => {
+                    const isSelected = canteenSelected?.id === item.id;
+
+                    const dayKey = getTodayKey();
+                    const dayFormatted = dayLabels[dayKey];
+
+                    const todayHours = item.opening_hours?.[dayKey];
+
+                    const openingHour = todayHours
+                      ? formatHour(todayHours[0])
+                      : "N/A";
+
+                    const isOpen = todayHours
+                      ? isCurrentlyOpen(todayHours)
+                      : false;
+
+                    return (
+                      <View style={styles.overlayCard}>
+                        <View style={styles.cardHeader}>
+                          <TouchableOpacity
+                            style={styles.cardTitleButton}
+                            onPress={() => {
+                              setCanteenSelected(isSelected ? null : item);
+                              setIsExpanded(false);
+                            }}
+                          >
+                            <Text style={styles.cardTitle}>{item.name}</Text>
+                          </TouchableOpacity>
+
+                          {token && (
+                            <TouchableOpacity
+                              style={styles.saveButton}
+                              onPress={() => {
+                                setVisible(true);
+                                setSelectedLocation(item);
+                              }}
+                            >
+                              <Text style={styles.saveButtonText}>Save</Text>
+                            </TouchableOpacity>
+                          )}
+                        </View>
+
+                        {isSelected && (
+                          <View style={styles.detailsContainer}>
+                            {!isExpanded ? (
+                              <TouchableOpacity
+                                style={styles.statusRow}
+                                onPress={() => setIsExpanded(true)}
+                              >
+                                <Text
+                                  style={[
+                                    styles.statusText,
+                                    isOpen
+                                      ? styles.openText
+                                      : styles.closedText,
+                                  ]}
+                                >
+                                  {isOpen ? "Open" : "Closed"}
+                                </Text>
+
+                                <Text style={styles.openingText}>
+                                  {`Opens at ${openingHour} ${dayFormatted}`}
+                                </Text>
+
+                                <Text style={styles.chevronText}>⌄</Text>
+                              </TouchableOpacity>
+                            ) : (
+                              <Pressable
+                                style={styles.scheduleContainer}
+                                onPress={() => setIsExpanded(false)}
+                              >
+                                {dayOrder
+                                  .filter((day) => day in item.opening_hours!)
+                                  .map((day, index) => (
+                                    <View key={day} style={styles.scheduleRow}>
+                                      <Text style={styles.scheduleDay}>
+                                        {dayLabels[day]}
+                                      </Text>
+
+                                      <Text style={styles.scheduleHours}>
+                                        {formatOpeningHours(
+                                          item.opening_hours![day],
+                                        )}
+                                      </Text>
+
+                                      {index === 0 && (
+                                        <Text style={styles.chevronText}>
+                                          ⌃
+                                        </Text>
+                                      )}
+                                    </View>
+                                  ))}
+                              </Pressable>
+                            )}
+
+                            <CrowdHeatmap
+                              densityByHour={item.crowd_density?.[dayKey]}
+                            />
+                          </View>
+                        )}
+                      </View>
+                    );
+                  }}
+                />
+              )}
+
+              {mapMode === "bus_stop" && (
+                <FlatList
+                  data={busStops}
+                  keyExtractor={(item) => item.bus_stop_id}
+                  showsVerticalScrollIndicator={false}
+                  contentContainerStyle={styles.overlayList}
+                  ItemSeparatorComponent={() => <View style={styles.itemGap} />}
+                  renderItem={({ item }) => {
+                    const isSelected =
+                      busStopSelected?.bus_stop_id === item.bus_stop_id;
+
+                    return (
+                      <View style={styles.overlayCard}>
+                        <TouchableOpacity
+                          style={styles.cardHeader}
+                          onPress={() =>
+                            setBusStopSelected(isSelected ? null : item)
+                          }
+                        >
+                          <Text style={styles.cardTitle}>{item.name}</Text>
+                          <Text style={styles.chevronText}>
+                            {isSelected ? "⌃" : "⌄"}
+                          </Text>
+                        </TouchableOpacity>
+
+                        {isSelected && (
+                          <View style={styles.detailsContainer}>
+                            {item.available_buses.map((bus) => (
+                              <View key={bus} style={styles.busRow}>
+                                <Text style={styles.busBadge}>{bus}</Text>
+                                <Text style={styles.busTiming}>
+                                  {item.bus_schedules[bus]} min
+                                </Text>
+                              </View>
+                            ))}
+                          </View>
+                        )}
+                      </View>
+                    );
+                  }}
+                />
+              )}
+            </View>
+          )}
           <Modal
             visible={visible}
             transparent
@@ -608,9 +961,9 @@ export default function MapPage() {
                   {mapMode != "bus_stop" && token && (
                     <TouchableOpacity
                       style={styles.modalButton}
-                      onPress={()=>{
-                        setVisible(false)
-                        setSaveModalVisible(true)
+                      onPress={() => {
+                        setVisible(false);
+                        setSaveModalVisible(true);
                       }}
                     >
                       <Text style={styles.modalButtonText}>Save Location</Text>

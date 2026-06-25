@@ -25,7 +25,7 @@ export type LocationDetail = {
   landmark_hint: string | null;
   arrival_instruction: string | null;
 
-  crowd_density: Record<string, number> | null;
+  crowd_density: Record<string, Record<string, number>> | null;
   opening_hours: Record<string, [string, string]> | null;
   canteen: Canteen | null;
 };
