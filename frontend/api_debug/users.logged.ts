@@ -70,8 +70,6 @@ export type UserCreate = {
   profile_settings: string[];
 };
 export type UserUpdate = {
-  username: string;
-  password: string;
   new_username: string | null;
   new_password: string | null;
   language: string | null;

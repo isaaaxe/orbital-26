@@ -28,6 +28,7 @@ export default function SettingsPage() {
     { icon: icons.user, cardTitle: "Account", onPress: toAccount },
     { icon: icons.notif, cardTitle: "Notifications", onPress: toNotifications },
     { icon: icons.report, cardTitle: "Report", onPress: toReport },
+    //pacing to be added here
   ];
 
   function toAccount() {

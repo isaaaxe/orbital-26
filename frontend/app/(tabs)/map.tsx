@@ -480,7 +480,6 @@ function timeToMinutes(time: string) {
 }
 
 function isCurrentlyOpen(openingHours: [string, string]) {
-  // openingHours example: "09:30 - 22:00"
   const [openTime, closeTime] = openingHours;
 
   const openMinutes = timeToMinutes(openTime);
@@ -558,6 +557,7 @@ export default function MapPage() {
     setIsExpanded(false);
     setCanteenSelected(null);
     setBusStopSelected(null);
+    setSelectedLocation(null);
     setMapMode(mode);
   }
 
@@ -607,17 +607,26 @@ export default function MapPage() {
             <ChipList
               data={chipData.data}
               selected={mapMode}
-              onSelect={setMapMode}
+              onSelect={handleSelectChip}
             />
           </View>
           <MapView
             style={styles.map}
             provider={PROVIDER_GOOGLE}
             region={{
-              latitude: 1.300291282646443,
-              longitude: 103.77733947340228,
-              latitudeDelta: 0.016,
-              longitudeDelta: 0.016,
+              latitude: canteenSelected
+                ? canteenSelected.latitude!
+                : busStopSelected
+                  ? busStopSelected.latitude
+                  : 1.300291282646443,
+              longitude: canteenSelected
+                ? canteenSelected.longitude!
+                : busStopSelected
+                  ? busStopSelected.longitude
+                  : 103.77733947340228,
+              latitudeDelta: canteenSelected || busStopSelected ? 0.008 : 0.016,
+              longitudeDelta:
+                canteenSelected || busStopSelected ? 0.008 : 0.016,
             }}
             onRegionChangeComplete={(newRegion) => setRegion(newRegion)}
             customMapStyle={[
@@ -782,6 +791,7 @@ export default function MapPage() {
             <View style={styles.bottomOverlay}>
               {mapMode === "canteen" && (
                 <FlatList
+                  key="canteen-list"
                   data={canteens}
                   keyExtractor={(item) => item.id}
                   showsVerticalScrollIndicator={false}
@@ -895,6 +905,7 @@ export default function MapPage() {
 
               {mapMode === "bus_stop" && (
                 <FlatList
+                  key="bus_stop_list"
                   data={busStops}
                   keyExtractor={(item) => item.bus_stop_id}
                   showsVerticalScrollIndicator={false}

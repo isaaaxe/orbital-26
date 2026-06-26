@@ -37,14 +37,24 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#6B7280",
   },
+  routeHeaderRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+
+  routeHeaderTextArea: {
+    flex: 1,
+    minWidth: 0,
+    paddingRight: 12,
+  },
+
+  routeHeaderBackButton: {
+    marginRight: 20,
+    alignItems: "center",
+    flexShrink: 0,
+  },
 });
 
-type RouteOption = {
-  optionType: string;
-  eta: number;
-  routeTitle: string;
-  routeDescription: string;
-};
 function formatDuration(totalSeconds: number) {
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -58,14 +68,19 @@ function formatDuration(totalSeconds: number) {
 }
 
 export default function ChooseRoute() {
-  const { destination, selectedRoute, setSelectedRoute, origin, setFloorPlanSource } =
-    useRouteContext();
+  const {
+    destination,
+    selectedRoute,
+    setSelectedRoute,
+    origin,
+    setFloorPlanSource,
+  } = useRouteContext();
   const navigation = useNavigation();
   const toConfirmRoute = () => {
     if (!selectedRoute) {
       Alert.alert("Please choose a route.");
     } else {
-      setFloorPlanSource("route")
+      setFloorPlanSource("route");
       router.push("/confirmingRoute");
     }
   };
@@ -107,11 +122,13 @@ export default function ChooseRoute() {
             alignItems: "center",
           }}
         >
-          <Header
-            text={`Route to ${destination?.name}`}
-            description={`From ${origin?.nearest_node.name}`}
-          />
-          <View style={{ marginRight: 20, alignItems: "center" }}>
+          <View style={{ flex: 7 }}>
+            <Header
+              text={`Route to ${destination?.name ?? ""}`}
+              description={`From ${origin?.nearest_node.name ?? ""}`}
+            />
+          </View>
+          <View style={{ marginRight: 20, alignItems: "flex-end", flex: 1 }}>
             <BackButton additionalBackCleanUp={() => {}} />
           </View>
         </View>

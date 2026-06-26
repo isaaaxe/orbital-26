@@ -48,15 +48,22 @@ export function useCreateUserMutation() {
 export function useUpdateUserMutation() {
   const queryClient = useQueryClient();
 
-  return useMutation<UserDetail, Error, { token: string; request: UserUpdate }>(
-    {
-      mutationFn: ({ token, request }) => updateUser(token, request),
-
-      onSuccess: (user) => {
-        queryClient.setQueryData(["user", user.user_id], user);
-      },
+  return useMutation<
+    UserDetail,
+    Error,
+    { token?: string | null; request: UserUpdate }
+  >({
+    mutationFn: ({ token, request }) => {
+      if (!token || !request) {
+        throw new Error("Missing token ro request");
+      }
+      return updateUser(token, request);
     },
-  );
+
+    onSuccess: (user) => {
+      queryClient.setQueryData(["user", user.user_id], user);
+    },
+  });
 }
 
 export function useDeleteUserMutation(
