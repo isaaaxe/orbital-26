@@ -511,8 +511,13 @@ function isCurrentlyOpen(openingHours: [string, string]) {
 export default function MapPage() {
   const { token } = useAuthContext();
   const saveLocationMutation = useSaveLocationMutation(token);
-  const { origin, selectedLocation, setSelectedLocation, setFloorPlanSource } =
-    useRouteContext();
+  const {
+    origin,
+    selectedLocation,
+    setSelectedLocation,
+    setFloorPlanSource,
+    setDestination,
+  } = useRouteContext();
   const [visible, setVisible] = useState(false);
   const [region, setRegion] = useState<Region | null>(null);
   const { mapMode, setMapMode } = useRouteContext();
@@ -825,7 +830,15 @@ export default function MapPage() {
                           >
                             <Text style={styles.cardTitle}>{item.name}</Text>
                           </TouchableOpacity>
-
+                          <TouchableOpacity
+                            style={styles.saveButton}
+                            onPress={() => {
+                              setVisible(true);
+                              setSelectedLocation(item);
+                            }}
+                          >
+                            <Text style={styles.saveButtonText}>Navigate</Text>
+                          </TouchableOpacity>
                           {token && (
                             <TouchableOpacity
                               style={styles.saveButton}
@@ -928,7 +941,6 @@ export default function MapPage() {
                             {isSelected ? "⌃" : "⌄"}
                           </Text>
                         </TouchableOpacity>
-
                         {isSelected && (
                           <View style={styles.detailsContainer}>
                             {item.available_buses.map((bus) => (
@@ -948,6 +960,7 @@ export default function MapPage() {
               )}
             </View>
           )}
+          {/* building modal */}
           <Modal
             visible={visible}
             transparent
@@ -968,6 +981,19 @@ export default function MapPage() {
                       <Text style={styles.modalButtonText}>View floorplan</Text>
                     </TouchableOpacity>
                   )}
+                  {(mapMode == "building" || mapMode == "canteen") && (
+                    <TouchableOpacity
+                      style={styles.modalButton}
+                      onPress={() => {
+                        setDestination(selectedLocation);
+                        setVisible(false);
+                        router.push("/chooseRoute");
+                      }}
+                    >
+                      <Text style={styles.modalButtonText}>Navigate</Text>
+                    </TouchableOpacity>
+                  )}
+
                   {/* setting up like these for future saveable types that i can use this modal with */}
                   {mapMode != "bus_stop" && token && (
                     <TouchableOpacity

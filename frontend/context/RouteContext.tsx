@@ -75,13 +75,13 @@ type RouteContextType = {
   // routePOIs: POI_DATA_TYPE[];
   // setRoutePOIs: (poi: POI_DATA_TYPE[]) => void;
   floorPlans: FloorPlansByBuildingFloor | undefined;
-  floorPlansLoading: boolean
+  floorPlansLoading: boolean;
   selectedLocation: LocationDetail | null;
   setSelectedLocation: (loc_detail: LocationDetail | null) => void;
-  floorPlanSource: "route" | "building" | null
-  setFloorPlanSource: (source: "route" | "building" | null) => void
-  mapMode: Mode
-  setMapMode: (mode: Mode) => void
+  floorPlanSource: "route" | "building" | null;
+  setFloorPlanSource: (source: "route" | "building" | null) => void;
+  mapMode: Mode;
+  setMapMode: (mode: Mode) => void;
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
@@ -97,7 +97,9 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
   const [destination, setDestination] = useState<LocationDetail | null>(null);
   const [selectedLocation, setSelectedLocation] =
     useState<LocationDetail | null>(null);
-  const [floorPlanSource, setFloorPlanSource] = useState<"route" | "building" | null>("route");
+  const [floorPlanSource, setFloorPlanSource] = useState<
+    "route" | "building" | null
+  >("route");
   const [mapMode, setMapMode] = useState<Mode>("building");
 
   function buildRenderPath(selectedRoute: RouteResponse): RenderPath[] {
@@ -174,6 +176,7 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     }
     for (let i = 0; i < selectedRoute.steps.length; i++) {
       //look at index 1 item
+      console.log(selectedRoute.steps[i].buildings_passed_by_id);
       let building_code = selectedRoute.steps[i].buildings_passed_by_id[1];
       let floor = selectedRoute.steps[i].floor_transition[1];
       if (
@@ -232,6 +235,8 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
           nodes: nodesByBuildingFloor[index],
           affine: result.value.affine,
         };
+        console.log(building_code);
+        console.log(nodesByBuildingFloor[index]);
       } else {
         console.log(`Unable to get floor plan for ${building_code}`);
         floorPlansByBuildingFloor[building_code] = null;
@@ -245,14 +250,16 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
   }
 
   async function getFloorPlansByBuilding(selectedLocation: LocationDetail) {
-    const buildingId = selectedLocation.building_id
-    const building_floor_plans: FloorDetail[] = await getBuildingFloors(buildingId!)
-    const res: FloorPlansByBuildingFloor = {}
+    const buildingId = selectedLocation.building_id;
+    const building_floor_plans: FloorDetail[] = await getBuildingFloors(
+      buildingId!,
+    );
+    const res: FloorPlansByBuildingFloor = {};
     building_floor_plans.forEach((floor) => {
-      const key = getBuildingFloorKey(floor.building_id, floor.floor_number)
-      res[key] = {floorDetail: floor, nodes: null, affine: floor.affine}
-    })
-    return res
+      const key = getBuildingFloorKey(floor.building_id, floor.floor_number);
+      res[key] = { floorDetail: floor, nodes: null, affine: floor.affine };
+    });
+    return res;
   }
 
   const {
@@ -272,18 +279,16 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
   } = useQuery<FloorPlansByBuildingFloor>({
     queryKey: ["floorPlans", selectedLocation],
     queryFn: () => getFloorPlansByBuilding(selectedLocation!),
-    enabled: !!selectedLocation && floorPlanSource == "building"
-  })
+    enabled: !!selectedLocation && floorPlanSource == "building",
+  });
 
   const floorPlans =
-  floorPlanSource === "route"
-    ? floorPlansByRoute
-    : floorPlansByBuilding
+    floorPlanSource === "route" ? floorPlansByRoute : floorPlansByBuilding;
 
-  const floorPlansLoading = 
+  const floorPlansLoading =
     floorPlanSource === "route"
-    ? isFloorPlanLoadingByRoute
-    : isFloorPlanLoadingByBuilding
+      ? isFloorPlanLoadingByRoute
+      : isFloorPlanLoadingByBuilding;
   // console.log(selectedRoute?.path_coordinates.length);
   // console.log(selectedRoute?.path_coordinates);
 
@@ -300,13 +305,13 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         setDestination,
         routeSegments,
         floorPlans,
-        floorPlansLoading, 
+        floorPlansLoading,
         selectedLocation,
         setSelectedLocation,
         floorPlanSource,
         setFloorPlanSource,
         mapMode,
-        setMapMode
+        setMapMode,
       }}
     >
       {children}
