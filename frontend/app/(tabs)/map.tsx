@@ -34,6 +34,7 @@ import { FlatList } from "react-native-gesture-handler";
 import CrowdHeatmap from "@/components/CrowdHeatmap";
 import { LocationDetail } from "@/api_debug/locations.logged";
 import { BusStopResponse } from "@/api_debug/bus.logged";
+import { NearestNode } from "@/api_debug/campus_map.logged";
 
 const styles = StyleSheet.create({
   screen: {
@@ -507,6 +508,30 @@ function isCurrentlyOpen(openingHours: [string, string]) {
 //     ),
 //   ).sort((a, b) => Number(a) - Number(b));
 // }
+
+function checkValidNavigation(
+  origin: NearestNode | null,
+  destination: LocationDetail | null,
+): boolean {
+  if (origin == null) {
+    Alert.alert(
+      "Please enable your location or select a location to start from.",
+    );
+
+    return false;
+  }
+  if (destination == null) {
+    Alert.alert("Please select a destination");
+    return false;
+  }
+  if (origin.nearest_node.node_id == destination.nearest_node_id) {
+    Alert.alert(
+      "Please choose a destination that is different from your starting point",
+    );
+    return false;
+  }
+  return true;
+}
 
 export default function MapPage() {
   const { token } = useAuthContext();
@@ -985,6 +1010,10 @@ export default function MapPage() {
                     <TouchableOpacity
                       style={styles.modalButton}
                       onPress={() => {
+                        //check origin and check selecredLocation.nearest_node_id
+                        if (!checkValidNavigation(origin, selectedLocation)) {
+                          return;
+                        }
                         setDestination(selectedLocation);
                         setVisible(false);
                         router.push("/chooseRoute");

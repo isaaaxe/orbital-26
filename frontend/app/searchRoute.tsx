@@ -252,7 +252,7 @@ export default function SearchRoute() {
         Alert.alert("Please select a destination");
         return;
       }
-      if (origin.nearest_node.node_id == selectItem.id) {
+      if (origin.nearest_node.node_id == selectItem.nearest_node_id) {
         Alert.alert(
           "Please choose a destination that is different from your starting point",
         );

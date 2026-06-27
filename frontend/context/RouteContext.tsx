@@ -176,7 +176,7 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     }
     for (let i = 0; i < selectedRoute.steps.length; i++) {
       //look at index 1 item
-      console.log(selectedRoute.steps[i].buildings_passed_by_id);
+      // console.log(selectedRoute.steps[i].buildings_passed_by_id);
       let building_code = selectedRoute.steps[i].buildings_passed_by_id[1];
       let floor = selectedRoute.steps[i].floor_transition[1];
       if (
@@ -235,8 +235,8 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
           nodes: nodesByBuildingFloor[index],
           affine: result.value.affine,
         };
-        console.log(building_code);
-        console.log(nodesByBuildingFloor[index]);
+        // console.log(building_code);
+        // console.log(nodesByBuildingFloor[index]);
       } else {
         console.log(`Unable to get floor plan for ${building_code}`);
         floorPlansByBuildingFloor[building_code] = null;

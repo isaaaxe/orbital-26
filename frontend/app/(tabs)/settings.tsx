@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
 export default function SettingsPage() {
   const SETTINGS_DATA = [
     { icon: icons.user, cardTitle: "Account", onPress: toAccount },
-    { icon: icons.notif, cardTitle: "Notifications", onPress: toNotifications },
-    { icon: icons.report, cardTitle: "Report", onPress: toReport },
+    // { icon: icons.notif, cardTitle: "Notifications", onPress: toNotifications },
+    // { icon: icons.report, cardTitle: "Report", onPress: toReport },
     //pacing to be added here
   ];
 
