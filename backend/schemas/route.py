@@ -14,7 +14,9 @@ class RouteStep(BaseModel):
     buildings_passed_by_id: list[str | None] = []
     floor_transition: list[int]
     from_name: str | None = None #for corners
+    from_node_id: str 
     to_name: str | None = None   #for corners
+    to_node_id: str
 
 class RouteResponse(BaseModel):
     total_distance: float
