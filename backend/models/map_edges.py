@@ -30,6 +30,7 @@ class Map_Edge(database.Base):
         back_populates="in_edges",
     )
 
+    #walk, campus bus
     mode: Mapped[str] = mapped_column(String, nullable=False)
     is_sheltered: Mapped[bool] = mapped_column(Boolean, default=False ,nullable=False)
     is_accessible: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)

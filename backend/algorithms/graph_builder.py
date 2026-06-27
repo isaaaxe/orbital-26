@@ -36,6 +36,3 @@ async def buildGraph(session):
         
     #("GRAPH TABLE:", graph_table)
     return node_by_id, edge_by_pair, graph_table
-
-
-

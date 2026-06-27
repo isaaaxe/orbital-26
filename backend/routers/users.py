@@ -30,7 +30,6 @@ async def add_user(request: user.UserCreate, session: AsyncSession = Depends(dat
 
     return created_user
 
-#TODO: update in the future for changing password
 @router.patch("/update", response_model=user.UserDetail)
 async def update_user(request: user.UserUpdate, session: AsyncSession = Depends(database.get_db_session), current_user: User = Depends(get_current_user),):
     user = await user_service.update_user(session, current_user, request.new_username, request.new_password ,request.language, request.profile_settings)

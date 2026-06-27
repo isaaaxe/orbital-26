@@ -3372,15 +3372,15 @@
       "_floorId": "com1:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "corr16 com1 floor2",
       "lat": 1.2951657,
       "lon": 103.7737886,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com1",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         511,
         214
@@ -3388,15 +3388,15 @@
       "_floorId": "com1:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "corr16 com1 floor1",
       "lat": 1.2951103,
       "lon": 103.7739305,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com1",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         759,
         153
@@ -3404,15 +3404,15 @@
       "_floorId": "com1:1"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "corridor 51",
       "lat": 1.2948191,
       "lon": 103.7741471,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com1",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1247,
         204
@@ -3420,15 +3420,15 @@
       "_floorId": "com1:1"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "corr10 com2 floor1",
       "lat": 1.2935595,
       "lon": 103.7742288,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         970,
         516
@@ -3436,15 +3436,15 @@
       "_floorId": "com2:1"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "corr11 com2 floor1",
       "lat": 1.2933732,
       "lon": 103.7743407,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1183,
         498
@@ -3452,15 +3452,15 @@
       "_floorId": "com2:1"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "corr18 com1 floor2",
       "lat": 1.2948816,
       "lon": 103.7738297,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com1",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         851,
         465
@@ -4214,15 +4214,6 @@
       "instruction": "",
       "reverse_instruction": null,
       "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "stair 5 com1 floor2",
-      "to": "corr13 com1 floor2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": false,
       "is_sheltered": true
     },
     {
@@ -5395,6 +5386,24 @@
       "instruction": "",
       "reverse_instruction": null,
       "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr16 com1 floor2",
+      "to": "stair 5 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr16 com1 floor2",
+      "to": "corr13 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
       "is_sheltered": true
     }
   ]

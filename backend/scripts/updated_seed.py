@@ -134,7 +134,7 @@ BUILDING_SPECS = [
 BASE_NODE_SPECS = [
     {"name": "COM3 Elevator", "lat": 1.2946253, "lon": 103.7749732, "node_type": "lift_station", "floor": 1, "building_code": "com3"},
     {"name": "Com3 MPH1", "lat": 1.2946126, "lon": 103.7747248, "node_type": "multipurpose hall", "floor": 1, "building_code": "com3"},
-    {"name": "The Terrace", "lat": 1.2944054, "lon": 103.7743158, "node_type": "canteen", "floor": 1, "building_code": "com3"},
+    {"name": "The Terrace", "lat": 1.2944054, "lon": 103.7743158, "node_type": "canteen", "floor": 1, "building_code": "com2"},
     {"name": "Com2 entrance", "lat": 1.2943984, "lon": 103.7739848, "node_type": "entrance", "floor": 1, "building_code": "com2"},
     {"name": "com1 level1 walkway outside entrance", "lat": 1.2948261, "lon": 103.7736496, "node_type": "walkway", "floor": 1, "building_code": None},
     {"name": "UTown bus stop", "lat": 1.303662152778908, "lon": 103.77474325618729, "node_type": "bus stop", "floor": 1, "building_code": "UTown"},
@@ -165,8 +165,6 @@ BASE_NODE_SPECS = [
     {"name": "As6 lift1", "lat": 1.2952890, "lon": 103.7733153, "node_type": "lift_station", "floor": 1, "building_code": "as6"},
     {"name": "Com1 second story outside ahu room", "lat": 1.2954026, "lon": 103.7735443, "node_type": "corner", "floor": 2, "building_code": "com1"},
     {"name": "Middle of stairs from terrace to com1", "lat": 1.2944709, "lon": 103.7741018, "node_type": "corner", "floor": 1, "building_code": "com2"},
-    {"name": "Com1", "lat": 1.294946722798136, "lon": 103.77393194938502, "node_type": "building", "floor": 1, "building_code": "com1"},
-    {"name": "Com2", "lat": 1.294265259902769, "lon": 103.77409799286686, "node_type": "building", "floor": 1, "building_code": "com2"},
     {"name": "Com3", "lat": 1.2947281501787837, "lon": 103.77459031912267, "node_type": "building", "floor": 1, "building_code": "com3"},
     {"name": "LT15", "lat": 1.2955214878116914, "lon": 103.77344062919603, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
     {"name": "LT14", "lat": 1.2957011498687994, "lon": 103.77337290341598, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
@@ -211,21 +209,21 @@ LOCATION_SPECS = [
     {"name": "Central Library", "display_name": "Central Library", "aliases": ["CLB"], "location_type": "central library", "building_code": "clb", "floor": 1, "area_name": None, "lat": 1.2966200954063662, "lon": 103.77312890647435, "nearest_node_name": "Central library entrance", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Lecture Theatre 15", "display_name": "Lecture Theatre 15", "aliases": ["LT15", "LT 15"], "location_type": "lecture theatre", "building_code": "as6", "floor": 1, "area_name": None, "lat": 1.2955214878116914, "lon": 103.77344062919603, "nearest_node_name": "LT15", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Lecture Theatre 14", "display_name": "Lecture Theatre 14", "aliases": ["LT14", "LT 14"], "location_type": "lecture theatre", "building_code": "as6", "floor": 1, "area_name": None, "lat": 1.2957011498687994, "lon": 103.77337290341598, "nearest_node_name": "LT14", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "COM1", "display_name": "COM1", "aliases": ["COM1", "Computing 1"], "location_type": "COM", "building_code": "com1", "floor": 1, "area_name": "school of computing", "lat": 1.294946722798136, "lon": 103.77393194938502, "nearest_node_name": "Com1", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "COM2", "display_name": "COM2", "aliases": ["COM2", "Computing 2"], "location_type": "COM", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.294265259902769, "lon": 103.77409799286686, "nearest_node_name": "Com2", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM1", "display_name": "COM1", "aliases": ["COM1", "Computing 1"], "location_type": "COM", "building_code": "com1", "floor": 1, "area_name": "school of computing", "lat": 1.294946722798136, "lon": 103.77393194938502, "nearest_node_name": "Com1 main entrance floor 1", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM2", "display_name": "COM2", "aliases": ["COM2", "Computing 2"], "location_type": "COM", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.294265259902769, "lon": 103.77409799286686, "nearest_node_name": "Com2 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "COM3", "display_name": "COM3", "aliases": ["COM3", "Computing 3"], "location_type": "COM", "building_code": "com3", "floor": 1, "area_name": "school of computing", "lat": 1.2947281501787837, "lon": 103.77459031912267, "nearest_node_name": "Com3 MPH1", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "Terrace", "display_name": "Terrace", "aliases": ["The Terrace"], "location_type": "canteen", "building_code": "com3", "floor": 1, "area_name": "school of computing", "lat": 1.2944054, "lon": 103.7743158, "nearest_node_name": "The Terrace", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "Terrace", "display_name": "Terrace", "aliases": ["The Terrace"], "location_type": "canteen", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.2944054, "lon": 103.7743158, "nearest_node_name": "The Terrace", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Deck", "display_name": "The Deck", "aliases": ["The Deck", "Deck"], "location_type": "canteen", "building_code": "deck", "floor": 1, "area_name": "school of computing", "lat": 1.2946732, "lon": 103.7724432, "nearest_node_name": "Deck", "nearest_bus_stop_name": "Central Library bus stop"},
 ]
 
 
 # ----------------------------------------------------------------------------
-# edges. base = (from, to, mode, instruction, reverse_instruction)
+# edges. base = (from, to, mode, instruction, reverse_instruction, acc, sheltered)
 # ----------------------------------------------------------------------------
 BASE_EDGE_SPECS = [
-    ("COM3 Elevator", "Com3 MPH1", "walk", "walk straight down corridor for calculated distance", None),
-    ("Com3 MPH1", "The Terrace", "walk", "walk straight down corridor for calculated distance", None),
-    ("The Terrace", "Com2 entrance", "walk", "walk straight for calculated distance", None),
+    ("COM3 Elevator", "Com3 MPH1", "walk", "walk straight down corridor for calculated distance", None, True, True),
+    ("Com3 MPH1", "The Terrace", "walk", "walk straight down corridor for calculated distance", None, True, True),
+    ("The Terrace", "Com2 entrance", "walk", "walk straight for calculated distance", None, True, True),
     ("UTown bus stop", "UTown bus stop turn 1", "campus bus", "Start at UTown bus stop and head towards College entrance", "arriving at UTown Bus Stop"),
     ("UTown bus stop turn 1", "College circus entrance", "campus bus", "continue around College Circus towards UTown bus exit", "heading towards UTown Bus stop"),
     ("College circus entrance", "College circus turn 1", "campus bus", "", None),
@@ -245,25 +243,31 @@ BASE_EDGE_SPECS = [
     ("Kent Ridge Kres circus opening 2", "Kent Ridge Kres curve corner 2", "campus bus", "follow Kent Ridge Kres", None),
     ("Kent Ridge Kres curve corner 2", "Kent Ridge Kres curve corner 3", "campus bus", "follow Kent Ridge Kres", None),
     ("Kent Ridge Kres curve corner 3", "Central Library bus stop", "campus bus", "arriving at central library bus stop", "exiting central library bus stop"),
-    ("Central Library bus stop", "Central library stairs", "walk", "walk down the stairs", "walk up the stairs"),
-    ("Central library stairs", "Central library entrance", "walk", "walk straight for calculated distance", None),
-    ("Central library entrance", "Central library lift", "walk", "walk straight for calculated distance", None),
-    ("Central library lift", "Outside nus coop store room", "walk", "walk up stairs", "walk down stairs"),
-    ("Outside nus coop store room", "Outside LT14", "walk", "walk straight for calculated distance", None),
-    ("Outside LT14", "Outside LT15", "walk", "walk straight for calculated distance", None),
-    ("Outside LT15", "As6 lift1", "walk", "walk straight for calculated distance", None),
-    ("As6 lift1", "Com1 second story outside ahu room", "walk", "turn left, walk straight for calculated distance and turn right", "turn left, walk straight for calculated distance and turn right"),
+    ("Central Library bus stop", "Central library stairs", "walk", "walk down the stairs", "walk up the stairs", False, True),
+    ("Central library stairs", "Central library entrance", "walk", "walk straight for calculated distance", None, False, True),
+    ("Central library entrance", "Central library lift", "walk", "walk straight for calculated distance", None, True, True),
+    ("Central library lift", "Outside nus coop store room", "walk", "walk up stairs", "walk down stairs", False, True),
+    ("Outside nus coop store room", "Outside LT14", "walk", "walk straight for calculated distance", None, True, True),
+    ("Outside LT14", "Outside LT15", "walk", "walk straight for calculated distance", None, True, True),
+    ("Outside LT15", "As6 lift1", "walk", "walk straight for calculated distance", None, True, True),
+    ("As6 lift1", "Com1 second story outside ahu room", "walk", "turn left, walk straight for calculated distance and turn right", "turn left, walk straight for calculated distance and turn right", False, True),
     # Com1 level 2 entrance removed: main entrance to com1 floor2 is now the
     # source of truth for the COM1 floor-2 entrance. Outdoor side reaches it via
-    # the ahu-room corner -> corr16 (indoor), then through the floor-2 corridors.
+    # the ahu-room corner -> corr17 (indoor), then through the floor-2 corridors.
     # The terrace stairs connect to floor 2 via corr6 (indoor) only, so the route
     # walks the corridor interior instead of jumping straight to the entrance.
-    ("Com1 second story outside ahu room", "corr16 com1 floor2", "walk", "walk straight for calculated distance", None),
-    ("Middle of stairs from terrace to com1", "The Terrace", "walk", "walk down stairs and straight for calculated distance", None),
-    ("Outside LT14", "LT14", "walk", "walk down stairs and straight for calculated distance", None),
-    ("Outside LT15", "LT15", "walk", "walk down stairs and straight for calculated distance", None),
-    ("main entrance to com1 floor2", "Com1", "walk", "walk straight for calculated distance", None),
-    ("Com2 entrance", "Com2", "walk", "walk through the entrance and turn left", None),
+    # NOTE: editor node is "corr17 com1 floor 2" (space before 2), unlike the
+    # other corrN nodes which are "corrN com1 floor2" -- must match exactly or
+    # build_edges() raises KeyError.
+    ("Com1 second story outside ahu room", "corr17 com1 floor 2", "walk", "walk straight for calculated distance", None, False, True),
+    # corr13 <-> corr16 (floor 2) now lives in the editor export, so it is NOT a
+    # base edge here -- duplicating it would collide on edge_id (build_edges has
+    # no edge dedup). That link is what joins the corr14-17 cluster to the
+    # corr1-13/18 cluster holding "main entrance to com1 floor2".
+    ("Middle of stairs from terrace to com1", "The Terrace", "walk", "walk down stairs and straight for calculated distance", None, False, True),
+    ("corr1 com2 floor1", "Middle of stairs from terrace to com1", "walk", "walk to the stairs landing for calculated distance", None, False, True),
+    ("Outside LT14", "LT14", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
+    ("Outside LT15", "LT15", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
 ]
 
 # accessible/sheltered edges: dict form. vertical in {None,"lift","stairs"}.
@@ -386,6 +390,12 @@ def build_edges(edge_specs, node_by_name):
 
         acc = bool(s.get("acc", False))
         shel = bool(s.get("shel", False))
+        # campus bus segments are always wheelchair-accessible + sheltered (ISB
+        # fleet boards step-free and runs covered routes), regardless of how the
+        # tuple was written. Applied here so new bus edges inherit it for free.
+        if s["mode"] == "campus bus":
+            acc = True
+            shel = True
         instruction = s.get("instruction")
         reverse = s.get("reverse")
         reverse_text = reverse if reverse is not None else instruction
@@ -410,7 +420,14 @@ def build_edges(edge_specs, node_by_name):
 
 
 def normalise_edge_tuple(t):
-    return {"from": t[0], "to": t[1], "mode": t[2], "instruction": t[3], "reverse": t[4]}
+    # base tuple is (from, to, mode, instruction, reverse) with two OPTIONAL
+    # trailing flags: (..., acc, shel). Absent -> False (back-compatible).
+    return {
+        "from": t[0], "to": t[1], "mode": t[2],
+        "instruction": t[3], "reverse": t[4],
+        "acc": bool(t[5]) if len(t) > 5 else False,
+        "shel": bool(t[6]) if len(t) > 6 else False,
+    }
 
 
 # ----------------------------------------------------------------------------

@@ -5,14 +5,18 @@ from sqlalchemy.orm import selectinload
 from models.locations import Location
 from utils.normalise import normalise
 
+def db_normalise(col):
+    return func.regexp_replace(func.lower(col), '[^a-z0-9]', '', 'g')
+
 async def get_location_by_name(session, location_name) -> list[Location]:
     key = normalise(location_name)
+    if not key:
+        return []
     statement = select(Location).where(
         or_(
-            Location.name.ilike(f"%{location_name}%"),
-            Location.display_name.ilike(f"%{location_name}%"),
-            func.array_to_string(Location.aliases, " ").ilike(f"%{location_name}%"),
-            func.array_to_string(Location.aliases, "").ilike(f"%{key}%"), 
+            db_normalise(Location.name).ilike(f"%{key}%"),
+            db_normalise(Location.display_name).ilike(f"%{key}%"),
+            db_normalise(func.array_to_string(Location.aliases, "")).ilike(f"%{key}%"), 
         )
     ).options(selectinload(Location.building), selectinload(Location.canteen))
 
