@@ -18,6 +18,7 @@ from models.canteens import Canteen
 from models.bus_stop_schedule import BusStopSchedule
 from models.bus_stops import Bus_Stop
 from models.buses import Bus
+from models.events import Event
 
 
 import os
