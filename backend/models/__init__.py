@@ -10,6 +10,7 @@ from models.floors import Floor
 from models.recent_locations import Recent_Location
 from models.saved_locations import Saved_Location 
 from models.users import User
+from models.events import Event
 
 __all__ = [
     "Location",
@@ -23,5 +24,6 @@ __all__ = [
     "Floor",
     "Recent_Location",
     "Saved_Location",
-    "User"
+    "User",
+    "Event",
 ]
