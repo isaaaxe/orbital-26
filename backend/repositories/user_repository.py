@@ -14,13 +14,14 @@ async def get_user_by_id(session, user_id):
     return result.scalar_one_or_none()
 
 
-async def create_user(session, user_id, username, hashed_password, language, profile_settings):
+async def create_user(session, user_id, username, hashed_password, language, pace_factor, shelter_pref):
     user = User(
         user_id=user_id,
         username=username,
         hashed_password=hashed_password,
         language=language,
-        profile_settings=profile_settings,
+        pace_factor=pace_factor,
+        shelter_pref=shelter_pref
     )
 
     session.add(user)
@@ -30,7 +31,7 @@ async def create_user(session, user_id, username, hashed_password, language, pro
     return user
 
 #add change password feature in the future
-async def update_user(session, current_user, new_username, new_hashed_password, language, profile_settings):
+async def update_user(session, current_user, new_username, new_hashed_password, language, pace_factor, shelter_pref):
     if new_username is not None:
         existing_user = await get_user_by_username(session, new_username)
         
@@ -45,9 +46,12 @@ async def update_user(session, current_user, new_username, new_hashed_password, 
     
     if language is not None:
         current_user.language = language
+
+    if pace_factor is not None:
+        current_user.pace_factor = pace_factor
     
-    if profile_settings is not None:
-        current_user.profile_settings = profile_settings
+    if shelter_pref is not None:
+        current_user.shelter_pref = shelter_pref
 
     await session.commit()
     await session.refresh(current_user)

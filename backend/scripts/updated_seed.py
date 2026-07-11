@@ -39,7 +39,7 @@ STAIR_SECONDS_PER_FLOOR = 20
 
 # FK strategy = option (b): only these get Building rows. Every other building_code
 # on a node/location is stored as NULL (roads, bus stops, com3, clb, as6, ... for now).
-SEEDED_BUILDINGS = {"com1", "com2"}
+SEEDED_BUILDINGS = {"com1", "com2", "com3"}
 
 # Floor-plan images. Point this at wherever you host them (see notes at bottom).
 #   Supabase public bucket:  https://<proj>.supabase.co/storage/v1/object/public/floors
@@ -125,6 +125,12 @@ BUILDING_SPECS = [
         "aliases": ["COM2", "Computing 2"], "area_name": "school of computing",
         "entrance_node_name": "Com2 entrance",
     },
+    {
+        "building_id": "com3", "building_code": "com3",
+        "name": "COM3", "display_name": "COM3",
+        "aliases": ["COM3", "Computing 3"], "area_name": "school of computing",
+        "entrance_node_name": "node_com3_1_corridor_6",
+    },
 ]
 
 
@@ -165,7 +171,6 @@ BASE_NODE_SPECS = [
     {"name": "As6 lift1", "lat": 1.2952890, "lon": 103.7733153, "node_type": "lift_station", "floor": 1, "building_code": "as6"},
     {"name": "Com1 second story outside ahu room", "lat": 1.2954026, "lon": 103.7735443, "node_type": "corner", "floor": 2, "building_code": "com1"},
     {"name": "Middle of stairs from terrace to com1", "lat": 1.2944709, "lon": 103.7741018, "node_type": "corner", "floor": 1, "building_code": "com2"},
-    {"name": "Com3", "lat": 1.2947281501787837, "lon": 103.77459031912267, "node_type": "building", "floor": 1, "building_code": "com3"},
     {"name": "LT15", "lat": 1.2955214878116914, "lon": 103.77344062919603, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
     {"name": "LT14", "lat": 1.2957011498687994, "lon": 103.77337290341598, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
 ]
@@ -211,7 +216,7 @@ LOCATION_SPECS = [
     {"name": "Lecture Theatre 14", "display_name": "Lecture Theatre 14", "aliases": ["LT14", "LT 14"], "location_type": "lecture theatre", "building_code": "as6", "floor": 1, "area_name": None, "lat": 1.2957011498687994, "lon": 103.77337290341598, "nearest_node_name": "LT14", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "COM1", "display_name": "COM1", "aliases": ["COM1", "Computing 1"], "location_type": "COM", "building_code": "com1", "floor": 1, "area_name": "school of computing", "lat": 1.294946722798136, "lon": 103.77393194938502, "nearest_node_name": "Com1 main entrance floor 1", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "COM2", "display_name": "COM2", "aliases": ["COM2", "Computing 2"], "location_type": "COM", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.294265259902769, "lon": 103.77409799286686, "nearest_node_name": "Com2 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "COM3", "display_name": "COM3", "aliases": ["COM3", "Computing 3"], "location_type": "COM", "building_code": "com3", "floor": 1, "area_name": "school of computing", "lat": 1.2947281501787837, "lon": 103.77459031912267, "nearest_node_name": "Com3 MPH1", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM3", "display_name": "COM3", "aliases": ["COM3", "Computing 3"], "location_type": "COM", "building_code": "com3", "floor": 1, "area_name": "school of computing", "lat": 1.2947281501787837, "lon": 103.77459031912267, "nearest_node_name": "node_com3_1_corridor_6", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Terrace", "display_name": "Terrace", "aliases": ["The Terrace"], "location_type": "canteen", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.2944054, "lon": 103.7743158, "nearest_node_name": "The Terrace", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Deck", "display_name": "The Deck", "aliases": ["The Deck", "Deck"], "location_type": "canteen", "building_code": "deck", "floor": 1, "area_name": "school of computing", "lat": 1.2946732, "lon": 103.7724432, "nearest_node_name": "Deck", "nearest_bus_stop_name": "Central Library bus stop"},
 ]
@@ -268,6 +273,9 @@ BASE_EDGE_SPECS = [
     ("corr1 com2 floor1", "Middle of stairs from terrace to com1", "walk", "walk to the stairs landing for calculated distance", None, False, True),
     ("Outside LT14", "LT14", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
     ("Outside LT15", "LT15", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
+    ("COM3 Elevator", "node_com3_1_lift",    "walk", "walk straight for calculated distance", None, True, True),
+    ("Com3 MPH1",     "node_com3_1_mph1",    "walk", "walk straight for calculated distance", None, True, True),
+    ("The Terrace",   "node_com3_1_terrace", "walk", "walk straight for calculated distance", None, True, True),
 ]
 
 # accessible/sheltered edges: dict form. vertical in {None,"lift","stairs"}.
