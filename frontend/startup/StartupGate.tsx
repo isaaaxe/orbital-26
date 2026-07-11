@@ -11,15 +11,38 @@ async function checkHealth(): Promise<boolean> {
     return false;
   }
 }
+// async function checkHealth(): Promise<boolean> {
+//   const url = `${API_BASE_URL}/health`;
+//   console.log("Checking health:", url);
 
-export default function StartupGate({ children }: { children: React.ReactNode }) {
+//   try {
+//     const res = await fetch(url);
+
+//     console.log("Health status:", res.status);
+//     console.log("Health ok:", res.ok);
+
+//     const text = await res.text();
+//     console.log("Health response:", text);
+
+//     return res.ok;
+//   } catch (error) {
+//     console.log("Health check failed:", error);
+//     return false;
+//   }
+// }
+
+export default function StartupGate({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [isHealthy, setIsHealthy] = useState(false);
   const [failed, setFailed] = useState(false);
 
   async function waitForBackend() {
     setFailed(false);
 
-    const maxAttempts = 10;
+    const maxAttempts = 40;
     const delayMs = 2000;
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -53,15 +76,19 @@ export default function StartupGate({ children }: { children: React.ReactNode })
         padding: 24,
       }}
     >
-      <ActivityIndicator size="large" />
+      {!failed && (
+        <>
+          <ActivityIndicator size="large" />
 
-      <Text style={{ marginTop: 16, textAlign: "center" }}>
-        Starting server...
-      </Text>
+          <Text style={{ marginTop: 16, textAlign: "center" }}>
+            Starting server...
+          </Text>
 
-      <Text style={{ marginTop: 8, textAlign: "center", color: "gray" }}>
-        This may take a while if the backend is waking up.
-      </Text>
+          <Text style={{ marginTop: 8, textAlign: "center", color: "gray" }}>
+            This may take a while if the backend is waking up.
+          </Text>
+        </>
+      )}
 
       {failed && (
         <>

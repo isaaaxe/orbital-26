@@ -113,10 +113,16 @@ export default function ConfirmingRoute() {
   const [isOutdoor, setIsOutdoor] = useState(true);
   const { token } = useAuthContext();
   // const addRecentMutation = addRecentlyVisitedMutation(token);
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  const { origin, destination, selectedRoute, routeSegments, setFloorPlanSource} =
-    useRouteContext();
+  const {
+    origin,
+    destination,
+    selectedRoute,
+    routeSegments,
+    setFloorPlanSource,
+    mapParams,
+  } = useRouteContext();
   const queryClient = useQueryClient();
 
   const toNavigate = () => {
@@ -161,12 +167,11 @@ export default function ConfirmingRoute() {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("beforeRemove", () => {
-      setFloorPlanSource(null)
+      setFloorPlanSource(null);
     });
 
     return unsubscribe;
   }, [navigation]);
-  
 
   return (
     <View style={styles.screen}>
@@ -246,10 +251,10 @@ export default function ConfirmingRoute() {
                   style={styles.map}
                   provider={PROVIDER_GOOGLE}
                   region={{
-                    latitude: 1.300291282646443,
-                    longitude: 103.77733947340228,
-                    latitudeDelta: 0.016,
-                    longitudeDelta: 0.016,
+                    latitude: mapParams.coordinates.latitude,
+                    longitude: mapParams.coordinates.longitude,
+                    latitudeDelta: mapParams.delta,
+                    longitudeDelta: mapParams.delta,
                   }}
                 >
                   {/* <Polyline

@@ -3,6 +3,9 @@ import Header from "@/components/Header";
 import { router } from "expo-router";
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Slider from "@react-native-community/slider";
+import { useAuthContext } from "@/context/AuthContext";
+import { useState } from "react";
 
 const icons = {
   user: require("../../assets/icons/user.png"),
@@ -24,6 +27,8 @@ const styles = StyleSheet.create({
 });
 
 export default function SettingsPage() {
+  const { token } = useAuthContext();
+  const [pacing, setPacing] = useState(1);
   const SETTINGS_DATA = [
     { icon: icons.user, cardTitle: "Account", onPress: toAccount },
     // { icon: icons.notif, cardTitle: "Notifications", onPress: toNotifications },
@@ -56,6 +61,14 @@ export default function SettingsPage() {
             />
           )}
           style={{ marginHorizontal: 20 }}
+        />
+        {/* pacing slider */}
+        <Slider
+          minimumValue={1}
+          maximumValue={5}
+          step={1}
+          value={pacing}
+          onValueChange={setPacing}
         />
       </SafeAreaView>
     </View>

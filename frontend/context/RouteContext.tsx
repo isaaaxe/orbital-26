@@ -18,6 +18,8 @@ export type Coordinate = {
   longitude: number;
 };
 
+export type MapParams = { coordinates: Coordinate; delta: number };
+
 export type ROUTE_COLOURS_TYPE = {
   [mode: string]: string;
 };
@@ -82,9 +84,17 @@ type RouteContextType = {
   setFloorPlanSource: (source: "route" | "building" | null) => void;
   mapMode: Mode;
   setMapMode: (mode: Mode) => void;
+  mapParams: { coordinates: Coordinate; delta: number };
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
+const initMapParams = {
+  coordinates: {
+    latitude: 1.300291282646443,
+    longitude: 103.77733947340228,
+  },
+  delta: 0.016,
+};
 
 export function RouteProvider({ children }: { children: React.ReactNode }) {
   // const [searchDestination, setSearchDestination] = useState("");
@@ -101,6 +111,7 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     "route" | "building" | null
   >("route");
   const [mapMode, setMapMode] = useState<Mode>("building");
+  const [mapParams, setMapParams] = useState<MapParams>(initMapParams);
 
   function buildRenderPath(selectedRoute: RouteResponse): RenderPath[] {
     // console.log(selectedRoute.steps.length);
@@ -150,10 +161,48 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     }
     return groupOfSteps;
   }
+
+  function getMapParams(selectedRoute: RouteResponse) {
+    let topLat: number = -999;
+    let botLat: number = 999;
+    let rightLng: number = -999;
+    let leftLng: number = 999;
+
+    for (let i = 0; i < selectedRoute.path_coordinates.length / 2; i++) {
+      const [lng, lat] = selectedRoute.path_coordinates[i * 2];
+      leftLng = lng < leftLng ? lng : leftLng;
+      rightLng = lng > rightLng ? lng : rightLng;
+      topLat = lat > topLat ? lat : topLat;
+      botLat = lat < botLat ? lat : botLat;
+    }
+    // one more extra for last coord
+    const [lastLng, lastLat] =
+      selectedRoute.path_coordinates[selectedRoute.path_coordinates.length - 1];
+    leftLng = lastLng < leftLng ? lastLng : leftLng;
+    rightLng = lastLng > rightLng ? lastLng : rightLng;
+    topLat = lastLat > topLat ? lastLat : topLat;
+    botLat = lastLat < botLat ? lastLat : botLat;
+
+    // calc mid point
+    const midLng = (leftLng + rightLng) / 2;
+    const midLat = (topLat + botLat) / 2;
+    // calc delta
+    const delta = Math.max((midLng - leftLng) * 2.5, (midLat - botLat) * 2);
+    setMapParams({
+      coordinates: {
+        latitude: midLat,
+        longitude: midLng,
+      },
+      delta: delta,
+    });
+  }
+
   const routeSegments = useMemo(() => {
     if (!selectedRoute) {
       return [];
     }
+    //can call the function here
+    getMapParams(selectedRoute);
     return buildRenderPath(selectedRoute);
   }, [selectedRoute]);
 
@@ -312,6 +361,7 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         setFloorPlanSource,
         mapMode,
         setMapMode,
+        mapParams,
       }}
     >
       {children}

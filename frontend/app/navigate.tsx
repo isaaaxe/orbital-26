@@ -65,7 +65,7 @@ export default function Navigate() {
   //    from api calls to sql retrievals
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { selectedRoute, routeSegments } = useRouteContext();
+  const { selectedRoute, routeSegments, mapParams } = useRouteContext();
   if (!selectedRoute) {
     return (
       <View>
@@ -121,10 +121,10 @@ export default function Navigate() {
               style={styles.map}
               provider={PROVIDER_GOOGLE}
               region={{
-                latitude: 1.300291282646443,
-                longitude: 103.77733947340228,
-                latitudeDelta: 0.016,
-                longitudeDelta: 0.016,
+                latitude: mapParams.coordinates.latitude,
+                longitude: mapParams.coordinates.longitude,
+                latitudeDelta: mapParams.delta,
+                longitudeDelta: mapParams.delta,
               }}
               showsUserLocation
               followsUserLocation
