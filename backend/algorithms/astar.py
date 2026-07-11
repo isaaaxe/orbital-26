@@ -7,10 +7,15 @@ import heapq
 fastest_speed_m_per_second = 8
 
 #adjust heuristic based on mode later mode here is general mode ie fastest, accessible, sheltered etc
-def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode):
+def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode, current_user):
     if startNode_id not in node_by_id or endNode_id not in node_by_id:
         return None
 
+    pace_factor = 1.0
+    shelter_pref = 0.7
+    if current_user is not None:
+        pace_factor = current_user.pace_factor
+        shelter_pref = current_user.shelter_pref
     #node_by_id, edge_by_pair, graph_table = await graph_builder.buildGraph()
     dist_to_end = triangulate_dist(startNode_id, endNode_id, node_by_id)
     #heuristic using fastest speed
@@ -35,12 +40,17 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode)
 
         for neighbour in graph_table.get(node_id, []):
             next_node_id = neighbour["to"]
-            edgeCost = neighbour["cost"]
+            edgeCost = neighbour["cost"] 
             edge_id = neighbour["edge_id"]
             edge_mode = neighbour["mode"]
             edge_is_accessible = neighbour["is_accessible"]
             edge_is_sheltered = neighbour["is_sheltered"]
             sheltered_penalty = 0
+
+            same_floor = node_by_id[node_id].floor == node_by_id[next_node_id].floor
+            if same_floor and edge_mode == "walk":
+                edgeCost = edgeCost * pace_factor
+                
             if next_node_id in visited:
                 continue
             
@@ -52,7 +62,7 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode)
 
             if mode == "sheltered" and edge_is_sheltered == False:
                 # increase in heuristic 
-                sheltered_penalty += edgeCost * 0.7
+                sheltered_penalty += edgeCost * shelter_pref
             
             dist_to_end = triangulate_dist(next_node_id, endNode_id, node_by_id)
             estimated_remaining_seconds : float = dist_to_end / fastest_speed_m_per_second

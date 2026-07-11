@@ -15,11 +15,8 @@ class User(database.Base):
     username: Mapped[str] = mapped_column(String, nullable=False)
     hashed_password: Mapped[str] = mapped_column(String, nullable=False)
     language: Mapped[str] = mapped_column(String, nullable=False)
-    profile_settings: Mapped[list[str]] = mapped_column(
-        JSONB,
-        default = list,
-        nullable=False,
-    )
+    pace_factor: Mapped[float] = mapped_column(Float, nullable=False)
+    shelter_pref: Mapped[float] = mapped_column(Float, nullable=False)
 
     saved_locations = relationship(
         "Saved_Location",

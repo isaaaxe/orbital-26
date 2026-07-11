@@ -358,6 +358,147 @@
           1.2946280009108062
         ]
       ]
+    },
+    {
+      "building": "com3",
+      "floor_number": -1,
+      "image": "COM3_B1.png",
+      "image_width": 1448,
+      "image_height": 1086,
+      "geo_reference": [
+        [
+          609,
+          428,
+          1.294756244054429,
+          103.77450770672878
+        ],
+        [
+          867,
+          589,
+          1.2945283144918471,
+          103.77468741473919
+        ],
+        [
+          907,
+          904,
+          1.2941449704131947,
+          103.77463305435646
+        ],
+        [
+          212,
+          234,
+          1.2950558901831575,
+          103.77428369602886
+        ]
+      ],
+      "affine": [
+        [
+          7.318707030259846e-7,
+          -1.6269500758637414e-7
+        ],
+        [
+          -2.2654575493019449e-7,
+          -0.0000011886005333198929
+        ],
+        [
+          103.77417521837022,
+          1.295367261709155
+        ]
+      ]
+    },
+    {
+      "building": "com3",
+      "floor_number": 1,
+      "image": "COM3_1.png",
+      "image_width": 1448,
+      "image_height": 1086,
+      "geo_reference": [
+        [
+          677,
+          405,
+          1.2947575706397034,
+          103.77450631938505
+        ],
+        [
+          680,
+          800,
+          1.2942981900715442,
+          103.7743471002328
+        ],
+        [
+          421,
+          224,
+          1.295069462966948,
+          103.77428285576212
+        ],
+        [
+          509,
+          737,
+          1.2944335856661615,
+          103.77420955331128
+        ]
+      ],
+      "affine": [
+        [
+          0.000001067006047837375,
+          -3.8242938852250786e-7
+        ],
+        [
+          -3.5965264824324403e-7,
+          -0.0000011684500213549633
+        ],
+        [
+          103.77392114837399,
+          1.2954910720255408
+        ]
+      ]
+    },
+    {
+      "building": "com3",
+      "floor_number": 2,
+      "image": "COM3_2.png",
+      "image_width": 1490,
+      "image_height": 1056,
+      "geo_reference": [
+        [
+          718,
+          404,
+          1.2947550513193506,
+          103.77450599526743
+        ],
+        [
+          716,
+          787,
+          1.2942985217923164,
+          103.77434707437764
+        ],
+        [
+          469,
+          235,
+          1.2950691030671482,
+          103.77428174204604
+        ],
+        [
+          905,
+          13,
+          1.2951488252458732,
+          103.77489655713705
+        ]
+      ],
+      "affine": [
+        [
+          0.0000011967835459633581,
+          -4.307897566807018e-7
+        ],
+        [
+          -4.1805123425025985e-7,
+          -0.0000012041610447044082
+        ],
+        [
+          103.7738180940893,
+          1.2955534867011942
+        ]
+      ]
     }
   ],
   "nodes": [
@@ -1030,22 +1171,6 @@
       "_px": [
         85,
         217
-      ],
-      "_floorId": "com1_b"
-    },
-    {
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
-      "name": "B-AHU2",
-      "lat": 1.2949151,
-      "lon": 103.77374,
-      "node_type": "ahu",
-      "floor": -1,
-      "building_code": "com1",
-      "_px": [
-        199,
-        700
       ],
       "_floorId": "com1_b"
     },
@@ -3407,17 +3532,1233 @@
       "aliases": [],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "corridor 51",
-      "lat": 1.2948191,
-      "lon": 103.7741471,
+      "name": "node_com3_basement_stairwell",
+      "lat": 1.2947606,
+      "lon": 103.7745242,
+      "node_type": "stairs",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        609,
+        427
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_stair_junction",
+      "lat": 1.2948218,
+      "lon": 103.7745843,
+      "node_type": "junction",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        673,
+        367
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_corridor1",
+      "lat": 1.294916,
+      "lon": 103.7746679,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        759,
+        276
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_health_informatics_research_lab",
+      "lat": 1.2947704,
+      "lon": 103.7746474,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        768,
+        397
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_corridor2",
+      "lat": 1.2949881,
+      "lon": 103.7747283,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        820,
+        207
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_deep_sea_lounge",
+      "lat": 1.2950691,
+      "lon": 103.7747382,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        812,
+        140
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_ace_exec_lounge",
+      "lat": 1.2950131,
+      "lon": 103.7746844,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        756,
+        194
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_mpl",
+      "lat": 1.2947733,
+      "lon": 103.7744807,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        549,
+        425
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_corridor3",
+      "lat": 1.2946597,
+      "lon": 103.7744107,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        486,
+        529
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_corridor4",
+      "lat": 1.2943967,
+      "lon": 103.7744075,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        547,
+        742
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_corridor5",
+      "lat": 1.2943667,
+      "lon": 103.7745353,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        722,
+        743
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_ncl",
+      "lat": 1.2944191,
+      "lon": 103.7745897,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        780,
+        691
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_ace_office",
+      "lat": 1.2944336,
+      "lon": 103.7745107,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        673,
+        693
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_sr91",
+      "lat": 1.2943334,
+      "lon": 103.7745625,
+      "node_type": "seminar room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        766,
+        765
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_metaverse_foundry",
+      "lat": 1.2942329,
+      "lon": 103.7745467,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        770,
+        849
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_drop_off",
+      "lat": 1.2947135,
+      "lon": 103.7746471,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        782,
+        443
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_ai_reasearch_lab_2",
+      "lat": 1.2947839,
+      "lon": 103.7747665,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        921,
+        365
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_stairwell",
+      "lat": 1.2947589,
+      "lon": 103.7744979,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        677,
+        405
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_mph3",
+      "lat": 1.2949428,
+      "lon": 103.7746184,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        731,
+        230
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_mph2",
+      "lat": 1.2948485,
+      "lon": 103.7746534,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        785,
+        293
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_mph1",
+      "lat": 1.2947483,
+      "lon": 103.7746758,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        830,
+        364
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_junction2",
+      "lat": 1.2949733,
+      "lon": 103.7745295,
+      "node_type": "junction",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        648,
+        231
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_7",
+      "lat": 1.2949806,
+      "lon": 103.7743753,
       "node_type": "corridor",
       "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        516,
+        268
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_sr11",
+      "lat": 1.2949138,
+      "lon": 103.7743157,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        483,
+        336
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_sr12",
+      "lat": 1.2949514,
+      "lon": 103.7742431,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        412,
+        327
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_makers",
+      "lat": 1.2949189,
+      "lon": 103.7744642,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        607,
+        291
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_junction3",
+      "lat": 1.2946351,
+      "lon": 103.7746588,
+      "node_type": "junction",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        845,
+        456
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_makan_boleh",
+      "lat": 1.2946008,
+      "lon": 103.7745736,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        782,
+        506
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_coffee_bean",
+      "lat": 1.2945248,
+      "lon": 103.7745466,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        779,
+        572
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_6",
+      "lat": 1.2944449,
+      "lon": 103.7745706,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        820,
+        627
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_terrace",
+      "lat": 1.2943001,
+      "lon": 103.774359,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        679,
+        797
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_5",
+      "lat": 1.2947921,
+      "lon": 103.7748398,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        957,
+        285
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_4",
+      "lat": 1.2949328,
+      "lon": 103.7747729,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        864,
+        195
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_sr14",
+      "lat": 1.2950397,
+      "lon": 103.7748295,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        884,
+        97
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_sr15",
+      "lat": 1.294918,
+      "lon": 103.7748975,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        973,
+        172
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_9",
+      "lat": 1.2947068,
+      "lon": 103.774361,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        575,
+        483
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_8",
+      "lat": 1.2947668,
+      "lon": 103.7743202,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        525,
+        448
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_corridor6",
+      "lat": 1.295031,
+      "lon": 103.7747714,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        866,
+        164
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_lift",
+      "lat": 1.2949694,
+      "lon": 103.7748171,
+      "node_type": "lift_station",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        941,
+        206
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_stairs_1",
+      "lat": 1.2949919,
+      "lon": 103.7748338,
+      "node_type": "stairs",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        957,
+        185
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_corridor7",
+      "lat": 1.2948322,
+      "lon": 103.7748449,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        1011,
+        312
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_sr13",
+      "lat": 1.2949932,
+      "lon": 103.7747346,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        816,
+        159
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_2",
+      "lat": 1.2950588,
+      "lon": 103.7747726,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        831,
+        98
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_1",
+      "lat": 1.2950127,
+      "lon": 103.7746731,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        759,
+        161
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_lift",
+      "lat": 1.2948647,
+      "lon": 103.774829,
+      "node_type": "lift_station",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        929,
+        232
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_stairs",
+      "lat": 1.2948847,
+      "lon": 103.7748529,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        944,
+        210
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_smooy",
+      "lat": 1.2945204,
+      "lon": 103.7744612,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        708,
+        599
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_junction1",
+      "lat": 1.294799,
+      "lon": 103.7745671,
+      "node_type": "junction",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        725,
+        355
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_3",
+      "lat": 1.2949533,
+      "lon": 103.7748278,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        905,
+        164
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_corridor_10",
+      "lat": 1.2945191,
+      "lon": 103.7743707,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        632,
+        625
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_basement_stairs_4",
+      "lat": 1.2944621,
+      "lon": 103.7744578,
+      "node_type": "stairs",
+      "floor": -1,
+      "building_code": "com3",
+      "_px": [
+        597,
+        680
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_stairs_4",
+      "lat": 1.2945383,
+      "lon": 103.7744039,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        655,
+        601
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_stairwell",
+      "lat": 1.2947579,
+      "lon": 103.7745076,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        717,
+        404
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_junction_1",
+      "lat": 1.2947979,
+      "lon": 103.7745907,
+      "node_type": "junction",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        769,
+        352
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_meeting_room_21",
+      "lat": 1.2948893,
+      "lon": 103.7746109,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        760,
+        280
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_seminar_room_21",
+      "lat": 1.2948256,
+      "lon": 103.7746608,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        814,
+        313
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_meeting_room_20",
+      "lat": 1.2947451,
+      "lon": 103.7747071,
+      "node_type": "discussion room",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        869,
+        361
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_meeting_room_22",
+      "lat": 1.2949357,
+      "lon": 103.7745946,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        736,
+        250
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_meeting_room_23",
+      "lat": 1.2949474,
+      "lon": 103.7746347,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        763,
+        230
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_meeting_room_24",
+      "lat": 1.2949585,
+      "lon": 103.7746904,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        801,
+        207
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_isa_reasearch_lab_1",
+      "lat": 1.2949546,
+      "lon": 103.7747979,
+      "node_type": "lab",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        882,
+        182
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_ai_research_lab_1",
+      "lat": 1.2949134,
+      "lon": 103.7744522,
+      "node_type": "lab",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        636,
+        304
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_stairs_4",
+      "lat": 1.294547,
+      "lon": 103.7744135,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        702,
+        585
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_stairs_1",
+      "lat": 1.2948691,
+      "lon": 103.7749066,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        985,
+        216
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_lift",
+      "lat": 1.2948437,
+      "lon": 103.7748805,
+      "node_type": "lift_station",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        972,
+        242
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_meeting_room_25",
+      "lat": 1.2947762,
+      "lon": 103.7747686,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        906,
+        321
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_plse_lab",
+      "lat": 1.2945295,
+      "lon": 103.7745141,
+      "node_type": "lab",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        781,
+        571
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_1",
+      "lat": 1.2947128,
+      "lon": 103.7743568,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        617,
+        477
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_2",
+      "lat": 1.2944932,
+      "lon": 103.77435,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        668,
+        641
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_junction_2",
+      "lat": 1.2946535,
+      "lon": 103.7746662,
+      "node_type": "junction",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        862,
+        439
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_4",
+      "lat": 1.2947909,
+      "lon": 103.7748755,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        982,
+        282
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_7",
+      "lat": 1.2949557,
+      "lon": 103.7745342,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        686,
+        251
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_5",
+      "lat": 1.2950237,
+      "lon": 103.7747516,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        830,
+        143
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_6",
+      "lat": 1.294989,
+      "lon": 103.774675,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        782,
+        189
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_3",
+      "lat": 1.294417,
+      "lon": 103.7745518,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        838,
+        644
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_2_corridor_8",
+      "lat": 1.2947255,
+      "lon": 103.7747595,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "_px": [
+        913,
+        361
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "corr18 com1 floor2",
+      "lat": 1.2948816,
+      "lon": 103.7738297,
+      "node_type": "corridor",
+      "floor": 2,
       "building_code": "com1",
       "_px": [
-        1247,
-        204
+        851,
+        465
       ],
-      "_floorId": "com1:1"
+      "_floorId": "com1:2"
     },
     {
       "aliases": [],
@@ -3452,20 +4793,84 @@
       "_floorId": "com2:1"
     },
     {
+      "name": "node_com3_basement_corridor9",
+      "lat": 1.2948076,
+      "lon": 103.7745214,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
       "aliases": [],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "corr18 com1 floor2",
-      "lat": 1.2948816,
-      "lon": 103.7738297,
+      "_px": [
+        594,
+        390
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "name": "node_com3_2_corridor7",
+      "lat": 1.2948011,
+      "lon": 103.7744952,
       "node_type": "corridor",
       "floor": 2,
-      "building_code": "com1",
+      "building_code": "com3",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "_px": [
-        851,
-        465
+        697,
+        375
       ],
-      "_floorId": "com1:2"
+      "_floorId": "com3:2"
+    },
+    {
+      "name": "node_com3_2_corridor8",
+      "lat": 1.2945592,
+      "lon": 103.77438,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com3",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        674,
+        585
+      ],
+      "_floorId": "com3:2"
+    },
+    {
+      "name": "node_com3_1_corridor_11",
+      "lat": 1.2948024,
+      "lon": 103.7744827,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        653,
+        376
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "name": "node_com3_basement_corridor8",
+      "lat": 1.2947482,
+      "lon": 103.774486,
+      "node_type": "corridor",
+      "floor": -1,
+      "building_code": "com3",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        562,
+        444
+      ],
+      "_floorId": "com3:-1"
     }
   ],
   "edges": [
@@ -4182,6 +5587,15 @@
     },
     {
       "from": "corr15 com1 floor2",
+      "to": "02-AHU1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr15 com1 floor2",
       "to": "SR5",
       "mode": "walk",
       "instruction": "",
@@ -4214,6 +5628,15 @@
       "instruction": "",
       "reverse_instruction": null,
       "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 5 com1 floor2",
+      "to": "corr13 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
       "is_sheltered": true
     },
     {
@@ -4514,6 +5937,15 @@
       "is_sheltered": true
     },
     {
+      "from": "02-AHU5",
+      "to": "stair 3 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
       "from": "stair 3 com1 floor2",
       "to": "stair 2 com1 floor 2",
       "mode": "walk",
@@ -4721,6 +6153,24 @@
       "is_sheltered": true
     },
     {
+      "from": "corr7 com2 floor1",
+      "to": "stair 3 com2 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "stair 5 com2 floor1",
+      "to": "lift com2 floor 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
       "from": "lift com2 floor 1",
       "to": "stair 1 com2 floor1",
       "mode": "walk",
@@ -4857,6 +6307,15 @@
     },
     {
       "from": "junc A com2 floor2",
+      "to": "stair 1 com2 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "lift com2 floor2",
       "to": "stair 1 com2 floor2",
       "mode": "walk",
       "instruction": "",
@@ -5317,6 +6776,762 @@
       "is_sheltered": true
     },
     {
+      "from": "node_com3_basement_stairwell",
+      "to": "node_com3_basement_stair_junction",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_stair_junction",
+      "to": "node_com3_basement_corridor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor1",
+      "to": "node_com3_ace_exec_lounge",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor1",
+      "to": "node_com3_basement_corridor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor2",
+      "to": "node_com3_deep_sea_lounge",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor3",
+      "to": "node_com3_basement_corridor4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor4",
+      "to": "node_com3_basement_corridor5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor5",
+      "to": "node_com3_ace_office",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor5",
+      "to": "node_com3_ncl",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor5",
+      "to": "node_com3_sr91",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor5",
+      "to": "node_com3_metaverse_foundry",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_stair_junction",
+      "to": "node_com3_health_informatics_research_lab",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_stair_junction",
+      "to": "node_com3_drop_off",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_drop_off",
+      "to": "node_com3_ai_reasearch_lab_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_stairs_1",
+      "to": "node_com3_basement_corridor6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_lift",
+      "to": "node_com3_basement_corridor6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor6",
+      "to": "node_com3_basement_corridor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_ai_reasearch_lab_2",
+      "to": "node_com3_basement_corridor7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor6",
+      "to": "node_com3_basement_corridor7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction1",
+      "to": "node_com3_1_mph2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction1",
+      "to": "node_com3_1_mph1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction1",
+      "to": "node_com3_1_junction2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction2",
+      "to": "node_com3_1_makers",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction2",
+      "to": "node_com3_1_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_7",
+      "to": "node_com3_1_sr12",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_7",
+      "to": "node_com3_1_sr11",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_7",
+      "to": "node_com3_1_corridor_8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_sr11",
+      "to": "node_com3_1_corridor_8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_sr12",
+      "to": "node_com3_1_corridor_8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_8",
+      "to": "node_com3_1_corridor_9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_9",
+      "to": "node_com3_1_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_10",
+      "to": "node_com3_1_smooy",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_smooy",
+      "to": "node_com3_1_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_6",
+      "to": "node_com3_1_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_6",
+      "to": "node_com3_1_junction3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction3",
+      "to": "node_com3_1_makan_boleh",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction3",
+      "to": "node_com3_1_coffee_bean",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_6",
+      "to": "node_com3_1_coffee_bean",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_6",
+      "to": "node_com3_1_makan_boleh",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction1",
+      "to": "node_com3_1_junction3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction3",
+      "to": "node_com3_1_mph1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction3",
+      "to": "node_com3_1_corridor_5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_5",
+      "to": "node_com3_1_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_4",
+      "to": "node_com3_1_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_3",
+      "to": "node_com3_1_sr14",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_3",
+      "to": "node_com3_1_sr15",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_stairs",
+      "to": "node_com3_1_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_lift",
+      "to": "node_com3_1_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_sr14",
+      "to": "node_com3_1_corridor_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_2",
+      "to": "node_com3_1_sr13",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_2",
+      "to": "node_com3_1_corridor_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_1",
+      "to": "node_com3_1_sr13",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_1",
+      "to": "node_com3_1_junction2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_1",
+      "to": "node_com3_1_mph3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_10",
+      "to": "node_com3_1_terrace",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_6",
+      "to": "node_com3_1_terrace",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor4",
+      "to": "node_com3_basement_stairs_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_10",
+      "to": "node_com3_1_stairs_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_lift",
+      "to": "node_com3_1_corridor_5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_stairwell",
+      "to": "node_com3_2_junction_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_2",
+      "to": "node_com3_2_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_3",
+      "to": "node_com3_2_plse_lab",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_3",
+      "to": "node_com3_2_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_junction_1",
+      "to": "node_com3_2_meeting_room_21",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_junction_1",
+      "to": "node_com3_2_seminar_room_21",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_junction_1",
+      "to": "node_com3_2_meeting_room_20",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_junction_1",
+      "to": "node_com3_2_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_7",
+      "to": "node_com3_2_meeting_room_22",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_7",
+      "to": "node_com3_2_meeting_room_23",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_7",
+      "to": "node_com3_2_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_6",
+      "to": "node_com3_2_meeting_room_24",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_6",
+      "to": "node_com3_2_meeting_room_23",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_6",
+      "to": "node_com3_2_corridor_5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_5",
+      "to": "node_com3_2_isa_reasearch_lab_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_lift",
+      "to": "node_com3_2_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_stairs_1",
+      "to": "node_com3_2_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_4",
+      "to": "node_com3_2_corridor_8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_8",
+      "to": "node_com3_2_meeting_room_25",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_8",
+      "to": "node_com3_2_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_junction_2",
+      "to": "node_com3_2_meeting_room_20",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_junction_1",
+      "to": "node_com3_2_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_plse_lab",
+      "to": "node_com3_2_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor_7",
+      "to": "node_com3_ai_research_lab_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_5",
+      "to": "node_com3_1_stairs",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
       "from": "corr7 com2 floor1",
       "to": "corr10 com2 floor1",
       "mode": "walk",
@@ -5389,8 +7604,124 @@
       "is_sheltered": true
     },
     {
-      "from": "corr16 com1 floor2",
-      "to": "stair 5 com1 floor2",
+      "from": "node_com3_basement_lift",
+      "to": "node_com3_1_lift",
+      "mode": "walk",
+      "instruction": "take the lift up to level 1",
+      "reverse_instruction": "take the lift down to basement",
+      "is_accessible": true,
+      "is_sheltered": true,
+      "manual_seconds": 15
+    },
+    {
+      "from": "node_com3_1_lift",
+      "to": "node_com3_2_lift",
+      "mode": "walk",
+      "instruction": "take the lift up to level 2",
+      "reverse_instruction": "take the lift down to level 1",
+      "is_accessible": true,
+      "is_sheltered": true,
+      "manual_seconds": 15
+    },
+    {
+      "from": "node_com3_basement_stairwell",
+      "to": "node_com3_1_stairwell",
+      "mode": "walk",
+      "instruction": "walk up the stairs to level 1",
+      "reverse_instruction": "walk down the stairs to basement",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "manual_seconds": 20
+    },
+    {
+      "from": "node_com3_1_stairwell",
+      "to": "node_com3_2_stairwell",
+      "mode": "walk",
+      "instruction": "walk up the stairs to level 2",
+      "reverse_instruction": "walk down the stairs to level 1",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "manual_seconds": 20
+    },
+    {
+      "from": "node_com3_basement_stairs_4",
+      "to": "node_com3_1_stairs_4",
+      "mode": "walk",
+      "instruction": "walk up the stairs to level 1",
+      "reverse_instruction": "walk down the stairs to basement",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "manual_seconds": 20
+    },
+    {
+      "from": "node_com3_1_stairs_4",
+      "to": "node_com3_2_stairs_4",
+      "mode": "walk",
+      "instruction": "walk up the stairs to level 2",
+      "reverse_instruction": "walk down the stairs to level 1",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "manual_seconds": 20
+    },
+    {
+      "from": "node_com3_basement_stairs_1",
+      "to": "node_com3_1_stairs",
+      "mode": "walk",
+      "instruction": "walk up the stairs to level 1",
+      "reverse_instruction": "walk down the stairs to basement",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "manual_seconds": 20
+    },
+    {
+      "from": "node_com3_1_stairs",
+      "to": "node_com3_2_stairs_1",
+      "mode": "walk",
+      "instruction": "walk up the stairs to level 2",
+      "reverse_instruction": "walk down the stairs to level 1",
+      "is_accessible": false,
+      "is_sheltered": true,
+      "manual_seconds": 20
+    },
+    {
+      "from": "node_com3_basement_corridor9",
+      "to": "node_com3_basement_stair_junction",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor7",
+      "to": "node_com3_2_corridor_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor7",
+      "to": "node_com3_2_junction_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor8",
+      "to": "node_com3_2_corridor_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_2_corridor8",
+      "to": "node_com3_2_stairs_4",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -5398,8 +7729,71 @@
       "is_sheltered": true
     },
     {
-      "from": "corr16 com1 floor2",
-      "to": "corr13 com1 floor2",
+      "from": "node_com3_2_corridor_1",
+      "to": "node_com3_2_corridor8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction2",
+      "to": "node_com3_1_mph3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_9",
+      "to": "node_com3_1_corridor_11",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_11",
+      "to": "node_com3_1_junction1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_junction1",
+      "to": "node_com3_1_stairwell",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor3",
+      "to": "node_com3_basement_corridor8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor8",
+      "to": "node_com3_mpl",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor9",
+      "to": "node_com3_basement_corridor8",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,

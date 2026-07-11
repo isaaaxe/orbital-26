@@ -15,6 +15,7 @@ ALGORITHM = settings.algorithm
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+oauth2_scheme_optional = OAuth2PasswordBearer(tokenUrl="/auth/login", auto_error=False)
 
 pwd_context = CryptContext(
     schemes=["bcrypt"],
@@ -74,4 +75,30 @@ async def get_current_user(session: AsyncSession = Depends(database.get_db_sessi
         raise credentials_exception
 
     return user
+
+async def get_optional_user(session: AsyncSession = Depends(database.get_db_session), token: str | None = Depends(oauth2_scheme_optional)) -> User | None:
+    if token is None:
+        return None
+    
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id = payload.get("sub")
+        if user_id is None:
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    
+    user = await user_repository.get_user_by_id(session, user_id)
+    
+    if user is None:
+        raise credentials_exception
+
+    return user
+
     

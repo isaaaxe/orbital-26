@@ -15,11 +15,12 @@ async def get_user_detail(session, current_user: User):
         user_id=user.user_id,
         username=user.username,
         language=user.language,
-        profile_settings=user.profile_settings,
+        pace_factor=user.pace_factor,
+        shelter_pref=user.shelter_pref
     )
 
 
-async def create_user(session, username, password, language, profile_settings):
+async def create_user(session, username, password, language, pace_factor, shelter_pref):
     existing_user = await user_repository.get_user_by_username(session, username)
 
     if existing_user is not None:
@@ -27,21 +28,22 @@ async def create_user(session, username, password, language, profile_settings):
     
     user_id = str(uuid4())
     hashed_password = auth_service.hash_password(password)
-    created_user: User = await user_repository.create_user(session, user_id, username, hashed_password, language, profile_settings)
+    created_user: User = await user_repository.create_user(session, user_id, username, hashed_password, language, pace_factor, shelter_pref)
 
     return UserDetail(
         user_id=created_user.user_id,
         username=created_user.username,
         language=created_user.language,
-        profile_settings=created_user.profile_settings,
+        pace_factor=created_user.pace_factor,
+        shelter_pref=created_user.shelter_pref
     )
 
-async def update_user(session, current_user, new_username=None, new_password=None, language=None, profile_settings=None):
+async def update_user(session, current_user, new_username=None, new_password=None, language=None, pace_factor=None, shelter_pref=None):
     if new_password is not None:
         hashed_new_password = auth_service.hash_password(new_password)
     else:
         hashed_new_password = None
-    user: User = await user_repository.update_user(session, current_user, new_username, hashed_new_password, language, profile_settings)
+    user: User = await user_repository.update_user(session, current_user, new_username, hashed_new_password, language, pace_factor, shelter_pref)
 
     if user is None:
         return None
@@ -54,7 +56,8 @@ async def update_user(session, current_user, new_username=None, new_password=Non
         user_id=user.user_id,
         username=user.username,
         language=user.language,
-        profile_settings=user.profile_settings,
+        pace_factor=user.pace_factor,
+        shelter_pref=user.shelter_pref
     )
 
 async def delete_user(session, current_user):

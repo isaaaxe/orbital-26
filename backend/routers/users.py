@@ -23,7 +23,7 @@ async def get_user(session: AsyncSession = Depends(database.get_db_session), cur
 
 @router.post("", response_model=user.UserDetail)
 async def add_user(request: user.UserCreate, session: AsyncSession = Depends(database.get_db_session)):
-    created_user = await user_service.create_user(session, request.username, request.password, request.language, request.profile_settings)
+    created_user = await user_service.create_user(session, request.username, request.password, request.language, request.pace_factor, request.shelter_pref)
     
     if created_user is None:
         raise HTTPException(status_code=409, detail="username taken")
@@ -32,7 +32,7 @@ async def add_user(request: user.UserCreate, session: AsyncSession = Depends(dat
 
 @router.patch("/update", response_model=user.UserDetail)
 async def update_user(request: user.UserUpdate, session: AsyncSession = Depends(database.get_db_session), current_user: User = Depends(get_current_user),):
-    user = await user_service.update_user(session, current_user, request.new_username, request.new_password ,request.language, request.profile_settings)
+    user = await user_service.update_user(session, current_user, request.new_username, request.new_password ,request.language, request.pace_factor, request.shelter_pref)
 
     if user is None:
         raise HTTPException(status_code=404, detail="not valid user")
