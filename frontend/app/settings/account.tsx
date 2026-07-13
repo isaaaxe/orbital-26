@@ -205,10 +205,11 @@ export default function AccountSettings() {
       await updateUserMutation.mutateAsync({
         token: token,
         request: {
-          new_username: user?.username,
+          new_username: user.username,
           new_password: newPassword,
-          language: user?.language,
-          profile_settings: user?.profile_settings,
+          language: user.language,
+          pace_factor: user.pace_factor,
+          shelter_pref: user.shelter_pref,
         },
       });
       setNewPassword("");

@@ -77,7 +77,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       username,
       password,
       language: "en",
-      profile_settings: [],
+      pace_factor: 1.0,
+      shelter_pref: 0.7,
     });
     if (!userDetail) {
       return false;

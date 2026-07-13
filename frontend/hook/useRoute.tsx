@@ -3,15 +3,27 @@ import { fetchRoutes, RouteResponse } from "@/api_debug/routes.logged";
 
 import { getClosestNode } from "@/api_debug/campus_map.logged";
 
-export function useRouteQuery(startNodeId?: string, endNodeId?: string) {
+export function useRouteQuery(
+  startNodeId?: string,
+  endNodeId?: string,
+  token?: string | null,
+) {
   return useQuery<RouteResponse[]>({
-    queryKey: ["route", startNodeId, endNodeId],
+    queryKey: [
+      "route",
+      startNodeId,
+      endNodeId,
+      token ? "authenticated" : "anon",
+    ],
     queryFn: () =>
-      fetchRoutes({
-        start_id: startNodeId!,
-        destination_id: endNodeId!,
-        mode: ["fastest", "sheltered", "accessible"], //hard coded for now
-      }),
+      fetchRoutes(
+        {
+          start_id: startNodeId!,
+          destination_id: endNodeId!,
+          mode: ["fastest", "sheltered", "accessible"], //hard coded for now
+        },
+        token,
+      ),
     enabled: !!startNodeId && !!endNodeId,
   });
 }

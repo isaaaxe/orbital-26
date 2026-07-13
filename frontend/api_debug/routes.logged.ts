@@ -59,11 +59,13 @@ async function debugFetch(url: string, options?: RequestInit) {
 
 export async function fetchRoutes(
   request: RouteRequest,
+  token?: string | null,
 ): Promise<RouteResponse[]> {
   const res = await debugFetch(`${API_BASE_URL}/routes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
     body: JSON.stringify(request),
   });

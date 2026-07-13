@@ -61,19 +61,22 @@ export type UserDetail = {
   user_id: string;
   username: string;
   language: string;
-  profile_settings: string[];
+  pace_factor: number;
+  shelter_pref: number;
 };
 export type UserCreate = {
   username: string;
   password: string;
   language: string;
-  profile_settings: string[];
+  pace_factor: number;
+  shelter_pref: number;
 };
 export type UserUpdate = {
   new_username: string | null;
   new_password: string | null;
   language: string | null;
-  profile_settings: string[] | null;
+  pace_factor: number | null;
+  shelter_pref: number | null;
 };
 
 export type UserDeleted = {

@@ -18,6 +18,7 @@ import { useRouteQuery } from "@/hook/useRoute";
 import { RouteResponse } from "@/api_debug/routes.logged";
 import { useGetLocationDetails } from "@/hook/useLocations";
 import BackButton from "@/components/BackButton";
+import { useAuthContext } from "@/context/AuthContext";
 
 const styles = StyleSheet.create({
   routeCard: {
@@ -68,6 +69,7 @@ function formatDuration(totalSeconds: number) {
 }
 
 export default function ChooseRoute() {
+  const { token } = useAuthContext();
   const {
     destination,
     selectedRoute,
@@ -102,6 +104,7 @@ export default function ChooseRoute() {
   } = useRouteQuery(
     origin?.nearest_node.node_id,
     destinationDetails?.nearest_node_id!,
+    token,
   );
 
   useEffect(() => {

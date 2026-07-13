@@ -12,6 +12,8 @@ export default function TabsLayout() {
     bookmark_orange: require("../../assets/icons/bookmark_orange.png"),
     settings: require("../../assets/icons/settings.png"),
     settings_orange: require("../../assets/icons/settings_orange.png"),
+    events: require("../../assets/icons/event.png"),
+    events_orange: require("../../assets/icons/event_orange.png"),
   };
 
   const { setUserSearch } = useRouteContext();
@@ -48,6 +50,19 @@ export default function TabsLayout() {
           tabBarIcon: ({ focused }) => (
             <Image
               source={focused ? icons.map_orange : icons.map}
+              style={{ width: 24, height: 24 }}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="event"
+        options={{
+          title: "Events",
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? icons.events_orange : icons.events}
               style={{ width: 24, height: 24 }}
             />
           ),
