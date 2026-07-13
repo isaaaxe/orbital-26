@@ -17,4 +17,6 @@ export const icons: IconType = {
   star: require("../../assets/icons/star.png"),
   "bus stop": require("../../assets/icons/bus-stop.png"),
   bus_stop: require("../../assets/icons/bus-stop.png"),
+  eye_open: require("../../assets/icons/eye_open.png"),
+  eye_closed: require("../../assets/icons/eye_closed.png"),
 };

@@ -1,7 +1,7 @@
 import StylisedButton from "@/components/StylisedButton";
 import { useAuthContext } from "@/context/AuthContext";
-import { router } from "expo-router";
-import { useState } from "react";
+import { router, useNavigation } from "expo-router";
+import { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -9,8 +9,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { icons } from "../data/loadIcons";
 
 const styles = StyleSheet.create({
   screen: {
@@ -36,6 +39,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#111827",
     marginBottom: 12,
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   icon: {
     flex: 1,
@@ -170,8 +175,9 @@ export default function Login() {
     password: true,
     username: true,
   });
+  const [passwordHidden, setPasswordHidden] = useState(true);
   const { login, isLogin, setIsLogin, signup } = useAuthContext();
-
+  const navigation = useNavigation();
   // function checkValidEmail(email: string) {
   //   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   //   if (emailRegex.test(email.trim())) {
@@ -270,6 +276,18 @@ export default function Login() {
     }
   }
 
+  function togglePasswordHidden() {
+    setPasswordHidden(!passwordHidden);
+  }
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", () => {
+      setPasswordHidden(true);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <View style={styles.screen}>
       <SafeAreaView style={styles.safeArea}>
@@ -357,8 +375,16 @@ export default function Login() {
                 : handleSignup(username, password)
             }
             autoCapitalize="none"
-            secureTextEntry
+            secureTextEntry={passwordHidden}
           />
+          <View style={styles.icon}>
+            <Pressable onPress={togglePasswordHidden}>
+              <Image
+                source={passwordHidden ? icons.eye_open : icons.eye_closed}
+                style={{ width: 24, height: 24 }}
+              />
+            </Pressable>
+          </View>
         </View>
 
         {!isValidInputs.password && (
