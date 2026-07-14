@@ -38,7 +38,7 @@ import MapView, {
   Polygon,
 } from "react-native-maps";
 import { NearestNode } from "@/api_debug/campus_map.logged";
-import { icons } from "./data/loadIcons";
+import { icons } from "../data/loadIcons";
 import { boundaryCoordinates, outerBoundary } from "./(tabs)/map";
 
 const styles = StyleSheet.create({

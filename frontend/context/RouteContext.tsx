@@ -8,7 +8,7 @@ import {
   getBuildingFloors,
   NearestNode,
 } from "@/api_debug/campus_map.logged";
-import { POI_DATA_TYPE } from "@/app/data/POI";
+import { POI_DATA_TYPE } from "@/data/POI";
 import { FloorDetail } from "@/api_debug/campus_map.logged";
 import { useQuery } from "@tanstack/react-query";
 import { Mode } from "@/app/(tabs)/map";

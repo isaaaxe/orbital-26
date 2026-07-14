@@ -37,7 +37,7 @@ import { useClosestNodeMutation } from "@/hook/useRoute";
 import { LocationDetail } from "@/api_debug/locations.logged";
 import { useGetLocationDetails } from "@/hook/useLocations";
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
-import { icons } from "../data/loadIcons";
+import { icons } from "../../data/loadIcons";
 import { Mode } from "./map";
 
 const styles = StyleSheet.create({

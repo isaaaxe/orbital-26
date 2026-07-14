@@ -13,7 +13,7 @@ import {
   Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { icons } from "../data/loadIcons";
+import { icons } from "../../data/loadIcons";
 
 const styles = StyleSheet.create({
   screen: {

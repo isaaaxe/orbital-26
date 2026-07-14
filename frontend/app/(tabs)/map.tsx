@@ -24,7 +24,7 @@ import { router } from "expo-router";
 import BackButton from "@/components/BackButton";
 import { useAuthContext } from "@/context/AuthContext";
 import ChipList, { ChipListProps } from "@/components/ChipList";
-import { icons } from "../data/loadIcons";
+import { icons } from "../../data/loadIcons";
 import {
   useGetLocationDetailsByType,
   useSaveLocationMutation,

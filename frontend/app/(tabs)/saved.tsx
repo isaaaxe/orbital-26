@@ -23,7 +23,7 @@ import {
 import { LocationDetail } from "@/api_debug/locations.logged";
 import { useAuthContext } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
-import { icons } from "../data/loadIcons";
+import { icons } from "../../data/loadIcons";
 // curr default image should be selected by tag later on?
 
 const styles = StyleSheet.create({
