@@ -14,7 +14,7 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode,
     pace_factor = 1.0
     shelter_pref = 0.7
     if current_user is not None:
-        pace_factor = current_user.pace_factor
+        pace_factor = 1/current_user.pace_factor
         shelter_pref = current_user.shelter_pref
     #node_by_id, edge_by_pair, graph_table = await graph_builder.buildGraph()
     dist_to_end = triangulate_dist(startNode_id, endNode_id, node_by_id)

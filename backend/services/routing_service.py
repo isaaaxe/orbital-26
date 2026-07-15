@@ -8,7 +8,7 @@ async def generate_route(session, startNode_id, endNode_id, mode, current_user):
 
     pace_factor = 1.0
     if current_user is not None:
-        pace_factor = current_user.pace_factor
+        pace_factor = 1/current_user.pace_factor
 
     if path is None:
         return None
