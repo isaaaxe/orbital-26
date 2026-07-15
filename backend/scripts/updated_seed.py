@@ -39,7 +39,7 @@ STAIR_SECONDS_PER_FLOOR = 20
 
 # FK strategy = option (b): only these get Building rows. Every other building_code
 # on a node/location is stored as NULL (roads, bus stops, com3, clb, as6, ... for now).
-SEEDED_BUILDINGS = {"com1", "com2", "com3"}
+SEEDED_BUILDINGS = {"com1", "com2", "com3", "com4", "as6"}
 
 # Floor-plan images. Point this at wherever you host them (see notes at bottom).
 #   Supabase public bucket:  https://<proj>.supabase.co/storage/v1/object/public/floors
@@ -131,6 +131,20 @@ BUILDING_SPECS = [
         "aliases": ["COM3", "Computing 3"], "area_name": "school of computing",
         "entrance_node_name": "node_com3_1_corridor_6",
     },
+    {
+        "building_id": "com4", "building_code": "com4",
+        "name": "COM4", "display_name": "COM4",
+        "aliases": ["COM4", "Computing 4"], "area_name": "school of computing",
+        # COM4's lowest seeded floor is level 2 (linked from COM3 L1 via the bridge).
+        "entrance_node_name": "com4 entrance",
+    },
+    {
+        "building_id": "as6", "building_code": "as6",
+        "name": "AS6", "display_name": "AS6",
+        "aliases": ["AS6", "Arts and Social Sciences 6"],
+        "area_name": "faculty of arts and social sciences",
+        "entrance_node_name": "as6_2_entrance",
+    },
 ]
 
 
@@ -140,7 +154,6 @@ BUILDING_SPECS = [
 BASE_NODE_SPECS = [
     {"name": "COM3 Elevator", "lat": 1.2946253, "lon": 103.7749732, "node_type": "lift_station", "floor": 1, "building_code": "com3"},
     {"name": "Com3 MPH1", "lat": 1.2946126, "lon": 103.7747248, "node_type": "multipurpose hall", "floor": 1, "building_code": "com3"},
-    {"name": "The Terrace", "lat": 1.2944054, "lon": 103.7743158, "node_type": "canteen", "floor": 1, "building_code": "com2"},
     {"name": "Com2 entrance", "lat": 1.2943984, "lon": 103.7739848, "node_type": "entrance", "floor": 1, "building_code": "com2"},
     {"name": "com1 level1 walkway outside entrance", "lat": 1.2948261, "lon": 103.7736496, "node_type": "walkway", "floor": 1, "building_code": None},
     {"name": "UTown bus stop", "lat": 1.303662152778908, "lon": 103.77474325618729, "node_type": "bus stop", "floor": 1, "building_code": "UTown"},
@@ -182,9 +195,20 @@ BASE_NODE_SPECS = [
 # ----------------------------------------------------------------------------
 ACCESSIBLE_NODE_SPECS = [
     {"name": "Central library lift floor 4", "lat": 1.2961927, "lon": 103.7731590, "node_type": "lift_station", "floor": 4, "building_code": "clb"},
-    {"name": "AS6 intersection beside staircase CLB L4", "lat": 1.2959031, "lon": 103.7730058, "node_type": "junction", "floor": 4, "building_code": "as6"},
-    {"name": "As6 2nd story glassdoor", "lat": 1.2958672, "lon": 103.7731128, "node_type": "junction", "floor": 2, "building_code": "as6"},
-    {"name": "As6 lift1 floor 2", "lat": 1.2952890, "lon": 103.7733153, "node_type": "lift_station", "floor": 2, "building_code": "as6"},
+    # floor is 2, not 4: this spot is AS6 level 2 and CLB level 4 at the same
+    # physical height -- NUS numbers the two buildings differently. The node name
+    # keeps the CLB reference because that is how it is signed on the ground, but
+    # building_code is "as6", so `floor` MUST be in AS6's numbering or the node
+    # would claim to sit on the AS6 L4 floor plan. Inverting the AS6 L2 affine
+    # puts it at px (239, 426) on AS6_2.png -- inside the image, just west of
+    # as6_2_entrance at (500, 368).
+    {"name": "AS6 intersection beside staircase CLB L4", "lat": 1.2959031, "lon": 103.7730058, "node_type": "junction", "floor": 2, "building_code": "as6"},
+    # "As6 2nd story glassdoor" and "As6 lift1 floor 2" removed: both are now
+    # owned by the editor export as "as6_2_entrance" / "as6_2_lift_1", which are
+    # pixel-bound (_px/_floorId) on the AS6 L2 floor plan. dedupe_nodes() is
+    # base-first, so keeping a base spec under either name would silently win and
+    # drop the editor's calibrated coords. Base edges below point at the editor
+    # names instead.
     {"name": "As6 ramp to carpark", "lat": 1.2952129438832047, "lon": 103.77339530247183, "node_type": "ramp", "floor": 1, "building_code": "as6"},
     {"name": "Ramp from carpark to mainroad", "lat": 1.2951351796947648, "lon": 103.77326856810657, "node_type": "ramp", "floor": 1, "building_code": "road"},
     {"name": "Sheltered walkway with ramp near com1", "lat": 1.295054733971066, "lon": 103.7732323583118, "node_type": "walkway", "floor": 1, "building_code": "road"},
@@ -217,6 +241,7 @@ LOCATION_SPECS = [
     {"name": "COM1", "display_name": "COM1", "aliases": ["COM1", "Computing 1"], "location_type": "COM", "building_code": "com1", "floor": 1, "area_name": "school of computing", "lat": 1.294946722798136, "lon": 103.77393194938502, "nearest_node_name": "Com1 main entrance floor 1", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "COM2", "display_name": "COM2", "aliases": ["COM2", "Computing 2"], "location_type": "COM", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.294265259902769, "lon": 103.77409799286686, "nearest_node_name": "Com2 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "COM3", "display_name": "COM3", "aliases": ["COM3", "Computing 3"], "location_type": "COM", "building_code": "com3", "floor": 1, "area_name": "school of computing", "lat": 1.2947281501787837, "lon": 103.77459031912267, "nearest_node_name": "node_com3_1_corridor_6", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM4", "display_name": "COM4", "aliases": ["COM4", "Computing 4"], "location_type": "COM", "building_code": "com4", "floor": 2, "area_name": "school of computing", "lat": 1.2951577, "lon": 103.7753553, "nearest_node_name": "com4 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Terrace", "display_name": "Terrace", "aliases": ["The Terrace"], "location_type": "canteen", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.2944054, "lon": 103.7743158, "nearest_node_name": "The Terrace", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Deck", "display_name": "The Deck", "aliases": ["The Deck", "Deck"], "location_type": "canteen", "building_code": "deck", "floor": 1, "area_name": "school of computing", "lat": 1.2946732, "lon": 103.7724432, "nearest_node_name": "Deck", "nearest_bus_stop_name": "Central Library bus stop"},
 ]
@@ -273,18 +298,22 @@ BASE_EDGE_SPECS = [
     ("corr1 com2 floor1", "Middle of stairs from terrace to com1", "walk", "walk to the stairs landing for calculated distance", None, False, True),
     ("Outside LT14", "LT14", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
     ("Outside LT15", "LT15", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
-    ("COM3 Elevator", "node_com3_1_lift",    "walk", "walk straight for calculated distance", None, True, True),
-    ("Com3 MPH1",     "node_com3_1_mph1",    "walk", "walk straight for calculated distance", None, True, True),
-    ("The Terrace",   "node_com3_1_terrace", "walk", "walk straight for calculated distance", None, True, True),
+    ("COM3 Elevator", "node_com3_1_lift",        "walk", "walk straight for calculated distance", None, True, True),
+    ("Com3 MPH1",     "node_com3_1_junction3",   "walk", "walk straight for calculated distance", None, True, True),   
 ]
 
 # accessible/sheltered edges: dict form. vertical in {None,"lift","stairs"}.
 ACCESSIBLE_EDGE_SPECS = [
     {"from": "Central library lift", "to": "Central library lift floor 4", "mode": "walk", "instruction": "take lift up", "reverse": "take lift down", "acc": True, "shel": True, "vertical": "lift"},
     {"from": "Central library lift floor 4", "to": "AS6 intersection beside staircase CLB L4", "mode": "walk", "instruction": "proceed forward for calculated distance", "reverse": None, "acc": True, "shel": True},
-    {"from": "AS6 intersection beside staircase CLB L4", "to": "As6 2nd story glassdoor", "mode": "walk", "instruction": "proceed forward to AS6", "reverse": None, "acc": True, "shel": True},
-    {"from": "As6 2nd story glassdoor", "to": "As6 lift1 floor 2", "mode": "walk", "instruction": "enter and pass through AS6", "reverse": None, "acc": True, "shel": True},
-    {"from": "As6 lift1 floor 2", "to": "As6 lift1", "mode": "walk", "instruction": "take lift down to level 1", "reverse": "take lift up", "acc": True, "shel": True, "vertical": "lift"},
+    # bridge edges into the AS6 editor graph. Endpoints are editor nodes, so these
+    # MUST live here (base node on one side) rather than in the editor JSON.
+    {"from": "AS6 intersection beside staircase CLB L4", "to": "as6_2_entrance", "mode": "walk", "instruction": "proceed forward to AS6", "reverse": None, "acc": True, "shel": True},
+    # NOTE: the old "As6 2nd story glassdoor" -> "As6 lift1 floor 2" hop is gone.
+    # It was a 67 m straight-line teleport across the building that undercut the
+    # real L2 corridor chain (entrance -> corr_1 -> corr_2 -> corr_3 -> lift_1,
+    # 69 m, fully accessible). The corridor chain now carries that traffic.
+    {"from": "as6_2_lift_1", "to": "As6 lift1", "mode": "walk", "instruction": "take lift down to level 1", "reverse": "take lift up", "acc": True, "shel": True, "vertical": "lift"},
     {"from": "As6 lift1", "to": "As6 ramp to carpark", "mode": "walk", "instruction": "proceed forward and down the ramp", "reverse": None, "acc": True, "shel": True},
     {"from": "As6 ramp to carpark", "to": "Ramp from carpark to mainroad", "mode": "walk", "instruction": "proceed across the carpark", "reverse": None, "acc": True, "shel": False},
     {"from": "Ramp from carpark to mainroad", "to": "Sheltered walkway with ramp near com1", "mode": "walk", "instruction": "follow the sheltered walkway and down the ramp", "reverse": None, "acc": True, "shel": True},
@@ -332,6 +361,7 @@ def editor_nodes_to_specs(data):
             "name": n["name"], "lat": n["lat"], "lon": n["lon"],
             "node_type": n.get("node_type", "room"),
             "floor": n.get("floor", 1), "building_code": n.get("building_code"),
+            "aliases": n.get("aliases") or [],
         })
     return specs
 
@@ -576,14 +606,21 @@ def build_location_specs(node_specs):
         }, anchor)
 
     # 2) auto-promote leftover destination nodes (the bulk editor rooms)
+    curated_names = {loc["name"] for loc in LOCATION_SPECS}
     for n in node_specs:
         if n.get("node_type") not in INDOOR_DEST_TYPES:
             continue
         if n["name"] in claimed_nodes:        # a curated row already covers it
             continue
+        if n["name"] in curated_names:       # editor node duplicates a curated Location -> skip
+            continue
         disp, aliases = _indoor_name_aliases(n["name"])
+        merged = list(aliases)
+        for a in (n.get("aliases") or []):
+            if a and a not in merged:
+                merged.append(a)
         emit({
-            "name": disp, "display_name": disp, "aliases": aliases,
+            "name": disp, "display_name": disp, "aliases": merged,
             "location_type": n["node_type"], "building_code": n.get("building_code"),
             "floor": n["floor"], "lat": n["lat"], "lon": n["lon"], "area_name": None,
             "nearest_node_name": n["name"],   # the room's own node
