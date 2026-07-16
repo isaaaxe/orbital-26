@@ -2,11 +2,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { fetchRoutes, RouteResponse } from "@/api_debug/routes.logged";
 
 import { getClosestNode } from "@/api_debug/campus_map.logged";
+import { UserDetail } from "@/api_debug/users.logged";
 
 export function useRouteQuery(
   startNodeId?: string,
   endNodeId?: string,
   token?: string | null,
+  user?: UserDetail | null,
 ) {
   return useQuery<RouteResponse[]>({
     queryKey: [
@@ -14,6 +16,7 @@ export function useRouteQuery(
       startNodeId,
       endNodeId,
       token ? "authenticated" : "anon",
+      user ? `${user.pace_factor}:${user.shelter_pref}` : "anon",
     ],
     queryFn: () =>
       fetchRoutes(

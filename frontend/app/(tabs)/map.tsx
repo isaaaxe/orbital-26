@@ -401,6 +401,37 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#111827",
   },
+  stallsContainer: {
+    marginTop: 4,
+  },
+
+  stallsHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 8,
+  },
+
+  stallsTitle: {
+    flex: 1,
+    fontSize: 13,
+    fontWeight: "700",
+    color: "#111827",
+  },
+
+  stallRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    minHeight: 34,
+    paddingVertical: 5,
+  },
+
+  stallName: {
+    flex: 1,
+    fontSize: 13,
+    color: "#4B5563",
+  },
 });
 const scamColourWheel = [
   "rgba(130, 202, 255, 0.75)",
@@ -576,6 +607,7 @@ export default function MapPage() {
   };
   // expanded view of item
   const [isExpanded, setIsExpanded] = useState(false);
+  const [stallsExpanded, setStallsExpanded] = useState(false);
   const [canteenSelected, setCanteenSelected] = useState<LocationDetail | null>(
     null,
   );
@@ -704,28 +736,30 @@ export default function MapPage() {
                 <>
                   {buildingDetails.map((buildingDetail, index) => (
                     <View key={`poi_${index}`}>
-                      <Polygon
-                        key={`poly_${index}`}
-                        coordinates={buildingDetail.boundaries!.coordinates[0].map(
-                          (coords) => {
-                            return {
-                              latitude: coords[1],
-                              longitude: coords[0],
-                            };
-                          },
-                        )}
-                        fillColor={
-                          scamColourWheel[index % scamColourWheel.length]
-                        }
-                        strokeColor={
-                          scamColourWheel[index % scamColourWheel.length]
-                        }
-                        tappable={true}
-                        onPress={() => {
-                          setVisible(true);
-                          setSelectedLocation(buildingDetail);
-                        }}
-                      />
+                      {buildingDetail.boundaries && (
+                        <Polygon
+                          key={`poly_${index}`}
+                          coordinates={buildingDetail.boundaries!.coordinates[0].map(
+                            (coords) => {
+                              return {
+                                latitude: coords[1],
+                                longitude: coords[0],
+                              };
+                            },
+                          )}
+                          fillColor={
+                            scamColourWheel[index % scamColourWheel.length]
+                          }
+                          strokeColor={
+                            scamColourWheel[index % scamColourWheel.length]
+                          }
+                          tappable={true}
+                          onPress={() => {
+                            setVisible(true);
+                            setSelectedLocation(buildingDetail);
+                          }}
+                        />
+                      )}
                       <Marker
                         key={`marker_${index}`}
                         coordinate={{
@@ -753,25 +787,27 @@ export default function MapPage() {
               <>
                 {canteens.map((canteen, index) => (
                   <View key={`can_${index}`}>
-                    <Polygon
-                      key={`canteen_${index}`}
-                      coordinates={canteen.boundaries!.coordinates[0].map(
-                        (coord) => {
-                          return { latitude: coord[1], longitude: coord[0] };
-                        },
-                      )}
-                      fillColor={
-                        scamColourWheel[index % scamColourWheel.length]
-                      }
-                      strokeColor={
-                        scamColourWheel[index % scamColourWheel.length]
-                      }
-                      onPress={() => {
-                        setVisible(true);
-                        setSelectedLocation(canteen);
-                        //to be updated to show the canteen instead
-                      }}
-                    />
+                    {canteen.boundaries && (
+                      <Polygon
+                        key={`canteen_${index}`}
+                        coordinates={canteen.boundaries!.coordinates[0].map(
+                          (coord) => {
+                            return { latitude: coord[1], longitude: coord[0] };
+                          },
+                        )}
+                        fillColor={
+                          scamColourWheel[index % scamColourWheel.length]
+                        }
+                        strokeColor={
+                          scamColourWheel[index % scamColourWheel.length]
+                        }
+                        onPress={() => {
+                          setVisible(true);
+                          setSelectedLocation(canteen);
+                          //to be updated to show the canteen instead
+                        }}
+                      />
+                    )}
                     <Marker
                       key={`canteen_marker_${index}`}
                       coordinate={{
@@ -851,6 +887,7 @@ export default function MapPage() {
                             onPress={() => {
                               setCanteenSelected(isSelected ? null : item);
                               setIsExpanded(false);
+                              setStallsExpanded(false);
                             }}
                           >
                             <Text style={styles.cardTitle}>{item.name}</Text>
@@ -927,6 +964,36 @@ export default function MapPage() {
                                       )}
                                     </View>
                                   ))}
+                              </Pressable>
+                            )}
+                            {!stallsExpanded ? (
+                              <TouchableOpacity
+                                style={styles.stallsHeader}
+                                onPress={() => setStallsExpanded(true)}
+                              >
+                                <Text style={styles.stallsTitle}>
+                                  Stalls available
+                                </Text>
+                                <Text style={styles.chevronText}>⌄</Text>
+                              </TouchableOpacity>
+                            ) : (
+                              <Pressable
+                                style={styles.stallsContainer}
+                                onPress={() => setStallsExpanded(false)}
+                              >
+                                {item.canteen?.stalls.map((stall, index) => (
+                                  <View
+                                    key={`stall-${index}`}
+                                    style={styles.stallRow}
+                                  >
+                                    <Text style={styles.stallName}>
+                                      {stall}
+                                    </Text>
+                                    {index === 0 && (
+                                      <Text style={styles.chevronText}>⌃</Text>
+                                    )}
+                                  </View>
+                                ))}
                               </Pressable>
                             )}
 

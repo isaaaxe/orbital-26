@@ -69,7 +69,7 @@ function formatDuration(totalSeconds: number) {
 }
 
 export default function ChooseRoute() {
-  const { token } = useAuthContext();
+  const { user, token } = useAuthContext();
   const {
     destination,
     selectedRoute,
@@ -105,6 +105,7 @@ export default function ChooseRoute() {
     origin?.nearest_node.node_id,
     destinationDetails?.nearest_node_id!,
     token,
+    user,
   );
 
   useEffect(() => {

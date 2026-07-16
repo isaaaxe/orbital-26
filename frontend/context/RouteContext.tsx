@@ -225,7 +225,7 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     }
     for (let i = 0; i < selectedRoute.steps.length; i++) {
       //look at index 1 item
-      // console.log(selectedRoute.steps[i].buildings_passed_by_id);
+      console.log(selectedRoute.steps[i].vertical_edge);
       let building_code = selectedRoute.steps[i].buildings_passed_by_id[1];
       let floor = selectedRoute.steps[i].floor_transition[1];
       if (
@@ -256,16 +256,32 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
         curr_floor = floor;
         building_codes.push(getBuildingFloorKey(curr, curr_floor));
         //make new entry in nodesByBuildingFloor, but capture the prev node as well
-        nodesByBuildingFloor.push([
-          // {
-          //   latitude: selectedRoute.path_coordinates[i * 2][1],
-          //   longitude: selectedRoute.path_coordinates[i * 2][0],
-          // },
-          {
+        if (
+          nodesByBuildingFloor.length > 0 &&
+          selectedRoute.steps[i].vertical_edge == null
+        ) {
+          nodesByBuildingFloor[nodesByBuildingFloor.length - 1].push({
             latitude: selectedRoute.path_coordinates[i * 2 + 1][1],
             longitude: selectedRoute.path_coordinates[i * 2 + 1][0],
-          },
-        ]);
+          });
+          nodesByBuildingFloor.push([
+            {
+              latitude: selectedRoute.path_coordinates[i * 2][1],
+              longitude: selectedRoute.path_coordinates[i * 2][0],
+            },
+            {
+              latitude: selectedRoute.path_coordinates[i * 2 + 1][1],
+              longitude: selectedRoute.path_coordinates[i * 2 + 1][0],
+            },
+          ]);
+        } else {
+          nodesByBuildingFloor.push([
+            {
+              latitude: selectedRoute.path_coordinates[i * 2 + 1][1],
+              longitude: selectedRoute.path_coordinates[i * 2 + 1][0],
+            },
+          ]);
+        }
       }
     }
 

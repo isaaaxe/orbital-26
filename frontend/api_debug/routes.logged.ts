@@ -11,9 +11,14 @@ export type RouteStep = {
   distance_for_step: number;
   estimated_seconds: number;
   from_name: string | null;
+  from_node_id: string;
+  from_node_type: string;
   to_name: string | null;
+  to_node_id: string;
+  to_node_type: string;
   buildings_passed_by_id: (string | null)[];
   floor_transition: number[];
+  vertical_edge: string | null;
 };
 
 export type RouteResponse = {
