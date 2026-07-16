@@ -107,15 +107,6 @@ def floor_name_for(n: int) -> str:
     return f"Level {n}"
 
 
-def format_instruction(instruction, distance_m):
-    if instruction is None:
-        return None
-    cleaned = instruction.strip()
-    if cleaned in {"", "\u201c\u201d", '""'}:
-        return ""
-    return cleaned.replace("calculated distance", f"{distance_m} m")
-
-
 # ----------------------------------------------------------------------------
 # building specs
 # ----------------------------------------------------------------------------
@@ -190,7 +181,6 @@ BASE_NODE_SPECS = [
     {"name": "Outside LT14", "lat": 1.2956714, "lon": 103.7732274, "node_type": "corner", "floor": 1, "building_code": "as6"},
     {"name": "Outside LT15", "lat": 1.2954475, "lon": 103.7732784, "node_type": "corner", "floor": 1, "building_code": "as6"},
     {"name": "As6 lift1", "lat": 1.2952890, "lon": 103.7733153, "node_type": "lift_station", "floor": 1, "building_code": "as6"},
-    {"name": "Com1 second story outside ahu room", "lat": 1.2954026, "lon": 103.7735443, "node_type": "corner", "floor": 2, "building_code": "com1"},
     {"name": "Middle of stairs from terrace to com1", "lat": 1.2944709, "lon": 103.7741018, "node_type": "stairs", "floor": 1, "building_code": "com2"},
     {"name": "LT15", "lat": 1.2955214878116914, "lon": 103.77344062919603, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
     {"name": "LT14", "lat": 1.2957011498687994, "lon": 103.77337290341598, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
@@ -286,16 +276,15 @@ BASE_EDGE_SPECS = [
     ("Outside nus coop store room", "Outside LT14", "walk", "walk straight for calculated distance", None, True, True),
     ("Outside LT14", "Outside LT15", "walk", "walk straight for calculated distance", None, True, True),
     ("Outside LT15", "As6 lift1", "walk", "walk straight for calculated distance", None, True, True),
-    ("As6 lift1", "Com1 second story outside ahu room", "walk", "turn left, walk straight for calculated distance and turn right", "turn left, walk straight for calculated distance and turn right", False, True),
-    # Com1 level 2 entrance removed: main entrance to com1 floor2 is now the
-    # source of truth for the COM1 floor-2 entrance. Outdoor side reaches it via
-    # the ahu-room corner -> corr17 (indoor), then through the floor-2 corridors.
-    # The terrace stairs connect to floor 2 via corr6 (indoor) only, so the route
-    # walks the corridor interior instead of jumping straight to the entrance.
+    # AS6 -> COM1 floor 2 bridge. The old "Com1 second story outside ahu room"
+    # waypoint was dropped: it sat on a straight run (As6 lift1 -> ahu -> corr17
+    # are all ~57-64 deg), so it added no geometry. Turns are now generated from
+    # the real junctions -- left at As6 lift1 (from the LT15 approach), right at
+    # corr17 (toward corr15) -- so no manual instruction is needed here.
     # NOTE: editor node is "corr17 com1 floor 2" (space before 2), unlike the
     # other corrN nodes which are "corrN com1 floor2" -- must match exactly or
     # build_edges() raises KeyError.
-    ("Com1 second story outside ahu room", "corr17 com1 floor 2", "walk", "walk straight for calculated distance", None, False, True),
+    ("As6 lift1", "corr17 com1 floor 2", "walk", "", None, False, True),
     # corr13 <-> corr16 (floor 2) now lives in the editor export, so it is NOT a
     # base edge here -- duplicating it would collide on edge_id (build_edges has
     # no edge dedup). That link is what joins the corr14-17 cluster to the
@@ -448,17 +437,18 @@ def build_edges(edge_specs, node_by_name):
         if s["mode"] == "campus bus":
             acc = True
             shel = True
-        instruction = s.get("instruction")
-        reverse = s.get("reverse")
-        reverse_text = reverse if reverse is not None else instruction
-
+        # Manual per-edge instructions are stripped: turn-by-turn text is now
+        # generated at request time by build_instructions() in routing_service,
+        # from node geometry + edge mode/vertical. Both directions seed NULL so
+        # nothing stale lingers in the DB. (Any instruction/reverse text still in
+        # the specs or editor export is ignored.)
         edges.append(Map_Edge(
             edge_id=edge_id_from_names(fn, tn),
             from_node_id=node_id_from_name(fn), to_node_id=node_id_from_name(tn),
             mode=s["mode"], is_accessible=acc, is_sheltered=shel,
             distance_m=dist_m, estimated_seconds=seconds,
             vertical=s.get("vertical"),
-            instruction=format_instruction(instruction, dist_m),
+            instruction=None,
             geometry=[[a["lon"], a["lat"]], [b["lon"], b["lat"]]],
         ))
         edges.append(Map_Edge(
@@ -467,7 +457,7 @@ def build_edges(edge_specs, node_by_name):
             mode=s["mode"], is_accessible=acc, is_sheltered=shel,
             distance_m=dist_m, estimated_seconds=seconds,
             vertical=s.get("vertical"),
-            instruction=format_instruction(reverse_text, dist_m),
+            instruction=None,
             geometry=[[b["lon"], b["lat"]], [a["lon"], a["lat"]]],
         ))
     return edges
