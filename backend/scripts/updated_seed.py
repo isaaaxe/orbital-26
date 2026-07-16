@@ -86,6 +86,14 @@ def speed_for_mode(mode: str) -> float:
     return BUS_SPEED_MPS if mode == "campus bus" else WALK_SPEED_MPS
 
 
+def floors_between(fa: int, fb: int) -> int:
+    """Flights between two floors. There is no floor 0 -- basement is -1 and
+    ground is 1 -- so a raw abs(fa - fb) counts B1->L1 as two flights. Collapse
+    the gap by shifting negatives up one before subtracting."""
+    idx = lambda f: f + 1 if f < 0 else f
+    return abs(idx(fa) - idx(fb))
+
+
 def resolve_building_id(code):
     """Option (b): keep building_id only for buildings we actually seed; else NULL."""
     return code if code in SEEDED_BUILDINGS else None
@@ -183,7 +191,7 @@ BASE_NODE_SPECS = [
     {"name": "Outside LT15", "lat": 1.2954475, "lon": 103.7732784, "node_type": "corner", "floor": 1, "building_code": "as6"},
     {"name": "As6 lift1", "lat": 1.2952890, "lon": 103.7733153, "node_type": "lift_station", "floor": 1, "building_code": "as6"},
     {"name": "Com1 second story outside ahu room", "lat": 1.2954026, "lon": 103.7735443, "node_type": "corner", "floor": 2, "building_code": "com1"},
-    {"name": "Middle of stairs from terrace to com1", "lat": 1.2944709, "lon": 103.7741018, "node_type": "corner", "floor": 1, "building_code": "com2"},
+    {"name": "Middle of stairs from terrace to com1", "lat": 1.2944709, "lon": 103.7741018, "node_type": "stairs", "floor": 1, "building_code": "com2"},
     {"name": "LT15", "lat": 1.2955214878116914, "lon": 103.77344062919603, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
     {"name": "LT14", "lat": 1.2957011498687994, "lon": 103.77337290341598, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
 ]
@@ -273,10 +281,8 @@ BASE_EDGE_SPECS = [
     ("Kent Ridge Kres circus opening 2", "Kent Ridge Kres curve corner 2", "campus bus", "follow Kent Ridge Kres", None),
     ("Kent Ridge Kres curve corner 2", "Kent Ridge Kres curve corner 3", "campus bus", "follow Kent Ridge Kres", None),
     ("Kent Ridge Kres curve corner 3", "Central Library bus stop", "campus bus", "arriving at central library bus stop", "exiting central library bus stop"),
-    ("Central Library bus stop", "Central library stairs", "walk", "walk down the stairs", "walk up the stairs", False, True),
     ("Central library stairs", "Central library entrance", "walk", "walk straight for calculated distance", None, False, True),
     ("Central library entrance", "Central library lift", "walk", "walk straight for calculated distance", None, True, True),
-    ("Central library lift", "Outside nus coop store room", "walk", "walk up stairs", "walk down stairs", False, True),
     ("Outside nus coop store room", "Outside LT14", "walk", "walk straight for calculated distance", None, True, True),
     ("Outside LT14", "Outside LT15", "walk", "walk straight for calculated distance", None, True, True),
     ("Outside LT15", "As6 lift1", "walk", "walk straight for calculated distance", None, True, True),
@@ -294,7 +300,6 @@ BASE_EDGE_SPECS = [
     # base edge here -- duplicating it would collide on edge_id (build_edges has
     # no edge dedup). That link is what joins the corr14-17 cluster to the
     # corr1-13/18 cluster holding "main entrance to com1 floor2".
-    ("Middle of stairs from terrace to com1", "The Terrace", "walk", "walk down stairs and straight for calculated distance", None, False, True),
     ("corr1 com2 floor1", "Middle of stairs from terrace to com1", "walk", "walk to the stairs landing for calculated distance", None, False, True),
     ("Outside LT14", "LT14", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
     ("Outside LT15", "LT15", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
@@ -304,6 +309,11 @@ BASE_EDGE_SPECS = [
 
 # accessible/sheltered edges: dict form. vertical in {None,"lift","stairs"}.
 ACCESSIBLE_EDGE_SPECS = [
+    # stair edges relocated from BASE_EDGE_SPECS: the tuple form cannot carry
+    # "vertical", so anything with stairs in it has to live here.
+    {"from": "Central Library bus stop", "to": "Central library stairs", "mode": "walk", "instruction": "walk down the stairs", "reverse": "walk up the stairs", "acc": False, "shel": True, "vertical": "stairs"},
+    {"from": "Central library lift", "to": "Outside nus coop store room", "mode": "walk", "instruction": "walk up stairs", "reverse": "walk down stairs", "acc": False, "shel": True, "vertical": "stairs"},
+    {"from": "Middle of stairs from terrace to com1", "to": "The Terrace", "mode": "walk", "instruction": "walk down stairs and straight for calculated distance", "reverse": None, "acc": False, "shel": True, "vertical": "stairs"},
     {"from": "Central library lift", "to": "Central library lift floor 4", "mode": "walk", "instruction": "take lift up", "reverse": "take lift down", "acc": True, "shel": True, "vertical": "lift"},
     {"from": "Central library lift floor 4", "to": "AS6 intersection beside staircase CLB L4", "mode": "walk", "instruction": "proceed forward for calculated distance", "reverse": None, "acc": True, "shel": True},
     # bridge edges into the AS6 editor graph. Endpoints are editor nodes, so these
@@ -322,8 +332,8 @@ ACCESSIBLE_EDGE_SPECS = [
     {"from": "Sheltered walkway towards com1 turn 2", "to": "com1 level1 walkway outside entrance", "mode": "walk", "instruction": "follow the sheltered walkway to com1", "reverse": None, "acc": True, "shel": True},
     {"from": "com1 level1 walkway outside entrance", "to": "Com2 entrance", "mode": "walk", "instruction": "follow the walkway to com2 entrance (step-free, may be tight)", "reverse": None, "acc": True, "shel": False},
     # deck branch
-    {"from": "Sheltered walkway with ramp near com1", "to": "stairs leading to deck", "mode": "walk", "instruction": "walk up the stairs towards the deck", "reverse": "walk down the stairs", "acc": False, "shel": False},
-    {"from": "stairs leading to deck", "to": "Top of staircase leading to deck", "mode": "walk", "instruction": "continue up to the top of the staircase", "reverse": "walk down the stairs", "acc": False, "shel": False},
+    {"from": "Sheltered walkway with ramp near com1", "to": "stairs leading to deck", "mode": "walk", "instruction": "walk up the stairs towards the deck", "reverse": "walk down the stairs", "acc": False, "shel": False, "vertical": "stairs"},
+    {"from": "stairs leading to deck", "to": "Top of staircase leading to deck", "mode": "walk", "instruction": "continue up to the top of the staircase", "reverse": "walk down the stairs", "acc": False, "shel": False, "vertical": "stairs"},
     {"from": "Top of staircase leading to deck", "to": "Deck", "mode": "walk", "instruction": "walk straight", "reverse": None, "acc": False, "shel": False},
     {"from": "Deck", "to": "Main deck entrance", "mode": "walk", "instruction": "entrance to/from AS1 or Lecture Theatre 9", "reverse": None, "acc": True, "shel": True},
     {"from": "Main deck entrance", "to": "Side of deck corner", "mode": "walk", "instruction": "walk straight for calculated distance", "reverse": None, "acc": True, "shel": True},
@@ -374,6 +384,7 @@ def editor_edges_to_specs(data):
             "instruction": e.get("instruction", ""), "reverse": e.get("reverse_instruction"),
             "acc": bool(e.get("is_accessible")), "shel": bool(e.get("is_sheltered")),
             "manual_seconds": e.get("manual_seconds"),
+            "vertical": e.get("vertical"),
         })
     return specs
 
@@ -420,9 +431,12 @@ def build_edges(edge_specs, node_by_name):
         if s.get("manual_seconds") is not None:
             seconds = float(s["manual_seconds"])
         elif s.get("vertical"):
-            floors_crossed = max(1, abs(a["floor"] - b["floor"]))
-            per = LIFT_SECONDS_PER_FLOOR if s["vertical"] == "lift" else STAIR_SECONDS_PER_FLOOR
-            seconds = floors_crossed * per
+            if s["vertical"] == "lift":
+                floors_crossed = max(1, floors_between(a["floor"], b["floor"]))
+                seconds = floors_crossed * LIFT_SECONDS_PER_FLOOR
+            else:
+                flights = s.get("flights", max(1, floors_between(a["floor"], b["floor"])))
+                seconds = round(dist / WALK_SPEED_MPS + flights * STAIR_SECONDS_PER_FLOOR, 1)
         else:
             seconds = round(dist / speed_for_mode(s["mode"]), 1)
 
@@ -443,6 +457,7 @@ def build_edges(edge_specs, node_by_name):
             from_node_id=node_id_from_name(fn), to_node_id=node_id_from_name(tn),
             mode=s["mode"], is_accessible=acc, is_sheltered=shel,
             distance_m=dist_m, estimated_seconds=seconds,
+            vertical=s.get("vertical"),
             instruction=format_instruction(instruction, dist_m),
             geometry=[[a["lon"], a["lat"]], [b["lon"], b["lat"]]],
         ))
@@ -451,6 +466,7 @@ def build_edges(edge_specs, node_by_name):
             from_node_id=node_id_from_name(tn), to_node_id=node_id_from_name(fn),
             mode=s["mode"], is_accessible=acc, is_sheltered=shel,
             distance_m=dist_m, estimated_seconds=seconds,
+            vertical=s.get("vertical"),
             instruction=format_instruction(reverse_text, dist_m),
             geometry=[[b["lon"], b["lat"]], [a["lon"], a["lat"]]],
         ))
@@ -579,6 +595,10 @@ def build_location_specs(node_specs):
     specs, seen_ids, claimed_nodes = [], set(), set()
 
     def emit(spec, anchor_node):
+        # drop any alias that just repeats the display name (case-insensitive)
+        # so aliases never duplicate what's already shown as the display_name.
+        dn = (spec.get("display_name") or "").strip().lower()
+        spec["aliases"] = [a for a in spec["aliases"] if a.strip().lower() != dn]
         loc_id = location_id_from_name(spec["name"])
         if loc_id in seen_ids:
             raise ValueError(f"duplicate Location id {loc_id!r} (name {spec['name']!r})")

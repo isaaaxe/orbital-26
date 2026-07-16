@@ -15,8 +15,11 @@ class RouteStep(BaseModel):
     floor_transition: list[int]
     from_name: str | None = None #for corners
     from_node_id: str 
+    from_node_type: str
     to_name: str | None = None   #for corners
     to_node_id: str
+    to_node_type: str
+    vertical_edge: str | None = None
 
 class RouteResponse(BaseModel):
     total_distance: float

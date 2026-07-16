@@ -833,12 +833,12 @@
   "nodes": [
     {
       "aliases": [
-        "SR1",
-        "COM1 02-06"
+        "Seminar Room 1",
+        "SR1"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 1",
+      "name": "COM1 02-06",
       "lat": 1.2950321,
       "lon": 103.7739228,
       "node_type": "seminar room",
@@ -852,12 +852,12 @@
     },
     {
       "aliases": [
-        "SR7",
-        "COM1 02-07"
+        "Seminar Room 7",
+        "SR7"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 7",
+      "name": "COM1 02-07",
       "lat": 1.2949426,
       "lon": 103.7740336,
       "node_type": "seminar room",
@@ -871,12 +871,12 @@
     },
     {
       "aliases": [
-        "SR8",
-        "COM1 02-08"
+        "Seminar Room 8",
+        "SR8"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 8",
+      "name": "COM1 02-08",
       "lat": 1.2948744,
       "lon": 103.7740857,
       "node_type": "seminar room",
@@ -890,12 +890,12 @@
     },
     {
       "aliases": [
-        "SR9",
-        "COM1 02-09"
+        "Seminar Room 9",
+        "SR9"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 9",
+      "name": "COM1 02-09",
       "lat": 1.2948093,
       "lon": 103.7741369,
       "node_type": "seminar room",
@@ -909,12 +909,12 @@
     },
     {
       "aliases": [
-        "SR10",
-        "COM1 02-10"
+        "Seminar Room 10",
+        "SR10"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 10",
+      "name": "COM1 02-10",
       "lat": 1.2947343,
       "lon": 103.7741958,
       "node_type": "seminar room",
@@ -928,12 +928,12 @@
     },
     {
       "aliases": [
-        "SR3",
-        "COM1 02-12"
+        "Seminar Room 3",
+        "SR3"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 3",
+      "name": "COM1 02-12",
       "lat": 1.2948269,
       "lon": 103.7739899,
       "node_type": "seminar room",
@@ -947,12 +947,12 @@
     },
     {
       "aliases": [
-        "TR10",
-        "COM1 02-17"
+        "Tutorial Room 10",
+        "TR10"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Tutorial Room 10",
+      "name": "COM1 02-17",
       "lat": 1.2948124,
       "lon": 103.773918,
       "node_type": "tutorial room",
@@ -966,12 +966,12 @@
     },
     {
       "aliases": [
-        "TR11",
-        "COM1 02-16"
+        "Tutorial Room 11",
+        "TR11"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Tutorial Room 11",
+      "name": "COM1 02-16",
       "lat": 1.2947652,
       "lon": 103.773955,
       "node_type": "tutorial room",
@@ -1035,12 +1035,12 @@
     },
     {
       "aliases": [
-        "TR12",
-        "COM1 02-14"
+        "Tutorial Room 12",
+        "TR12"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Tutorial Room 12",
+      "name": "COM1 02-14",
       "lat": 1.2946316,
       "lon": 103.7740824,
       "node_type": "tutorial room",
@@ -1174,12 +1174,12 @@
     },
     {
       "aliases": [
-        "SR6",
-        "COM1 02-03"
+        "Seminar Room 6",
+        "SR6"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 6",
+      "name": "COM1 02-03",
       "lat": 1.2952436,
       "lon": 103.7737857,
       "node_type": "seminar room",
@@ -1211,12 +1211,12 @@
     },
     {
       "aliases": [
-        "SR5",
-        "COM1 02-01"
+        "Seminar Room 5",
+        "SR5"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 5",
+      "name": "COM1 02-01",
       "lat": 1.2954003,
       "lon": 103.7736655,
       "node_type": "seminar room",
@@ -1278,12 +1278,12 @@
     },
     {
       "aliases": [
-        "SR2",
-        "COM1 02-04"
+        "Seminar Room 2",
+        "SR2"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 2",
+      "name": "COM1 02-04",
       "lat": 1.2951077,
       "lon": 103.7736491,
       "node_type": "seminar room",
@@ -1627,10 +1627,12 @@
       "_floorId": "com1_l1"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "COM1 01-06C"
+      ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "AV control room",
+      "name": "AV Control Room",
       "lat": 1.29502,
       "lon": 103.7737155,
       "node_type": "room",
@@ -1643,7 +1645,9 @@
       "_floorId": "com1_l1"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "COM1 01-23"
+      ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Career consultation room",
@@ -1678,15 +1682,15 @@
       "aliases": [],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "supplies room",
-      "lat": 1.2951852,
-      "lon": 103.7739085,
+      "name": "Supplies Room 1",
+      "lat": 1.2951838,
+      "lon": 103.7739058,
       "node_type": "room",
       "floor": 1,
       "building_code": "com1",
       "_px": [
-        664,
-        97
+        663,
+        102
       ],
       "_floorId": "com1_l1"
     },
@@ -1769,7 +1773,7 @@
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "supplies room 2",
+      "name": "Supplies Room 2",
       "lat": 1.2946616,
       "lon": 103.7741351,
       "node_type": "room",
@@ -1855,7 +1859,9 @@
       "_floorId": "com1_l1"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "COM1 01-21"
+      ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Computational Biology 1",
@@ -1994,10 +2000,13 @@
       "_floorId": "com1_l1"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "MR5",
+        "COM1 01-18"
+      ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "MR5",
+      "name": "Meeting Room 5",
       "lat": 1.2947033,
       "lon": 103.7740982,
       "node_type": "room",
@@ -2093,7 +2102,9 @@
       "_floorId": "com1_l1"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "Lecture Theatre 19"
+      ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "LT 19",
@@ -2109,7 +2120,9 @@
       "_floorId": "com2_l1"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "Lecture Theatre 16"
+      ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "LT 16",
@@ -2125,7 +2138,9 @@
       "_floorId": "com2_l1"
     },
     {
-      "aliases": [],
+      "aliases": [
+        "Lecture Theatre 17"
+      ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "LT 17",
@@ -2367,22 +2382,6 @@
       "_floorId": "com1_l2"
     },
     {
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
-      "name": "TR9",
-      "lat": 1.293591,
-      "lon": 103.7741239,
-      "node_type": "tutorial room",
-      "floor": 1,
-      "building_code": "com2",
-      "_px": [
-        892,
-        609
-      ],
-      "_floorId": "com2_l1"
-    },
-    {
       "aliases": [
         "COM2 01-09"
       ],
@@ -2426,13 +2425,13 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Information Systems & Analytics Research Lab 3",
-      "lat": 1.293797,
-      "lon": 103.7740934,
+      "lat": 1.2938006,
+      "lon": 103.7740915,
       "node_type": "lab",
       "floor": 1,
       "building_code": "com2",
       "_px": [
-        702,
+        698,
         530
       ],
       "_floorId": "com2_l1"
@@ -4236,12 +4235,12 @@
     },
     {
       "aliases": [
-        "SR91",
-        "COM3 B1-10"
+        "Seminar Room 91",
+        "SR91"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 91",
+      "name": "COM3 B1-10",
       "lat": 1.2943334,
       "lon": 103.7745625,
       "node_type": "seminar room",
@@ -4412,12 +4411,12 @@
     },
     {
       "aliases": [
-        "SR11",
-        "COM3 01-20"
+        "Seminar Room 11",
+        "SR11"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 11",
+      "name": "COM3 01-20",
       "lat": 1.2949138,
       "lon": 103.7743157,
       "node_type": "seminar room",
@@ -4431,12 +4430,12 @@
     },
     {
       "aliases": [
-        "SR12",
-        "COM3 01-21"
+        "Seminar Room 12",
+        "SR12"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 12",
+      "name": "COM3 01-21",
       "lat": 1.2949514,
       "lon": 103.7742431,
       "node_type": "seminar room",
@@ -4580,12 +4579,12 @@
     },
     {
       "aliases": [
-        "SR14",
-        "COM3 01-23"
+        "Seminar Room 14",
+        "SR14"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 14",
+      "name": "COM3 01-23",
       "lat": 1.2950397,
       "lon": 103.7748295,
       "node_type": "seminar room",
@@ -4599,12 +4598,12 @@
     },
     {
       "aliases": [
-        "SR15",
-        "COM3 01-25"
+        "Seminar Room 15",
+        "SR15"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 15",
+      "name": "COM3 01-25",
       "lat": 1.294918,
       "lon": 103.7748975,
       "node_type": "seminar room",
@@ -4714,12 +4713,12 @@
     },
     {
       "aliases": [
-        "SR13",
-        "COM3 01-22"
+        "Seminar Room 13",
+        "SR13"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 13",
+      "name": "COM3 01-22",
       "lat": 1.2949932,
       "lon": 103.7747346,
       "node_type": "seminar room",
@@ -4848,14 +4847,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_10",
-      "lat": 1.2945191,
-      "lon": 103.7743707,
+      "lat": 1.2945144,
+      "lon": 103.7743693,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
       "_px": [
         632,
-        625
+        629
       ],
       "_floorId": "com3:1"
     },
@@ -4944,12 +4943,12 @@
     },
     {
       "aliases": [
-        "SR21",
-        "COM3 02-60"
+        "Seminar Room 21",
+        "SR21"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 21",
+      "name": "COM3 02-60",
       "lat": 1.2948276,
       "lon": 103.7746606,
       "node_type": "seminar room",
@@ -5534,14 +5533,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_2_corridor_4",
-      "lat": 1.29516,
-      "lon": 103.7752639,
+      "lat": 1.2951595,
+      "lon": 103.7752635,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        318,
-        348
+        316,
+        349
       ],
       "_floorId": "com4:2"
     },
@@ -5550,14 +5549,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_2_corridor_6",
-      "lat": 1.295202,
-      "lon": 103.775355,
+      "lat": 1.2951889,
+      "lon": 103.775327,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        636,
-        346
+        538,
+        347
       ],
       "_floorId": "com4:2"
     },
@@ -5566,14 +5565,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_2_corridor_7",
-      "lat": 1.2952488,
-      "lon": 103.7754596,
+      "lat": 1.2951998,
+      "lon": 103.7753612,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        1000,
-        347
+        651,
+        360
       ],
       "_floorId": "com4:2"
     },
@@ -5660,95 +5659,95 @@
     {
       "aliases": [
         "ISA T-Lab 1",
-        "com4 02-01"
+        "COM4 02-01"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Information Systems and Analytics Teaching Lab 1",
-      "lat": 1.2952033,
-      "lon": 103.7752494,
+      "lat": 1.2952065,
+      "lon": 103.775257,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        333,
-        204
+        359,
+        205
       ],
       "_floorId": "com4:2"
     },
     {
       "aliases": [
         "ISA T-Lab 2",
-        "com4 02-02"
+        "COM4 02-02"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Information Systems and Analytics Teaching Lab 2",
-      "lat": 1.2952581,
-      "lon": 103.7753525,
+      "lat": 1.2952523,
+      "lon": 103.7753574,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        703,
-        181
+        709,
+        204
       ],
       "_floorId": "com4:2"
     },
     {
       "aliases": [
         "WS Lab1",
-        "com4 02-03"
+        "COM4 02-03"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Workstation Lab 1",
-      "lat": 1.295291,
-      "lon": 103.7754392,
+      "lat": 1.2952888,
+      "lon": 103.7754405,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        996,
-        199
+        997,
+        207
       ],
       "_floorId": "com4:2"
     },
     {
       "aliases": [
         "WS Lab2",
-        "com4 02-05"
+        "COM4 02-05"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Workstation Lab 2",
-      "lat": 1.2951749,
-      "lon": 103.7754071,
+      "lat": 1.2951671,
+      "lon": 103.7754093,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        751,
-        492
+        747,
+        517
       ],
       "_floorId": "com4:2"
     },
     {
       "aliases": [
         "WS Lab 3",
-        "com4 02-04"
+        "COM4 02-04"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Workstation Lab 3",
-      "lat": 1.2952085,
-      "lon": 103.7754775,
+      "lat": 1.2952013,
+      "lon": 103.7754796,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com4",
       "_px": [
-        998,
-        487
+        995,
+        510
       ],
       "_floorId": "com4:2"
     },
@@ -5853,14 +5852,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_3_corridor_2",
-      "lat": 1.2951574,
-      "lon": 103.7752658,
+      "lat": 1.2951566,
+      "lon": 103.775266,
       "node_type": "corridor",
       "floor": 3,
       "building_code": "com4",
       "_px": [
-        311,
-        380
+        310,
+        383
       ],
       "_floorId": "com4:3"
     },
@@ -5869,14 +5868,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_3_corridor_3",
-      "lat": 1.2952031,
-      "lon": 103.7753662,
+      "lat": 1.2951807,
+      "lon": 103.7753146,
       "node_type": "corridor",
       "floor": 3,
       "building_code": "com4",
       "_px": [
-        677,
-        379
+        490,
+        376
       ],
       "_floorId": "com4:3"
     },
@@ -5885,14 +5884,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_3_corridor_4",
-      "lat": 1.2952294,
-      "lon": 103.7754224,
+      "lat": 1.2951976,
+      "lon": 103.7753569,
       "node_type": "corridor",
       "floor": 3,
       "building_code": "com4",
       "_px": [
-        883,
-        376
+        641,
+        383
       ],
       "_floorId": "com4:3"
     },
@@ -5901,25 +5900,25 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_3_corridor_5",
-      "lat": 1.2952522,
-      "lon": 103.7754729,
+      "lat": 1.2952211,
+      "lon": 103.7754084,
       "node_type": "corridor",
       "floor": 3,
       "building_code": "com4",
       "_px": [
-        1067,
-        376
+        829,
+        382
       ],
       "_floorId": "com4:3"
     },
     {
       "aliases": [
-        "SR 31",
-        "com4 03-01"
+        "Seminar Room 31",
+        "SR 31"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 31",
+      "name": "COM4 03-01",
       "lat": 1.295196,
       "lon": 103.7752464,
       "node_type": "seminar room",
@@ -5933,12 +5932,12 @@
     },
     {
       "aliases": [
-        "SR 32",
-        "com4 03-02"
+        "Seminar Room 32",
+        "SR 32"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 32",
+      "name": "COM4 03-02",
       "lat": 1.2952424,
       "lon": 103.7753449,
       "node_type": "seminar room",
@@ -5952,12 +5951,12 @@
     },
     {
       "aliases": [
-        "SR 33",
-        "com4 03-03"
+        "Seminar Room 33",
+        "SR 33"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Seminar Room 33",
+      "name": "COM4 03-03",
       "lat": 1.2952838,
       "lon": 103.775439,
       "node_type": "seminar room",
@@ -5976,14 +5975,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Graduate Students Lounge 1",
-      "lat": 1.2951676,
-      "lon": 103.7753926,
+      "lat": 1.2951677,
+      "lon": 103.775385,
       "node_type": "room",
       "floor": 3,
       "building_code": "com4",
       "_px": [
-        707,
-        528
+        684,
+        517
       ],
       "_floorId": "com4:3"
     },
@@ -5994,14 +5993,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Graduate Students Lounge 2",
-      "lat": 1.295189,
-      "lon": 103.775439,
+      "lat": 1.2951906,
+      "lon": 103.7754352,
       "node_type": "room",
       "floor": 3,
       "building_code": "com4",
       "_px": [
-        876,
-        526
+        867,
+        516
       ],
       "_floorId": "com4:3"
     },
@@ -6012,14 +6011,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Graduate Students Lounge 3",
-      "lat": 1.295215,
-      "lon": 103.7754922,
+      "lat": 1.2952156,
+      "lon": 103.7754893,
       "node_type": "room",
       "floor": 3,
       "building_code": "com4",
       "_px": [
-        1073,
-        520
+        1065,
+        514
       ],
       "_floorId": "com4:3"
     },
@@ -6092,87 +6091,87 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com4_4_corridor_3",
-      "lat": 1.2952131,
-      "lon": 103.7752521,
+      "lat": 1.2951823,
+      "lon": 103.7752615,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
       "_px": [
-        336,
-        204
+        320,
+        336
       ],
       "_floorId": "com4:4"
     },
     {
       "aliases": [
         "MPL-2",
-        "com4 04-01"
+        "COM4 04-01"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Multipurpose Lab 2",
-      "lat": 1.2952361,
-      "lon": 103.7753795,
+      "lat": 1.2952694,
+      "lon": 103.775352,
       "node_type": "lab",
       "floor": 4,
       "building_code": "com4",
       "_px": [
-        799,
-        335
+        758,
+        163
       ],
       "_floorId": "com4:4"
     },
     {
       "aliases": [
-        "com4 04-01C"
+        "COM4 04-01C"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Program Director's Office C",
-      "lat": 1.2952208,
-      "lon": 103.7752075,
+      "lat": 1.2952281,
+      "lon": 103.7752242,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
       "_px": [
-        197,
-        99
+        265,
+        100
       ],
       "_floorId": "com4:4"
     },
     {
       "aliases": [
-        "com4 04-01B"
+        "COM4 04-01B"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Director's Office B",
-      "lat": 1.2951963,
-      "lon": 103.7752197,
+      "lat": 1.2951989,
+      "lon": 103.7752349,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
       "_px": [
-        201,
-        212
+        256,
+        228
       ],
       "_floorId": "com4:4"
     },
     {
       "aliases": [
-        "com4 04-01D"
+        "COM4 04-01D"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MPL-2 Admin Office D",
-      "lat": 1.2951732,
-      "lon": 103.775231,
+      "lat": 1.2951771,
+      "lon": 103.775243,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
       "_px": [
-        204,
-        318
+        250,
+        324
       ],
       "_floorId": "com4:4"
     },
@@ -6339,36 +6338,35 @@
     {
       "aliases": [
         "AI-3",
-        "com4 05-01"
+        "COM4 05-01"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
-      "name": "Artificial Intelligence Research Lab",
-      "lat": 1.295213,
-      "lon": 103.7753746,
+      "name": "Artificial Intelligence Research Lab 3",
+      "lat": 1.2952633,
+      "lon": 103.7753424,
       "node_type": "lab",
       "floor": 5,
       "building_code": "com4",
       "_px": [
-        727,
-        385
+        700,
+        175
       ],
       "_floorId": "com4:5"
     },
     {
-      "name": "Seminar Room 4",
+      "aliases": [
+        "Seminar Room 4",
+        "SR 4"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "AS6 02-06/07",
       "lat": 1.2954348,
       "lon": 103.7732764,
       "node_type": "seminar room",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [
-        "SR 4",
-        "as6 02-06",
-        "as6 02-07"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1217,
         341
@@ -6376,18 +6374,18 @@
       "_floorId": "as6:2"
     },
     {
-      "name": "Tutorial Room 3",
+      "aliases": [
+        "Tutorial Room 3",
+        "TR 3"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "AS6 02-08",
       "lat": 1.2953609,
       "lon": 103.7733092,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [
-        "TR 3",
-        "as6 02-08"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1365,
         343
@@ -6395,18 +6393,18 @@
       "_floorId": "as6:2"
     },
     {
-      "name": "Tutorial Room 5",
+      "aliases": [
+        "Tutorial Room 5",
+        "TR 5"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "AS6 02-11",
       "lat": 1.2954388,
       "lon": 103.773189,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [
-        "TR 5",
-        "as6 02-11"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1149,
         475
@@ -6414,18 +6412,18 @@
       "_floorId": "as6:2"
     },
     {
-      "name": "Tutorial Room 4",
+      "aliases": [
+        "Tutorial Room 4",
+        "TR 4"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "AS6 02-10",
       "lat": 1.2953842,
       "lon": 103.7732143,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [
-        "TR 4",
-        "as6 02-10"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1259,
         475
@@ -6433,18 +6431,18 @@
       "_floorId": "as6:2"
     },
     {
-      "name": "Tutorial Room 6",
+      "aliases": [
+        "Tutorial Room 6",
+        "TR 6"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "AS6 02-09",
       "lat": 1.2953301,
       "lon": 103.773238,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [
-        "TR 6",
-        "as6 02-09"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1367,
         477
@@ -6452,15 +6450,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_2_lift_1",
       "lat": 1.2952605,
       "lon": 103.7733895,
       "node_type": "lift_station",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1590,
         290
@@ -6468,15 +6466,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AS6_2_stair_1",
       "lat": 1.2952443,
       "lon": 103.773346,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1587,
         370
@@ -6484,15 +6482,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AS6_2_stair_2",
       "lat": 1.2957887,
       "lon": 103.7732303,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         589,
         156
@@ -6500,15 +6498,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_2_junc_1",
       "lat": 1.295833,
       "lon": 103.7732064,
       "node_type": "junction",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         498,
         162
@@ -6516,15 +6514,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_2_corr_1",
       "lat": 1.2954906,
       "lon": 103.773229,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1090,
         375
@@ -6532,15 +6530,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_2_corr_2",
       "lat": 1.2953675,
       "lon": 103.7732653,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1323,
         407
@@ -6548,15 +6546,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_2_corr_3",
       "lat": 1.2952855,
       "lon": 103.7733238,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1502,
         375
@@ -6564,15 +6562,15 @@
       "_floorId": "as6:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_1",
       "lat": 1.295766,
       "lon": 103.7730669,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         557,
         375
@@ -6580,15 +6578,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_2",
       "lat": 1.295657,
       "lon": 103.7731195,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         773,
         373
@@ -6596,15 +6594,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_3",
       "lat": 1.2955123,
       "lon": 103.7731867,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1059,
         375
@@ -6612,15 +6610,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_4",
       "lat": 1.2954217,
       "lon": 103.7732297,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1238,
         375
@@ -6628,15 +6626,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_5",
       "lat": 1.2953422,
       "lon": 103.7732663,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1395,
         376
@@ -6644,15 +6642,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_6",
       "lat": 1.2952744,
       "lon": 103.7732984,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1529,
         376
@@ -6660,15 +6658,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_7",
       "lat": 1.2958269,
       "lon": 103.7730356,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         435,
         379
@@ -6676,15 +6674,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_8",
       "lat": 1.2958528,
       "lon": 103.7729322,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         320,
         539
@@ -6692,15 +6690,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_corr_9",
       "lat": 1.2958795,
       "lon": 103.7728695,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         232,
         627
@@ -6708,15 +6706,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AS6_4_stair_2",
       "lat": 1.2957824,
       "lon": 103.7731919,
       "node_type": "stairs",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         618,
         142
@@ -6724,15 +6722,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AS6_4_stair_1",
       "lat": 1.2952464,
       "lon": 103.7733441,
       "node_type": "stairs",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1607,
         319
@@ -6740,15 +6738,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_4_junc_1",
       "lat": 1.2958146,
       "lon": 103.7731706,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         550,
         153
@@ -6756,17 +6754,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-21"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "Media Teaching Lab 1",
       "lat": 1.2957258,
       "lon": 103.7730492,
       "node_type": "lab",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-21"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         611,
         439
@@ -6774,17 +6772,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-28"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 10: Audio Lab 1",
       "lat": 1.2958246,
       "lon": 103.7730823,
       "node_type": "lab",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-28"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         471,
         299
@@ -6792,17 +6790,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-26"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "Media Teaching Lab 2A",
       "lat": 1.2958929,
       "lon": 103.772955,
       "node_type": "lab",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-26"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         270,
         466
@@ -6810,17 +6808,17 @@
       "_floorId": "as6:4"
     },
     {
-      "name": "Technical room",
+      "aliases": [
+        "AS6 04-22"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Technical Room",
       "lat": 1.2958207,
       "lon": 103.7729288,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-22"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         370,
         572
@@ -6828,17 +6826,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-25"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 9: Human Computer Interaction",
       "lat": 1.2959254,
       "lon": 103.7728693,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-25"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         156,
         590
@@ -6846,17 +6844,17 @@
       "_floorId": "as6:4"
     },
     {
-      "name": "Media studio",
+      "aliases": [
+        "AS6 04-23"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Media Studio",
       "lat": 1.2958417,
       "lon": 103.7728811,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-23"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         302,
         638
@@ -6864,17 +6862,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-03"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 1: Geometry and Graphics",
       "lat": 1.2956731,
       "lon": 103.7731559,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-03"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         772,
         296
@@ -6882,17 +6880,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-14"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "Audio 2",
       "lat": 1.2955014,
       "lon": 103.7731607,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-14"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1059,
         430
@@ -6900,17 +6898,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-13"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 2: Computational Linguistics",
       "lat": 1.2954375,
       "lon": 103.7731827,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-13"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1179,
         444
@@ -6918,17 +6916,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-11"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 4B: Computer Vision",
       "lat": 1.2953941,
       "lon": 103.773288,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-11"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1325,
         295
@@ -6936,17 +6934,17 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [
+        "AS6 04-12A"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "Document Room",
       "lat": 1.2953303,
       "lon": 103.7732427,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
-      "aliases": [
-        "as6 04-12A"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1398,
         428
@@ -6954,15 +6952,15 @@
       "_floorId": "as6:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AS6_5_stair_2",
       "lat": 1.2957844,
       "lon": 103.7731963,
       "node_type": "stairs",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         639,
         142
@@ -6970,15 +6968,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AS6_5_stair_1",
       "lat": 1.2952435,
       "lon": 103.7733323,
       "node_type": "stairs",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1611,
         355
@@ -6986,15 +6984,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_5_junc_1",
       "lat": 1.2958208,
       "lon": 103.7731731,
       "node_type": "junction",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         564,
         153
@@ -7002,15 +7000,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_5_corr_1",
       "lat": 1.2957774,
       "lon": 103.7730648,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         562,
         384
@@ -7018,15 +7016,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_5_corr_2",
       "lat": 1.2958425,
       "lon": 103.7730281,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         432,
         394
@@ -7034,15 +7032,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_5_corr_3",
       "lat": 1.2958812,
       "lon": 103.772935,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         306,
         529
@@ -7050,15 +7048,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_5_corr_4",
       "lat": 1.2959135,
       "lon": 103.772856,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         201,
         643
@@ -7066,15 +7064,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_5_corr_5",
       "lat": 1.2956185,
       "lon": 103.7731407,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         872,
         382
@@ -7082,15 +7080,15 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_5_corr_6",
       "lat": 1.2953562,
       "lon": 103.7732643,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1382,
         382
@@ -7098,17 +7096,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-10"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "Meeting Room 6",
       "lat": 1.2953402,
       "lon": 103.7732329,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-10"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1387,
         452
@@ -7116,17 +7114,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-02"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 4: Computer Vision",
       "lat": 1.2956276,
       "lon": 103.7731872,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-02"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         888,
         291
@@ -7134,17 +7132,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-17"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 5: Visually Immersive Studio",
       "lat": 1.2956086,
       "lon": 103.7731105,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-17"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         868,
         444
@@ -7152,17 +7150,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-01"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 3: Multimedia Analysis and Synthesis",
       "lat": 1.2957435,
       "lon": 103.7731255,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-01"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         658,
         304
@@ -7170,17 +7168,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-25"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 8: Media Search",
       "lat": 1.2958483,
       "lon": 103.7730771,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-25"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         455,
         302
@@ -7188,17 +7186,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-23"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 12: Sensors",
       "lat": 1.2959179,
       "lon": 103.772961,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-23"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         264,
         451
@@ -7206,17 +7204,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-21"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 6: Industry",
       "lat": 1.2958551,
       "lon": 103.7729032,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-21"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         328,
         608
@@ -7224,17 +7222,17 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [
+        "AS6 05-22"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MEDIA 7: Multimedia Systems",
       "lat": 1.2959507,
       "lon": 103.7728718,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
-      "aliases": [
-        "as6 05-22"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         151,
         583
@@ -7242,20 +7240,578 @@
       "_floorId": "as6:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "as6_2_entrance",
       "lat": 1.2957861,
       "lon": 103.7730967,
       "node_type": "entrance",
       "floor": 2,
       "building_code": "as6",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         500,
         368
       ],
       "_floorId": "as6:2"
+    },
+    {
+      "name": "COM2 01-08",
+      "lat": 1.293586,
+      "lon": 103.7741242,
+      "node_type": "tutorial room",
+      "floor": 1,
+      "building_code": "com2",
+      "aliases": [
+        "Tutorial Room 9",
+        "TR9"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        896,
+        611
+      ],
+      "_floorId": "com2:1"
+    },
+    {
+      "name": "COM3 B1-26",
+      "lat": 1.2949688,
+      "lon": 103.7745463,
+      "node_type": "discussion room",
+      "floor": -1,
+      "building_code": "com3",
+      "aliases": [
+        "Meeting Room",
+        "MR"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        586,
+        255
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "name": "E&A Cluster 5",
+      "lat": 1.2948291,
+      "lon": 103.7742892,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
+      "aliases": [
+        "COM3 B1-18"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        284,
+        414
+      ],
+      "_floorId": "com3:-1"
+    },
+    {
+      "name": "node_com4_2_corridor_5",
+      "lat": 1.2951456,
+      "lon": 103.7752221,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        178,
+        335
+      ],
+      "_floorId": "com4:2"
+    },
+    {
+      "name": "node_com4_2_corridor_8",
+      "lat": 1.29523,
+      "lon": 103.7754257,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        877,
+        357
+      ],
+      "_floorId": "com4:2"
+    },
+    {
+      "name": "node_com4_2_corridor_9",
+      "lat": 1.2952616,
+      "lon": 103.775491,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        1107,
+        351
+      ],
+      "_floorId": "com4:2"
+    },
+    {
+      "name": "node_com4_3_corridor_7",
+      "lat": 1.295147,
+      "lon": 103.7752255,
+      "node_type": "corridor",
+      "floor": 3,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        175,
+        356
+      ],
+      "_floorId": "com4:3"
+    },
+    {
+      "name": "node_com4_3_corridor_6",
+      "lat": 1.2952583,
+      "lon": 103.7754907,
+      "node_type": "corridor",
+      "floor": 3,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        1129,
+        381
+      ],
+      "_floorId": "com4:3"
+    },
+    {
+      "name": "corridor 13",
+      "lat": 1.2952038,
+      "lon": 103.7752523,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        322,
+        240
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_4",
+      "lat": 1.2951733,
+      "lon": 103.7753022,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        443,
+        439
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_5",
+      "lat": 1.2952323,
+      "lon": 103.7752744,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        440,
+        170
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "MPL-2 Project Room K",
+      "lat": 1.2952363,
+      "lon": 103.7753905,
+      "node_type": "room",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 04-01K"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        837,
+        353
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_6",
+      "lat": 1.2952239,
+      "lon": 103.7753511,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        685,
+        332
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_7",
+      "lat": 1.295197,
+      "lon": 103.7753654,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        692,
+        458
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "MPL-2 Formal Collaboration Room E",
+      "lat": 1.2952181,
+      "lon": 103.7753293,
+      "node_type": "room",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 04-01E"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        603,
+        317
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "MPL-2 Formal Collaboration Room L",
+      "lat": 1.2951894,
+      "lon": 103.7753381,
+      "node_type": "room",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 04-01L"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        589,
+        440
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "MPL-2 Formal Collaboration Room H",
+      "lat": 1.2952194,
+      "lon": 103.7754506,
+      "node_type": "room",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 04-01H"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        1013,
+        519
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_8",
+      "lat": 1.2951905,
+      "lon": 103.77537,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        698,
+        490
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_10",
+      "lat": 1.2952652,
+      "lon": 103.7754894,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        1214,
+        413
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "MPL-2 Project Room G",
+      "lat": 1.2952606,
+      "lon": 103.775457,
+      "node_type": "room",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 04-01G"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        1098,
+        375
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_9",
+      "lat": 1.2952474,
+      "lon": 103.7754964,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        1210,
+        492
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_4_corridor_11",
+      "lat": 1.2953192,
+      "lon": 103.7754639,
+      "node_type": "corridor",
+      "floor": 4,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        1211,
+        167
+      ],
+      "_floorId": "com4:4"
+    },
+    {
+      "name": "node_com4_5_corridor_3",
+      "lat": 1.2951764,
+      "lon": 103.7753092,
+      "node_type": "corridor",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        473,
+        407
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "node_com4_5_corridor_4",
+      "lat": 1.2951911,
+      "lon": 103.7753441,
+      "node_type": "corridor",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        602,
+        411
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "node_com4_5_corridor_5",
+      "lat": 1.2952037,
+      "lon": 103.775372,
+      "node_type": "corridor",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        706,
+        411
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "node_com4_5_corridor_6",
+      "lat": 1.2952189,
+      "lon": 103.7754066,
+      "node_type": "corridor",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        834,
+        413
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "node_com4_5_corridor_7",
+      "lat": 1.2952355,
+      "lon": 103.7754433,
+      "node_type": "corridor",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        971,
+        413
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "AI-3 Formal Collaboration Room A",
+      "lat": 1.295168,
+      "lon": 103.7752657,
+      "node_type": "room",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 05-01A"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        328,
+        370
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "AI-3 Formal Collaboration Room B",
+      "lat": 1.2951854,
+      "lon": 103.7753038,
+      "node_type": "room",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 05-01B"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        470,
+        370
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "AI-3 Formal Collaboration Room C",
+      "lat": 1.2952022,
+      "lon": 103.7753408,
+      "node_type": "room",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 05-01C"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        608,
+        370
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "AI-3 Formal Collaboration Room D",
+      "lat": 1.295232,
+      "lon": 103.7754062,
+      "node_type": "room",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 05-01D"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        852,
+        370
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "AI-3 Formal Collaboration Room F",
+      "lat": 1.2952041,
+      "lon": 103.7754041,
+      "node_type": "room",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 05-01F"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        805,
+        457
+      ],
+      "_floorId": "com4:5"
+    },
+    {
+      "name": "AI-3 Formal Collaboration Room E",
+      "lat": 1.2952243,
+      "lon": 103.7754505,
+      "node_type": "room",
+      "floor": 5,
+      "building_code": "com4",
+      "aliases": [
+        "COM4 05-01E"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "_px": [
+        977,
+        460
+      ],
+      "_floorId": "com4:5"
     }
   ],
   "edges": [
@@ -7549,7 +8105,7 @@
     },
     {
       "from": "stair B com1 floor 1",
-      "to": "supplies room",
+      "to": "Supplies Room 1",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -7648,7 +8204,7 @@
     },
     {
       "from": "corr7 com1 floor1",
-      "to": "MR5",
+      "to": "Meeting Room 5",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -7657,7 +8213,7 @@
     },
     {
       "from": "corr7 com1 floor1",
-      "to": "supplies room 2",
+      "to": "Supplies Room 2",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -7864,7 +8420,7 @@
     },
     {
       "from": "Lobby",
-      "to": "AV control room",
+      "to": "AV Control Room",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -7981,7 +8537,7 @@
     },
     {
       "from": "corr15 com1 floor2",
-      "to": "Seminar Room 5",
+      "to": "COM1 02-01",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8008,7 +8564,7 @@
     },
     {
       "from": "corr14 com1 floor2",
-      "to": "Seminar Room 6",
+      "to": "COM1 02-03",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8080,7 +8636,7 @@
     },
     {
       "from": "side entrance to seminar rooms",
-      "to": "Seminar Room 1",
+      "to": "COM1 02-06",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8098,7 +8654,7 @@
     },
     {
       "from": "corr1 com1 floor 2",
-      "to": "Seminar Room 7",
+      "to": "COM1 02-07",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8116,7 +8672,7 @@
     },
     {
       "from": "corr2 com1 floor2",
-      "to": "Seminar Room 8",
+      "to": "COM1 02-08",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8125,7 +8681,7 @@
     },
     {
       "from": "corr2 com1 floor2",
-      "to": "Seminar Room 9",
+      "to": "COM1 02-09",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8143,7 +8699,7 @@
     },
     {
       "from": "corr3 com1 floor2",
-      "to": "Seminar Room 10",
+      "to": "COM1 02-10",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8179,7 +8735,7 @@
     },
     {
       "from": "corr5 com1 floor2",
-      "to": "Tutorial Room 12",
+      "to": "COM1 02-14",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8224,7 +8780,7 @@
     },
     {
       "from": "corr8 com1 floor2",
-      "to": "Tutorial Room 11",
+      "to": "COM1 02-16",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8233,7 +8789,7 @@
     },
     {
       "from": "corr8 com1 floor2",
-      "to": "Tutorial Room 10",
+      "to": "COM1 02-17",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8242,7 +8798,7 @@
     },
     {
       "from": "corr1 com1 floor 2",
-      "to": "Seminar Room 3",
+      "to": "COM1 02-12",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8368,7 +8924,7 @@
     },
     {
       "from": "corr13 com1 floor2",
-      "to": "Seminar Room 2",
+      "to": "COM1 02-04",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -8521,29 +9077,11 @@
     },
     {
       "from": "corr7 com2 floor1",
-      "to": "TR9",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "corr7 com2 floor1",
       "to": "Innovation and Entrepreneurship",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
       "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "corr7 com2 floor1",
-      "to": "stair 3 com2 floor 1",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": false,
       "is_sheltered": true
     },
     {
@@ -9243,7 +9781,7 @@
     },
     {
       "from": "node_com3_basement_corridor5",
-      "to": "Seminar Room 91",
+      "to": "COM3 B1-10",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9360,7 +9898,7 @@
     },
     {
       "from": "node_com3_1_corridor_7",
-      "to": "Seminar Room 12",
+      "to": "COM3 01-21",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9369,7 +9907,7 @@
     },
     {
       "from": "node_com3_1_corridor_7",
-      "to": "Seminar Room 11",
+      "to": "COM3 01-20",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9386,7 +9924,7 @@
       "is_sheltered": true
     },
     {
-      "from": "Seminar Room 11",
+      "from": "COM3 01-20",
       "to": "node_com3_1_corridor_8",
       "mode": "walk",
       "instruction": "",
@@ -9395,7 +9933,7 @@
       "is_sheltered": true
     },
     {
-      "from": "Seminar Room 12",
+      "from": "COM3 01-21",
       "to": "node_com3_1_corridor_8",
       "mode": "walk",
       "instruction": "",
@@ -9540,7 +10078,7 @@
     },
     {
       "from": "node_com3_1_corridor_3",
-      "to": "Seminar Room 14",
+      "to": "COM3 01-23",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9549,7 +10087,7 @@
     },
     {
       "from": "node_com3_1_corridor_3",
-      "to": "Seminar Room 15",
+      "to": "COM3 01-25",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9575,7 +10113,7 @@
       "is_sheltered": true
     },
     {
-      "from": "Seminar Room 14",
+      "from": "COM3 01-23",
       "to": "node_com3_1_corridor_2",
       "mode": "walk",
       "instruction": "",
@@ -9585,7 +10123,7 @@
     },
     {
       "from": "node_com3_1_corridor_2",
-      "to": "Seminar Room 13",
+      "to": "COM3 01-22",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9603,7 +10141,7 @@
     },
     {
       "from": "node_com3_1_corridor_1",
-      "to": "Seminar Room 13",
+      "to": "COM3 01-22",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9720,7 +10258,7 @@
     },
     {
       "from": "node_com3_2_junction_1",
-      "to": "Seminar Room 21",
+      "to": "COM3 02-60",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -9978,7 +10516,8 @@
       "reverse_instruction": "take the lift down to basement",
       "is_accessible": true,
       "is_sheltered": true,
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "node_com3_1_lift",
@@ -9988,7 +10527,8 @@
       "reverse_instruction": "take the lift down to level 1",
       "is_accessible": true,
       "is_sheltered": true,
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "node_com3_basement_stairwell",
@@ -9998,7 +10538,8 @@
       "reverse_instruction": "walk down the stairs to basement",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "node_com3_1_stairwell",
@@ -10008,7 +10549,8 @@
       "reverse_instruction": "walk down the stairs to level 1",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "node_com3_basement_stairs_4",
@@ -10018,7 +10560,8 @@
       "reverse_instruction": "walk down the stairs to basement",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "node_com3_1_stairs_4",
@@ -10028,7 +10571,8 @@
       "reverse_instruction": "walk down the stairs to level 1",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "node_com3_basement_stairs_1",
@@ -10038,7 +10582,8 @@
       "reverse_instruction": "walk down the stairs to basement",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "node_com3_1_stairs",
@@ -10048,7 +10593,8 @@
       "reverse_instruction": "walk down the stairs to level 1",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "node_com3_basement_corridor9",
@@ -10249,33 +10795,6 @@
       "is_sheltered": true
     },
     {
-      "from": "node_com4_2_corridor_4",
-      "to": "node_com4_2_corridor_6",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_2_corridor_6",
-      "to": "node_com4_2_corridor_7",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_2_corridor_7",
-      "to": "com4_2_lift_stair_junction_2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
       "from": "com4_2_lift_stair_junction_1",
       "to": "com4_2_lift",
       "mode": "walk",
@@ -10294,57 +10813,12 @@
       "is_sheltered": true
     },
     {
-      "from": "node_com4_2_corridor_4",
-      "to": "Information Systems and Analytics Teaching Lab 1",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_2_corridor_6",
-      "to": "Information Systems and Analytics Teaching Lab 2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_2_corridor_6",
-      "to": "Workstation Lab 2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_2_corridor_7",
-      "to": "Workstation Lab 3",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
       "from": "com4_2_lift_stair_junction_2",
       "to": "com4_2_stair_2",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
       "is_accessible": false,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_2_corridor_7",
-      "to": "Workstation Lab 1",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
       "is_sheltered": true
     },
     {
@@ -10385,7 +10859,7 @@
     },
     {
       "from": "node_com4_3_corridor_2",
-      "to": "Seminar Room 31",
+      "to": "COM4 03-01",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10403,24 +10877,6 @@
     },
     {
       "from": "node_com4_3_corridor_3",
-      "to": "Seminar Room 32",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_3_corridor_3",
-      "to": "Graduate Students Lounge 1",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_3_corridor_3",
       "to": "node_com4_3_corridor_4",
       "mode": "walk",
       "instruction": "",
@@ -10430,43 +10886,7 @@
     },
     {
       "from": "node_com4_3_corridor_4",
-      "to": "Seminar Room 33",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_3_corridor_4",
-      "to": "Graduate Students Lounge 2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_3_corridor_4",
       "to": "node_com4_3_corridor_5",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_3_corridor_5",
-      "to": "Graduate Students Lounge 3",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_3_corridor_5",
-      "to": "com4_3_lift_stair_junction_2",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10528,75 +10948,12 @@
       "is_sheltered": true
     },
     {
-      "from": "node_com4_4_corridor_3",
-      "to": "Program Director's Office C",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_4_corridor_3",
-      "to": "Director's Office B",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_4_corridor_3",
-      "to": "MPL-2 Admin Office D",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_4_corridor_3",
-      "to": "Multipurpose Lab 2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "Multipurpose Lab 2",
-      "to": "com4_4_lift_stair_junction_2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
       "from": "com4_4_lift_stair_junction_2",
       "to": "com4_4_stair_2",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
       "is_accessible": false,
-      "is_sheltered": true
-    },
-    {
-      "from": "node_com4_5_corridor_2",
-      "to": "Artificial Intelligence Research Lab",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
-      "is_sheltered": true
-    },
-    {
-      "from": "Artificial Intelligence Research Lab",
-      "to": "com4_5_lift_stair_junction_2",
-      "mode": "walk",
-      "instruction": "",
-      "reverse_instruction": null,
-      "is_accessible": true,
       "is_sheltered": true
     },
     {
@@ -10652,7 +11009,8 @@
       "reverse_instruction": "take the lift down to level 2",
       "is_accessible": true,
       "is_sheltered": true,
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "com4_3_lift",
@@ -10662,7 +11020,8 @@
       "reverse_instruction": "take the lift down to level 3",
       "is_accessible": true,
       "is_sheltered": true,
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "com4_4_lift",
@@ -10672,7 +11031,8 @@
       "reverse_instruction": "take the lift down to level 4",
       "is_accessible": true,
       "is_sheltered": true,
-      "manual_seconds": 15
+      "manual_seconds": 15,
+      "vertical": "lift"
     },
     {
       "from": "com4_2_stair_1",
@@ -10682,7 +11042,8 @@
       "reverse_instruction": "walk down the stairs to level 2",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "com4_3_stair_1",
@@ -10692,7 +11053,8 @@
       "reverse_instruction": "walk down the stairs to level 3",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "com4_4_stair_1",
@@ -10702,7 +11064,8 @@
       "reverse_instruction": "walk down the stairs to level 4",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "com4_2_stair_2",
@@ -10712,7 +11075,8 @@
       "reverse_instruction": "walk down the stairs to level 2",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "com4_3_stair_2",
@@ -10722,7 +11086,8 @@
       "reverse_instruction": "walk down the stairs to level 3",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "com4_4_stair_2",
@@ -10732,7 +11097,8 @@
       "reverse_instruction": "walk down the stairs to level 4",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "node_com3_1_corridor_12",
@@ -10754,7 +11120,7 @@
     },
     {
       "from": "as6_2_corr_1",
-      "to": "Seminar Room 4",
+      "to": "AS6 02-06/07",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10763,7 +11129,7 @@
     },
     {
       "from": "as6_2_corr_1",
-      "to": "Tutorial Room 5",
+      "to": "AS6 02-11",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10772,7 +11138,7 @@
     },
     {
       "from": "as6_2_corr_1",
-      "to": "Tutorial Room 4",
+      "to": "AS6 02-10",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10790,7 +11156,7 @@
     },
     {
       "from": "as6_2_corr_2",
-      "to": "Tutorial Room 3",
+      "to": "AS6 02-08",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10799,7 +11165,7 @@
     },
     {
       "from": "as6_2_corr_2",
-      "to": "Tutorial Room 6",
+      "to": "AS6 02-09",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10943,7 +11309,7 @@
     },
     {
       "from": "as6_4_corr_9",
-      "to": "Media studio",
+      "to": "Media Studio",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -10961,7 +11327,7 @@
     },
     {
       "from": "as6_4_corr_8",
-      "to": "Technical room",
+      "to": "Technical Room",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -11219,7 +11585,8 @@
       "reverse_instruction": "walk down the stairs to level 2",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 40
+      "manual_seconds": 40,
+      "vertical": "stairs"
     },
     {
       "from": "AS6_4_stair_1",
@@ -11229,7 +11596,8 @@
       "reverse_instruction": "walk down the stairs to level 4",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
     },
     {
       "from": "AS6_2_stair_2",
@@ -11239,7 +11607,8 @@
       "reverse_instruction": "walk down the stairs to level 2",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 40
+      "manual_seconds": 40,
+      "vertical": "stairs"
     },
     {
       "from": "AS6_4_stair_2",
@@ -11249,7 +11618,584 @@
       "reverse_instruction": "walk down the stairs to level 4",
       "is_accessible": false,
       "is_sheltered": true,
-      "manual_seconds": 20
+      "manual_seconds": 20,
+      "vertical": "stairs"
+    },
+    {
+      "from": "corr7 com2 floor1",
+      "to": "COM2 01-08",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "COM3 B1-26",
+      "to": "node_com3_basement_stair_junction",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_basement_corridor3",
+      "to": "E&A Cluster 5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_5",
+      "to": "node_com4_2_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_5",
+      "to": "Information Systems and Analytics Teaching Lab 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Information Systems and Analytics Teaching Lab 1",
+      "to": "node_com4_2_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_4",
+      "to": "node_com4_2_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_6",
+      "to": "node_com4_2_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_7",
+      "to": "Workstation Lab 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_7",
+      "to": "node_com4_2_corridor_8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_8",
+      "to": "Information Systems and Analytics Teaching Lab 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_8",
+      "to": "Workstation Lab 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_8",
+      "to": "Workstation Lab 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_8",
+      "to": "Workstation Lab 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_8",
+      "to": "node_com4_2_corridor_9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_9",
+      "to": "Workstation Lab 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_9",
+      "to": "Workstation Lab 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_2_corridor_9",
+      "to": "com4_2_lift_stair_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_2",
+      "to": "node_com4_3_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_7",
+      "to": "COM4 03-01",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "COM4 03-01",
+      "to": "node_com4_3_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_3",
+      "to": "COM4 03-02",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_4",
+      "to": "Graduate Students Lounge 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_5",
+      "to": "Graduate Students Lounge 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_5",
+      "to": "COM4 03-02",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_5",
+      "to": "COM4 03-03",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_5",
+      "to": "node_com4_3_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_6",
+      "to": "Graduate Students Lounge 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_6",
+      "to": "COM4 03-03",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_3_corridor_6",
+      "to": "com4_3_lift_stair_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Information Systems and Analytics Teaching Lab 2",
+      "to": "node_com4_2_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_3",
+      "to": "MPL-2 Admin Office D",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_3",
+      "to": "corridor 13",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corridor 13",
+      "to": "Director's Office B",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Director's Office B",
+      "to": "Program Director's Office C",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_2",
+      "to": "node_com4_4_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_4",
+      "to": "node_com4_4_corridor_5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_5",
+      "to": "Multipurpose Lab 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Multipurpose Lab 2",
+      "to": "node_com4_4_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_6",
+      "to": "MPL-2 Formal Collaboration Room E",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "MPL-2 Formal Collaboration Room L",
+      "to": "node_com4_4_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_7",
+      "to": "node_com4_4_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_8",
+      "to": "MPL-2 Formal Collaboration Room H",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_8",
+      "to": "node_com4_4_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "MPL-2 Formal Collaboration Room H",
+      "to": "node_com4_4_corridor_9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_9",
+      "to": "node_com4_4_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_10",
+      "to": "MPL-2 Project Room G",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_6",
+      "to": "MPL-2 Project Room K",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_10",
+      "to": "com4_4_lift_stair_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Multipurpose Lab 2",
+      "to": "node_com4_4_corridor_11",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_4_corridor_11",
+      "to": "node_com4_4_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_2",
+      "to": "AI-3 Formal Collaboration Room A",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_2",
+      "to": "node_com4_5_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_3",
+      "to": "AI-3 Formal Collaboration Room B",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_3",
+      "to": "node_com4_5_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_4",
+      "to": "AI-3 Formal Collaboration Room C",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_4",
+      "to": "node_com4_5_corridor_5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_5",
+      "to": "Artificial Intelligence Research Lab 3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_5",
+      "to": "node_com4_5_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_6",
+      "to": "AI-3 Formal Collaboration Room F",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_6",
+      "to": "AI-3 Formal Collaboration Room D",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_6",
+      "to": "node_com4_5_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_7",
+      "to": "AI-3 Formal Collaboration Room E",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com4_5_corridor_7",
+      "to": "com4_5_lift_stair_junction_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
     }
   ]
 }
