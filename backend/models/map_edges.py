@@ -37,6 +37,7 @@ class Map_Edge(database.Base):
     distance_m: Mapped[float] = mapped_column(Float, nullable=False)
     estimated_seconds: Mapped[float] = mapped_column(Float, nullable=False)
 
+    vertical: Mapped[str | None] = mapped_column(String, nullable=True)
     instruction: Mapped[str | None] = mapped_column(String, nullable=True)
     #switch to LINESTRING in the future
     geometry: Mapped[list[list[float]]] = mapped_column(

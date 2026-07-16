@@ -30,6 +30,7 @@ async def buildGraph(session):
             "cost": edge.estimated_seconds,
             "edge_id": edge.edge_id,
             "mode": edge.mode,
+            "vertical": edge.vertical,
             "is_accessible": edge.is_accessible, 
             "is_sheltered": edge.is_sheltered,
         })

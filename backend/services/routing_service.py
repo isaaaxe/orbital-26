@@ -21,9 +21,8 @@ async def generate_route(session, startNode_id, endNode_id, mode, current_user):
         from_node_id, to_node_id = edge_nodes
         edge = edge_by_pair[edge_nodes]
         instruction = edge.instruction or f"Travel from {node_by_id[from_node_id].name} to {node_by_id[to_node_id].name}."
-        same_floor = node_by_id[from_node_id].floor == node_by_id[to_node_id].floor
         step_seconds = edge.estimated_seconds
-        if same_floor and edge.mode == "walk":
+        if edge.vertical == None and edge.mode == "walk":
             step_seconds = step_seconds * pace_factor
         
         route_step = RouteStep(
@@ -36,8 +35,11 @@ async def generate_route(session, startNode_id, endNode_id, mode, current_user):
             floor_transition=[node_by_id[from_node_id].floor, node_by_id[to_node_id].floor],
             from_name=node_by_id[from_node_id].name,
             from_node_id=from_node_id,
+            from_node_type=node_by_id[from_node_id].node_type,
             to_name=node_by_id[to_node_id].name,
             to_node_id=to_node_id,
+            to_node_type=node_by_id[to_node_id].node_type,
+            vertical_edge=edge.vertical,
         )
         route_step_list.append(route_step)
         total_distance += edge.distance_m

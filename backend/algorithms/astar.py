@@ -43,12 +43,13 @@ def aStarAlgo(startNode_id: str, endNode_id: str, node_by_id, graph_table, mode,
             edgeCost = neighbour["cost"] 
             edge_id = neighbour["edge_id"]
             edge_mode = neighbour["mode"]
+            vertical_edge = neighbour["vertical"]
             edge_is_accessible = neighbour["is_accessible"]
             edge_is_sheltered = neighbour["is_sheltered"]
             sheltered_penalty = 0
 
-            same_floor = node_by_id[node_id].floor == node_by_id[next_node_id].floor
-            if same_floor and edge_mode == "walk":
+            
+            if vertical_edge == None and edge_mode == "walk":
                 edgeCost = edgeCost * pace_factor
                 
             if next_node_id in visited:
