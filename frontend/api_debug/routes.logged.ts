@@ -7,7 +7,6 @@ export type RouteRequest = {
 export type RouteStep = {
   step_number: number;
   transport_mode: string;
-  step_instruction: string;
   distance_for_step: number;
   estimated_seconds: number;
   from_name: string | null;
@@ -27,6 +26,7 @@ export type RouteResponse = {
   total_estimated_seconds: number;
   steps: RouteStep[];
   path_coordinates: [number, number][];
+  route_instructions: string[];
 };
 
 const API_BASE_URL = "https://orbital-26.onrender.com";

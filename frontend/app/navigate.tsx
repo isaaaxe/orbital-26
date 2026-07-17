@@ -3,12 +3,20 @@ import NavigationInstructionsSheet from "@/components/NavigationInstructionsShee
 import { useRouteContext } from "@/context/RouteContext";
 import { useGetLocationDetails } from "@/hook/useLocations";
 import { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import MapView, { Polyline, PROVIDER_GOOGLE } from "react-native-maps";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from "react-native";
+import MapView, { Polyline, PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ROUTE_COLOURS_TYPE } from "@/context/RouteContext";
 import { ROUTE_COLOURS } from "@/context/RouteContext";
 import IndoorCheck from "@/components/IndoorCheck";
+import { icons } from "@/data/loadIcons";
 
 const styles = StyleSheet.create({
   screen: {
@@ -65,7 +73,8 @@ export default function Navigate() {
   //    from api calls to sql retrievals
   const [isOutdoor, setIsOutdoor] = useState(true);
 
-  const { selectedRoute, routeSegments, mapParams } = useRouteContext();
+  const { selectedRoute, routeSegments, mapParams, origin, destination } =
+    useRouteContext();
   if (!selectedRoute) {
     return (
       <View>
@@ -129,6 +138,38 @@ export default function Navigate() {
               showsUserLocation
               followsUserLocation
             >
+              {origin &&
+                origin.nearest_node.latitude &&
+                origin.nearest_node.longitude && (
+                  <Marker
+                    coordinate={{
+                      latitude: origin.nearest_node.latitude,
+                      longitude: origin.nearest_node.longitude,
+                    }}
+                    onPress={() => Alert.alert("Start")}
+                  >
+                    <Image
+                      source={icons.location}
+                      style={{ width: 28, height: 28 }}
+                      resizeMode="contain"
+                    />
+                  </Marker>
+                )}
+              {destination && destination.latitude && destination.longitude && (
+                <Marker
+                  coordinate={{
+                    latitude: destination.latitude,
+                    longitude: destination.longitude,
+                  }}
+                  onPress={() => Alert.alert("Destination")}
+                >
+                  <Image
+                    source={icons.location}
+                    style={{ width: 28, height: 28 }}
+                    resizeMode="contain"
+                  />
+                </Marker>
+              )}
               {routeSegments.map((renderPath, index) => (
                 <Polyline
                   key={index}
@@ -148,7 +189,9 @@ export default function Navigate() {
           )}
         </View>
         {selectedRoute && (
-          <NavigationInstructionsSheet steps={selectedRoute.steps} />
+          <NavigationInstructionsSheet
+            steps={selectedRoute.route_instructions}
+          />
         )}
       </SafeAreaView>
     </View>

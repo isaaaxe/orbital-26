@@ -11,7 +11,7 @@ import { router } from "expo-router";
 import { useRouteContext } from "@/context/RouteContext";
 
 type NavigationInstructionsSheetProps = {
-  steps: RouteStep[];
+  steps: string[];
 };
 
 const styles = StyleSheet.create({
@@ -167,19 +167,19 @@ export default function NavigationInstructionsSheet({
       {expanded && (
         <ScrollView style={styles.stepsContainer}>
           {steps.map((step, index) => (
-            <View key={step.step_number} style={styles.stepRow}>
+            <View key={`step-${index + 1}`} style={styles.stepRow}>
               <View style={styles.stepNumberCircle}>
-                <Text style={styles.stepNumber}>{step.step_number}</Text>
+                <Text style={styles.stepNumber}>{index + 1}</Text>
               </View>
 
               <View style={styles.stepTextContainer}>
-                <Text style={styles.instruction}>{step.step_instruction}</Text>
+                <Text style={styles.instruction}>{step}</Text>
 
-                {step.distance_for_step !== undefined && (
+                {/* {step.distance_for_step !== undefined && (
                   <Text style={styles.meta}>
                     {formatDistance(step.distance_for_step)}
                   </Text>
-                )}
+                )} */}
               </View>
             </View>
           ))}

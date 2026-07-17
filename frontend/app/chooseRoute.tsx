@@ -158,7 +158,7 @@ export default function ChooseRoute() {
                 optionType={item.mode}
                 eta_formatted={formatDuration(item.total_estimated_seconds)}
                 routeTitle={item.mode}
-                routeDescription={`${item.steps[0].step_instruction}... `}
+                routeDescription={`${item.route_instructions[0]}... `}
                 onPress={() => handleSelect(item)}
                 selected={item.mode == selectedRoute?.mode}
               />

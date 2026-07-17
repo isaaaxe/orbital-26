@@ -14,6 +14,7 @@ import Header from "@/components/Header";
 import { router } from "expo-router";
 import StylisedButton from "@/components/StylisedButton";
 import { useUpdateUserMutation } from "@/hook/useUser";
+import BackButton from "@/components/BackButton";
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -231,14 +232,25 @@ export default function AccountSettings() {
   return (
     <View style={styles.screen}>
       <SafeAreaView>
-        <Header
-          text={"Account"}
-          description={
-            user
-              ? `Hello, ${user.username}!`
-              : "Please signup/login to access all Routes@NUS features"
-          }
-        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Header
+            text={"Account"}
+            description={
+              user
+                ? `Hello, ${user.username}!`
+                : "Please signup/login to access all Routes@NUS features"
+            }
+          />
+          <View style={{ alignItems: "center", marginRight: 20 }}>
+            <BackButton additionalBackCleanUp={() => {}} />
+          </View>
+        </View>
         <View style={styles.buttonContainer}>
           {user != null ? (
             <>

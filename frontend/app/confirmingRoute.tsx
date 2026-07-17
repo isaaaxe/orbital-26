@@ -6,7 +6,14 @@ import {
   useRouteContext,
 } from "@/context/RouteContext";
 import { router, useNavigation } from "expo-router";
-import { Text, TouchableOpacity, View, StyleSheet, Alert } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Alert,
+  Image,
+} from "react-native";
 import MapView, {
   Marker,
   Overlay,
@@ -21,6 +28,7 @@ import { addRecentlyVisitedMutation } from "@/hook/useUser";
 import IndoorCheck from "@/components/IndoorCheck";
 import { addRecentlyVisited } from "@/api_debug/recently_visited.logged";
 import { useQueryClient } from "@tanstack/react-query";
+import { icons } from "@/data/loadIcons";
 
 const styles = StyleSheet.create({
   screen: {
@@ -276,6 +284,40 @@ export default function ConfirmingRoute() {
                       lineCap="butt"
                     />
                   ))}
+                  {origin &&
+                    origin.nearest_node.latitude &&
+                    origin.nearest_node.longitude && (
+                      <Marker
+                        coordinate={{
+                          latitude: origin.nearest_node.latitude,
+                          longitude: origin.nearest_node.longitude,
+                        }}
+                        onPress={() => Alert.alert("Start")}
+                      >
+                        <Image
+                          source={icons.location}
+                          style={{ width: 28, height: 28 }}
+                          resizeMode="contain"
+                        />
+                      </Marker>
+                    )}
+                  {destination &&
+                    destination.latitude &&
+                    destination.longitude && (
+                      <Marker
+                        coordinate={{
+                          latitude: destination.latitude,
+                          longitude: destination.longitude,
+                        }}
+                        onPress={() => Alert.alert("Destination")}
+                      >
+                        <Image
+                          source={icons.location}
+                          style={{ width: 28, height: 28 }}
+                          resizeMode="contain"
+                        />
+                      </Marker>
+                    )}
                 </MapView>
               ) : (
                 <IndoorCheck />
