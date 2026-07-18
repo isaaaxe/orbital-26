@@ -42,4 +42,11 @@ async def buildGraph(session):
         })
         
     #("GRAPH TABLE:", graph_table)
-    return node_by_id, edge_by_pair, graph_table, building_by_id
+    return GraphCache(node_by_id, edge_by_pair, graph_table, building_by_id)
+
+class GraphCache:
+    def __init__(self, node_by_id, edge_by_pair, graph_table, building_by_id):
+        self.node_by_id = node_by_id
+        self.edge_by_pair = edge_by_pair
+        self.graph_table = graph_table
+        self.building_by_id = building_by_id

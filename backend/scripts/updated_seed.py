@@ -39,7 +39,7 @@ STAIR_SECONDS_PER_FLOOR = 20
 
 # FK strategy = option (b): only these get Building rows. Every other building_code
 # on a node/location is stored as NULL (roads, bus stops, com3, clb, as6, ... for now).
-SEEDED_BUILDINGS = {"com1", "com2", "com3", "com4", "as6"}
+SEEDED_BUILDINGS = {"com1", "com2", "com3", "com4", "as6", "src"}
 
 # Floor-plan images. Point this at wherever you host them (see notes at bottom).
 #   Supabase public bucket:  https://<proj>.supabase.co/storage/v1/object/public/floors
@@ -115,6 +115,7 @@ BUILDING_SPECS = [
         "building_id": "com1", "building_code": "com1",
         "name": "COM1", "display_name": "COM1",
         "aliases": ["COM1", "Computing 1"], "area_name": "school of computing",
+        "display_latitude": 1.2952525534852652, "display_longitude": 103.77376451115138,
         # canonical routing entrance (resolved to a node id at seed time).
         "entrance_node_name": "Com1 main entrance floor 1",
     },
@@ -122,18 +123,21 @@ BUILDING_SPECS = [
         "building_id": "com2", "building_code": "com2",
         "name": "COM2", "display_name": "COM2",
         "aliases": ["COM2", "Computing 2"], "area_name": "school of computing",
+        "display_latitude": 1.2943070185269383, "display_longitude": 103.77410604722144,
         "entrance_node_name": "Com2 entrance",
     },
     {
         "building_id": "com3", "building_code": "com3",
         "name": "COM3", "display_name": "COM3",
         "aliases": ["COM3", "Computing 3"], "area_name": "school of computing",
+        "display_latitude": 1.294759386948188, "display_longitude": 103.77457751952595,
         "entrance_node_name": "node_com3_1_corridor_6",
     },
     {
         "building_id": "com4", "building_code": "com4",
         "name": "COM4", "display_name": "COM4",
         "aliases": ["COM4", "Computing 4"], "area_name": "school of computing",
+        "display_latitude": 1.2951652964409013, "display_longitude": 103.77540756232389,
         # COM4's lowest seeded floor is level 2 (linked from COM3 L1 via the bridge).
         "entrance_node_name": "com4 entrance",
     },
@@ -142,7 +146,17 @@ BUILDING_SPECS = [
         "name": "AS6", "display_name": "AS6",
         "aliases": ["AS6", "Arts and Social Sciences 6"],
         "area_name": "faculty of arts and social sciences",
+        "display_latitude": 1.295738285690793, "display_longitude": 103.77318108795896,
         "entrance_node_name": "as6_2_entrance",
+    },
+    {
+        "building_id": "src", "building_code": "src",
+        "name": "SRC", "display_name": "Stephen Riady Centre",
+        "aliases": ["SRC", "Stephen Riady Centre", "UTown SRC"],
+        "area_name": "utown",
+        "display_latitude": 1.3045009737282307, "display_longitude": 103.77245117864669,
+        # canonical routing entrance (SRC floor 2 corridor, resolved to a node id).
+        "entrance_node_name": "node_src_2_corridor_22",
     },
 ]
 
@@ -151,8 +165,10 @@ BUILDING_SPECS = [
 # base nodes (outdoor + bus route + CLB/AS6/COM walking) -- unchanged data
 # ----------------------------------------------------------------------------
 BASE_NODE_SPECS = [
-    {"name": "COM3 Elevator", "lat": 1.2946253, "lon": 103.7749732, "node_type": "lift_station", "floor": 1, "building_code": "com3"},
-    {"name": "Com3 MPH1", "lat": 1.2946126, "lon": 103.7747248, "node_type": "multipurpose hall", "floor": 1, "building_code": "com3"},
+    # COM3 Elevator + Com3 MPH1 removed: both were redundant seed duplicates of
+    # editor nodes (node_com3_1_lift and "Multipurpose Hall 1"). COM3 Elevator
+    # was also badly pinned (~31 m off the real lift). The editor graph already
+    # carries their connections (junction3, the com3 corridors, and the Terrace).
     {"name": "Com2 entrance", "lat": 1.2943984, "lon": 103.7739848, "node_type": "entrance", "floor": 1, "building_code": "com2"},
     {"name": "com1 level1 walkway outside entrance", "lat": 1.2948261, "lon": 103.7736496, "node_type": "walkway", "floor": 1, "building_code": None},
     {"name": "UTown bus stop", "lat": 1.303662152778908, "lon": 103.77474325618729, "node_type": "bus stop", "floor": 1, "building_code": "UTown"},
@@ -180,10 +196,43 @@ BASE_NODE_SPECS = [
     {"name": "Outside nus coop store room", "lat": 1.2958464, "lon": 103.7730990, "node_type": "corner", "floor": 1, "building_code": "as6"},
     {"name": "Outside LT14", "lat": 1.2956714, "lon": 103.7732274, "node_type": "corner", "floor": 1, "building_code": "as6"},
     {"name": "Outside LT15", "lat": 1.2954475, "lon": 103.7732784, "node_type": "corner", "floor": 1, "building_code": "as6"},
-    {"name": "As6 lift1", "lat": 1.2952890, "lon": 103.7733153, "node_type": "lift_station", "floor": 1, "building_code": "as6"},
+    # Coords pinned to the triangulated editor node as6_2_lift_1 (v6 re-projection)
+    # so this stays correct even if align_lift_shafts() or the editor node changes.
+    # (Normally align_lift_shafts() also snaps it onto that node at seed time.)
+    {"name": "As6 lift1", "lat": 1.2952580, "lon": 103.7733754, "node_type": "lift_station", "floor": 1, "building_code": "as6"},
     {"name": "Middle of stairs from terrace to com1", "lat": 1.2944709, "lon": 103.7741018, "node_type": "stairs", "floor": 1, "building_code": "com2"},
     {"name": "LT15", "lat": 1.2955214878116914, "lon": 103.77344062919603, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
     {"name": "LT14", "lat": 1.2957011498687994, "lon": 103.77337290341598, "node_type": "lecture theatre", "floor": 1, "building_code": "as6"},
+
+    # --- D1 bus route continuation: CLB -> LT13 -> AS5 -> BIZ2 -> COM3 (new) ---
+    # waypoints = "road"; stops = "bus stop". Connected in order via campus-bus edges.
+    {"name": "node_bus_route_1", "lat": 1.2962975718257022, "lon": 103.77187997105706, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_bus_route_2", "lat": 1.2962891645980466, "lon": 103.7709594658442, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_bus_route_3", "lat": 1.2955365874629563, "lon": 103.77076489403085, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_lt13_bus_stop", "lat": 1.2948554279531816, "lon": 103.7705202912168, "node_type": "bus stop", "floor": 1, "building_code": None},
+    {"name": "node_bus_route_5", "lat": 1.2944242532742314, "lon": 103.77059747309964, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_bus_route_6", "lat": 1.293863008912567, "lon": 103.77092441756294, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_as5_bus_stop", "lat": 1.2935377422329672, "lon": 103.77143955443992, "node_type": "bus stop", "floor": 1, "building_code": None},
+    {"name": "node_bus_route_8", "lat": 1.2933971876352772, "lon": 103.77219398814289, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_bus_route_9", "lat": 1.2930159203391538, "lon": 103.77309553962498, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_bus_route_10", "lat": 1.2923161725015877, "lon": 103.77405158936125, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_bus_route_11", "lat": 1.2921758613087195, "lon": 103.77446944034396, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_biz2_bus_stop", "lat": 1.2932699624029302, "lon": 103.7751024006946, "node_type": "bus stop", "floor": 1, "building_code": None},
+    {"name": "node_bus_route_12", "lat": 1.2937252057128497, "lon": 103.77529188108605, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_bus_route_13", "lat": 1.2937794168233852, "lon": 103.77551197053496, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_com3_bus_stop", "lat": 1.2949266886505149, "lon": 103.77493269032237, "node_type": "bus stop", "floor": -2, "building_code": "com3"},
+
+    # --- COM3 B2 stair/lift: aligned under the COM3 vertical shaft, floor -2 (new).
+    # Coords copied from the COM3 stair/lift shaft so the link down to Basement 1
+    # (node_com3_basement_*) is a short vertical edge, not a 75 m diagonal.
+    {"name": "node_com3_b2_stairs_1", "lat": 1.2948705, "lon": 103.7748976, "node_type": "stairs", "floor": -2, "building_code": "com3"},
+    {"name": "node_com3_b2_lift", "lat": 1.2948546, "lon": 103.7748752, "node_type": "lift_station", "floor": -2, "building_code": "com3"},
+
+    # --- Computing Drive walk-up from AS5 bus stop to the Deck (new) ---
+    {"name": "node_computing_dr_junction", "lat": 1.293446528052872, "lon": 103.77213965643341, "node_type": "road", "floor": 1, "building_code": "road"},
+    {"name": "node_computing_dr_walk_1", "lat": 1.2939104319291714, "lon": 103.77224158037323, "node_type": "walkway", "floor": 1, "building_code": "road"},
+    {"name": "node_computing_dr_walk_2", "lat": 1.294274565682006, "lon": 103.77266059731141, "node_type": "walkway", "floor": 1, "building_code": "road"},
+    {"name": "Deck staircase to main road", "lat": 1.2945123, "lon": 103.7726930, "node_type": "stairs", "floor": 1, "building_code": "deck"},
 ]
 
 
@@ -223,8 +272,37 @@ ACCESSIBLE_NODE_SPECS = [
     {"name": "Road to carpark behind deck turn 2", "lat": 1.2943156973063386, "lon": 103.77236956560397, "node_type": "road", "floor": 1, "building_code": "road"},
     {"name": "Road to carpark behind deck entrance", "lat": 1.2943825768743284, "lon": 103.77271434054231, "node_type": "road", "floor": 1, "building_code": "road"},
     {"name": "Walkway along mainroad to com1 from deck", "lat": 1.294852027617188, "lon": 103.772952064899, "node_type": "walkway", "floor": 1, "building_code": "road"},
-    {"name": "As8 lift", "lat": 1.2962392, "lon": 103.7722250, "node_type": "lift_station", "floor": 1, "building_code": "as8"},
+    {"name": "As8 lift", "lat": 1.2960629821349776, "lon": 103.77216500528654, "node_type": "lift_station", "floor": 1, "building_code": "as8"},
     {"name": "As8/as6 junction", "lat": 1.2959869, "lon": 103.7726441, "node_type": "junction", "floor": 1, "building_code": "as8"},
+]
+
+
+# ----------------------------------------------------------------------------
+# UTown outdoor network + Stephen Riady Centre (SRC) surroundings.
+# Hand-surveyed outdoor walkway nodes plus UTown POIs. building_code is None
+# (UTown is not a seeded floor-plan building). Food venues use node_type
+# "canteen" and are promoted to canteen-model Locations below (stalls TBD).
+# ----------------------------------------------------------------------------
+UTOWN_NODE_SPECS = [
+    {"name": "node_connector_to_indoor", "lat": 1.3042106171065762, "lon": 103.77330104261829, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_utown_outdoor_1", "lat": 1.3042354207380586, "lon": 103.77341832653966, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_utown_outdoor_2", "lat": 1.3042083622309741, "lon": 103.77374311278341, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_utown_outdoor_3", "lat": 1.3040144429216554, "lon": 103.77393482688562, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_utown_outdoor_4", "lat": 1.3038068930209854, "lon": 103.7740948128467, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_utown_outdoor_5", "lat": 1.3051132525878306, "lon": 103.77252355452843, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_utown_outdoor_6", "lat": 1.3054109005294037, "lon": 103.7727649533484, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_utown_outdoor_7", "lat": 1.3051521880956103, "lon": 103.77362291172238, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "UTown Green", "lat": 1.304875579518128, "lon": 103.77331554050443, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "node_connector_to_src_1_stair", "lat": 1.304290382660472, "lon": 103.77332360140869, "node_type": "walkway", "floor": 1, "building_code": None},
+    {"name": "UDON DON BAR", "lat": 1.3038397456214132, "lon": 103.77432351579297, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "Hwang's", "lat": 1.3040979289025076, "lon": 103.77413405715804, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "Jollibee NUS", "lat": 1.3043174615872135, "lon": 103.77390345599692, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "Mr Bean", "lat": 1.3037173028461049, "lon": 103.77401760650605, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "Makan Mala", "lat": 1.3037957371492594, "lon": 103.77390160096424, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "The Royals Bistro", "lat": 1.3038701491769256, "lon": 103.77397066784884, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "Fine Food", "lat": 1.3040669536031835, "lon": 103.77356910681354, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "Starbucks", "lat": 1.3054681087669433, "lon": 103.77319054930722, "node_type": "canteen", "floor": 1, "building_code": None},
+    {"name": "UTown Auditorium 1", "lat": 1.3039918941637905, "lon": 103.7733529181989, "node_type": "auditorium", "floor": 1, "building_code": None},
 ]
 
 
@@ -236,12 +314,30 @@ LOCATION_SPECS = [
     {"name": "Central Library", "display_name": "Central Library", "aliases": ["CLB"], "location_type": "central library", "building_code": "clb", "floor": 1, "area_name": None, "lat": 1.2966200954063662, "lon": 103.77312890647435, "nearest_node_name": "Central library entrance", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Lecture Theatre 15", "display_name": "Lecture Theatre 15", "aliases": ["LT15", "LT 15"], "location_type": "lecture theatre", "building_code": "as6", "floor": 1, "area_name": None, "lat": 1.2955214878116914, "lon": 103.77344062919603, "nearest_node_name": "LT15", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Lecture Theatre 14", "display_name": "Lecture Theatre 14", "aliases": ["LT14", "LT 14"], "location_type": "lecture theatre", "building_code": "as6", "floor": 1, "area_name": None, "lat": 1.2957011498687994, "lon": 103.77337290341598, "nearest_node_name": "LT14", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "COM1", "display_name": "COM1", "aliases": ["COM1", "Computing 1"], "location_type": "COM", "building_code": "com1", "floor": 1, "area_name": "school of computing", "lat": 1.294946722798136, "lon": 103.77393194938502, "nearest_node_name": "Com1 main entrance floor 1", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "COM2", "display_name": "COM2", "aliases": ["COM2", "Computing 2"], "location_type": "COM", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.294265259902769, "lon": 103.77409799286686, "nearest_node_name": "Com2 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "COM3", "display_name": "COM3", "aliases": ["COM3", "Computing 3"], "location_type": "COM", "building_code": "com3", "floor": 1, "area_name": "school of computing", "lat": 1.2947281501787837, "lon": 103.77459031912267, "nearest_node_name": "node_com3_1_corridor_6", "nearest_bus_stop_name": "Central Library bus stop"},
-    {"name": "COM4", "display_name": "COM4", "aliases": ["COM4", "Computing 4"], "location_type": "COM", "building_code": "com4", "floor": 2, "area_name": "school of computing", "lat": 1.2951577, "lon": 103.7753553, "nearest_node_name": "com4 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM1", "display_name": "COM1", "aliases": ["COM1", "Computing 1"], "location_type": "building", "building_code": "com1", "floor": 1, "area_name": "school of computing", "lat": 1.294946722798136, "lon": 103.77393194938502, "nearest_node_name": "Com1 main entrance floor 1", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM2", "display_name": "COM2", "aliases": ["COM2", "Computing 2"], "location_type": "building", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.294265259902769, "lon": 103.77409799286686, "nearest_node_name": "Com2 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM3", "display_name": "COM3", "aliases": ["COM3", "Computing 3"], "location_type": "building", "building_code": "com3", "floor": 1, "area_name": "school of computing", "lat": 1.2947281501787837, "lon": 103.77459031912267, "nearest_node_name": "node_com3_1_corridor_6", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "COM4", "display_name": "COM4", "aliases": ["COM4", "Computing 4"], "location_type": "building", "building_code": "com4", "floor": 2, "area_name": "school of computing", "lat": 1.2951577, "lon": 103.7753553, "nearest_node_name": "com4 entrance", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "AS6", "display_name": "AS6", "aliases": ["AS6", "Arts and Social Sciences 6"], "location_type": "building", "building_code": "as6", "floor": 2, "area_name": "faculty of arts and social sciences", "lat": 1.295738285690793, "lon": 103.77318108795896, "nearest_node_name": "as6_2_entrance", "nearest_bus_stop_name": "Central Library bus stop"},
+    {"name": "SRC", "display_name": "Stephen Riady Centre", "aliases": ["SRC", "Stephen Riady Centre", "UTown SRC"], "location_type": "building", "building_code": "src", "floor": 2, "area_name": "utown", "lat": 1.3045009737282307, "lon": 103.77245117864669, "nearest_node_name": "node_src_2_corridor_22", "nearest_bus_stop_name": "UTown bus stop"},
     {"name": "Terrace", "display_name": "Terrace", "aliases": ["The Terrace"], "location_type": "canteen", "building_code": "com2", "floor": 1, "area_name": "school of computing", "lat": 1.2944054, "lon": 103.7743158, "nearest_node_name": "The Terrace", "nearest_bus_stop_name": "Central Library bus stop"},
     {"name": "Deck", "display_name": "The Deck", "aliases": ["The Deck", "Deck"], "location_type": "canteen", "building_code": "deck", "floor": 1, "area_name": "school of computing", "lat": 1.2946732, "lon": 103.7724432, "nearest_node_name": "Deck", "nearest_bus_stop_name": "Central Library bus stop"},
+    # --- UTown POIs. Restaurants/cafes grouped under the canteen model per request. ---
+    {"name": "UDON DON BAR", "display_name": "UDON DON BAR", "aliases": ["Udon Don Bar"], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3038397456214132, "lon": 103.77432351579297, "nearest_node_name": "UDON DON BAR", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Hwang's", "display_name": "Hwang's", "aliases": ["Hwangs"], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3040979289025076, "lon": 103.77413405715804, "nearest_node_name": "Hwang's", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Jollibee NUS", "display_name": "Jollibee NUS", "aliases": ["Jollibee"], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3043174615872135, "lon": 103.77390345599692, "nearest_node_name": "Jollibee NUS", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Mr Bean", "display_name": "Mr Bean", "aliases": ["Mr. Bean"], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3037173028461049, "lon": 103.77401760650605, "nearest_node_name": "Mr Bean", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Makan Mala", "display_name": "Makan Mala", "aliases": [], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3037957371492594, "lon": 103.77390160096424, "nearest_node_name": "Makan Mala", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "The Royals Bistro", "display_name": "The Royals Bistro", "aliases": ["Royals Bistro"], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3038701491769256, "lon": 103.77397066784884, "nearest_node_name": "The Royals Bistro", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Fine Food", "display_name": "Fine Food", "aliases": [], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3040669536031835, "lon": 103.77356910681354, "nearest_node_name": "Fine Food", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Starbucks", "display_name": "Starbucks", "aliases": ["Starbucks UTown"], "location_type": "canteen", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3054681087669433, "lon": 103.77319054930722, "nearest_node_name": "Starbucks", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "UTown Auditorium 1", "display_name": "UTown Auditorium 1", "aliases": ["UTown Auditorium", "Auditorium 1"], "location_type": "auditorium", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.3039918941637905, "lon": 103.7733529181989, "nearest_node_name": "UTown Auditorium 1", "nearest_bus_stop_name": "UTown bus stop"},
+    # Flavours@UTown: SRC L2 food court promoted from an editor "room" node to a
+    # curated canteen. nearest_node_name matches the editor node so the auto-promo
+    # step skips it (no duplicate Location); stalls live in POI_EXTRAS.
+    {"name": "Flavours@UTown", "display_name": "Flavours@UTown", "aliases": ["Flavours", "Flavours UTown"], "location_type": "canteen", "building_code": "src", "floor": 2, "area_name": "utown", "lat": 1.3046801, "lon": 103.7728292, "nearest_node_name": "Flavours@UTown", "nearest_bus_stop_name": "UTown bus stop"},
+    # UTown Green: searchable open-space landmark, anchored on its walkway node.
+    {"name": "UTown Green", "display_name": "UTown Green", "aliases": ["Town Green", "UTown Field"], "location_type": "field", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.304875579518128, "lon": 103.77331554050443, "nearest_node_name": "UTown Green", "nearest_bus_stop_name": "UTown bus stop"},
 ]
 
 
@@ -249,8 +345,6 @@ LOCATION_SPECS = [
 # edges. base = (from, to, mode, instruction, reverse_instruction, acc, sheltered)
 # ----------------------------------------------------------------------------
 BASE_EDGE_SPECS = [
-    ("COM3 Elevator", "Com3 MPH1", "walk", "walk straight down corridor for calculated distance", None, True, True),
-    ("Com3 MPH1", "The Terrace", "walk", "walk straight down corridor for calculated distance", None, True, True),
     ("The Terrace", "Com2 entrance", "walk", "walk straight for calculated distance", None, True, True),
     ("UTown bus stop", "UTown bus stop turn 1", "campus bus", "Start at UTown bus stop and head towards College entrance", "arriving at UTown Bus Stop"),
     ("UTown bus stop turn 1", "College circus entrance", "campus bus", "continue around College Circus towards UTown bus exit", "heading towards UTown Bus stop"),
@@ -271,6 +365,22 @@ BASE_EDGE_SPECS = [
     ("Kent Ridge Kres circus opening 2", "Kent Ridge Kres curve corner 2", "campus bus", "follow Kent Ridge Kres", None),
     ("Kent Ridge Kres curve corner 2", "Kent Ridge Kres curve corner 3", "campus bus", "follow Kent Ridge Kres", None),
     ("Kent Ridge Kres curve corner 3", "Central Library bus stop", "campus bus", "arriving at central library bus stop", "exiting central library bus stop"),
+    # --- D1 continuation: Central Library -> LT13 -> AS5 -> BIZ2 -> COM3 (new) ---
+    ("Central Library bus stop", "node_bus_route_1", "campus bus", "continue from Central Library towards LT13", "arriving at Central Library bus stop"),
+    ("node_bus_route_1", "node_bus_route_2", "campus bus", "", None),
+    ("node_bus_route_2", "node_bus_route_3", "campus bus", "", None),
+    ("node_bus_route_3", "node_lt13_bus_stop", "campus bus", "arriving at LT13 bus stop", "departing LT13 bus stop"),
+    ("node_lt13_bus_stop", "node_bus_route_5", "campus bus", "", None),
+    ("node_bus_route_5", "node_bus_route_6", "campus bus", "", None),
+    ("node_bus_route_6", "node_as5_bus_stop", "campus bus", "arriving at AS5 bus stop", "departing AS5 bus stop"),
+    ("node_as5_bus_stop", "node_bus_route_8", "campus bus", "", None),
+    ("node_bus_route_8", "node_bus_route_9", "campus bus", "", None),
+    ("node_bus_route_9", "node_bus_route_10", "campus bus", "", None),
+    ("node_bus_route_10", "node_bus_route_11", "campus bus", "", None),
+    ("node_bus_route_11", "node_biz2_bus_stop", "campus bus", "arriving at BIZ2 bus stop", "departing BIZ2 bus stop"),
+    ("node_biz2_bus_stop", "node_bus_route_12", "campus bus", "", None),
+    ("node_bus_route_12", "node_bus_route_13", "campus bus", "", None),
+    ("node_bus_route_13", "node_com3_bus_stop", "campus bus", "arriving at COM3 bus stop", "departing COM3 bus stop"),
     ("Central library stairs", "Central library entrance", "walk", "walk straight for calculated distance", None, False, True),
     ("Central library entrance", "Central library lift", "walk", "walk straight for calculated distance", None, True, True),
     ("Outside nus coop store room", "Outside LT14", "walk", "walk straight for calculated distance", None, True, True),
@@ -289,11 +399,11 @@ BASE_EDGE_SPECS = [
     # base edge here -- duplicating it would collide on edge_id (build_edges has
     # no edge dedup). That link is what joins the corr14-17 cluster to the
     # corr1-13/18 cluster holding "main entrance to com1 floor2".
-    ("corr1 com2 floor1", "Middle of stairs from terrace to com1", "walk", "walk to the stairs landing for calculated distance", None, False, True),
+    # NOTE: the old "corr1 com2 floor1" <-> "Middle of stairs from terrace to com1"
+    # edge was removed -- node_com2_1_stairs_connector now joins those two (editor
+    # edge connector->corr1 com2 floor1, plus the seed edge Middle-of-stairs->connector).
     ("Outside LT14", "LT14", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
     ("Outside LT15", "LT15", "walk", "walk down stairs or ramp and straight for calculated distance", None, True, True),
-    ("COM3 Elevator", "node_com3_1_lift",        "walk", "walk straight for calculated distance", None, True, True),
-    ("Com3 MPH1",     "node_com3_1_junction3",   "walk", "walk straight for calculated distance", None, True, True),   
 ]
 
 # accessible/sheltered edges: dict form. vertical in {None,"lift","stairs"}.
@@ -302,7 +412,13 @@ ACCESSIBLE_EDGE_SPECS = [
     # "vertical", so anything with stairs in it has to live here.
     {"from": "Central Library bus stop", "to": "Central library stairs", "mode": "walk", "instruction": "walk down the stairs", "reverse": "walk up the stairs", "acc": False, "shel": True, "vertical": "stairs"},
     {"from": "Central library lift", "to": "Outside nus coop store room", "mode": "walk", "instruction": "walk up stairs", "reverse": "walk down stairs", "acc": False, "shel": True, "vertical": "stairs"},
-    {"from": "Middle of stairs from terrace to com1", "to": "The Terrace", "mode": "walk", "instruction": "walk down stairs and straight for calculated distance", "reverse": None, "acc": False, "shel": True, "vertical": "stairs"},
+    # Terrace stair landing split via the com2/com3 stairs connectors. The old
+    # single "Middle of stairs -> The Terrace" edge is replaced by: the stairs
+    # segment down to the com2 connector (not accessible), then step-free hops
+    # from that connector to The Terrace and across to the com3 connector.
+    {"from": "Middle of stairs from terrace to com1", "to": "node_com2_1_stairs_connector", "mode": "walk", "instruction": "walk down the stairs to the landing", "reverse": "walk up the stairs", "acc": False, "shel": True, "vertical": "stairs"},
+    {"from": "node_com2_1_stairs_connector", "to": "The Terrace", "mode": "walk", "instruction": "walk straight for calculated distance", "reverse": None, "acc": True, "shel": True},
+    {"from": "node_com2_1_stairs_connector", "to": "node_com3_1_stairs_connector", "mode": "walk", "instruction": "walk straight for calculated distance", "reverse": None, "acc": True, "shel": True},
     {"from": "Central library lift", "to": "Central library lift floor 4", "mode": "walk", "instruction": "take lift up", "reverse": "take lift down", "acc": True, "shel": True, "vertical": "lift"},
     {"from": "Central library lift floor 4", "to": "AS6 intersection beside staircase CLB L4", "mode": "walk", "instruction": "proceed forward for calculated distance", "reverse": None, "acc": True, "shel": True},
     # bridge edges into the AS6 editor graph. Endpoints are editor nodes, so these
@@ -337,6 +453,79 @@ ACCESSIBLE_EDGE_SPECS = [
     {"from": "Central Library bus stop", "to": "As8 lift", "mode": "walk", "instruction": "proceed up the ramp/stairs beside the bus stop to AS8", "reverse": None, "acc": True, "shel": True},
     {"from": "As8 lift", "to": "As8/as6 junction", "mode": "walk", "instruction": "proceed out of AS8 towards AS6", "reverse": None, "acc": True, "shel": True},
     {"from": "As8/as6 junction", "to": "AS6 intersection beside staircase CLB L4", "mode": "walk", "instruction": "proceed forward towards the AS6 staircase", "reverse": None, "acc": True, "shel": True},
+    # --- SRC (Stephen Riady Centre) vertical links -------------------------------
+    # The editor export has SRC floors 1 & 2 but NO vertical edges, so the two
+    # floors are disconnected islands. These connect them via the two lifts and
+    # the stairwell. Kept in the seed (not the JSON) so they survive re-exports;
+    # if you later add them in the editor, delete these to avoid edge_id clashes.
+    # NOTE: node_src_1_stairs_1 <-> node_src_2_stairs_1 endpoints are 20.9 m apart
+    # horizontally -- the L2 stair node looks mis-pinned; verify before trusting.
+    {"from": "node_src_1_lift_1",   "to": "node_src_2_lift_1",   "mode": "walk", "instruction": "", "reverse": None, "acc": True,  "shel": True, "vertical": "lift"},
+    {"from": "node_src_1_lift_2",   "to": "node_src_2_lift_2",   "mode": "walk", "instruction": "", "reverse": None, "acc": True,  "shel": True, "vertical": "lift"},
+    {"from": "node_src_1_stairs_1", "to": "node_src_2_stairs_1", "mode": "walk", "instruction": "", "reverse": None, "acc": False, "shel": True, "vertical": "stairs"},
+    # SRC L1 interior -> outdoor plaza connector via the L1 stairs. Marked vertical
+    # stairs + acc=False so it carries a real level change: this is what stops
+    # node_connector_to_indoor from flatly bridging SRC L1 (corridor_19) and L2
+    # (corridor_22). Accessible routes must instead use the SRC lift.
+    {"from": "node_src_1_corridor_19", "to": "node_connector_to_src_1_stair", "mode": "walk", "instruction": "walk up the stairs towards the plaza", "reverse": "walk down the stairs into SRC Level 1", "acc": False, "shel": True, "vertical": "stairs"},
+
+    # --- COM3 bus stop -> COM3 Basement 1 via the B2 stair/lift shaft (new) ---
+    # b2 nodes sit under the COM3 shaft (floor -2); these two are short vertical hops
+    # down to Basement 1. The bus-stop links below are ~76 m surface spans (the COM3
+    # bus stop is 76 m from the shaft) -- see notes; may want to route via the L1 shaft.
+    {"from": "node_com3_b2_stairs_1", "to": "node_com3_basement_stairs_1", "mode": "walk", "instruction": "walk up the stairs", "reverse": "walk down the stairs", "acc": False, "shel": True, "vertical": "stairs"},
+    {"from": "node_com3_b2_lift", "to": "node_com3_basement_lift", "mode": "walk", "instruction": "take the lift", "reverse": "take the lift", "acc": True, "shel": True, "vertical": "lift"},
+    {"from": "node_com3_b2_stairs_1", "to": "node_com3_bus_stop", "mode": "walk", "instruction": "proceed to the COM3 bus stop", "reverse": None, "acc": True, "shel": True},
+    {"from": "node_com3_b2_lift", "to": "node_com3_bus_stop", "mode": "walk", "instruction": "proceed to the COM3 bus stop", "reverse": None, "acc": True, "shel": True},
+
+    # --- AS5 bus stop -> Computing Drive -> up the staircase to the Deck (new) ---
+    # walk_2 joins the existing carpark road AT its node ("Road to carpark behind deck
+    # entrance", ~15 m away) instead of slicing across it, then follows to the staircase
+    # foot and up to the Deck (33 m).
+    {"from": "node_as5_bus_stop", "to": "node_computing_dr_junction", "mode": "walk", "instruction": "follow Computing Drive", "reverse": None, "acc": True, "shel": False},
+    {"from": "node_computing_dr_junction", "to": "node_computing_dr_walk_1", "mode": "walk", "instruction": "follow Computing Drive towards the Deck", "reverse": None, "acc": True, "shel": False},
+    {"from": "node_computing_dr_walk_1", "to": "node_computing_dr_walk_2", "mode": "walk", "instruction": "continue along Computing Drive", "reverse": None, "acc": True, "shel": False},
+    {"from": "node_computing_dr_walk_2", "to": "Road to carpark behind deck entrance", "mode": "walk", "instruction": "join the carpark road", "reverse": None, "acc": True, "shel": False},
+    {"from": "Road to carpark behind deck entrance", "to": "Deck staircase to main road", "mode": "walk", "instruction": "reach the foot of the deck staircase", "reverse": None, "acc": True, "shel": False},
+    {"from": "Deck staircase to main road", "to": "Deck", "mode": "walk", "instruction": "walk up the staircase to the Deck", "reverse": "walk down the staircase to the main road", "acc": False, "shel": False, "vertical": "stairs"},
+]
+
+
+# ----------------------------------------------------------------------------
+# UTown outdoor walking edges: SRC corridors <-> outdoor network <-> POIs and the
+# UTown bus stop (which reconnects SRC to campus via the bus route). Tuple form:
+# (from, to, mode, instruction, reverse, acc, sheltered). acc=True/shel=False are
+# provisional defaults for the outdoor paths -- refine when the network is firmed up.
+# ----------------------------------------------------------------------------
+UTOWN_EDGE_SPECS = [
+    ("node_src_1_corridor_8", "node_utown_outdoor_5", "walk", "", None, True, False),
+    ("node_utown_outdoor_5", "node_utown_outdoor_6", "walk", "", None, True, False),
+    ("node_utown_outdoor_6", "Starbucks", "walk", "", None, True, False),
+    # SRC L1 no longer connects flat to the outdoor connector -- it now reaches it
+    # via node_connector_to_src_1_stair through a STAIRS edge (see ACCESSIBLE_EDGE_SPECS),
+    # so L1<->L2 can't be crossed flat through node_connector_to_indoor.
+    ("node_src_2_corridor_22", "node_connector_to_indoor", "walk", "", None, True, False),
+    ("node_connector_to_indoor", "node_utown_outdoor_1", "walk", "", None, True, False),
+    ("node_utown_outdoor_1", "UTown Auditorium 1", "walk", "", None, True, False),
+    ("node_utown_outdoor_1", "node_utown_outdoor_2", "walk", "", None, True, False),
+    ("node_utown_outdoor_2", "Jollibee NUS", "walk", "", None, True, False),
+    ("node_utown_outdoor_2", "Fine Food", "walk", "", None, True, False),
+    ("node_utown_outdoor_2", "node_utown_outdoor_3", "walk", "", None, True, False),
+    ("node_utown_outdoor_3", "Hwang's", "walk", "", None, True, False),
+    ("node_utown_outdoor_3", "The Royals Bistro", "walk", "", None, True, False),
+    ("node_utown_outdoor_3", "node_utown_outdoor_4", "walk", "", None, True, False),
+    ("node_utown_outdoor_4", "UDON DON BAR", "walk", "", None, True, False),
+    ("node_utown_outdoor_4", "Makan Mala", "walk", "", None, True, False),
+    ("node_utown_outdoor_4", "Mr Bean", "walk", "", None, True, False),
+    ("node_utown_outdoor_4", "UTown bus stop", "walk", "", None, True, False),
+    # --- UTown Green / Starbucks <-> Jollibee link (new) ---
+    ("Starbucks", "node_utown_outdoor_7", "walk", "", None, True, True),
+    ("node_utown_outdoor_7", "Jollibee NUS", "walk", "", None, True, True),
+    ("node_utown_outdoor_7", "UTown Green", "walk", "", None, True, False),
+    ("node_connector_to_src_1_stair", "UTown Green", "walk", "", None, True, False),
+    # link the connector into the SRC/indoor network (node_connector_to_indoor ~9 m)
+    # so it's a real through-route, not a dead-end spur off UTown Green.
+    ("node_connector_to_src_1_stair", "node_connector_to_indoor", "walk", "", None, True, False),
 ]
 
 
@@ -463,6 +652,66 @@ def build_edges(edge_specs, node_by_name):
     return edges
 
 
+def align_lift_shafts(node_by_name, edge_specs, trusted_names=frozenset()):
+    """Snap every lift shaft's floor nodes onto a single trusted coordinate.
+
+    A lift is physically vertical, so all of its floor nodes must share one
+    lat/lon. Positions drift a few metres per floor, which makes the vertical
+    edge (and anything hanging off it) draw an out-and-back spike on the map.
+    Nodes are grouped into shafts by chains of vertical=="lift" edges
+    (union-find), then every node in a shaft is moved onto one anchor node.
+
+    Anchor selection, in order of preference:
+      1. Prefer nodes in `trusted_names` (the triangulated editor export) over
+         on-foot surveyed seed nodes, which are less accurate.
+      2. Among the preferred set, use the LOWEST floor.
+    So a shaft that mixes an editor node with an iffy seed node (e.g. AS6:
+    seed floor 1 + editor floor 2) anchors on the editor node, not the lowest
+    floor. An all-seed shaft (e.g. CLB) falls back to lowest floor.
+
+    Mutates the shared node spec dicts, so it MUST run before
+    build_nodes()/build_edges(). Returns the number of nodes moved.
+    """
+    parent = {}
+
+    def find(x):
+        parent.setdefault(x, x)
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    lift_nodes = set()
+    for s in edge_specs:
+        if s.get("vertical") == "lift":
+            a, b = s["from"], s["to"]
+            if a in node_by_name and b in node_by_name:
+                union(a, b)
+                lift_nodes.add(a)
+                lift_nodes.add(b)
+
+    shafts = {}
+    for n in lift_nodes:
+        shafts.setdefault(find(n), []).append(n)
+
+    moved = 0
+    for members in shafts.values():
+        trusted = [n for n in members if n in trusted_names] or members
+        anchor = min(trusted, key=lambda n: node_by_name[n]["floor"])
+        lat, lon = node_by_name[anchor]["lat"], node_by_name[anchor]["lon"]
+        for n in members:
+            nd = node_by_name[n]
+            if nd["lat"] != lat or nd["lon"] != lon:
+                nd["lat"], nd["lon"] = lat, lon
+                moved += 1
+    return moved
+
+
 def normalise_edge_tuple(t):
     # base tuple is (from, to, mode, instruction, reverse) with two OPTIONAL
     # trailing flags: (..., acc, shel). Absent -> False (back-compatible).
@@ -486,6 +735,11 @@ def normalise_edge_tuple(t):
 BUS_STOP_SPECS = [
     {"bus_stop_id": "clb_bus_stop",   "name": "Central Library", "node_name": "Central Library bus stop"},
     {"bus_stop_id": "utown_bus_stop", "name": "University Town",  "node_name": "UTown bus stop"},
+    # D1 continuation stops (new)
+    {"bus_stop_id": "lt13_bus_stop",  "name": "LT13",  "node_name": "node_lt13_bus_stop"},
+    {"bus_stop_id": "as5_bus_stop",   "name": "AS5",   "node_name": "node_as5_bus_stop"},
+    {"bus_stop_id": "biz2_bus_stop",  "name": "BIZ2",  "node_name": "node_biz2_bus_stop"},
+    {"bus_stop_id": "com3_bus_stop",  "name": "COM3",  "node_name": "node_com3_bus_stop"},
 ]
 
 # buses (bus_number is a string: "A1", "D1", ...)
@@ -497,6 +751,10 @@ BUS_SPECS = [
 BUS_STOP_SCHEDULE_SPECS = [
     ("D1", "clb_bus_stop",   10),
     ("D1", "utown_bus_stop", 10),
+    ("D1", "lt13_bus_stop",  10),
+    ("D1", "as5_bus_stop",   10),
+    ("D1", "biz2_bus_stop",  10),
+    ("D1", "com3_bus_stop",  10),
 ]
 
 
@@ -709,9 +967,24 @@ async def seed_data(clear_first: bool = True):
             node_specs = dedupe_nodes(
                 BASE_NODE_SPECS,
                 ACCESSIBLE_NODE_SPECS,
+                UTOWN_NODE_SPECS,
                 editor_nodes_to_specs(data),
             )
             node_by_name = {s["name"]: s for s in node_specs}
+
+            # 3b) assemble edges now (they don't depend on inserted rows) so lift
+            #     shafts can be aligned onto their lowest floor BEFORE the node
+            #     and edge coordinates are frozen into ORM objects.
+            edge_specs = (
+                [normalise_edge_tuple(t) for t in BASE_EDGE_SPECS]
+                + [normalise_edge_tuple(t) for t in UTOWN_EDGE_SPECS]
+                + ACCESSIBLE_EDGE_SPECS
+                + editor_edges_to_specs(data)
+            )
+            # editor-export nodes are triangulated (trusted) vs on-foot seed coords
+            editor_node_names = frozenset(n["name"] for n in data.get("nodes", []))
+            lift_moved = align_lift_shafts(node_by_name, edge_specs, editor_node_names)
+
             nodes = build_nodes(node_specs)
             session.add_all(nodes)
 
@@ -731,12 +1004,7 @@ async def seed_data(clear_first: bool = True):
                     node_id_from_name(entrance_name)
                 )
 
-            # 4) edges (base + accessible + editor)
-            edge_specs = (
-                [normalise_edge_tuple(t) for t in BASE_EDGE_SPECS]
-                + ACCESSIBLE_EDGE_SPECS
-                + editor_edges_to_specs(data)
-            )
+            # 4) edges (base + accessible + editor). edge_specs assembled in 3b.
             edges = build_edges(edge_specs, node_by_name)
             session.add_all(edges)
 
@@ -813,7 +1081,7 @@ async def seed_data(clear_first: bool = True):
             print("Seed data inserted successfully.")
             print(f"  Buildings:  {len(buildings)}")
             print(f"  Floors:     {len(floors)}")
-            print(f"  Nodes:      {len(nodes)}")
+            print(f"  Nodes:      {len(nodes)} ({lift_moved} lift nodes snapped to lowest floor)")
             print(f"  Edges:      {len(edges)} ({len(edges)//2} bidirectional)")
             print(f"  Locations:  {len(locations)}")
             print(f"  Canteens:   {len(canteens)}")

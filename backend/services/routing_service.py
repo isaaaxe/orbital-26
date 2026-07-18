@@ -1,10 +1,13 @@
 from algorithms import astar
-from algorithms import graph_builder
+from algorithms.graph_builder import GraphCache
 from schemas.route import RouteStep, RouteResponse
 from utils.edge_classification import bearing, turn_delta, classify
 
-async def generate_route(session, startNode_id, endNode_id, mode, current_user):
-    node_by_id, edge_by_pair, graph_table, building_by_id = await graph_builder.buildGraph(session)
+async def generate_route(session, startNode_id, endNode_id, mode, current_user, graph: GraphCache):
+    node_by_id = graph.node_by_id
+    edge_by_pair = graph.edge_by_pair
+    graph_table = graph.graph_table
+    building_by_id = graph.building_by_id
     path = astar.aStarAlgo(startNode_id, endNode_id, node_by_id, graph_table, mode, current_user)
 
     pace_factor = 1.0

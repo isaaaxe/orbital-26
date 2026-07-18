@@ -11,6 +11,8 @@ class Building(database.Base):
     building_code: Mapped[str | None] = mapped_column(String, nullable=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
     display_name: Mapped[str] = mapped_column(String, nullable=False)
+    display_latitude: Mapped[float] = mapped_column(Float, nullable=False)
+    display_longitude: Mapped[float] = mapped_column(Float, nullable=False)
     aliases: Mapped[list[str]] = mapped_column(
         ARRAY(String),
         default=list,

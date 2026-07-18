@@ -40,12 +40,12 @@
       ],
       "affine": [
         [
-          3.413079853920423e-07,
-          -4.1469362835159077e-07
+          3.413079853920423e-7,
+          -4.1469362835159077e-7
         ],
         [
-          -3.56539477034044e-07,
-          -5.076810248551485e-07
+          -3.56539477034044e-7,
+          -5.076810248551485e-7
         ],
         [
           103.77392165952952,
@@ -93,12 +93,12 @@
       ],
       "affine": [
         [
-          4.909344267526609e-07,
-          -5.55701159812681e-07
+          4.909344267526609e-7,
+          -5.55701159812681e-7
         ],
         [
-          -4.440994413850623e-07,
-          -3.9379539226115355e-07
+          -4.440994413850623e-7,
+          -3.9379539226115355e-7
         ],
         [
           103.77362562033613,
@@ -146,12 +146,12 @@
       ],
       "affine": [
         [
-          4.5677364348007653e-07,
-          -5.816504297538788e-07
+          4.5677364348007653e-7,
+          -5.816504297538788e-7
         ],
         [
-          -4.539517550302362e-07,
-          -3.438096095557907e-07
+          -4.539517550302362e-7,
+          -3.438096095557907e-7
         ],
         [
           103.7736519065454,
@@ -189,20 +189,26 @@
           655,
           1.2939321383857838,
           103.77386601349694
+        ],
+        [
+          1206,
+          645,
+          1.2932658847134517,
+          103.77426582851619
         ]
       ],
       "affine": [
         [
-          4.6567695546726985e-07,
-          -9.090134800967897e-07
+          4.905103261272172e-7,
+          -9.36508071575335e-7
         ],
         [
-          -7.336135824517644e-07,
-          -4.2174759509609127e-07
+          -7.204609996819621e-7,
+          -4.3630964958570975e-7
         ],
         [
-          103.7741553138032,
-          1.2946586383674141
+          103.77413410467427,
+          1.2946821203322854
         ]
       ]
     },
@@ -242,20 +248,26 @@
           417,
           1.2942967119763178,
           103.77403603466836
+        ],
+        [
+          1240,
+          690,
+          1.2932658847134517,
+          103.77426582851619
         ]
       ],
       "affine": [
         [
-          3.8941207156905345e-07,
-          -9.34599070983626e-07
+          4.282311632590824e-7,
+          -9.819512612793186e-7
         ],
         [
-          -7.579693285715751e-07,
-          -2.102049673870821e-07
+          -6.854783486278252e-7,
+          -2.9863070059681144e-7
         ],
         [
-          103.7742186996016,
-          1.2946762663005862
+          103.77417467343147,
+          1.294729970173655
         ]
       ]
     },
@@ -299,12 +311,12 @@
       ],
       "affine": [
         [
-          3.7578349716695086e-07,
-          -7.873744141804188e-07
+          3.7578349716695086e-7,
+          -7.873744141804188e-7
         ],
         [
-          -6.879809483334535e-07,
-          -2.490288691218778e-07
+          -6.879809483334535e-7,
+          -2.490288691218778e-7
         ],
         [
           103.77420222637875,
@@ -346,12 +358,12 @@
       ],
       "affine": [
         [
-          3.4703491657342833e-07,
-          -7.567809002162853e-07
+          3.4703491657342833e-7,
+          -7.567809002162853e-7
         ],
         [
-          -6.656537693050851e-07,
-          -3.790960539839702e-07
+          -6.656537693050851e-7,
+          -3.790960539839702e-7
         ],
         [
           103.77418700960078,
@@ -374,35 +386,35 @@
         ],
         [
           867,
-          589,
-          1.2945283144918471,
-          103.77468741473919
-        ],
-        [
-          907,
-          904,
-          1.2941449704131947,
-          103.77463305435646
+          1042,
+          1.2940338322264204,
+          103.77443008080876
         ],
         [
           212,
           234,
           1.2950558901831575,
           103.77428369602886
+        ],
+        [
+          944,
+          210,
+          1.294844171,
+          103.77487604
         ]
       ],
       "affine": [
         [
-          7.318707030259846e-07,
-          -1.6269500758637414e-07
+          7.942222729408761e-7,
+          -3.248118766355178e-7
         ],
         [
-          -2.2654575493019449e-07,
-          -1.1886005333198929e-06
+          -4.6241231578830747e-7,
+          -0.0000010054462670670663
         ],
         [
-          103.77417521837022,
-          1.295367261709155
+          103.7742230469291,
+          1.2953673666196195
         ]
       ]
     },
@@ -436,20 +448,26 @@
           737,
           1.2944335856661615,
           103.77420955331128
+        ],
+        [
+          936,
+          236,
+          1.294844171,
+          103.77487604
         ]
       ],
       "affine": [
         [
-          1.067006047837375e-06,
-          -3.8242938852250786e-07
+          0.0000011377119699968513,
+          -4.051522105150047e-7
         ],
         [
-          -3.5965264824324403e-07,
-          -1.1684500213549633e-06
+          -3.837821304478537e-7,
+          -0.0000011606955092073895
         ],
         [
-          103.77392114837399,
-          1.2954910720255408
+          103.77389537353784,
+          1.2954993553063927
         ]
       ]
     },
@@ -483,20 +501,26 @@
           13,
           1.2951488252458732,
           103.77489655713705
+        ],
+        [
+          966,
+          236,
+          1.294844171,
+          103.77487604
         ]
       ],
       "affine": [
         [
-          1.1967835459633581e-06,
-          -4.307897566807018e-07
+          0.0000011974882559794342,
+          -4.431381156859933e-7
         ],
         [
-          -4.1805123425025985e-07,
-          -1.2041610447044082e-06
+          -4.1807520461711233e-7,
+          -0.0000012037410224442863
         ],
         [
-          103.7738180940893,
-          1.2955534867011942
+          103.77381767282357,
+          1.2955608683771764
         ]
       ]
     },
@@ -534,12 +558,12 @@
       ],
       "affine": [
         [
-          2.871791125665294e-07,
-          1.298450740921996e-07
+          2.871791125665294e-7,
+          1.298450740921996e-7
         ],
         [
-          1.3120569559042998e-07,
-          -2.877683430526795e-07
+          1.3120569559042998e-7,
+          -2.877683430526795e-7
         ],
         [
           103.77512699038114,
@@ -581,12 +605,12 @@
       ],
       "affine": [
         [
-          2.7467402825807486e-07,
-          1.2369398987654967e-07
+          2.7467402825807486e-7,
+          1.2369398987654967e-7
         ],
         [
-          1.2151874071758262e-07,
-          -2.626109759954867e-07
+          1.2151874071758262e-7,
+          -2.626109759954867e-7
         ],
         [
           103.7751343042297,
@@ -628,12 +652,12 @@
       ],
       "affine": [
         [
-          2.4632894720888876e-07,
-          1.1178777461972476e-07
+          2.4632894720888876e-7,
+          1.1178777461972476e-7
         ],
         [
-          1.005374104653126e-07,
-          -2.2039333040520498e-07
+          1.005374104653126e-7,
+          -2.2039333040520498e-7
         ],
         [
           103.77514887903038,
@@ -675,12 +699,12 @@
       ],
       "affine": [
         [
-          2.6820034613808063e-07,
-          1.221619708954012e-07
+          2.6820034613808063e-7,
+          1.221619708954012e-7
         ],
         [
-          1.1880511035777786e-07,
-          -2.5542846745527905e-07
+          1.1880511035777786e-7,
+          -2.5542846745527905e-7
         ],
         [
           103.77513384916031,
@@ -718,20 +742,32 @@
           552,
           1.2957365604697941,
           103.77300211065187
+        ],
+        [
+          1592,
+          292,
+          1.2952554434815315,
+          103.77336517470782
+        ],
+        [
+          592,
+          154,
+          1.2957805946153729,
+          103.77320039962623
         ]
       ],
       "affine": [
         [
-          2.3033862381933763e-07,
-          -4.981943564154741e-07
+          2.295601832990911e-7,
+          -4.976786504127389e-7
         ],
         [
-          -5.349029528264907e-07,
-          -2.223138745229937e-07
+          -4.6973136124948564e-7,
+          -2.0878617905308717e-7
         ],
         [
-          103.77317832749887,
-          1.2961169838839388
+          103.77314665850335,
+          1.2961098360152392
         ]
       ]
     },
@@ -765,20 +801,26 @@
           511,
           1.2957365604697941,
           103.77300211065187
+        ],
+        [
+          623,
+          142,
+          1.2957805946153729,
+          103.77320039962623
         ]
       ],
       "affine": [
         [
-          2.3872898369863244e-07,
-          -5.054254756608757e-07
+          2.3726761915101695e-7,
+          -5.056079383044052e-7
         ],
         [
-          -4.7483426282048537e-07,
-          -2.0185290700717464e-07
+          -4.849525907127546e-7,
+          -2.031162583185194e-7
         ],
         [
-          103.77311197109387,
-          1.2961232479584293
+          103.77311812216107,
+          1.2961240159666345
         ]
       ]
     },
@@ -812,20 +854,138 @@
           527,
           1.2957365604697941,
           103.77300211065187
+        ],
+        [
+          639,
+          134,
+          1.2957805946153729,
+          103.77320039962623
         ]
       ],
       "affine": [
         [
-          2.4239666994274533e-07,
-          -5.143955552635641e-07
+          2.4232581124954985e-7,
+          -5.133259754453638e-7
         ],
         [
-          -4.671484275094782e-07,
-          -1.9215487085255594e-07
+          -4.676449081174464e-7,
+          -1.8466071062422196e-7
         ],
         [
-          103.77310775540418,
-          1.2961403348743135
+          103.77310806251381,
+          1.2961356991892543
+        ]
+      ]
+    },
+    {
+      "building": "src",
+      "floor_number": 1,
+      "image": "SRC_1.png",
+      "image_width": 1254,
+      "image_height": 1254,
+      "geo_reference": [
+        [
+          52,
+          80,
+          1.3053723483848971,
+          103.77173225222664
+        ],
+        [
+          600,
+          87,
+          1.3053829979641989,
+          103.77242674319203
+        ],
+        [
+          299,
+          834,
+          1.3044140788475216,
+          103.77205173754787
+        ],
+        [
+          796,
+          1121,
+          1.3040294324549673,
+          103.77267512356458
+        ],
+        [
+          1198,
+          918,
+          1.3043191344853142,
+          103.7731913651007
+        ]
+      ],
+      "affine": [
+        [
+          0.0000012680329876656814,
+          2.3384325809103418e-8
+        ],
+        [
+          3.3180466952468774e-9,
+          -0.0000013006768199272207
+        ],
+        [
+          103.77166655552423,
+          1.3054806365659941
+        ]
+      ]
+    },
+    {
+      "building": "src",
+      "floor_number": 2,
+      "image": "SRC_2.png",
+      "image_width": 1254,
+      "image_height": 1254,
+      "geo_reference": [
+        [
+          64,
+          119,
+          1.3053756945485928,
+          103.77173517435261
+        ],
+        [
+          586,
+          117,
+          1.3053987471774746,
+          103.77243070581798
+        ],
+        [
+          771,
+          1159,
+          1.3040419629142093,
+          103.77267603426401
+        ],
+        [
+          335,
+          868,
+          1.3043863774503395,
+          103.77209142179689
+        ],
+        [
+          170,
+          492,
+          1.3048377691573547,
+          103.77187480199882
+        ],
+        [
+          1182,
+          888,
+          1.3043267538495764,
+          103.77320050504224
+        ]
+      ],
+      "affine": [
+        [
+          0.000001315029444028034,
+          1.5619792092933892e-9
+        ],
+        [
+          2.782130592696334e-10,
+          -0.000001313284571069624
+        ],
+        [
+          103.77165341970505,
+          1.305524457693095
         ]
       ]
     }
@@ -2108,8 +2268,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "LT 19",
-      "lat": 1.2937961,
-      "lon": 103.7744234,
+      "lat": 1.2937931,
+      "lon": 103.7744261,
       "node_type": "lecture theatre",
       "floor": 1,
       "building_code": "com2",
@@ -2126,8 +2286,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "LT 16",
-      "lat": 1.2939402,
-      "lon": 103.7739004,
+      "lat": 1.2939408,
+      "lon": 103.7738999,
       "node_type": "lecture theatre",
       "floor": 1,
       "building_code": "com2",
@@ -2144,8 +2304,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "LT 17",
-      "lat": 1.2936527,
-      "lon": 103.7740533,
+      "lat": 1.2936446,
+      "lon": 103.7740607,
       "node_type": "lecture theatre",
       "floor": 1,
       "building_code": "com2",
@@ -2162,8 +2322,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Seminar Room @ LT19",
-      "lat": 1.2937615,
-      "lon": 103.7742692,
+      "lat": 1.2937572,
+      "lon": 103.7742731,
       "node_type": "seminar room",
       "floor": 1,
       "building_code": "com2",
@@ -2388,8 +2548,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Innovation and Entrepreneurship",
-      "lat": 1.2934503,
-      "lon": 103.7742292,
+      "lat": 1.2934362,
+      "lon": 103.774242,
       "node_type": "room",
       "floor": 1,
       "building_code": "com2",
@@ -2406,8 +2566,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Research Equipment Room",
-      "lat": 1.294014,
-      "lon": 103.7738692,
+      "lat": 1.2940169,
+      "lon": 103.7738667,
       "node_type": "room",
       "floor": 1,
       "building_code": "com2",
@@ -2425,8 +2585,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Information Systems & Analytics Research Lab 3",
-      "lat": 1.2938006,
-      "lon": 103.7740915,
+      "lat": 1.2937972,
+      "lon": 103.7740946,
       "node_type": "lab",
       "floor": 1,
       "building_code": "com2",
@@ -2443,8 +2603,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Robot Experiment Lab",
-      "lat": 1.2940745,
-      "lon": 103.7738905,
+      "lat": 1.2940793,
+      "lon": 103.7738862,
       "node_type": "lab",
       "floor": 1,
       "building_code": "com2",
@@ -2463,8 +2623,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Former Information Systems 1",
-      "lat": 1.2942543,
-      "lon": 103.7739636,
+      "lat": 1.2942647,
+      "lon": 103.7739541,
       "node_type": "room",
       "floor": 1,
       "building_code": "com2",
@@ -2484,8 +2644,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Former Information Systems 2",
-      "lat": 1.2941493,
-      "lon": 103.7739366,
+      "lat": 1.2941565,
+      "lon": 103.7739302,
       "node_type": "room",
       "floor": 1,
       "building_code": "com2",
@@ -2500,8 +2660,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair 4 com2 floor1",
-      "lat": 1.2940883,
-      "lon": 103.774117,
+      "lat": 1.2940939,
+      "lon": 103.774112,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com2",
@@ -2516,8 +2676,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair 1 com2 floor1",
-      "lat": 1.2936579,
-      "lon": 103.77431,
+      "lat": 1.2936504,
+      "lon": 103.7743167,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com2",
@@ -2532,8 +2692,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair 5 com2 floor1",
-      "lat": 1.2936285,
-      "lon": 103.7742015,
+      "lat": 1.2936199,
+      "lon": 103.7742093,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com2",
@@ -2548,8 +2708,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair 3 com2 floor 1",
-      "lat": 1.2932996,
-      "lon": 103.7742475,
+      "lat": 1.2932808,
+      "lon": 103.7742645,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com2",
@@ -2564,8 +2724,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "lift com2 floor 1",
-      "lat": 1.2936183,
-      "lon": 103.774278,
+      "lat": 1.2936096,
+      "lon": 103.7742859,
       "node_type": "lift_station",
       "floor": 1,
       "building_code": "com2",
@@ -2582,8 +2742,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "GS Lab@COM2",
-      "lat": 1.2945227,
-      "lon": 103.7740747,
+      "lat": 1.2945495,
+      "lon": 103.7740527,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com2",
@@ -2598,8 +2758,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair 4 com2 floor2",
-      "lat": 1.2940484,
-      "lon": 103.7741353,
+      "lat": 1.2940386,
+      "lon": 103.7741434,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "com2",
@@ -2614,8 +2774,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair 1 com2 floor2",
-      "lat": 1.2936322,
-      "lon": 103.7743037,
+      "lat": 1.2936008,
+      "lon": 103.7743294,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "com2",
@@ -2630,8 +2790,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair 3 com2 floor2",
-      "lat": 1.2933688,
-      "lon": 103.7741809,
+      "lat": 1.2933027,
+      "lon": 103.7742351,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "com2",
@@ -2646,8 +2806,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "lift com2 floor2",
-      "lat": 1.2936273,
-      "lon": 103.7742634,
+      "lat": 1.2935918,
+      "lon": 103.7742926,
       "node_type": "lift_station",
       "floor": 2,
       "building_code": "com2",
@@ -2662,8 +2822,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "entrance to teaching office com2 floor2",
-      "lat": 1.2941041,
-      "lon": 103.7740352,
+      "lat": 1.29409,
+      "lon": 103.7740467,
       "node_type": "lift_station",
       "floor": 2,
       "building_code": "com2",
@@ -3005,8 +3165,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "junc A com2 floor2",
-      "lat": 1.2935812,
-      "lon": 103.7741685,
+      "lat": 1.2935328,
+      "lon": 103.7742081,
       "node_type": "junction",
       "floor": 2,
       "building_code": "com2",
@@ -3021,8 +3181,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "junc B com2 floor 2",
-      "lat": 1.2941292,
-      "lon": 103.7739791,
+      "lat": 1.2941121,
+      "lon": 103.773993,
       "node_type": "junction",
       "floor": 2,
       "building_code": "com2",
@@ -3037,8 +3197,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corridor A com2 floor 2",
-      "lat": 1.2943565,
-      "lon": 103.7740543,
+      "lat": 1.2943666,
+      "lon": 103.774046,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com2",
@@ -3053,8 +3213,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corridor B com2 floor 2",
-      "lat": 1.2938117,
-      "lon": 103.7740674,
+      "lat": 1.2937745,
+      "lon": 103.7740978,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com2",
@@ -3069,8 +3229,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corridor C com2 floor2",
-      "lat": 1.2933771,
-      "lon": 103.7742485,
+      "lat": 1.2933179,
+      "lon": 103.774297,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com2",
@@ -3085,8 +3245,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair A com2 floor 1",
-      "lat": 1.2939713,
-      "lon": 103.7739566,
+      "lat": 1.293973,
+      "lon": 103.7739551,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com2",
@@ -3101,8 +3261,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "stair B com2 floor 1",
-      "lat": 1.2936801,
-      "lon": 103.774103,
+      "lat": 1.2936729,
+      "lon": 103.7741094,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com2",
@@ -3117,8 +3277,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr1 com2 floor1",
-      "lat": 1.2942267,
-      "lon": 103.7740262,
+      "lat": 1.2942364,
+      "lon": 103.7740174,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3133,8 +3293,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr2 com2 floor 1",
-      "lat": 1.2941114,
-      "lon": 103.7739874,
+      "lat": 1.2941175,
+      "lon": 103.7739819,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3149,8 +3309,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr3 com2 floor1",
-      "lat": 1.2940165,
-      "lon": 103.7739676,
+      "lat": 1.2940196,
+      "lon": 103.7739649,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3165,8 +3325,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr4 com2 floor1",
-      "lat": 1.2938796,
-      "lon": 103.7739894,
+      "lat": 1.2938784,
+      "lon": 103.7739904,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3181,8 +3341,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr5 com2 floor1",
-      "lat": 1.2937569,
-      "lon": 103.7740503,
+      "lat": 1.293752,
+      "lon": 103.7740547,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3197,8 +3357,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr6 com2 floor1",
-      "lat": 1.2937397,
-      "lon": 103.7741227,
+      "lat": 1.2937344,
+      "lon": 103.7741275,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3213,8 +3373,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr7 com2 floor1",
-      "lat": 1.2936075,
-      "lon": 103.7741753,
+      "lat": 1.2935982,
+      "lon": 103.7741837,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3229,8 +3389,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr8 com2 floor1",
-      "lat": 1.2938173,
-      "lon": 103.7742454,
+      "lat": 1.2938147,
+      "lon": 103.7742478,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -3245,8 +3405,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr9 com2 floor1",
-      "lat": 1.2938986,
-      "lon": 103.7743766,
+      "lat": 1.2938988,
+      "lon": 103.7743764,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -4015,8 +4175,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_stairwell",
-      "lat": 1.2947606,
-      "lon": 103.7745242,
+      "lat": 1.2947402,
+      "lon": 103.7745093,
       "node_type": "stairs",
       "floor": -1,
       "building_code": "com3",
@@ -4031,8 +4191,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_stair_junction",
-      "lat": 1.2948218,
-      "lon": 103.7745843,
+      "lat": 1.2947798,
+      "lon": 103.7745879,
       "node_type": "junction",
       "floor": -1,
       "building_code": "com3",
@@ -4047,8 +4207,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor1",
-      "lat": 1.294916,
-      "lon": 103.7746679,
+      "lat": 1.2948433,
+      "lon": 103.7746982,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -4065,8 +4225,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Health Informatics Research Lab",
-      "lat": 1.2947859,
-      "lon": 103.7746503,
+      "lat": 1.2947318,
+      "lon": 103.7746554,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4081,8 +4241,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor2",
-      "lat": 1.2949881,
-      "lon": 103.7747283,
+      "lat": 1.2948929,
+      "lon": 103.7747786,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -4099,8 +4259,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Deep Sea Lounge",
-      "lat": 1.2950691,
-      "lon": 103.7747382,
+      "lat": 1.2949629,
+      "lon": 103.7748032,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4117,8 +4277,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Ace Executive Lounge",
-      "lat": 1.2950131,
-      "lon": 103.7746844,
+      "lat": 1.2949268,
+      "lon": 103.7747338,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4136,8 +4296,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Multipurpose Lab",
-      "lat": 1.2947939,
-      "lon": 103.7744695,
+      "lat": 1.2947833,
+      "lon": 103.7744536,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4152,8 +4312,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor3",
-      "lat": 1.2946597,
-      "lon": 103.7744107,
+      "lat": 1.2946776,
+      "lon": 103.7743644,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -4168,8 +4328,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor4",
-      "lat": 1.2943967,
-      "lon": 103.7744075,
+      "lat": 1.2944437,
+      "lon": 103.7743144,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -4184,8 +4344,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor5",
-      "lat": 1.2943667,
-      "lon": 103.7745353,
+      "lat": 1.2943858,
+      "lon": 103.7744529,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -4203,8 +4363,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "National Cybersecurity R&D Laboratory",
-      "lat": 1.2944191,
-      "lon": 103.7745897,
+      "lat": 1.2944192,
+      "lon": 103.774523,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4222,8 +4382,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Ace Office",
-      "lat": 1.2944336,
-      "lon": 103.7745107,
+      "lat": 1.294452,
+      "lon": 103.7744371,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4241,8 +4401,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "COM3 B1-10",
-      "lat": 1.2943334,
-      "lon": 103.7745625,
+      "lat": 1.2943494,
+      "lon": 103.7744777,
       "node_type": "seminar room",
       "floor": -1,
       "building_code": "com3",
@@ -4259,8 +4419,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Metaverse Foundry",
-      "lat": 1.2942329,
-      "lon": 103.7745467,
+      "lat": 1.2942636,
+      "lon": 103.774442,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4275,8 +4435,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_drop_off",
-      "lat": 1.2947135,
-      "lon": 103.7746471,
+      "lat": 1.294668,
+      "lon": 103.7746393,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -4293,8 +4453,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Artificial Intelligence Research Lab 2",
-      "lat": 1.2948158,
-      "lon": 103.7747331,
+      "lat": 1.2947382,
+      "lon": 103.7747537,
       "node_type": "room",
       "floor": -1,
       "building_code": "com3",
@@ -4309,8 +4469,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_stairwell",
-      "lat": 1.2947589,
-      "lon": 103.7744979,
+      "lat": 1.294755,
+      "lon": 103.7745102,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com3",
@@ -4328,8 +4488,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Multipurpose Hall 3",
-      "lat": 1.2949428,
-      "lon": 103.7746184,
+      "lat": 1.2949362,
+      "lon": 103.7746388,
       "node_type": "room",
       "floor": 1,
       "building_code": "com3",
@@ -4347,8 +4507,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Multipurpose Hall 2",
-      "lat": 1.2948485,
-      "lon": 103.7746534,
+      "lat": 1.2948412,
+      "lon": 103.774676,
       "node_type": "room",
       "floor": 1,
       "building_code": "com3",
@@ -4366,8 +4526,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Multipurpose Hall 1",
-      "lat": 1.2947483,
-      "lon": 103.7746758,
+      "lat": 1.2947406,
+      "lon": 103.7747,
       "node_type": "room",
       "floor": 1,
       "building_code": "com3",
@@ -4382,8 +4542,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_junction2",
-      "lat": 1.2949733,
-      "lon": 103.7745295,
+      "lat": 1.2949687,
+      "lon": 103.774544,
       "node_type": "junction",
       "floor": 1,
       "building_code": "com3",
@@ -4398,8 +4558,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_7",
-      "lat": 1.2949806,
-      "lon": 103.7743753,
+      "lat": 1.2949792,
+      "lon": 103.7743796,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4417,8 +4577,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "COM3 01-20",
-      "lat": 1.2949138,
-      "lon": 103.7743157,
+      "lat": 1.2949137,
+      "lon": 103.7743159,
       "node_type": "seminar room",
       "floor": 1,
       "building_code": "com3",
@@ -4436,8 +4596,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "COM3 01-21",
-      "lat": 1.2949514,
-      "lon": 103.7742431,
+      "lat": 1.2949529,
+      "lon": 103.7742386,
       "node_type": "seminar room",
       "floor": 1,
       "building_code": "com3",
@@ -4454,8 +4614,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Makers@SOC",
-      "lat": 1.2949189,
-      "lon": 103.7744642,
+      "lat": 1.2949157,
+      "lon": 103.7744743,
       "node_type": "room",
       "floor": 1,
       "building_code": "com3",
@@ -4470,8 +4630,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_junction3",
-      "lat": 1.2946332,
-      "lon": 103.7746605,
+      "lat": 1.2946258,
+      "lon": 103.7746836,
       "node_type": "junction",
       "floor": 1,
       "building_code": "com3",
@@ -4486,8 +4646,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Makan Boleh",
-      "lat": 1.2946008,
-      "lon": 103.7745736,
+      "lat": 1.2945952,
+      "lon": 103.7745909,
       "node_type": "room",
       "floor": 1,
       "building_code": "com3",
@@ -4502,8 +4662,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Coffee Bean",
-      "lat": 1.2945248,
-      "lon": 103.7745466,
+      "lat": 1.2945198,
+      "lon": 103.7745621,
       "node_type": "room",
       "floor": 1,
       "building_code": "com3",
@@ -4518,8 +4678,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_6",
-      "lat": 1.2944449,
-      "lon": 103.7745706,
+      "lat": 1.2944394,
+      "lon": 103.7745877,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4534,8 +4694,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "The Terrace",
-      "lat": 1.2943001,
-      "lon": 103.774359,
+      "lat": 1.2942992,
+      "lon": 103.774362,
       "node_type": "canteen",
       "floor": 1,
       "building_code": "com3",
@@ -4550,14 +4710,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_5",
-      "lat": 1.2947921,
-      "lon": 103.7748398,
+      "lat": 1.2947789,
+      "lon": 103.7748729,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
       "_px": [
-        957,
-        285
+        956,
+        287
       ],
       "_floorId": "com3:1"
     },
@@ -4566,8 +4726,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_4",
-      "lat": 1.2949328,
-      "lon": 103.7747729,
+      "lat": 1.294923,
+      "lon": 103.7748035,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4585,8 +4745,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "COM3 01-23",
-      "lat": 1.2950397,
-      "lon": 103.7748295,
+      "lat": 1.2950286,
+      "lon": 103.7748639,
       "node_type": "seminar room",
       "floor": 1,
       "building_code": "com3",
@@ -4604,8 +4764,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "COM3 01-25",
-      "lat": 1.294918,
-      "lon": 103.7748975,
+      "lat": 1.2949055,
+      "lon": 103.7749364,
       "node_type": "seminar room",
       "floor": 1,
       "building_code": "com3",
@@ -4620,8 +4780,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_9",
-      "lat": 1.2947068,
-      "lon": 103.774361,
+      "lat": 1.2947058,
+      "lon": 103.7743642,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4636,8 +4796,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_8",
-      "lat": 1.2947668,
-      "lon": 103.7743202,
+      "lat": 1.2947667,
+      "lon": 103.7743207,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4652,8 +4812,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor6",
-      "lat": 1.295031,
-      "lon": 103.7747714,
+      "lat": 1.2949212,
+      "lon": 103.774835,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -4668,8 +4828,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_lift",
-      "lat": 1.2949694,
-      "lon": 103.7748171,
+      "lat": 1.2948546,
+      "lon": 103.7748752,
       "node_type": "lift_station",
       "floor": -1,
       "building_code": "com3",
@@ -4684,8 +4844,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_stairs_1",
-      "lat": 1.2949919,
-      "lon": 103.7748338,
+      "lat": 1.2948705,
+      "lon": 103.7748976,
       "node_type": "stairs",
       "floor": -1,
       "building_code": "com3",
@@ -4700,14 +4860,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor7",
-      "lat": 1.2948322,
-      "lon": 103.7748449,
+      "lat": 1.2947213,
+      "lon": 103.7748799,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
       "_px": [
         1011,
-        312
+        316
       ],
       "_floorId": "com3:-1"
     },
@@ -4719,8 +4879,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "COM3 01-22",
-      "lat": 1.2949932,
-      "lon": 103.7747346,
+      "lat": 1.2949842,
+      "lon": 103.7747627,
       "node_type": "seminar room",
       "floor": 1,
       "building_code": "com3",
@@ -4735,8 +4895,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_2",
-      "lat": 1.2950588,
-      "lon": 103.7747726,
+      "lat": 1.2950489,
+      "lon": 103.7748032,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4751,8 +4911,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_1",
-      "lat": 1.2950127,
-      "lon": 103.7746731,
+      "lat": 1.295005,
+      "lon": 103.7746971,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4767,8 +4927,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_lift",
-      "lat": 1.2948647,
-      "lon": 103.774829,
+      "lat": 1.2948537,
+      "lon": 103.7748633,
       "node_type": "lift_station",
       "floor": 1,
       "building_code": "com3",
@@ -4783,8 +4943,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_stairs",
-      "lat": 1.2948847,
-      "lon": 103.7748529,
+      "lat": 1.2948731,
+      "lon": 103.7748888,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com3",
@@ -4799,8 +4959,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Smooy",
-      "lat": 1.2945204,
-      "lon": 103.7744612,
+      "lat": 1.2945173,
+      "lon": 103.774471,
       "node_type": "room",
       "floor": 1,
       "building_code": "com3",
@@ -4815,8 +4975,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_junction1",
-      "lat": 1.294799,
-      "lon": 103.7745671,
+      "lat": 1.2947936,
+      "lon": 103.774584,
       "node_type": "junction",
       "floor": 1,
       "building_code": "com3",
@@ -4831,8 +4991,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_3",
-      "lat": 1.2949533,
-      "lon": 103.7748278,
+      "lat": 1.2949423,
+      "lon": 103.7748621,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4847,8 +5007,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_10",
-      "lat": 1.2945144,
-      "lon": 103.7743693,
+      "lat": 1.2945132,
+      "lon": 103.774373,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -4863,8 +5023,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_stairs_4",
-      "lat": 1.2944621,
-      "lon": 103.7744578,
+      "lat": 1.2944898,
+      "lon": 103.7743828,
       "node_type": "stairs",
       "floor": -1,
       "building_code": "com3",
@@ -4879,8 +5039,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_stairs_4",
-      "lat": 1.2945383,
-      "lon": 103.7744039,
+      "lat": 1.2945364,
+      "lon": 103.7744099,
       "node_type": "stairs",
       "floor": 1,
       "building_code": "com3",
@@ -4895,8 +5055,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_stairwell",
-      "lat": 1.2947579,
-      "lon": 103.7745076,
+      "lat": 1.2947568,
+      "lon": 103.7745074,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "com3",
@@ -4911,8 +5071,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_junction_1",
-      "lat": 1.2947979,
-      "lon": 103.7745907,
+      "lat": 1.2947964,
+      "lon": 103.7745914,
       "node_type": "junction",
       "floor": 2,
       "building_code": "com3",
@@ -4930,8 +5090,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Meeting Room 21",
-      "lat": 1.2948893,
-      "lon": 103.7746109,
+      "lat": 1.294887,
+      "lon": 103.7746107,
       "node_type": "room",
       "floor": 2,
       "building_code": "com3",
@@ -4949,8 +5109,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "COM3 02-60",
-      "lat": 1.2948276,
-      "lon": 103.7746606,
+      "lat": 1.294825,
+      "lon": 103.7746608,
       "node_type": "seminar room",
       "floor": 2,
       "building_code": "com3",
@@ -4968,8 +5128,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Meeting Room 20",
-      "lat": 1.2947451,
-      "lon": 103.7747071,
+      "lat": 1.2947412,
+      "lon": 103.7747074,
       "node_type": "discussion room",
       "floor": 2,
       "building_code": "com3",
@@ -4987,8 +5147,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Meeting Room 22",
-      "lat": 1.2949357,
-      "lon": 103.7745946,
+      "lat": 1.2949338,
+      "lon": 103.7745945,
       "node_type": "room",
       "floor": 2,
       "building_code": "com3",
@@ -5006,8 +5166,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Meeting Room 23",
-      "lat": 1.2949474,
-      "lon": 103.7746347,
+      "lat": 1.2949459,
+      "lon": 103.7746352,
       "node_type": "room",
       "floor": 2,
       "building_code": "com3",
@@ -5025,8 +5185,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Meeting Room 24",
-      "lat": 1.2949585,
-      "lon": 103.7746904,
+      "lat": 1.2949567,
+      "lon": 103.7746903,
       "node_type": "room",
       "floor": 2,
       "building_code": "com3",
@@ -5044,8 +5204,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Information Systems and Analytics Research Lab 1",
-      "lat": 1.2949546,
-      "lon": 103.7747979,
+      "lat": 1.2949509,
+      "lon": 103.7747978,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com3",
@@ -5063,7 +5223,7 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Artificial Intelligence Research Lab 1",
-      "lat": 1.2949134,
+      "lat": 1.2949131,
       "lon": 103.7744522,
       "node_type": "lab",
       "floor": 2,
@@ -5079,8 +5239,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_stairs_4",
-      "lat": 1.294547,
-      "lon": 103.7744135,
+      "lat": 1.2945456,
+      "lon": 103.7744137,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "com3",
@@ -5095,8 +5255,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_stairs_1",
-      "lat": 1.2948691,
-      "lon": 103.7749066,
+      "lat": 1.2948644,
+      "lon": 103.7749069,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "com3",
@@ -5111,7 +5271,7 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_lift",
-      "lat": 1.2948437,
+      "lat": 1.2948388,
       "lon": 103.7748805,
       "node_type": "lift_station",
       "floor": 2,
@@ -5130,8 +5290,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Meeting Room 25",
-      "lat": 1.2947762,
-      "lon": 103.7747686,
+      "lat": 1.294773,
+      "lon": 103.7747684,
       "node_type": "room",
       "floor": 2,
       "building_code": "com3",
@@ -5149,8 +5309,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Programming Languages & Software Engineering Research Lab",
-      "lat": 1.2945295,
-      "lon": 103.7745141,
+      "lat": 1.2945274,
+      "lon": 103.7745142,
       "node_type": "lab",
       "floor": 2,
       "building_code": "com3",
@@ -5165,8 +5325,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_1",
-      "lat": 1.2947128,
-      "lon": 103.7743568,
+      "lat": 1.2947133,
+      "lon": 103.7743571,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5181,8 +5341,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_2",
-      "lat": 1.2944932,
-      "lon": 103.77435,
+      "lat": 1.2944933,
+      "lon": 103.7743496,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5197,8 +5357,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_junction_2",
-      "lat": 1.2946535,
-      "lon": 103.7746662,
+      "lat": 1.2946504,
+      "lon": 103.7746664,
       "node_type": "junction",
       "floor": 2,
       "building_code": "com3",
@@ -5213,8 +5373,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_4",
-      "lat": 1.2947909,
-      "lon": 103.7748755,
+      "lat": 1.2947863,
+      "lon": 103.7748757,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5229,7 +5389,7 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_7",
-      "lat": 1.2949557,
+      "lat": 1.2949547,
       "lon": 103.7745342,
       "node_type": "corridor",
       "floor": 2,
@@ -5245,8 +5405,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_5",
-      "lat": 1.2950237,
-      "lon": 103.7747516,
+      "lat": 1.2950209,
+      "lon": 103.7747518,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5261,8 +5421,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_6",
-      "lat": 1.294989,
-      "lon": 103.774675,
+      "lat": 1.2949868,
+      "lon": 103.7746751,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5277,8 +5437,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_3",
-      "lat": 1.294417,
-      "lon": 103.7745518,
+      "lat": 1.2944143,
+      "lon": 103.7745519,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5293,8 +5453,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor_8",
-      "lat": 1.2947255,
-      "lon": 103.7747595,
+      "lat": 1.2947217,
+      "lon": 103.7747601,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5325,8 +5485,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr10 com2 floor1",
-      "lat": 1.2935595,
-      "lon": 103.7742288,
+      "lat": 1.2935486,
+      "lon": 103.7742381,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -5341,8 +5501,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "corr11 com2 floor1",
-      "lat": 1.2933732,
-      "lon": 103.7743407,
+      "lat": 1.2933569,
+      "lon": 103.7743556,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com2",
@@ -5357,8 +5517,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor9",
-      "lat": 1.2948076,
-      "lon": 103.7745214,
+      "lat": 1.2947823,
+      "lon": 103.7745145,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -5373,8 +5533,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor7",
-      "lat": 1.2948011,
-      "lon": 103.7744952,
+      "lat": 1.2948006,
+      "lon": 103.7744955,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5389,8 +5549,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_2_corridor8",
-      "lat": 1.2945592,
-      "lon": 103.77438,
+      "lat": 1.294558,
+      "lon": 103.7743802,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com3",
@@ -5405,8 +5565,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_11",
-      "lat": 1.2948114,
-      "lon": 103.7744891,
+      "lat": 1.2948076,
+      "lon": 103.7745009,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -5421,8 +5581,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor8",
-      "lat": 1.2947482,
-      "lon": 103.774486,
+      "lat": 1.2947384,
+      "lon": 103.7744641,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
@@ -5437,14 +5597,14 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_basement_corridor10",
-      "lat": 1.2947535,
-      "lon": 103.7747692,
+      "lat": 1.2946702,
+      "lon": 103.7747885,
       "node_type": "corridor",
       "floor": -1,
       "building_code": "com3",
       "_px": [
-        932,
-        389
+        939,
+        390
       ],
       "_floorId": "com3:-1"
     },
@@ -5469,8 +5629,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "node_com3_1_corridor_12",
-      "lat": 1.2948516,
-      "lon": 103.7749628,
+      "lat": 1.294838,
+      "lon": 103.7750056,
       "node_type": "corridor",
       "floor": 1,
       "building_code": "com3",
@@ -6362,8 +6522,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6 02-06/07",
-      "lat": 1.2954348,
-      "lon": 103.7732764,
+      "lat": 1.295433,
+      "lon": 103.7732659,
       "node_type": "seminar room",
       "floor": 2,
       "building_code": "as6",
@@ -6381,8 +6541,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6 02-08",
-      "lat": 1.2953609,
-      "lon": 103.7733092,
+      "lat": 1.2953589,
+      "lon": 103.7732989,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
@@ -6401,7 +6561,7 @@
       "outdoor_node": null,
       "name": "AS6 02-11",
       "lat": 1.2954388,
-      "lon": 103.773189,
+      "lon": 103.7731873,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
@@ -6419,8 +6579,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6 02-10",
-      "lat": 1.2953842,
-      "lon": 103.7732143,
+      "lat": 1.2953841,
+      "lon": 103.7732126,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
@@ -6438,8 +6598,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6 02-09",
-      "lat": 1.2953301,
-      "lon": 103.773238,
+      "lat": 1.2953299,
+      "lon": 103.7732364,
       "node_type": "tutorial room",
       "floor": 2,
       "building_code": "as6",
@@ -6454,8 +6614,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_2_lift_1",
-      "lat": 1.2952605,
-      "lon": 103.7733895,
+      "lat": 1.295258,
+      "lon": 103.7733754,
       "node_type": "lift_station",
       "floor": 2,
       "building_code": "as6",
@@ -6470,8 +6630,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6_2_stair_1",
-      "lat": 1.2952443,
-      "lon": 103.773346,
+      "lat": 1.2952428,
+      "lon": 103.7733372,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "as6",
@@ -6486,8 +6646,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6_2_stair_2",
-      "lat": 1.2957887,
-      "lon": 103.7732303,
+      "lat": 1.2957841,
+      "lon": 103.7732086,
       "node_type": "stairs",
       "floor": 2,
       "building_code": "as6",
@@ -6502,8 +6662,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_2_junc_1",
-      "lat": 1.295833,
-      "lon": 103.7732064,
+      "lat": 1.2958282,
+      "lon": 103.7731849,
       "node_type": "junction",
       "floor": 2,
       "building_code": "as6",
@@ -6518,8 +6678,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_2_corr_1",
-      "lat": 1.2954906,
-      "lon": 103.773229,
+      "lat": 1.2954891,
+      "lon": 103.7732207,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "as6",
@@ -6534,8 +6694,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_2_corr_2",
-      "lat": 1.2953675,
-      "lon": 103.7732653,
+      "lat": 1.2953664,
+      "lon": 103.7732592,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "as6",
@@ -6550,8 +6710,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_2_corr_3",
-      "lat": 1.2952855,
-      "lon": 103.7733238,
+      "lat": 1.295284,
+      "lon": 103.7733153,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "as6",
@@ -6566,8 +6726,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_1",
-      "lat": 1.295766,
-      "lon": 103.7730669,
+      "lat": 1.2957662,
+      "lon": 103.7730684,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6582,8 +6742,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_2",
-      "lat": 1.295657,
-      "lon": 103.7731195,
+      "lat": 1.2956574,
+      "lon": 103.7731206,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6598,8 +6758,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_3",
-      "lat": 1.2955123,
-      "lon": 103.7731867,
+      "lat": 1.2955124,
+      "lon": 103.7731875,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6614,8 +6774,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_4",
-      "lat": 1.2954217,
-      "lon": 103.7732297,
+      "lat": 1.2954219,
+      "lon": 103.77323,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6630,8 +6790,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_5",
-      "lat": 1.2953422,
-      "lon": 103.7732663,
+      "lat": 1.2953423,
+      "lon": 103.7732668,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6646,8 +6806,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_6",
-      "lat": 1.2952744,
-      "lon": 103.7732984,
+      "lat": 1.2952746,
+      "lon": 103.7732986,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6662,8 +6822,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_7",
-      "lat": 1.2958269,
-      "lon": 103.7730356,
+      "lat": 1.2958271,
+      "lon": 103.7730375,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6678,8 +6838,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_8",
-      "lat": 1.2958528,
-      "lon": 103.7729322,
+      "lat": 1.2958527,
+      "lon": 103.7729327,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6694,8 +6854,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_corr_9",
-      "lat": 1.2958795,
-      "lon": 103.7728695,
+      "lat": 1.2958794,
+      "lon": 103.7728691,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6710,8 +6870,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6_4_stair_2",
-      "lat": 1.2957824,
-      "lon": 103.7731919,
+      "lat": 1.2957827,
+      "lon": 103.7731959,
       "node_type": "stairs",
       "floor": 4,
       "building_code": "as6",
@@ -6726,8 +6886,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6_4_stair_1",
-      "lat": 1.2952464,
-      "lon": 103.7733441,
+      "lat": 1.2952467,
+      "lon": 103.7733447,
       "node_type": "stairs",
       "floor": 4,
       "building_code": "as6",
@@ -6742,8 +6902,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_4_junc_1",
-      "lat": 1.2958146,
-      "lon": 103.7731706,
+      "lat": 1.2958149,
+      "lon": 103.7731744,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "as6",
@@ -6760,8 +6920,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Media Teaching Lab 1",
-      "lat": 1.2957258,
-      "lon": 103.7730492,
+      "lat": 1.2957259,
+      "lon": 103.7730502,
       "node_type": "lab",
       "floor": 4,
       "building_code": "as6",
@@ -6778,8 +6938,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 10: Audio Lab 1",
-      "lat": 1.2958246,
-      "lon": 103.7730823,
+      "lat": 1.2958251,
+      "lon": 103.7730849,
       "node_type": "lab",
       "floor": 4,
       "building_code": "as6",
@@ -6796,8 +6956,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Media Teaching Lab 2A",
-      "lat": 1.2958929,
-      "lon": 103.772955,
+      "lat": 1.2958928,
+      "lon": 103.7729562,
       "node_type": "lab",
       "floor": 4,
       "building_code": "as6",
@@ -6814,8 +6974,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Technical Room",
-      "lat": 1.2958207,
-      "lon": 103.7729288,
+      "lat": 1.2958208,
+      "lon": 103.7729285,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6832,8 +6992,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 9: Human Computer Interaction",
-      "lat": 1.2959254,
-      "lon": 103.7728693,
+      "lat": 1.2959253,
+      "lon": 103.772869,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6851,7 +7011,7 @@
       "outdoor_node": null,
       "name": "Media Studio",
       "lat": 1.2958417,
-      "lon": 103.7728811,
+      "lon": 103.7728804,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6868,8 +7028,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 1: Geometry and Graphics",
-      "lat": 1.2956731,
-      "lon": 103.7731559,
+      "lat": 1.2956736,
+      "lon": 103.7731577,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6886,8 +7046,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Audio 2",
-      "lat": 1.2955014,
-      "lon": 103.7731607,
+      "lat": 1.2955012,
+      "lon": 103.7731609,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6904,8 +7064,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 2: Computational Linguistics",
-      "lat": 1.2954375,
-      "lon": 103.7731827,
+      "lat": 1.2954377,
+      "lon": 103.7731825,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6922,8 +7082,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 4B: Computer Vision",
-      "lat": 1.2953941,
-      "lon": 103.773288,
+      "lat": 1.2953942,
+      "lon": 103.7732894,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6940,8 +7100,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "Document Room",
-      "lat": 1.2953303,
-      "lon": 103.7732427,
+      "lat": 1.2953302,
+      "lon": 103.7732423,
       "node_type": "room",
       "floor": 4,
       "building_code": "as6",
@@ -6956,8 +7116,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6_5_stair_2",
-      "lat": 1.2957844,
-      "lon": 103.7731963,
+      "lat": 1.2957815,
+      "lon": 103.7731965,
       "node_type": "stairs",
       "floor": 5,
       "building_code": "as6",
@@ -6972,8 +7132,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "AS6_5_stair_1",
-      "lat": 1.2952435,
-      "lon": 103.7733323,
+      "lat": 1.2952432,
+      "lon": 103.7733324,
       "node_type": "stairs",
       "floor": 5,
       "building_code": "as6",
@@ -6988,8 +7148,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_5_junc_1",
-      "lat": 1.2958208,
-      "lon": 103.7731731,
+      "lat": 1.2958179,
+      "lon": 103.7731732,
       "node_type": "junction",
       "floor": 5,
       "building_code": "as6",
@@ -7004,8 +7164,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_5_corr_1",
-      "lat": 1.2957774,
-      "lon": 103.7730648,
+      "lat": 1.2957763,
+      "lon": 103.7730647,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
@@ -7020,8 +7180,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_5_corr_2",
-      "lat": 1.2958425,
-      "lon": 103.7730281,
+      "lat": 1.2958412,
+      "lon": 103.7730285,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
@@ -7036,8 +7196,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_5_corr_3",
-      "lat": 1.2958812,
-      "lon": 103.772935,
+      "lat": 1.2958809,
+      "lon": 103.7729348,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
@@ -7052,8 +7212,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_5_corr_4",
-      "lat": 1.2959135,
-      "lon": 103.772856,
+      "lat": 1.2959138,
+      "lon": 103.7728561,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "as6",
@@ -7068,7 +7228,7 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_5_corr_5",
-      "lat": 1.2956185,
+      "lat": 1.2956175,
       "lon": 103.7731407,
       "node_type": "corridor",
       "floor": 5,
@@ -7084,7 +7244,7 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_5_corr_6",
-      "lat": 1.2953562,
+      "lat": 1.2953557,
       "lon": 103.7732643,
       "node_type": "corridor",
       "floor": 5,
@@ -7103,7 +7263,7 @@
       "outdoor_node": null,
       "name": "Meeting Room 6",
       "lat": 1.2953402,
-      "lon": 103.7732329,
+      "lon": 103.7732328,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
@@ -7120,7 +7280,7 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 4: Computer Vision",
-      "lat": 1.2956276,
+      "lat": 1.2956261,
       "lon": 103.7731872,
       "node_type": "room",
       "floor": 5,
@@ -7138,8 +7298,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 5: Visually Immersive Studio",
-      "lat": 1.2956086,
-      "lon": 103.7731105,
+      "lat": 1.2956081,
+      "lon": 103.7731108,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
@@ -7156,8 +7316,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 3: Multimedia Analysis and Synthesis",
-      "lat": 1.2957435,
-      "lon": 103.7731255,
+      "lat": 1.2957418,
+      "lon": 103.7731253,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
@@ -7174,7 +7334,7 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 8: Media Search",
-      "lat": 1.2958483,
+      "lat": 1.2958464,
       "lon": 103.7730771,
       "node_type": "room",
       "floor": 5,
@@ -7192,8 +7352,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 12: Sensors",
-      "lat": 1.2959179,
-      "lon": 103.772961,
+      "lat": 1.2959169,
+      "lon": 103.7729611,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
@@ -7228,8 +7388,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "MEDIA 7: Multimedia Systems",
-      "lat": 1.2959507,
-      "lon": 103.7728718,
+      "lat": 1.2959505,
+      "lon": 103.772872,
       "node_type": "room",
       "floor": 5,
       "building_code": "as6",
@@ -7244,8 +7404,8 @@
       "connects_outdoor": false,
       "outdoor_node": null,
       "name": "as6_2_entrance",
-      "lat": 1.2957861,
-      "lon": 103.7730967,
+      "lat": 1.2957842,
+      "lon": 103.7730886,
       "node_type": "entrance",
       "floor": 2,
       "building_code": "as6",
@@ -7256,18 +7416,18 @@
       "_floorId": "as6:2"
     },
     {
-      "name": "COM2 01-08",
-      "lat": 1.293586,
-      "lon": 103.7741242,
-      "node_type": "tutorial room",
-      "floor": 1,
-      "building_code": "com2",
       "aliases": [
         "Tutorial Room 9",
         "TR9"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
+      "name": "COM2 01-08",
+      "lat": 1.2935764,
+      "lon": 103.7741334,
+      "node_type": "tutorial room",
+      "floor": 1,
+      "building_code": "com2",
       "_px": [
         896,
         611
@@ -7275,18 +7435,18 @@
       "_floorId": "com2:1"
     },
     {
-      "name": "COM3 B1-26",
-      "lat": 1.2949688,
-      "lon": 103.7745463,
-      "node_type": "discussion room",
-      "floor": -1,
-      "building_code": "com3",
       "aliases": [
         "Meeting Room",
         "MR"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
+      "name": "COM3 B1-26",
+      "lat": 1.2949206,
+      "lon": 103.7745705,
+      "node_type": "discussion room",
+      "floor": -1,
+      "building_code": "com3",
       "_px": [
         586,
         255
@@ -7294,17 +7454,17 @@
       "_floorId": "com3:-1"
     },
     {
-      "name": "E&A Cluster 5",
-      "lat": 1.2948291,
-      "lon": 103.7742892,
-      "node_type": "room",
-      "floor": -1,
-      "building_code": "com3",
       "aliases": [
         "COM3 B1-18"
       ],
       "connects_outdoor": false,
       "outdoor_node": null,
+      "name": "E&A Cluster 5",
+      "lat": 1.2948589,
+      "lon": 103.7742572,
+      "node_type": "room",
+      "floor": -1,
+      "building_code": "com3",
       "_px": [
         284,
         414
@@ -7312,15 +7472,15 @@
       "_floorId": "com3:-1"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_2_corridor_5",
       "lat": 1.2951456,
       "lon": 103.7752221,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         178,
         335
@@ -7328,15 +7488,15 @@
       "_floorId": "com4:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_2_corridor_8",
       "lat": 1.29523,
       "lon": 103.7754257,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         877,
         357
@@ -7344,15 +7504,15 @@
       "_floorId": "com4:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_2_corridor_9",
       "lat": 1.2952616,
       "lon": 103.775491,
       "node_type": "corridor",
       "floor": 2,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1107,
         351
@@ -7360,15 +7520,15 @@
       "_floorId": "com4:2"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_3_corridor_7",
       "lat": 1.295147,
       "lon": 103.7752255,
       "node_type": "corridor",
       "floor": 3,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         175,
         356
@@ -7376,15 +7536,15 @@
       "_floorId": "com4:3"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_3_corridor_6",
       "lat": 1.2952583,
       "lon": 103.7754907,
       "node_type": "corridor",
       "floor": 3,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1129,
         381
@@ -7392,15 +7552,15 @@
       "_floorId": "com4:3"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "corridor 13",
       "lat": 1.2952038,
       "lon": 103.7752523,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         322,
         240
@@ -7408,15 +7568,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_4",
       "lat": 1.2951733,
       "lon": 103.7753022,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         443,
         439
@@ -7424,15 +7584,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_5",
       "lat": 1.2952323,
       "lon": 103.7752744,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         440,
         170
@@ -7440,17 +7600,17 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [
+        "COM4 04-01K"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MPL-2 Project Room K",
       "lat": 1.2952363,
       "lon": 103.7753905,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [
-        "COM4 04-01K"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         837,
         353
@@ -7458,15 +7618,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_6",
       "lat": 1.2952239,
       "lon": 103.7753511,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         685,
         332
@@ -7474,15 +7634,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_7",
       "lat": 1.295197,
       "lon": 103.7753654,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         692,
         458
@@ -7490,17 +7650,17 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [
+        "COM4 04-01E"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MPL-2 Formal Collaboration Room E",
       "lat": 1.2952181,
       "lon": 103.7753293,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [
-        "COM4 04-01E"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         603,
         317
@@ -7508,17 +7668,17 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [
+        "COM4 04-01L"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MPL-2 Formal Collaboration Room L",
       "lat": 1.2951894,
       "lon": 103.7753381,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [
-        "COM4 04-01L"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         589,
         440
@@ -7526,17 +7686,17 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [
+        "COM4 04-01H"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MPL-2 Formal Collaboration Room H",
       "lat": 1.2952194,
       "lon": 103.7754506,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [
-        "COM4 04-01H"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1013,
         519
@@ -7544,15 +7704,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_8",
       "lat": 1.2951905,
       "lon": 103.77537,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         698,
         490
@@ -7560,15 +7720,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_10",
       "lat": 1.2952652,
       "lon": 103.7754894,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1214,
         413
@@ -7576,17 +7736,17 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [
+        "COM4 04-01G"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "MPL-2 Project Room G",
       "lat": 1.2952606,
       "lon": 103.775457,
       "node_type": "room",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [
-        "COM4 04-01G"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1098,
         375
@@ -7594,15 +7754,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_9",
       "lat": 1.2952474,
       "lon": 103.7754964,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1210,
         492
@@ -7610,15 +7770,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_4_corridor_11",
       "lat": 1.2953192,
       "lon": 103.7754639,
       "node_type": "corridor",
       "floor": 4,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         1211,
         167
@@ -7626,15 +7786,15 @@
       "_floorId": "com4:4"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_5_corridor_3",
       "lat": 1.2951764,
       "lon": 103.7753092,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         473,
         407
@@ -7642,15 +7802,15 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_5_corridor_4",
       "lat": 1.2951911,
       "lon": 103.7753441,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         602,
         411
@@ -7658,15 +7818,15 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_5_corridor_5",
       "lat": 1.2952037,
       "lon": 103.775372,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         706,
         411
@@ -7674,15 +7834,15 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_5_corridor_6",
       "lat": 1.2952189,
       "lon": 103.7754066,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         834,
         413
@@ -7690,15 +7850,15 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "node_com4_5_corridor_7",
       "lat": 1.2952355,
       "lon": 103.7754433,
       "node_type": "corridor",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         971,
         413
@@ -7706,17 +7866,17 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [
+        "COM4 05-01A"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AI-3 Formal Collaboration Room A",
       "lat": 1.295168,
       "lon": 103.7752657,
       "node_type": "room",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [
-        "COM4 05-01A"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         328,
         370
@@ -7724,17 +7884,17 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [
+        "COM4 05-01B"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AI-3 Formal Collaboration Room B",
       "lat": 1.2951854,
       "lon": 103.7753038,
       "node_type": "room",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [
-        "COM4 05-01B"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         470,
         370
@@ -7742,17 +7902,17 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [
+        "COM4 05-01C"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AI-3 Formal Collaboration Room C",
       "lat": 1.2952022,
       "lon": 103.7753408,
       "node_type": "room",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [
-        "COM4 05-01C"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         608,
         370
@@ -7760,17 +7920,17 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [
+        "COM4 05-01D"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AI-3 Formal Collaboration Room D",
       "lat": 1.295232,
       "lon": 103.7754062,
       "node_type": "room",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [
-        "COM4 05-01D"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         852,
         370
@@ -7778,17 +7938,17 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [
+        "COM4 05-01F"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AI-3 Formal Collaboration Room F",
       "lat": 1.2952041,
       "lon": 103.7754041,
       "node_type": "room",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [
-        "COM4 05-01F"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         805,
         457
@@ -7796,22 +7956,1541 @@
       "_floorId": "com4:5"
     },
     {
+      "aliases": [
+        "COM4 05-01E"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
       "name": "AI-3 Formal Collaboration Room E",
       "lat": 1.2952243,
       "lon": 103.7754505,
       "node_type": "room",
       "floor": 5,
       "building_code": "com4",
-      "aliases": [
-        "COM4 05-01E"
-      ],
-      "connects_outdoor": false,
-      "outdoor_node": null,
       "_px": [
         977,
         460
       ],
       "_floorId": "com4:5"
+    },
+    {
+      "aliases": [
+        "UTSRC-GLR"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Global Learning Room",
+      "lat": 1.3044738,
+      "lon": 103.7730044,
+      "node_type": "discussion room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        1053,
+        793
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Lecture Theatre 50"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "LT 50",
+      "lat": 1.3042305,
+      "lon": 103.7729302,
+      "node_type": "lecture theatre",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        994,
+        979
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Lecture Theatre 51"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "LT 51",
+      "lat": 1.3041308,
+      "lon": 103.7728836,
+      "node_type": "lecture theatre",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        957,
+        1055
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Seminar Room 5",
+        "SR5"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR5",
+      "lat": 1.3041637,
+      "lon": 103.7727655,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        864,
+        1028
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Seminar Room 4",
+        "SR4"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR4",
+      "lat": 1.3042163,
+      "lon": 103.7727958,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        888,
+        988
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Seminar Room 3",
+        "SR3"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR3",
+      "lat": 1.3042662,
+      "lon": 103.7728223,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        909,
+        950
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Seminar Room 2",
+        "SR2"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR2",
+      "lat": 1.3043162,
+      "lon": 103.7728489,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        930,
+        912
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Seminar Room 1",
+        "SR1"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR1",
+      "lat": 1.3043687,
+      "lon": 103.7728753,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        951,
+        872
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Subway",
+      "lat": 1.3045117,
+      "lon": 103.7728712,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        948,
+        762
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Octobox",
+      "lat": 1.3045874,
+      "lon": 103.7727467,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        850,
+        702
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Waa Cow!",
+      "lat": 1.3047322,
+      "lon": 103.7725574,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        701,
+        588
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Bueno Bueno",
+      "lat": 1.3046741,
+      "lon": 103.7725816,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        720,
+        633
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_18",
+      "lat": 1.3041637,
+      "lon": 103.7728328,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        917,
+        1029
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_17",
+      "lat": 1.3042518,
+      "lon": 103.7728858,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        959,
+        962
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_16",
+      "lat": 1.3043382,
+      "lon": 103.772916,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        983,
+        896
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_12",
+      "lat": 1.3044346,
+      "lon": 103.7729221,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        988,
+        822
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_14",
+      "lat": 1.3045652,
+      "lon": 103.7725984,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        733,
+        717
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "UT-AUD2"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTown Auditorium 2",
+      "lat": 1.3043791,
+      "lon": 103.7726636,
+      "node_type": "lecture theatre",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        784,
+        861
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Dance Studio",
+      "lat": 1.3046049,
+      "lon": 103.7724246,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        596,
+        684
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Bismillah Biryani",
+      "lat": 1.3049885,
+      "lon": 103.7724185,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        592,
+        389
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "FairPrice Xpress",
+      "lat": 1.3048191,
+      "lon": 103.7726142,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        746,
+        522
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Super Snacks",
+      "lat": 1.304783,
+      "lon": 103.7727716,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        870,
+        552
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_15",
+      "lat": 1.3046119,
+      "lon": 103.7725222,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        673,
+        680
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_5",
+      "lat": 1.3046997,
+      "lon": 103.772418,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        591,
+        611
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_6",
+      "lat": 1.3047699,
+      "lon": 103.772485,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        644,
+        558
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_7",
+      "lat": 1.3048674,
+      "lon": 103.7725494,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        695,
+        484
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_8",
+      "lat": 1.3049328,
+      "lon": 103.7726431,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        769,
+        435
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_9",
+      "lat": 1.3048306,
+      "lon": 103.772812,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        902,
+        516
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_10",
+      "lat": 1.3047115,
+      "lon": 103.7729873,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        1040,
+        610
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_11",
+      "lat": 1.3045957,
+      "lon": 103.7730548,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        1093,
+        700
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": true,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_19",
+      "lat": 1.3045133,
+      "lon": 103.7732402,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        1239,
+        766
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_4",
+      "lat": 1.304813,
+      "lon": 103.772353,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        540,
+        523
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Frank by OCBC",
+      "lat": 1.3048024,
+      "lon": 103.7722719,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        476,
+        530
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_3",
+      "lat": 1.304922,
+      "lon": 103.7722678,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        473,
+        438
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_2",
+      "lat": 1.3049854,
+      "lon": 103.7721801,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        404,
+        388
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "University Sports Hall 1"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSH 1",
+      "lat": 1.3050474,
+      "lon": 103.7719454,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        219,
+        337
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "University Town Sports Hall 2"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSH 2",
+      "lat": 1.3048731,
+      "lon": 103.7720168,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        275,
+        472
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_1",
+      "lat": 1.3050522,
+      "lon": 103.7721356,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        369,
+        336
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_stairs_1",
+      "lat": 1.3044773,
+      "lon": 103.7725555,
+      "node_type": "stairs",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        699,
+        784
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "SRC Gym",
+      "lat": 1.3049644,
+      "lon": 103.7722414,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        447,
+        427
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_1",
+      "lat": 1.3048042,
+      "lon": 103.7723085,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        498,
+        549
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_2",
+      "lat": 1.3047203,
+      "lon": 103.7723716,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        546,
+        613
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Ante Room",
+      "lat": 1.3046442,
+      "lon": 103.7724176,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        581,
+        671
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_3",
+      "lat": 1.3045508,
+      "lon": 103.7723664,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        542,
+        742
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Studio M1",
+      "lat": 1.3045889,
+      "lon": 103.7723387,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        521,
+        713
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Studio M2",
+      "lat": 1.3045547,
+      "lon": 103.7723217,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        508,
+        739
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Practice Room M5",
+      "lat": 1.3045404,
+      "lon": 103.7724019,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        569,
+        750
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Studio M3",
+      "lat": 1.3045166,
+      "lon": 103.7723019,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        493,
+        768
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Studio M5",
+      "lat": 1.3044983,
+      "lon": 103.7723822,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        554,
+        782
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Studio M4",
+      "lat": 1.3044838,
+      "lon": 103.7722875,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        482,
+        793
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Practice Room M2",
+      "lat": 1.3044352,
+      "lon": 103.7722599,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        461,
+        830
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Practice Room L2",
+      "lat": 1.3044129,
+      "lon": 103.7723519,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        531,
+        847
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_4",
+      "lat": 1.3045101,
+      "lon": 103.7723427,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        524,
+        773
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_5",
+      "lat": 1.3044838,
+      "lon": 103.7723335,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        517,
+        793
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_6",
+      "lat": 1.3044299,
+      "lon": 103.772302,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        493,
+        834
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_7",
+      "lat": 1.3044471,
+      "lon": 103.772398,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        566,
+        821
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Instrument Storage 1",
+      "lat": 1.3044512,
+      "lon": 103.7724677,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        619,
+        818
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Practice Room L3",
+      "lat": 1.3043802,
+      "lon": 103.7724216,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        584,
+        872
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_8",
+      "lat": 1.304417,
+      "lon": 103.7724466,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        603,
+        844
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_9",
+      "lat": 1.3043672,
+      "lon": 103.7725347,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        670,
+        882
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_10",
+      "lat": 1.3045551,
+      "lon": 103.7726346,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        746,
+        739
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_lift_1",
+      "lat": 1.3049329,
+      "lon": 103.772294,
+      "node_type": "lift_station",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        487,
+        451
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_lift_1",
+      "lat": 1.3049526,
+      "lon": 103.7723058,
+      "node_type": "lift_station",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        503,
+        415
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Flavours@UTown",
+      "lat": 1.3046801,
+      "lon": 103.7728292,
+      "node_type": "canteen",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        894,
+        644
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_12",
+      "lat": 1.3047061,
+      "lon": 103.7725899,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        712,
+        624
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_13",
+      "lat": 1.3046001,
+      "lon": 103.7729095,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        955,
+        705
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_14",
+      "lat": 1.3044646,
+      "lon": 103.7727701,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        849,
+        808
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_15",
+      "lat": 1.3043768,
+      "lon": 103.7728924,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        942,
+        875
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_16",
+      "lat": 1.304256,
+      "lon": 103.7728872,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        938,
+        967
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [
+        "Lecture Theatre 52"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "LT 52",
+      "lat": 1.3042009,
+      "lon": 103.7729201,
+      "node_type": "lecture theatre",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        963,
+        1009
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [
+        "Lecture Theatre 53"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "LT 53",
+      "lat": 1.3040984,
+      "lon": 103.7728662,
+      "node_type": "lecture theatre",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        922,
+        1087
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [
+        "University Town Auditorium 2"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UT Aud 2",
+      "lat": 1.3042295,
+      "lon": 103.7727268,
+      "node_type": "lecture theatre",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        816,
+        987
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [
+        "Seminar Room 8",
+        "SR8"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR8",
+      "lat": 1.3042928,
+      "lon": 103.7729542,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        989,
+        939
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [
+        "Seminar Room 9",
+        "SR9"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR9",
+      "lat": 1.3042732,
+      "lon": 103.7730266,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        1044,
+        954
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [
+        "Seminar Room 7",
+        "SR7"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR7",
+      "lat": 1.3042142,
+      "lon": 103.7730595,
+      "node_type": "seminar room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        1069,
+        999
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_18",
+      "lat": 1.3042482,
+      "lon": 103.7729924,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        1018,
+        973
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_19",
+      "lat": 1.3042233,
+      "lon": 103.7730397,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        1054,
+        992
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_20",
+      "lat": 1.3043692,
+      "lon": 103.7731028,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        1102,
+        881
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_21",
+      "lat": 1.3043837,
+      "lon": 103.7731909,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        1169,
+        870
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": true,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_22",
+      "lat": 1.3043287,
+      "lon": 103.7732804,
+      "node_type": "entrance",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        1237,
+        912
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com3_1_stairs_connector",
+      "lat": 1.2944171,
+      "lon": 103.7741949,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com3",
+      "_px": [
+        510,
+        752
+      ],
+      "_floorId": "com3:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_com2_1_stairs_connector",
+      "lat": 1.294501,
+      "lon": 103.7741074,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "com2",
+      "_px": [
+        111,
+        136
+      ],
+      "_floorId": "com2:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_11",
+      "lat": 1.3046246,
+      "lon": 103.7725373,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        672,
+        686
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_corridor_17",
+      "lat": 1.3041299,
+      "lon": 103.772853,
+      "node_type": "corridor",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        912,
+        1063
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_corridor_13",
+      "lat": 1.304523,
+      "lon": 103.7727076,
+      "node_type": "corridor",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        819,
+        751
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Italian Restaurant"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Sapore",
+      "lat": 1.3045982,
+      "lon": 103.7729762,
+      "node_type": "room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        1031,
+        697
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_1_lift_2",
+      "lat": 1.3046366,
+      "lon": 103.7726629,
+      "node_type": "lift_station",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        784,
+        663
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [
+        "Seminar Room 6",
+        "SR6"
+      ],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "UTSRC-SR6",
+      "lat": 1.3043068,
+      "lon": 103.7729782,
+      "node_type": "seminar room",
+      "floor": 1,
+      "building_code": "src",
+      "_px": [
+        1032,
+        921
+      ],
+      "_floorId": "src:1"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_lift_2",
+      "lat": 1.3046103,
+      "lon": 103.7726583,
+      "node_type": "lift_station",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        764,
+        697
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Studio M6",
+      "lat": 1.3044708,
+      "lon": 103.7724137,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        578,
+        803
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "Practice Room M3",
+      "lat": 1.3043813,
+      "lon": 103.7722757,
+      "node_type": "room",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        473,
+        871
+      ],
+      "_floorId": "src:2"
+    },
+    {
+      "aliases": [],
+      "connects_outdoor": false,
+      "outdoor_node": null,
+      "name": "node_src_2_stairs_1",
+      "lat": 1.3043989,
+      "lon": 103.7727307,
+      "node_type": "stairs",
+      "floor": 2,
+      "building_code": "src",
+      "_px": [
+        819,
+        858
+      ],
+      "_floorId": "src:2"
     }
   ],
   "edges": [
@@ -9674,6 +11353,15 @@
     {
       "from": "corr14 com1 floor2",
       "to": "corr16 com1 floor2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "corr16 com1 floor2",
+      "to": "corr13 com1 floor2",
       "mode": "walk",
       "instruction": "",
       "reverse_instruction": null,
@@ -12195,6 +13883,933 @@
       "instruction": "",
       "reverse_instruction": null,
       "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_corridor_10",
+      "to": "node_com3_1_stairs_connector",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com3_1_stairs_connector",
+      "to": "The Terrace",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_com2_1_stairs_connector",
+      "to": "corr1 com2 floor1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
+      "is_sheltered": true
+    },
+    {
+      "from": "SRC Gym",
+      "to": "node_src_2_corridor_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "SRC Gym",
+      "to": "node_src_2_lift_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_lift_1",
+      "to": "node_src_2_corridor_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_1",
+      "to": "node_src_2_corridor_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_2",
+      "to": "Ante Room",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_2",
+      "to": "node_src_2_corridor_11",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_11",
+      "to": "Ante Room",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Ante Room",
+      "to": "node_src_2_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_3",
+      "to": "Studio M1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_3",
+      "to": "Studio M2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_3",
+      "to": "Practice Room M5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_3",
+      "to": "node_src_2_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_4",
+      "to": "Studio M3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_4",
+      "to": "node_src_2_corridor_5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_5",
+      "to": "Studio M4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_5",
+      "to": "node_src_2_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_6",
+      "to": "Practice Room M2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_6",
+      "to": "Practice Room L2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_5",
+      "to": "node_src_2_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_7",
+      "to": "Practice Room L2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_7",
+      "to": "node_src_2_corridor_8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_8",
+      "to": "Practice Room L3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_8",
+      "to": "Instrument Storage 1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_8",
+      "to": "node_src_2_corridor_9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_9",
+      "to": "node_src_2_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_10",
+      "to": "node_src_2_corridor_11",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_10",
+      "to": "node_src_2_corridor_14",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_11",
+      "to": "node_src_2_corridor_12",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_12",
+      "to": "Flavours@UTown",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Flavours@UTown",
+      "to": "node_src_2_corridor_13",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_13",
+      "to": "node_src_2_corridor_14",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_14",
+      "to": "node_src_2_corridor_15",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_15",
+      "to": "node_src_2_corridor_16",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_16",
+      "to": "UT Aud 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_16",
+      "to": "node_src_2_corridor_17",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_17",
+      "to": "LT 53",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_16",
+      "to": "LT 52",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_16",
+      "to": "node_src_2_corridor_18",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_18",
+      "to": "UTSRC-SR8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_18",
+      "to": "UTSRC-SR9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_18",
+      "to": "node_src_2_corridor_19",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_19",
+      "to": "UTSRC-SR7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_19",
+      "to": "node_src_2_corridor_20",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_20",
+      "to": "node_src_2_corridor_21",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_21",
+      "to": "node_src_2_corridor_13",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "UT Aud 2",
+      "to": "node_src_2_corridor_17",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_21",
+      "to": "node_src_2_corridor_22",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "UTSH 1",
+      "to": "node_src_1_corridor_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_1",
+      "to": "node_src_1_corridor_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_2",
+      "to": "UTSH 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_2",
+      "to": "node_src_1_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_3",
+      "to": "node_src_1_lift_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Frank by OCBC",
+      "to": "node_src_1_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Frank by OCBC",
+      "to": "node_src_1_corridor_4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_4",
+      "to": "node_src_1_corridor_3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_4",
+      "to": "node_src_1_corridor_5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_5",
+      "to": "Dance Studio",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_5",
+      "to": "node_src_1_corridor_15",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_15",
+      "to": "Dance Studio",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_5",
+      "to": "node_src_1_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_6",
+      "to": "node_src_1_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_7",
+      "to": "node_src_1_corridor_8",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_8",
+      "to": "Bismillah Biryani",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_4",
+      "to": "Bismillah Biryani",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_8",
+      "to": "node_src_1_corridor_9",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_9",
+      "to": "Super Snacks",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_9",
+      "to": "node_src_1_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "FairPrice Xpress",
+      "to": "node_src_1_corridor_7",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Waa Cow!",
+      "to": "node_src_1_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Bueno Bueno",
+      "to": "node_src_1_corridor_15",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_15",
+      "to": "node_src_1_corridor_14",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_14",
+      "to": "node_src_1_stairs_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_14",
+      "to": "node_src_1_corridor_13",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_13",
+      "to": "UTown Auditorium 2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_13",
+      "to": "Octobox",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_13",
+      "to": "node_src_1_corridor_12",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_12",
+      "to": "Subway",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_12",
+      "to": "Global Learning Room",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_12",
+      "to": "node_src_1_corridor_11",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_11",
+      "to": "node_src_1_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_11",
+      "to": "Sapore",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_12",
+      "to": "node_src_1_corridor_16",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_16",
+      "to": "UTSRC-SR1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_16",
+      "to": "UTSRC-SR2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_16",
+      "to": "node_src_1_corridor_17",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_17",
+      "to": "LT 50",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_17",
+      "to": "UTSRC-SR3",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_17",
+      "to": "node_src_1_corridor_18",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_18",
+      "to": "LT 51",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_18",
+      "to": "UTSRC-SR5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_18",
+      "to": "UTSRC-SR4",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_11",
+      "to": "node_src_1_corridor_19",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_15",
+      "to": "node_src_2_corridor_20",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_1_corridor_14",
+      "to": "node_src_1_lift_2",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "UTSRC-SR6",
+      "to": "node_src_1_corridor_16",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_lift_2",
+      "to": "node_src_2_corridor_10",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_7",
+      "to": "Studio M6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "Practice Room M3",
+      "to": "node_src_2_corridor_6",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_5",
+      "to": "Studio M5",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": true,
+      "is_sheltered": true
+    },
+    {
+      "from": "node_src_2_corridor_14",
+      "to": "node_src_2_stairs_1",
+      "mode": "walk",
+      "instruction": "",
+      "reverse_instruction": null,
+      "is_accessible": false,
       "is_sheltered": true
     }
   ]
