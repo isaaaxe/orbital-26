@@ -204,4 +204,56 @@ POI_EXTRAS = {
             ],
         },
     },
+    # --- UTown food venues: canteen rows with empty stalls (fill in later). ---
+    # halal_availability defaulted False (unverified) -- update when known.
+    "UDON DON BAR":      {"canteen": {"halal_availability": True, "stalls": []}},
+    "Hwang's":           {"canteen": {"halal_availability": False, "stalls": []}},
+    "Jollibee NUS":      {"canteen": {"halal_availability": True, "stalls": []}},
+    "Mr Bean":           {"canteen": {"halal_availability": True, "stalls": []}},
+    "Makan Mala":        {"canteen": {"halal_availability": True, "stalls": []}},
+    "The Royals Bistro": {"canteen": {"halal_availability": True, "stalls": []}},
+    "Fine Food": {
+        "canteen": {
+            "halal_availability": True,
+            "stalls": [
+                "Yong Tau Foo",
+                "Thai Cuisine",
+                "Japanese Fusion",
+                "Scrambled Egg Bowl",
+                "Fish Soup/Ban Mian",
+                "Mini Wok",
+                "Xiao Long Bao",
+                "Snail Noodle",
+                "Mala Hotpot",
+                "Korean Hotplate",
+                "Economic Rice",
+                "San Chen Salad Bar",
+                "Fruits & Juice",
+                "Beverage",
+                "Hot Pot",
+                "Rice & Noodle",
+            ],
+        },
+    },
+    "Starbucks":         {"canteen": {"halal_availability": True, "stalls": []}},
+
+    # Flavours@UTown: SRC L2 food court (curated canteen in updated_seed.py).
+    "Flavours@UTown": {
+        "canteen": {
+            "halal_availability": True,
+            "stalls": [
+                "Haji Karim",
+                "Fruits & Drinks",
+                "Yong Tau Foo",
+                "Pondok Nasi Lemak",
+                "Mini Wok",
+                "Yu Xiang Fang Scrambled Egg Rice",
+                "Koka Noodle",
+                "Mala Hot Pot",
+                "Sichuan Cuisine",
+                "Japanese",
+                "Mixed Veg Rice",
+            ],
+        },
+    },
 }

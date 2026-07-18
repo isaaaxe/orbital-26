@@ -1,7 +1,18 @@
 from fastapi import FastAPI
+from contextlib import asynccontextmanager
+from core.database import AsyncSessionLocal
+from algorithms.graph_builder import buildGraph, GraphCache
 from routers import locations, campus_map, routes, saves, users, recent_locations, auth, health, buses, events
 
-app = FastAPI(title="Routes@NUS Backend")
+@asynccontextmanager
+async def lifespan(app):
+    async with AsyncSessionLocal() as session:
+        result : GraphCache = await buildGraph(session)
+    app.state.graph = result
+
+    yield
+
+app = FastAPI(title="Routes@NUS Backend", lifespan=lifespan)
 
 app.include_router(locations.router)
 app.include_router(routes.router)
