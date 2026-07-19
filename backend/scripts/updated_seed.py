@@ -336,6 +336,11 @@ LOCATION_SPECS = [
     # curated canteen. nearest_node_name matches the editor node so the auto-promo
     # step skips it (no duplicate Location); stalls live in POI_EXTRAS.
     {"name": "Flavours@UTown", "display_name": "Flavours@UTown", "aliases": ["Flavours", "Flavours UTown"], "location_type": "canteen", "building_code": "src", "floor": 2, "area_name": "utown", "lat": 1.3046801, "lon": 103.7728292, "nearest_node_name": "Flavours@UTown", "nearest_bus_stop_name": "UTown bus stop"},
+    # SRC L1 food outlets: promoted from editor "room" nodes to curated canteens.
+    {"name": "Waa Cow!", "display_name": "Waa Cow!", "aliases": ["Waa Cow"], "location_type": "canteen", "building_code": "src", "floor": 1, "area_name": "utown", "lat": 1.3047322, "lon": 103.7725574, "nearest_node_name": "Waa Cow!", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Subway", "display_name": "Subway", "aliases": ["Subway UTown"], "location_type": "canteen", "building_code": "src", "floor": 1, "area_name": "utown", "lat": 1.3045117, "lon": 103.7728712, "nearest_node_name": "Subway", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Super Snacks", "display_name": "Super Snacks", "aliases": [], "location_type": "canteen", "building_code": "src", "floor": 1, "area_name": "utown", "lat": 1.304783, "lon": 103.7727716, "nearest_node_name": "Super Snacks", "nearest_bus_stop_name": "UTown bus stop"},
+    {"name": "Sapore", "display_name": "Sapore", "aliases": [], "location_type": "canteen", "building_code": "src", "floor": 1, "area_name": "utown", "lat": 1.3045982, "lon": 103.7729762, "nearest_node_name": "Sapore", "nearest_bus_stop_name": "UTown bus stop"},
     # UTown Green: searchable open-space landmark, anchored on its walkway node.
     {"name": "UTown Green", "display_name": "UTown Green", "aliases": ["Town Green", "UTown Field"], "location_type": "field", "building_code": None, "floor": 1, "area_name": "utown", "lat": 1.304875579518128, "lon": 103.77331554050443, "nearest_node_name": "UTown Green", "nearest_bus_stop_name": "UTown bus stop"},
 ]
