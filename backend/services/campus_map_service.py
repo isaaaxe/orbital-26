@@ -51,6 +51,8 @@ async def search_buildings_by_name(session, building_name):
             available_floors=[floor.floor_number for floor in building.floors],
             boundaries=building.boundaries,
             entrance_node_id=building.entrance_node_id,
+            display_latitude=building.display_latitude,
+            display_longitude=building.display_longitude,
         )
         search_result_list.append(search_result)
 
@@ -73,6 +75,8 @@ async def get_building_detail(session, building_id):
         available_floors=[floor.floor_number for floor in building.floors],
         boundaries=building.boundaries,
         entrance_node_id=building.entrance_node_id,
+        display_latitude=building.display_latitude,
+        display_longitude=building.display_longitude,
     )
 
 async def get_all_buildings(session):
@@ -90,7 +94,9 @@ async def get_all_buildings(session):
             area_name=building.area_name,
             available_floors=[floor.floor_number for floor in building.floors],
             boundaries=building.boundaries,
-            entrance_node_id=building.entrance_node_id
+            entrance_node_id=building.entrance_node_id,
+            display_latitude=building.display_latitude,
+            display_longitude=building.display_longitude,
         )
         search_result_list.append(search_result)
 

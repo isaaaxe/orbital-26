@@ -43,6 +43,8 @@ class BuildingDetail(BaseModel):
 
     available_floors: list[int]
     entrance_node_id: str | None = None
+    display_latitude: float
+    display_longitude: float
 
 class FloorDetail(BaseModel):
     floor_id: int

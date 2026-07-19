@@ -8129,7 +8129,7 @@
       "name": "Subway",
       "lat": 1.3045117,
       "lon": 103.7728712,
-      "node_type": "room",
+      "node_type": "canteen",
       "floor": 1,
       "building_code": "src",
       "_px": [
@@ -8161,7 +8161,7 @@
       "name": "Waa Cow!",
       "lat": 1.3047322,
       "lon": 103.7725574,
-      "node_type": "room",
+      "node_type": "canteen",
       "floor": 1,
       "building_code": "src",
       "_px": [
@@ -8339,7 +8339,7 @@
       "name": "Super Snacks",
       "lat": 1.304783,
       "lon": 103.7727716,
-      "node_type": "room",
+      "node_type": "canteen",
       "floor": 1,
       "building_code": "src",
       "_px": [
@@ -9384,7 +9384,7 @@
       "name": "Sapore",
       "lat": 1.3045982,
       "lon": 103.7729762,
-      "node_type": "room",
+      "node_type": "canteen",
       "floor": 1,
       "building_code": "src",
       "_px": [

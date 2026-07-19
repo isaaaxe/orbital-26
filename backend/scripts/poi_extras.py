@@ -46,16 +46,18 @@ _LIBRARY_CROWD = {
     "sat": _LIBRARY_WEEKEND, "sun": _LIBRARY_WEEKEND,
 }
 
-_CANTEEN_HOURS = {
-    "mon": ["07:30", "20:00"], "tue": ["07:30", "20:00"], "wed": ["07:30", "20:00"],
-    "thu": ["07:30", "20:00"], "fri": ["07:30", "20:00"], "sat": ["07:30", "15:00"],
-    # sun absent -> closed
-}
-_LIBRARY_HOURS = {
-    "mon": ["09:00", "21:00"], "tue": ["09:00", "21:00"], "wed": ["09:00", "21:00"],
-    "thu": ["09:00", "21:00"], "fri": ["09:00", "21:00"],
-    "sat": ["10:00", "18:00"], "sun": ["10:00", "18:00"],
-}
+# --- opening-hours helper ----------------------------------------------------
+_ALL_WEEK = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
+_MON_SAT = ("mon", "tue", "wed", "thu", "fri", "sat")
+_MON_FRI = ("mon", "tue", "wed", "thu", "fri")
+
+
+def _daily_hours(open_t, close_t, days=_ALL_WEEK, **per_day):
+    """Same open/close on each day in `days`; `per_day` overrides single days.
+    Any day absent from the result is CLOSED."""
+    hours = {d: [open_t, close_t] for d in days}
+    hours.update(per_day)
+    return hours
 
 
 def _polygon(points):
@@ -132,6 +134,18 @@ _BOUNDARIES = {
         (1.295213467425828,  103.77323618168224),
         (1.2957591492065827, 103.77298244242931),
     ]),
+    "SRC": _polygon([
+        (1.305376227060759,  103.77172622264968),
+        (1.3054414162916408, 103.77240726545438),
+        (1.3051370082160496, 103.77244560827481),
+        (1.304868678104049,  103.7726418332971),
+        (1.3045484858320957, 103.77310645806246),
+        (1.304350056798035,  103.77322148652381),
+        (1.3039171206694307, 103.77296661954085),
+        (1.3044379969400641, 103.77202609270998),
+        (1.3048258354784625, 103.77183437860775),
+        (1.305069361972021,  103.77176897026699),
+    ]),
 }
 
 
@@ -141,7 +155,9 @@ _BOUNDARIES = {
 POI_EXTRAS = {
     "Central Library": {
         "boundaries": None,                 # no polygon supplied for CLB
-        "opening_hours": _LIBRARY_HOURS,
+        # mon-fri 09:00-21:00, both weekend days 10:00-18:00
+        "opening_hours": _daily_hours("09:00", "21:00", _MON_FRI,
+                                      sat=["10:00", "18:00"], sun=["10:00", "18:00"]),
         "crowd_density": _LIBRARY_CROWD,
     },
     "COM1": {
@@ -160,9 +176,13 @@ POI_EXTRAS = {
     "AS6": {
         "boundaries": _BOUNDARIES["AS6"],
     },
+    "SRC": {
+        "boundaries": _BOUNDARIES["SRC"],
+    },
     "Terrace": {
         "boundaries": _BOUNDARIES["Terrace"],
-        "opening_hours": _CANTEEN_HOURS,
+        # mon-fri 07:30-20:00, sat closes early, closed sunday
+        "opening_hours": _daily_hours("07:30", "20:00", _MON_FRI, sat=["07:30", "15:00"]),
         "crowd_density": _CANTEEN_CROWD,
         "canteen": {
             "halal_availability": True,
@@ -179,7 +199,8 @@ POI_EXTRAS = {
     },
     "Deck": {
         "boundaries": _BOUNDARIES["Deck"],
-        "opening_hours": _CANTEEN_HOURS,
+        # mon-fri 07:30-20:00, sat closes early, closed sunday
+        "opening_hours": _daily_hours("07:30", "20:00", _MON_FRI, sat=["07:30", "15:00"]),
         "crowd_density": _CANTEEN_CROWD,
         "canteen": {
             "halal_availability": True,
@@ -206,13 +227,35 @@ POI_EXTRAS = {
     },
     # --- UTown food venues: canteen rows with empty stalls (fill in later). ---
     # halal_availability defaulted False (unverified) -- update when known.
-    "UDON DON BAR":      {"canteen": {"halal_availability": True, "stalls": []}},
-    "Hwang's":           {"canteen": {"halal_availability": False, "stalls": []}},
-    "Jollibee NUS":      {"canteen": {"halal_availability": True, "stalls": []}},
-    "Mr Bean":           {"canteen": {"halal_availability": True, "stalls": []}},
-    "Makan Mala":        {"canteen": {"halal_availability": True, "stalls": []}},
-    "The Royals Bistro": {"canteen": {"halal_availability": True, "stalls": []}},
+    "UDON DON BAR": {
+        "opening_hours": _daily_hours("11:00", "21:30"),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Hwang's": {
+        # closed Sunday
+        "opening_hours": _daily_hours("10:30", "21:00", _MON_SAT),
+        "canteen": {"halal_availability": False, "stalls": []},
+    },
+    "Jollibee NUS": {
+        "opening_hours": _daily_hours("09:00", "21:00"),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Mr Bean": {
+        # closed Sunday; Saturday closes earlier
+        "opening_hours": _daily_hours("08:00", "19:30", _MON_FRI, sat=["08:00", "17:00"]),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Makan Mala": {
+        "opening_hours": _daily_hours("11:00", "21:30"),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "The Royals Bistro": {
+        # closed Sunday
+        "opening_hours": _daily_hours("11:00", "20:00", _MON_SAT),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
     "Fine Food": {
+        "opening_hours": _daily_hours("08:00", "20:30"),
         "canteen": {
             "halal_availability": True,
             "stalls": [
@@ -235,10 +278,37 @@ POI_EXTRAS = {
             ],
         },
     },
-    "Starbucks":         {"canteen": {"halal_availability": True, "stalls": []}},
+    "Starbucks": {
+        "opening_hours": _daily_hours("07:30", "21:00"),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+
+    # --- SRC L1 food outlets (curated canteens in updated_seed.py) ---
+    "Waa Cow!": {
+        # weekends open later
+        "opening_hours": _daily_hours("11:30", "20:30", _MON_FRI,
+                                      sat=["12:00", "20:30"], sun=["12:00", "20:30"]),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Subway": {
+        # Sunday closes earlier
+        "opening_hours": _daily_hours("08:30", "21:30", sun=["08:30", "19:45"]),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Super Snacks": {
+        # overnight: opens 18:00, closes 02:00 the next day
+        "opening_hours": _daily_hours("18:00", "02:00"),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Sapore": {
+        # closed Sunday
+        "opening_hours": _daily_hours("11:30", "20:00", _MON_SAT),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
 
     # Flavours@UTown: SRC L2 food court (curated canteen in updated_seed.py).
     "Flavours@UTown": {
+        "opening_hours": _daily_hours("07:30", "20:30"),
         "canteen": {
             "halal_availability": True,
             "stalls": [
