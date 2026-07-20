@@ -225,9 +225,10 @@ export function RouteProvider({ children }: { children: React.ReactNode }) {
     }
     for (let i = 0; i < selectedRoute.steps.length; i++) {
       //look at index 1 item
-      console.log(selectedRoute.steps[i].vertical_edge);
       let building_code = selectedRoute.steps[i].buildings_passed_by_id[1];
       let floor = selectedRoute.steps[i].floor_transition[1];
+      console.log(building_code);
+      console.log(floor);
       if (
         curr == building_code &&
         curr_floor == floor &&

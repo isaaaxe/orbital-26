@@ -9,6 +9,7 @@ import {
   TextInput,
   ScrollView,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapView, {
@@ -26,7 +27,9 @@ import { useAuthContext } from "@/context/AuthContext";
 import ChipList, { ChipListProps } from "@/components/ChipList";
 import { icons } from "../../data/loadIcons";
 import {
+  useDeleteSavedLocationMutation,
   useGetLocationDetailsByType,
+  useSavedLocations,
   useSaveLocationMutation,
 } from "@/hook/useLocations";
 import { useFetchAllBusStop } from "@/hook/useBus";
@@ -105,6 +108,14 @@ const styles = StyleSheet.create({
   modalButton: {
     marginTop: 20,
     backgroundColor: "#0B2D73",
+    paddingVertical: 10,
+    borderRadius: 999,
+    alignItems: "center",
+  },
+
+  unsaveModalButton: {
+    marginTop: 20,
+    backgroundColor: "#C62828",
     paddingVertical: 10,
     borderRadius: 999,
     alignItems: "center",
@@ -316,6 +327,20 @@ const styles = StyleSheet.create({
     color: "#0B4EA2",
   },
 
+  unsaveButton: {
+    marginLeft: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: "#FDECEC",
+  },
+
+  unsaveButtonText: {
+    fontSize: 12,
+    fontWeight: "700",
+    color: "#C62828",
+  },
+
   detailsContainer: {
     marginTop: 12,
   },
@@ -515,7 +540,11 @@ function isCurrentlyOpen(openingHours: [string, string]) {
   const [openTime, closeTime] = openingHours;
 
   const openMinutes = timeToMinutes(openTime);
-  const closeMinutes = timeToMinutes(closeTime);
+  let closeMinutes = timeToMinutes(closeTime);
+
+  if (closeMinutes < openMinutes) {
+    closeMinutes = closeMinutes + 1440;
+  }
 
   const now = new Date();
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
@@ -581,10 +610,17 @@ export default function MapPage() {
   const [savePurpose, setSavePurpose] = useState("");
   const showPOI = region !== null && region.latitudeDelta < 0.015;
   const {
+    savedLocations,
+    isLoading: savedIsLoading,
+    error: savedError,
+    isLocationSaved,
+  } = useSavedLocations(token); //get the method for checking here for conditional render of save button
+  const deleteMutation = useDeleteSavedLocationMutation(token);
+  const {
     data: buildingDetails,
     isFetching: buildingDetailsLoading,
     error: buildingDetailsError,
-  } = useGetLocationDetailsByType("COM");
+  } = useGetLocationDetailsByType("building");
   //temp put com here
   const {
     data: canteens,
@@ -642,6 +678,14 @@ export default function MapPage() {
     setSavePurpose("");
     //want to cause a small pop up to appear to show that saving was successful
   }
+
+  const isMutationLoading =
+    saveLocationMutation.isPending || deleteMutation.isPending;
+  const loadingMessage = saveLocationMutation.isPending
+    ? "Saving location..."
+    : deleteMutation.isPending
+      ? "Deleting save..."
+      : "Loading...";
 
   return (
     <View style={styles.screen}>
@@ -901,7 +945,7 @@ export default function MapPage() {
                           >
                             <Text style={styles.saveButtonText}>Navigate</Text>
                           </TouchableOpacity>
-                          {token && (
+                          {token && !isLocationSaved(item.id) && (
                             <TouchableOpacity
                               style={styles.saveButton}
                               onPress={() => {
@@ -910,6 +954,20 @@ export default function MapPage() {
                               }}
                             >
                               <Text style={styles.saveButtonText}>Save</Text>
+                            </TouchableOpacity>
+                          )}
+                          {token && isLocationSaved(item.id) && (
+                            // unsave button
+                            <TouchableOpacity
+                              style={styles.unsaveButton}
+                              onPress={() => {
+                                //unsave the location
+                                deleteMutation.mutateAsync(item.id);
+                              }}
+                            >
+                              <Text style={styles.unsaveButtonText}>
+                                Unsave
+                              </Text>
                             </TouchableOpacity>
                           )}
                         </View>
@@ -966,7 +1024,10 @@ export default function MapPage() {
                                   ))}
                               </Pressable>
                             )}
-                            {!stallsExpanded ? (
+                            {!item.canteen ||
+                            item.canteen.stalls.length == 0 ? (
+                              <></>
+                            ) : !stallsExpanded ? (
                               <TouchableOpacity
                                 style={styles.stallsHeader}
                                 onPress={() => setStallsExpanded(true)}
@@ -981,7 +1042,7 @@ export default function MapPage() {
                                 style={styles.stallsContainer}
                                 onPress={() => setStallsExpanded(false)}
                               >
-                                {item.canteen?.stalls.map((stall, index) => (
+                                {item.canteen.stalls.map((stall, index) => (
                                   <View
                                     key={`stall-${index}`}
                                     style={styles.stallRow}
@@ -1091,17 +1152,37 @@ export default function MapPage() {
                   )}
 
                   {/* setting up like these for future saveable types that i can use this modal with */}
-                  {mapMode != "bus_stop" && token && (
-                    <TouchableOpacity
-                      style={styles.modalButton}
-                      onPress={() => {
-                        setVisible(false);
-                        setSaveModalVisible(true);
-                      }}
-                    >
-                      <Text style={styles.modalButtonText}>Save Location</Text>
-                    </TouchableOpacity>
-                  )}
+                  {mapMode != "bus_stop" &&
+                    token &&
+                    selectedLocation &&
+                    !isLocationSaved(selectedLocation.id) && (
+                      <TouchableOpacity
+                        style={styles.modalButton}
+                        onPress={() => {
+                          setVisible(false);
+                          setSaveModalVisible(true);
+                        }}
+                      >
+                        <Text style={styles.modalButtonText}>
+                          Save Location
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                  {mapMode != "bus_stop" &&
+                    token &&
+                    selectedLocation &&
+                    isLocationSaved(selectedLocation.id) && (
+                      <TouchableOpacity
+                        style={styles.unsaveModalButton}
+                        onPress={() => {
+                          deleteMutation.mutateAsync(selectedLocation.id);
+                        }}
+                      >
+                        <Text style={styles.modalButtonText}>
+                          Unsave Location
+                        </Text>
+                      </TouchableOpacity>
+                    )}
                   <TouchableOpacity
                     style={styles.modalButtonClose}
                     onPress={() => {
@@ -1159,6 +1240,15 @@ export default function MapPage() {
                     <Text style={styles.modalSaveText}>Save</Text>
                   </TouchableOpacity>
                 </View>
+              </View>
+            </View>
+          </Modal>
+          {/* loading modal */}
+          <Modal visible={isMutationLoading} transparent animationType="fade">
+            <View style={styles.loadingModalOverlay}>
+              <View style={styles.loadingModalBox}>
+                <ActivityIndicator size="large" />
+                <Text style={styles.loadingModalText}>{loadingMessage}</Text>
               </View>
             </View>
           </Modal>

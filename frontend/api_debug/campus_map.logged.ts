@@ -53,6 +53,8 @@ export type BuildingDetail = {
 
   available_floors: number[];
   entrance_node_id: string | null;
+  display_latitude: number;
+  display_longitude: number;
 };
 
 export type AffineCoeff = [
