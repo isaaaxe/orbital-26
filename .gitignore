@@ -6,5 +6,6 @@ __pycache__/
 *.py[cod]
 .venv/
 backend/scripts/webscraper.py
+backend/scripts/gen_test_input.py
 storage_state.json
 *.har

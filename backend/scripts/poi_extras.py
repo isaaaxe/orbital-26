@@ -14,8 +14,8 @@
 # closed (first point == last point), matching the edge-geometry convention
 # already used in the seed.
 #
-# Caveats (see chat): Deck hours are the typical pattern, not the only (pandemic-
-# era) official figure; CLB weekend hours are estimates; all crowd_density is
+# Caveats : Deck hours are the typical pattern,
+# CLB weekend hours are estimates; all crowd_density is
 # synthetic, not real popular-times data.
 # ---------------------------------------------------------------------------
 
@@ -58,6 +58,65 @@ def _daily_hours(open_t, close_t, days=_ALL_WEEK, **per_day):
     hours = {d: [open_t, close_t] for d in days}
     hours.update(per_day)
     return hours
+
+
+# --- synthetic crowd density, by venue archetype ----------------------------
+# SYNTHETIC (same caveat as the hand-written patterns above) -- NOT real
+# popular-times data. Every venue below is location_type "canteen", but they
+# behave very differently, so the curve shape comes from the archetype and is
+# then CLIPPED to that venue's real opening_hours (a closed hour never appears).
+#   food_court  multi-stall; sharp lunch spike + solid dinner
+#   restaurant  sit-down; later, flatter lunch and a strong dinner
+#   fast_food   counter service; big lunch, steady afternoon, evening bump
+#   cafe        morning peak, steady all day, no meal spike
+#   dessert     afternoon/early-evening treat traffic
+#   late_night  evening ramp peaking near midnight
+_CROWD_PROFILES = {
+    "food_court": {7: 10, 8: 15, 9: 20, 10: 25, 11: 50, 12: 90, 13: 85, 14: 50,
+                   15: 30, 16: 30, 17: 45, 18: 55, 19: 40, 20: 25, 21: 15},
+    "restaurant": {11: 30, 12: 65, 13: 70, 14: 45, 15: 25, 16: 25, 17: 40,
+                   18: 70, 19: 75, 20: 55, 21: 30, 22: 20},
+    "fast_food":  {8: 15, 9: 20, 10: 25, 11: 45, 12: 75, 13: 70, 14: 45, 15: 35,
+                   16: 35, 17: 50, 18: 60, 19: 50, 20: 35, 21: 25, 22: 15},
+    "cafe":       {7: 25, 8: 55, 9: 65, 10: 55, 11: 45, 12: 50, 13: 45, 14: 40,
+                   15: 45, 16: 45, 17: 40, 18: 30, 19: 25, 20: 20, 21: 15},
+    "dessert":    {11: 15, 12: 35, 13: 40, 14: 35, 15: 40, 16: 45, 17: 50,
+                   18: 45, 19: 35, 20: 25, 21: 15},
+    "late_night": {17: 15, 18: 25, 19: 40, 20: 55, 21: 65, 22: 70, 23: 60,
+                   0: 45, 1: 30},
+}
+# campus is quieter at weekends
+_WEEKEND_FACTOR = {"sat": 0.55, "sun": 0.45}
+_CROWD_FLOOR = 10          # value for an open hour the profile doesn't cover
+
+
+def _open_hour_range(open_t, close_t):
+    """Hour buckets a venue is open for. Handles windows crossing midnight
+    (18:00-02:00 -> 18..23, 0, 1). A close time on the hour excludes that hour."""
+    oh, om = (int(x) for x in open_t.split(":"))
+    ch, cm = (int(x) for x in close_t.split(":"))
+    last = ch if cm > 0 else ch - 1
+    hours, h = [], oh
+    while len(hours) < 24:
+        hours.append(h % 24)
+        if h % 24 == last % 24:
+            break
+        h += 1
+    return hours
+
+
+def _crowd(archetype, opening_hours):
+    """Build a crowd_density dict shaped by `archetype`, clipped to opening_hours."""
+    profile = _CROWD_PROFILES[archetype]
+    out = {}
+    for day, (open_t, close_t) in opening_hours.items():
+        factor = _WEEKEND_FACTOR.get(day, 1.0)
+        curve = {}
+        for h in _open_hour_range(open_t, close_t):
+            curve[f"{h:02d}"] = max(5, round(profile.get(h, _CROWD_FLOOR) * factor))
+        if curve:
+            out[day] = curve
+    return out
 
 
 def _polygon(points):
@@ -306,6 +365,20 @@ POI_EXTRAS = {
         "canteen": {"halal_availability": True, "stalls": []},
     },
 
+    # --- COM3 L1 food outlets (curated canteens in updated_seed.py). Weekdays only. ---
+    "Smooy": {
+        "opening_hours": _daily_hours("11:00", "19:30", _MON_FRI),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Makan Boleh": {
+        "opening_hours": _daily_hours("08:00", "19:00", _MON_FRI),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+    "Coffee Bean": {
+        "opening_hours": _daily_hours("08:00", "18:00", _MON_FRI),
+        "canteen": {"halal_availability": True, "stalls": []},
+    },
+
     # Flavours@UTown: SRC L2 food court (curated canteen in updated_seed.py).
     "Flavours@UTown": {
         "opening_hours": _daily_hours("07:30", "20:30"),
@@ -327,3 +400,45 @@ POI_EXTRAS = {
         },
     },
 }
+
+
+# ---------------------------------------------------------------------------
+# Synthetic crowd density for the food venues.
+#
+# All of these are location_type "canteen", but they are NOT the same kind of
+# place -- a 16-stall food court and a frozen-yoghurt counter have very
+# different rhythms. The archetype below decides the curve SHAPE; _crowd()
+# then clips it to that venue's real opening_hours, so hours/days the venue is
+# shut never get a crowd figure. Change the hours and the curve follows.
+#
+# Terrace / Deck / Central Library keep their hand-written patterns above.
+# ---------------------------------------------------------------------------
+_VENUE_ARCHETYPE = {
+    # multi-stall food courts -- sharp lunch spike
+    "Fine Food":         "food_court",   # 16 stalls
+    "Flavours@UTown":    "food_court",   # 11 stalls
+    "Makan Boleh":       "food_court",   # canteen-style stall, lunch driven
+    # sit-down restaurants -- later lunch, strong dinner
+    "UDON DON BAR":      "restaurant",
+    "Hwang's":           "restaurant",
+    "Makan Mala":        "restaurant",
+    "The Royals Bistro": "restaurant",
+    "Waa Cow!":          "restaurant",
+    "Sapore":            "restaurant",
+    # counter / fast food
+    "Jollibee NUS":      "fast_food",
+    "Subway":            "fast_food",
+    # cafes and drinks kiosks -- morning peak, no meal spike
+    "Starbucks":         "cafe",
+    "Coffee Bean":       "cafe",
+    "Mr Bean":           "cafe",
+    # dessert counter
+    "Smooy":             "dessert",
+    # late-night snacks (18:00-02:00)
+    "Super Snacks":      "late_night",
+}
+
+for _name, _archetype in _VENUE_ARCHETYPE.items():
+    _entry = POI_EXTRAS[_name]
+    _entry["crowd_density"] = _crowd(_archetype, _entry["opening_hours"])
+del _name, _archetype, _entry

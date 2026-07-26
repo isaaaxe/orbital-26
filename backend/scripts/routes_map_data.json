@@ -4648,7 +4648,7 @@
       "name": "Makan Boleh",
       "lat": 1.2945952,
       "lon": 103.7745909,
-      "node_type": "room",
+      "node_type": "canteen",
       "floor": 1,
       "building_code": "com3",
       "_px": [
@@ -4664,7 +4664,7 @@
       "name": "Coffee Bean",
       "lat": 1.2945198,
       "lon": 103.7745621,
-      "node_type": "room",
+      "node_type": "canteen",
       "floor": 1,
       "building_code": "com3",
       "_px": [
@@ -4961,7 +4961,7 @@
       "name": "Smooy",
       "lat": 1.2945173,
       "lon": 103.774471,
-      "node_type": "room",
+      "node_type": "canteen",
       "floor": 1,
       "building_code": "com3",
       "_px": [
